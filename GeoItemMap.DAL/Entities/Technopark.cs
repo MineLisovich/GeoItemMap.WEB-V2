@@ -1,48 +1,48 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GeoItemMap.DAL.Entities.BaseClass;
 
 namespace GeoItemMap.DAL.Entities
 {
-    public class Technopark : GeoItemBaseClass
+    public class Technopark : GeoItem
     {
         /// <summary>
         /// Наименование технопарка
         /// </summary>
         [Required]
-        [StringLength(250)]
+      //  [StringLength(250)]
         public string? NameTechnopark { get; set; }
 
         /// <summary>
         /// Адрес технопарка
         /// </summary>
         [Required]
-        [StringLength(250)]
+     //   [StringLength(250)]
         public string? AddressTechnopark { get; set; }
 
         /// <summary>
         /// Контактыне данные технопарка
         /// </summary>
         [Required]
-        [StringLength(100)]
+      //  [StringLength(100)]
         public string? PhoneTechnopark { get; set; }
 
         /// <summary>
         /// Электронная почта технопарка
         /// </summary>
         [Required]
-        [StringLength(50)]
+      //  [StringLength(50)]
         public string? EmailTechnopark { get; set; }
 
         /// <summary>
         /// Сайт технопарка
         /// </summary>
         [Required]
-        [StringLength(50)]
+      //  [StringLength(50)]
         public string? WebsiteTechnopark { get; set; }
 
         /// <summary>
@@ -61,28 +61,28 @@ namespace GeoItemMap.DAL.Entities
         /// Специализация технопарка 
         /// </summary>
         [Required]
-        [StringLength (100)]
+     //   [StringLength (100)]
         public string? TechSpecialization { get; set; }
 
         /// <summary>
         /// Ключевые виды продукции резидентов технопарка
         /// </summary>
         [Required]
-        [StringLength(250)]
+     //   [StringLength(250)]
         public string? TypesProducts { get; set; }
 
         /// <summary>
         /// Услуги, предоставляемые технопарком резиденту 
         /// </summary>
         [Required]
-        [StringLength(250)]
+       // [StringLength(250)]
         public string? ServicesProvided { get; set; }
 
         /// <summary>
         /// Технологическая инфраструктура технопарка, технологическое оборудование
         /// </summary>
         [Required]
-        [StringLength(250)]
+      //  [StringLength(250)]
         public string? TechInfrastructure { get; set; }
         /// <summary>
         /// Общее количество резидентов технопарка, ед
@@ -106,6 +106,7 @@ namespace GeoItemMap.DAL.Entities
         /// Объем финансирования
         /// </summary>
         [Required]
+        [Precision(10, 2)]
         public decimal? AmountFunding { get; set; }  
     }
 }
