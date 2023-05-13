@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeoItemMap.DAL.Entities
 {
-    public class GNTPandRNTP : GeoItem 
+    public class NtpProject : GeoItem 
     {
         /// <summary>
         /// Название программы (подпрограммы), наименование и номер документа, которым утверждена программа, пример: БПТ_14

@@ -18,7 +18,7 @@ namespace GeoItemMap.DAL.Predefined
             X = 53.6047235337218f,
             Y = 26.89027466942939f,
             NameTechnopark = "Республиканское инновационное унитарное предприятие «Научно-технологический парк БНТУ «Политехник»",
-            AddressTechnopark = "220013, Республика Беларусь, г. Минск, ул. Я. Коласа, д. 24, к. 34/1 ",
+            AddressTechnopark = "220013, Республика Беларусь, г. Минск, ул. Я. Коласа, д. 24, к. 34/1",
             PhoneTechnopark = "тел. +37517 235-59-74",
             EmailTechnopark = "post@park.bntu.by",
             WebsiteTechnopark = "http://park.bntu.by/",
@@ -33,14 +33,15 @@ namespace GeoItemMap.DAL.Predefined
             VolComplProducts = 18713.6f,
             AmountFunding = 17963.4m
         };
+
         Technopark id102 = new()
         { 
             Id = 102,
             X =  54.92934689702713f,
             Y = 29.174215494659823f,
-            NameTechnopark = "Республиканское инновационное унитарное предприятие «Научно-технологический парк Полоцкого государственного университета» ",
-            AddressTechnopark = "211446, Витебская обл., г. Новополоцк, ул. Блохина, 29/114мк ",
-            PhoneTechnopark = " ",
+            NameTechnopark = "Республиканское инновационное унитарное предприятие «Научно-технологический парк Полоцкого государственного университета»",
+            AddressTechnopark = "211446, Витебская обл., г. Новополоцк, ул. Блохина, 29/114мк",
+            PhoneTechnopark = "",
             EmailTechnopark = "post@park.bntu.by",
             WebsiteTechnopark = "http://park.bntu.by/",
             TotalAreaPremises = 345.83f,
@@ -58,10 +59,10 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id103 = new()
         {
             Id = 103,
-            X =  54.5886749532035f,
+            X = 54.5886749532035f,
             Y = 27.651588277839537f,
             NameTechnopark = "Республиканское инновационное унитарное предприятие «Научно-технологический парк Витебского государственного технологического университета»",
-            AddressTechnopark = "Республика Беларусь, 210038, г. Витебск, Московский пр-т, 72  ",
+            AddressTechnopark = "Республика Беларусь, 210038, г. Витебск, Московский пр-т, 72",
             PhoneTechnopark = "Тел. / Факс +375 212 22 67 44",
             EmailTechnopark = "info@technopark-vitebsk.by",
             WebsiteTechnopark = "www.technopark-vitebsk.by",
@@ -79,7 +80,6 @@ namespace GeoItemMap.DAL.Predefined
 
         Technopark id104 = new()
         {
-          
             Id = 104,
             X =  55.249449431769285f,
             Y =  27.915717488920606f,
@@ -102,7 +102,6 @@ namespace GeoItemMap.DAL.Predefined
 
         Technopark id105 = new()
         {
-            
             Id = 105,
             X = 52.74804076056519f,
             Y = 27.232088942593133f,
@@ -130,7 +129,7 @@ namespace GeoItemMap.DAL.Predefined
             Y = 24.124686459286426f,
             NameTechnopark = "Республиканское унитарное предприятие «Учебно-научно-производственный центр «Технолаб»",
             AddressTechnopark = "230005, г. Гродно, ул. Гаспадарчая, 21/А",
-            PhoneTechnopark = "тел./факс +375(152) 55-62-50,  м.т  +375 (29) 666-57- 06,",
+            PhoneTechnopark = "тел./факс +375(152) 55-62-50,  м.т  +375 (29) 666-57- 06",
             EmailTechnopark = "vasil@grsu.by",
             WebsiteTechnopark = " ",
             TotalAreaPremises = 8529.2f,
@@ -226,7 +225,7 @@ namespace GeoItemMap.DAL.Predefined
             TechSpecialization = "IT-технологии, промышленное производство",
             TypesProducts = "Программное обеспечение, SIP-панели",
             ServicesProvided = "Сдача в арену офисных помещений, движимого имущества. Оказание инжиниринговых услуг, услуг по написанию бизнес-планов, услуг склада временного хранения",
-            TechInfrastructure = "Бизнес-инкубатор, коворкинг, конференц-зал, переговорная, зал заседаний, учебный класс, центр прототипирования, 3D-лаборатория, фаблаб ",
+            TechInfrastructure = "Бизнес-инкубатор, коворкинг, конференц-зал, переговорная, зал заседаний, учебный класс, центр прототипирования, 3D-лаборатория, фаблаб",
             TotalNumberResident = 15,
             NumberEmployees = 754,
             VolComplProducts = 16673.6f,
@@ -255,14 +254,234 @@ namespace GeoItemMap.DAL.Predefined
             AmountFunding = 0
         };
 
+        Technopark id112 = new()
+        { 
+            Id = 112,
+            X = 53.769755791044034f,
+            Y = 26.898482733222426f,
+            NameTechnopark = "Коммунальное производственно-торговое унитарное предприятие «Минский областной технопарк»",
+            AddressTechnopark = "Минская обл., Смолевичский район, д.Станок-водица, ул. Заводская, д.1;",
+            PhoneTechnopark = "тел. +375(17)5555271",
+            EmailTechnopark = "nfo@mpark.by",
+            WebsiteTechnopark = "http://mpark.by",
+            TotalAreaPremises = 16518.4f,
+            FreeAreaPremises = 189.9f,
+            TechSpecialization = "Услуги резидентам в предоставлении площадей и оборудования в аренду",
+            TypesProducts = "Электротранспорт, энергетические установки",
+            ServicesProvided = "Содействие в создании новых производств с новыми технологиями, содействие в осуществлении внешнеэкономическойдеятельности, предоставление на договорной основеп в соответствии с законодательством движимого и недвижимого имущества,  в том числе помещений различного функционального назначени, обеспечение освещения в средствах массовой информации деятельности технопарка и его резидентов, оказание иных услуг (выполнение инфх работ), связанных с научной, научно-технической и инновационной деятельностью технопарка",
+            TechInfrastructure = "Энергосети; Водоснабжение; Видеонаблюдение",
+            TotalNumberResident = 6,
+            NumberEmployees = 177,
+            VolComplProducts = 36610.3f,
+            AmountFunding = 374m
+        };
+
+        Technopark id113 = new()
+        { 
+            Id = 113,
+            X = 53.3160442027159f,
+            Y = 27.063277635809087f,
+            NameTechnopark = "Общество с ограниченной ответственностью «ИнКата»",
+            AddressTechnopark = "Республика Беларусь Минская область, Смолевичский район, территория Индустриального парка «Великий камень»,ул. Рубиновая,  Могилевская область, Бобруйский район, г.Бобруйск",
+            PhoneTechnopark = "тел +375 29 594 31 32",
+            EmailTechnopark = "em@encata.net",
+            WebsiteTechnopark = "encata.net",
+            TotalAreaPremises = 8399f,
+            FreeAreaPremises = 1980f,
+            TechSpecialization = "Строительные технологии, приборостроение, шеринг-услуги",
+            TypesProducts = "Оборудование, приборы, строительные услуги, шеринг-услуги",
+            ServicesProvided = "сдача в аренду готовых помещений, телефонная связь, инжиниринговые и консалтинговые услуги",
+            TechInfrastructure = "Центр коллективного пользования оборудованием, центр прототипирования, коворкинг, конструкторское бюро и опытное производство",
+            TotalNumberResident = 20,
+            NumberEmployees = 889,
+            VolComplProducts = 97925.8f,
+            AmountFunding = 3103.0m
+        };
+
+        Technopark id114 = new()
+        { 
+            Id = 114,
+            X = 54.60542063210755f,
+            Y = 29.623091789321823f,
+            NameTechnopark = "Общество с ограниченной ответственностью «ИнКата»",
+            AddressTechnopark = "Республика Беларусь Минская область, Смолевичский район, территория Индустриального парка «Великий камень», ул. Рубиновая",
+            PhoneTechnopark = "",
+            EmailTechnopark = "",
+            WebsiteTechnopark = "",
+            TotalAreaPremises = 6774f,
+            FreeAreaPremises = 1980f,
+            TechSpecialization = "Строительные технологии, приборостроение, шеринг-услуги",
+            TypesProducts = "Оборудование, приборы, строительные услуги, шеринг-услуги",
+            ServicesProvided = "сдача в аренду готовых помещений, телефонная связь, инжиниринговые и консалтинговые услуги",
+            TechInfrastructure = "Центр коллективного пользования оборудованием, центр прототипирования, коворкинг, конструкторское бюро и опытное производство",
+            TotalNumberResident = 16,
+            NumberEmployees = 633,
+            VolComplProducts = 71541.2f,
+            AmountFunding = 2945.2m
+        };
+
+        Technopark id115 = new()
+        {
+            Id = 115,
+            X = 54.60542063210755f,
+            Y = 29.623091789321823f,
+            NameTechnopark = "Общество с ограниченной ответственностью «ИнКата»",
+            AddressTechnopark = "Могилевская область, Бобруйский район, г.Бобруйск",
+            PhoneTechnopark = "тел. +375 29 594 31 32",
+            EmailTechnopark = "",
+            WebsiteTechnopark = "",
+            TotalAreaPremises = 1625f,
+            FreeAreaPremises = 0,
+            TechSpecialization = "Строительные технологии, приборостроение, шеринг-услуги",
+            TypesProducts = "Оборудование, приборы, строительные услуги, шеринг-услуги",
+            ServicesProvided = "сдача в аренду готовых помещений, телефонная связь, инжиниринговые и консалтинговые услуги",
+            TechInfrastructure = "Центр коллективного пользования оборудованием, центр прототипирования, коворкинг, конструкторское бюро и опытное производство",
+            TotalNumberResident = 4,
+            NumberEmployees = 256,
+            VolComplProducts = 26384.6f,
+            AmountFunding = 157.8m
+        };
+
+        Technopark id116 = new()
+        {
+            Id = 116,
+            X = 54.72614437379667f,
+            Y = 27.392867440982396f,
+            NameTechnopark = "Закрытое акционерное общество «Технологический парк Могилев»",
+            AddressTechnopark = "212030 г. Могилев, ул. Ленинская, д.63 ",
+            PhoneTechnopark = "тел. +375 222 299 909",
+            EmailTechnopark = "info@technopark.by",
+            WebsiteTechnopark = "www.technopark.by ",
+            TotalAreaPremises = 3439f,
+            FreeAreaPremises = 388.47f,
+            TechSpecialization = "Без специализации",
+            TypesProducts = "Системы управления двигателем; Зарядные станции; Кольпоскопы; Катера; Изделия из стеклопластика Оборудование для диагностики и ремонта автомобильной топливной аппаратуры",
+            ServicesProvided = "Аренда помещений; Услуги по бизнес-планированию; Услуги связи; Услуги по ведению бухгалтерского учета; Услуги в сфере энергосбережения",
+            TechInfrastructure = "Бизнес-инкубатор",
+            TotalNumberResident = 16,
+            NumberEmployees = 181,
+            VolComplProducts = 26022f,
+            AmountFunding = 263.5m
+        };
+
+        Technopark id117 = new()
+        { 
+            Id = 117,
+            X = 52.546539724323054f,
+            Y = 27.912637558119343f,
+            NameTechnopark = "Общество с ограниченной ответственностью «Минский городской технопарк»",
+            AddressTechnopark = "220070, Республика Беларусь г. Минск, ул. Солтыса, 187, г. Минск, Партизанский просп. 8, г. Минск, ул. Центральная 47.",
+            PhoneTechnopark = "факс: +375 17 399 17 95 тел.: +375 17 322 03",
+            EmailTechnopark = "mgtp@tut.by",
+            WebsiteTechnopark = "www.mgtp.by",
+            TotalAreaPremises = 209960f,
+            FreeAreaPremises = 20182.9f,
+            TechSpecialization = "Производственные предприятия",
+            TypesProducts = "Проведение НИОК(Т)Р в различных областях науки и техники; Зеленая энергетика, переработка отходов, защита окружающей среды;  Фармакология и биотехнологии; Микроэлектроника широкого профиля; Робототехника; Системы безопасности и контроля доступа; Лазерная техника, оптические приборы; Точное приборостроение и обработка материалов; Инжиниринговые услуги широкого профиля",
+            ServicesProvided = "Сдача в аренду готовых помещений;  специализированный консалтинг; содействие в доступе к финансовым, организационным и административным ресурсам; доступ к технологическому оборудованию",
+            TechInfrastructure = "центр коллективного пользования оборудованием",
+            TotalNumberResident = 47,
+            NumberEmployees = 1229,
+            VolComplProducts = 143385.9f,
+            AmountFunding = 362305.3m
+        };
+
+        Technopark id118 = new()
+        { 
+            Id = 118,
+            X = 54.747033304887744f,
+            Y = 27.5009067290812f,
+            NameTechnopark = "Общество с ограниченной ответственностью «Минский городской технопарк»",
+            AddressTechnopark = "220070, Республика Беларусь г. Минск, ул. Солтыса, 187, г. Минск, ул. Центральная 47",
+            PhoneTechnopark = "",
+            EmailTechnopark = "",
+            WebsiteTechnopark = "",
+            TotalAreaPremises = 45876.6f,
+            FreeAreaPremises = 9582.3f,
+            TechSpecialization = "Производственные предприятия",
+            TypesProducts = "Проведение НИОК(Т)Р в различных областях науки и техники; Зеленая энергетика, переработка отходов, защита окружающей среды;  Фармакология и биотехнологии; Микроэлектроника широкого профиля; Робототехника; Системы безопасности и контроля доступа; Лазерная техника, оптические приборы; Точное приборостроение и обработка материалов; Инжиниринговые услуги широкого профиля",
+            ServicesProvided = "Сдача в аренду готовых помещений;  специализированный консалтинг; содействие в доступе к финансовым, организационным и административным ресурсам; доступ к технологическому оборудованию",
+            TechInfrastructure = "центр коллективного пользования оборудованием",
+            TotalNumberResident = 41,
+            NumberEmployees = 896,
+            VolComplProducts = 75664.8f,
+            AmountFunding = 81469.3m
+        };
+
+        Technopark id119 = new()
+        {      
+            Id = 119,
+            X = 55.18850948950069f,
+            Y = 28.743867722403888f,
+            NameTechnopark = "Общество с ограниченной ответственностью «Минский городской технопарк»",
+            AddressTechnopark = "г. Минск, Партизанский просп. 8,",
+            PhoneTechnopark = "",
+            EmailTechnopark = "",
+            WebsiteTechnopark = "",
+            TotalAreaPremises = 150982.6f,
+            FreeAreaPremises = 4075.8f,
+            TechSpecialization = "Производственные предприятия",
+            TypesProducts = "Проведение НИОК(Т)Р в различных областях науки и техники; Зеленая энергетика, переработка отходов, защита окружающей среды;  Фармакология и биотехнологии; Микроэлектроника широкого профиля; Робототехника; Системы безопасности и контроля доступа; Лазерная техника, оптические приборы; Точное приборостроение и обработка материалов; Инжиниринговые услуги широкого профиля",
+            ServicesProvided = "Сдача в аренду готовых помещений;  специализированный консалтинг; содействие в доступе к финансовым, организационным и административным ресурсам; доступ к технологическому оборудованию",
+            TechInfrastructure = "центр коллективного пользования оборудованием",
+            TotalNumberResident = 6,
+            NumberEmployees = 333,
+            VolComplProducts = 67721.1f,
+            AmountFunding = 280836.0m
+        };
+
+        Technopark id120 = new()
+        {
+            Id = 120,
+            X = 53.72094479153242f,
+            Y = 29.450801787356163f,
+            NameTechnopark = "Общество с ограниченной ответственностью «Борисовский региональный технопарк»",
+            AddressTechnopark = "220092, г. Минск, пр. Пушкина 20, каб. 102.",
+            PhoneTechnopark = "Тел. +375 29 663 40 66",
+            EmailTechnopark = "snamiteplee@mail.ru",
+            WebsiteTechnopark = "http://bizpark.by",
+            TotalAreaPremises = 4526.2f,
+            FreeAreaPremises = 3692f,
+            TechSpecialization = "IT сфера, перерабатывающая промышленность",
+            TypesProducts = "IT стартапы, переработка промышленных отходов",
+            ServicesProvided = "Аренда помещений, Консалтинговое сопровождение, Помощь в привлечении инвестиций, Предложение лучших идей для бизнеса, Помощь  с маркетингом под ключ, Проведение обучающих семинаров, Помощь с выходом на зарубежный рынок, Помощь в привлечением грантовых субсидий  и венчурного финансирования, Организация поездок за границу, Поиск партнера в бизнес, Налоговые преференции.",
+            TechInfrastructure = "Бизнес-инкубатор, коворкинг-центр, центр коллективного пользования оборудованием ",
+            TotalNumberResident = 4,
+            NumberEmployees = 24,
+            VolComplProducts = 178.1f,
+            AmountFunding = 2296.7m
+        };
+
+        Technopark id121 = new()
+        { 
+            Id = 121,
+            X = 55.43168150356719f,
+            Y = 55.43168150356719f,
+            NameTechnopark = "Общество с ограниченной ответственностью «Технопарк Олика»",
+            AddressTechnopark = "Республика Беларусь, 220037, г. Минск, пер. Козлова, д. 7В, пом. 2/1 ",
+            PhoneTechnopark = "тел. +375 29 674 02 19",
+            EmailTechnopark = "",
+            WebsiteTechnopark = "",
+            TotalAreaPremises = 3797.8f,
+            FreeAreaPremises = 2493.8f,
+            TechSpecialization = "Без специализации",
+            TypesProducts = "",
+            ServicesProvided = "",
+            TechInfrastructure = "",
+            TotalNumberResident = 0,
+            NumberEmployees = 0,
+            VolComplProducts = 0,
+            AmountFunding = 0
+        };
+
         internal List<Technopark> Technoparks;
 
         internal PredefinedTechnoparkList()
         {
             Technoparks = new()
             {
-                id101, id102, id103, id104, id105 , id106, id107, id108, id109, id110,
-                id111
+                id101, id102, id103, id104, id105, id106, id107, id108, id109, id110,
+                id111, id112, id113, id114, id115, id116, id117, id118, id119, id120, id121
             };
         }
     }

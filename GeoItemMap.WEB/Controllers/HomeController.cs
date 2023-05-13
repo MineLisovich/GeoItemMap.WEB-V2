@@ -1,6 +1,9 @@
-﻿using GeoItemMap.WEB.Models;
+﻿using GeoItemMap.DAL.Entities;
+using GeoItemMap.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using GeoItemMap.DAL.Repositories;
+using GeoItemMap.DAL.Interfaces;
 
 namespace GeoItemMap.WEB.Controllers
 {
@@ -8,14 +11,24 @@ namespace GeoItemMap.WEB.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private IGenericRepository<GeoItem> genericRepository;
+        public HomeController(ILogger<HomeController> logger , IGenericRepository<GeoItem> _genericRepository)
         {
             _logger = logger;
+            // this.genericRepository = new EFGenericRepository<GeoItem>();
+            genericRepository = _genericRepository;
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> PostData()
+        {
+           var model = await genericRepository.GetAll();
+            return Json(model);
         }
 
         public IActionResult Privacy()

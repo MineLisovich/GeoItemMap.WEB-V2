@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -104,7 +105,7 @@ namespace GeoItemMap.DAL.Entities
         public decimal? Criterion2 { get; set; }
 
         /// <summary>
-        /// Критерий 3 Указа № 357: Создание и внедрение новых технологий и (или) производство новой для Республики Беларусь и (или) мировой экономики продукции (1 – мировая новизна; 2 – новизна для Республики Беларусь)
+        /// Критерий 3 Указа № 357: Создание и внедрение новых технологий и (или) производство новой для Республики Беларусь и (или) мировой экономики продукции (true (1) – мировая новизна; false (0) – новизна для Республики Беларусь)
         /// </summary>
         [Required]
         public bool? Criterion3 { get; set; }
@@ -116,6 +117,13 @@ namespace GeoItemMap.DAL.Entities
         [Required]
        // [StringLength(10)]
         public string? UseTechnologies { get; set;}
+
+        /// <summary>
+        /// Годовой объем производства продукции по проекту (год, следующий за годом выхода на проектную мощность), тыс. руб.
+        /// </summary>
+        [Required]
+        [Precision(10,2)]
+        public decimal? AnnualProductionVolumeBY { get; set; }
 
         /// <summary>
         /// Годовой объем экспорта по проекту  тыс. рублей

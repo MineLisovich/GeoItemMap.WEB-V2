@@ -25,24 +25,28 @@ namespace GeoItemMap.DAL.DataContext
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         public DbContextOptions<AppDbContext> ConnectionString { get; }
 
-        public DbSet<GeoItem>? geoItems { get; set; }
+        public DbSet<GeoItem>? GeoItems { get; set; }
 
-        public DbSet <GNTPandRNTP>? gNTPandRNTPs { get; set; }
-        public DbSet <InnProject>? innProjects { get; set; }  
-        public DbSet <Technopark>? technoparks { get; set;}
+        public DbSet <NtpProject>? NtpProjects { get; set; }
+        public DbSet <InnProject>? InnProjects { get; set; }  
+        public DbSet <Technopark>? Technoparks { get; set;}
 
-        public DbSet <TechTransferCenter>? techtransfercenters { get; set;}
+        public DbSet <TechTransferCenter>? Techtransfercenters { get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<GeoItem>().ToTable("GeoItems");
-            modelBuilder.Entity<GNTPandRNTP>().ToTable("GNTPandRNTPs");
+            modelBuilder.Entity<NtpProject>().ToTable("GNTPandRNTPs");
             modelBuilder.Entity<InnProject>().ToTable("InnProjects");
             modelBuilder.Entity<Technopark>().ToTable("Technoparks");
             modelBuilder.Entity<TechTransferCenter>().ToTable("TechTransferCenters");
            
 
             modelBuilder.Entity<Technopark>().HasData( new Predefined.PredefinedTechnoparkList().Technoparks);
+            modelBuilder.Entity<TechTransferCenter>().HasData(new Predefined.PredefinedTechTransferCenterList().TechTransferCenters);
+            modelBuilder.Entity<InnProject>().HasData(new Predefined.PredefinedInnProjectList().innProjects);
+            modelBuilder.Entity<NtpProject>().HasData(new Predefined.PredefinedGNTPadnRNTPList().gNTPandRNTPs);
+
 
 
         }
