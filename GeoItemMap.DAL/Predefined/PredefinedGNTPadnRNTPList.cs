@@ -11,9 +11,11 @@ namespace GeoItemMap.DAL.Predefined
     {
         NtpProject id1001 = new()
         {
+
+         
             Id = 1001,
-            X = 55.07712887150114f,
-            Y = 23.669676564796656f,
+            X =  55.53875618539466f,
+            Y = 27.750420691877412f,
             NameProgramm = "БПТ_14",
             StateCustomer = "",
             ParentImplemOrg = "ОАО «Витязь»",

@@ -4,7 +4,7 @@
 
 namespace GeoItemMap.DAL.Migrations
 {
-    public partial class mig2 : Migration
+    public partial class mig3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -160,7 +160,7 @@ namespace GeoItemMap.DAL.Migrations
                     { 201, 53.25875f, 26.65414f },
                     { 202, 52.593758f, 28.961386f },
                     { 203, 53.7577f, 29.155598f },
-                    { 1001, 55.07713f, 23.669676f },
+                    { 1001, 55.538757f, 27.750422f },
                     { 1002, 53.07713f, 26.669676f },
                     { 1, 53.462738f, 24.354662f },
                     { 2, 55.546116f, 30.421865f },

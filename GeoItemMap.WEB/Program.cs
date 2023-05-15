@@ -1,7 +1,18 @@
+using GeoItemMap.DAL.Interfaces;
+using GeoItemMap.DAL.Repositories;
+using GeoItemMap.DAL.Entities;
+using GeoItemMap.DAL.DataContext;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IGenericRepository<GeoItem>, EFGenericRepository<GeoItem>>();
+builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(@"Data Source=PC11-1203-3N\SQLEXPRESS;  Database=GeoItemDB;  Persist Security Info =false; User='sa'; Password='sa'; MultipleActiveResultSets=True; Trusted_Connection=False;"));
 
 var app = builder.Build();
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeoItemMap.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230513121205_mig2")]
-    partial class mig2
+    [Migration("20230515073228_mig3")]
+    partial class mig3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -308,8 +308,8 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 1001,
-                            X = 55.07713f,
-                            Y = 23.669676f,
+                            X = 55.538757f,
+                            Y = 27.750422f,
                             AreaImplemOrg = "Витебская область",
                             CityImplemOrg = "г. Витебск",
                             CountryImplemOrg = "Республика Беларусь",

@@ -59,16 +59,17 @@
             success: function (result) {
 
                 console.log (result)
-                //for (var i in result.geoItems) {
+                for (var i in result) {
+                    console.log(result[i].id)
+                    var myPlacemark = new ymaps.Placemark([result[i].x, result[i].y], {
+                        balloonContentHeader: 'Метка № ' + result[i].id + ' (ID from DB)',
+                        balloonContentBody: 'Координаты: <br>' + 'X- ' + result[i].x + ' Y- ' + result[i].y
+                      
+                    });
+                    myMap.geoObjects.add(myPlacemark);
 
-                //    var myPlacemark = new ymaps.Placemark([result.geoItems[i].x, result.geoItems[i].y], {
-                //        //balloonContentHeader: 'Метка № ' + result.geoItems[i].id + '(ID from DB)',
-                //        //balloonContentBody: 'Описание:' + result.geoItems[i].description + '<br>' + 'Координаты: <br>' + 'X- ' + result.geoItems[i].x + ' Y- ' + result.geoItems[i].y
-                //    });
-                //    myMap.geoObjects.add(myPlacemark);
 
-
-                //}
+                }
             }
 
         });
