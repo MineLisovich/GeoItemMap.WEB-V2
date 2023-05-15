@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GeoItemMap.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace GeoItemMap.DAL.Interfaces
     {
         Task <IEnumerable<TEntity>> GetAll();
 
+      
         void Save();
         
     }

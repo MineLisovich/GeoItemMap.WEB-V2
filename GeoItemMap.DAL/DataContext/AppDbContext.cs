@@ -36,7 +36,7 @@ namespace GeoItemMap.DAL.DataContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<GeoItem>().ToTable("GeoItems");
-            modelBuilder.Entity<NtpProject>().ToTable("GNTPandRNTPs");
+            modelBuilder.Entity<NtpProject>().ToTable("NtpProject");
             modelBuilder.Entity<InnProject>().ToTable("InnProjects");
             modelBuilder.Entity<Technopark>().ToTable("Technoparks");
             modelBuilder.Entity<TechTransferCenter>().ToTable("TechTransferCenters");

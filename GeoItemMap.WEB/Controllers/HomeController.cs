@@ -11,25 +11,37 @@ namespace GeoItemMap.WEB.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private IGenericRepository<GeoItem> genericRepository;
-        public HomeController(ILogger<HomeController> logger , IGenericRepository<GeoItem> _genericRepository)
+        private IGenericRepository<GeoItem> GeoItemGenericRepository;
+        public HomeController(ILogger<HomeController> logger , IGenericRepository<GeoItem> _GeoItemGenericRepository)
         {
-            _logger = logger;
-            // this.genericRepository = new EFGenericRepository<GeoItem>();
-            genericRepository = _genericRepository;
+            _logger = logger;     
+            GeoItemGenericRepository = _GeoItemGenericRepository;
         }
 
         public IActionResult Index()
         {
+            return RedirectToAction(nameof(GetMapYandexApi2));
+        }
+
+        public IActionResult GetMapYandexApi2()
+        {
             return View();
         }
+
+        public IActionResult GetMapYandexApi3()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public async Task<JsonResult> PostData()
         {
-           var model = await genericRepository.GetAll();
+           var model = await GeoItemGenericRepository.GetAll();
             return Json(model);
         }
+
+    
 
         public IActionResult Privacy()
         {

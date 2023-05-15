@@ -300,7 +300,7 @@ namespace GeoItemMap.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("GNTPandRNTPs", (string)null);
+                    b.ToTable("NtpProject", (string)null);
 
                     b.HasData(
                         new

@@ -50,6 +50,9 @@
         })
 
 
+     
+
+
         $.ajax({
             url: 'https://localhost:7215/Home/PostData',
             type: 'POST',
@@ -62,13 +65,11 @@
                 for (var i in result) {
                     console.log(result[i].id)
                     var myPlacemark = new ymaps.Placemark([result[i].x, result[i].y], {
-                        balloonContentHeader: 'Метка № ' + result[i].id + ' (ID from DB)',
-                        balloonContentBody: 'Координаты: <br>' + 'X- ' + result[i].x + ' Y- ' + result[i].y
+                       balloonContentHeader: 'Метка № ' + result[i].id + ' (ID from DB)',
+                       balloonContentBody: 'Координаты: <br>' + 'X- ' + result[i].x + ' Y- ' + result[i].y
                       
                     });
-                    myMap.geoObjects.add(myPlacemark);
-
-
+                    myMap.geoObjects.add(myPlacemark);    
                 }
             }
 

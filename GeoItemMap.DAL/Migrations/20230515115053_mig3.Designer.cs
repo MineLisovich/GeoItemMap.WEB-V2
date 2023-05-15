@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeoItemMap.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230515073228_mig3")]
+    [Migration("20230515115053_mig3")]
     partial class mig3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -302,7 +302,7 @@ namespace GeoItemMap.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("GNTPandRNTPs", (string)null);
+                    b.ToTable("NtpProject", (string)null);
 
                     b.HasData(
                         new

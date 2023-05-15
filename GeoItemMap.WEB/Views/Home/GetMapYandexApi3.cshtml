@@ -1,0 +1,84 @@
+﻿<script type="text/javascript">
+    ymaps.ready(function () {
+        var myMap = new ymaps.Map("YMapsID", {
+            center: [53.90, 27.56],
+            zoom: 11
+        }, {
+            restrictMapArea: [
+                [58.486077093111334, 15.89679288089655],
+                [49.77185323695446, 39.58331354601873]
+            ]
+        });
+        var zoomControl = new ymaps.control.ZoomControl({
+            options: {
+
+                zoomStep: 1,
+                zoomDuration: 1000
+            }
+        });
+        myMap.controls.add(zoomControl);
+
+
+        // Загрузим регионы.
+        ymaps.borders.load('001', {
+            lang: 'ru',
+            quality: 2
+        }).then(function (result) {
+
+            // Создадим многоугольник, который будет скрывать весь мир, кроме заданной страны.
+            var background = new ymaps.Polygon([
+                [
+                    [85, -179.99],
+                    [85, 179.99],
+                    [-85, 179.99],
+                    [-85, -179.99],
+                    [85, -179.99]
+                ]
+            ], {}, {
+                fillColor: '#ffffff',
+                strokeWidth: 0,
+                coordRendering: 'straightPath'
+            });
+            // Найдём страну по её iso коду.
+            var region = result.features.filter(function (feature) { return feature.properties.iso3166 == 'BY'; })[0];
+            var masks = region.geometry.coordinates;
+            masks.forEach(function (mask) {
+                background.geometry.insert(1, mask);
+            });
+            // Добавим многоугольник на карту.
+            myMap.geoObjects.add(background);
+        })
+
+
+     
+
+
+        $.ajax({
+            url: 'https://localhost:7215/Home/PostData',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            success: function (result) {
+
+                console.log (result)
+                for (var i in result) {
+                    console.log(result[i].id)
+                    var myPlacemark = new ymaps.Placemark([result[i].x, result[i].y], {
+                       balloonContentHeader: 'Метка № ' + result[i].id + ' (ID from DB)',
+                       balloonContentBody: 'Координаты: <br>' + 'X- ' + result[i].x + ' Y- ' + result[i].y
+                      
+                    });
+                    myMap.geoObjects.add(myPlacemark);    
+                }
+            }
+
+        });
+
+    });
+
+
+</script>
+
+
+<div id="YMapsID" style="width: 100%; height: 842px "></div>
