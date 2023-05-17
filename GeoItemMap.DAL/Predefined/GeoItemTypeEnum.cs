@@ -15,6 +15,6 @@ namespace GeoItemMap.DAL.Predefined
         Technopark,
         TechTransferCenter,
         InnProject,
-        GNTPandRNTP
+        NtpProject
     }
 }

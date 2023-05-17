@@ -33,7 +33,7 @@
                 ],
             },
             style: {
-                fill: '#000080',
+            fill: '#0089FF',
                 stroke: [{ color: '#fff', width: 1 }],
             },
         };
@@ -52,8 +52,8 @@
                 ],
             },
             style: {
-                // fill: '#8ca9cf99',
-                stroke: [{ color: '#fff', width: 1 }]
+                 fill: '#585858',
+                stroke: [{ color: '#585858', width: 1 }]
             },
         };
         const FEATUREUA = {
@@ -68,8 +68,8 @@
                 ],
             },
             style: {
-                //   fill: '#8ca9cf99',
-                stroke: [{ color: '#fff', width: 1 }],
+                   fill: '#585858',
+                stroke: [{ color: '#585858', width: 1 }],
             },
         };
         const FEATURELT = {
@@ -82,9 +82,9 @@
                 ]],
             },
             style: {
-                //fill: '#8ca9cf99',
+                fill: '#585858',
                 // fillImageHref: 'https://www.pngplay.com/wp-content/uploads/10/Belarus-Flag-PNG-HD-Quality.png',
-                stroke: [{ color: '#fff', width: 1 }],
+                stroke: [{ color: '#585858', width: 1 }],
             },
         };
         const FEATURELT2 = {
@@ -97,9 +97,9 @@
                 ]],
             },
             style: {
-                //fill: '#8ca9cf99',
+                fill: '#585858',
                 // fillImageHref: 'https://www.pngplay.com/wp-content/uploads/10/Belarus-Flag-PNG-HD-Quality.png',
-                stroke: [{ color: '#fff', width: 1 }],
+                stroke: [{ color: '#585858', width: 1 }],
             },
         };
 
@@ -114,9 +114,9 @@
                 ]],
             },
             style: {
-                //fill: '#8ca9cf99',
+                fill: '#585858',
                 // fillImageHref: 'https://www.pngplay.com/wp-content/uploads/10/Belarus-Flag-PNG-HD-Quality.png',
-                stroke: [{ color: '#fff', width: 1 }],
+                stroke: [{ color: '#585858', width: 1 }],
             },
         };
         const FEATURELV = {
@@ -129,9 +129,9 @@
                 ]],
             },
             style: {
-                // c '#8ca9cf99',
+                 fill: '#585858',
                 // fillImageHref: 'https://www.pngplay.com/wp-content/uploads/10/Belarus-Flag-PNG-HD-Quality.png',
-                stroke: [{ color: '#fff', width: 1 }],
+                stroke: [{ color: '#585858', width: 1 }],
             },
         };
         const FEATUREKALININGRAD = {
@@ -144,9 +144,9 @@
                 ]],
             },
             style: {
-                //fill: '#8ca9cf99',
+               fill: '#585858',
                 // fillImageHref: 'https://www.pngplay.com/wp-content/uploads/10/Belarus-Flag-PNG-HD-Quality.png',
-                stroke: [{ color: '#fff', width: 1 }],
+                stroke: [{ color: '#585858', width: 1 }],
             },
         };
         const FEATURERU = {
@@ -159,9 +159,9 @@
                 ]],
             },
             style: {
-                // fill: '#8ca9cf99',
+                fill: '#585858',
                 // fillImageHref: 'https://www.pngplay.com/wp-content/uploads/10/Belarus-Flag-PNG-HD-Quality.png',
-                stroke: [{ color: '#fff', width: 1 }],
+                stroke: [{ color: '#585858', width: 1 }],
             },
         };
 
@@ -169,27 +169,41 @@
         main();
         async function getGeoItem(id) {
             var geoitem;
-            const response = await fetch(`https://localhost:7006/GeoItem/${id}`, {
+        const response = await fetch(`https://localhost:7215/GeoItem/${id}`, {
                 method: "GET",
                 headers: { "Accept": "application/json" }
             });
             if (response.ok === true) {
                 geoitem = await response.json();
-                console.log(geoitem);
-                return geoitem.value.descriptionString + "<br/>" + geoitem.value.descriptionNumber + "<br/>" + geoitem.value.descriptionDate;
+                if (geoitem.value.geoType == 0)
+                {
+                    return "ID: "+geoitem.value.id + "<br/>" + geoitem.value.nameTechnopark + "<br/>" +"Координаты: "+ geoitem.value.x + " " + geoitem.value.y;
+                }
+                else if (geoitem.value.geoType == 1)
+                {
+                    return "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameTechTransferCenter + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
+                }
+                else if (geoitem.value.geoType == 2)
+                {
+                    return "ID: "+geoitem.value.id +"<br/>"+ geoitem.value.nameInnProject + "<br/>" +"Координаты: "+ geoitem.value.x + " " + geoitem.value.y;
+                }
+                else if (geoitem.value.geoType == 3)
+                {
+                    return "ID: "+geoitem.value.id +"<br/>"+ geoitem.value.nameTask + "<br/>" +"Координаты: "+ geoitem.value.x + " " + geoitem.value.y;
+                }
             }
             else {
                 const error = await response.json();
             }
         }
 
-        function top_popup(id) {
-            var result = getGeoItem(id);
-            result.then(function (value) {
-                $('#exampleModal > div > div > div.modal-body').html(value);
-                $('#exampleModal').modal('show');
-            })
-        }
+    function top_popup(id) {
+        var result = getGeoItem(id);
+        result.then(function (value) {
+            $('#exampleModal > div > div > div.modal-body').html(value);
+            $('#exampleModal').modal('show');
+        })
+    }
 
         async function main() {
             await ymaps3.ready;
@@ -231,21 +245,54 @@
 
 
              async function getGeoItems() {
-            const response = await fetch("https://localhost:7215/Home/GetGeoCoordinates", {
+            const response = await fetch("https://localhost:7215/GeoItem", {
                     method: "GET",
                     headers: { "Accept": "application/json" }
                 });
                 if (response.ok === true) {
                     const geoitems = await response.json();
-                console.log(geoitems)
+               // console.log(geoitems)
                     geoitems.forEach((element) => {
-                        console.log("ID: " + element.id + " X: " + element.x +" Y: "+element.y)
-                        point = {
-                            'coordinates': [element.x, element.y],
-                            color: '#0000FF',
+                   //     console.log("ID: " + element.id + " X: " + element.x +" Y: "+element.y)
+                   if (element.geoType == 0)
+                   {
+                         point = {
+                            'coordinates': [element.y, element.x],
+                            color: '#FF182F',
                             onFastClick: () => top_popup(element.id),
                         };
                         map.addChild(new YMapDefaultMarker(point));
+                   }
+                   if (element.geoType == 1)
+                   {
+                        point = {
+                            'coordinates': [element.y, element.x],
+                            color: '#31F745',
+                            onFastClick: () => top_popup(element.id),
+                        };
+                        map.addChild(new YMapDefaultMarker(point));
+                   }
+                   if (element.geoType == 2)
+                   {
+                       point = {
+                            'coordinates': [element.y, element.x],
+                            color: '#F7D031',
+                            onFastClick: () => top_popup(element.id),
+                        };
+                        map.addChild(new YMapDefaultMarker(point));
+                   }
+
+                     if (element.geoType == 3)
+                   {
+                       point = {
+                            'coordinates': [element.y, element.x],
+                            color: '#F64CFC',
+                            onFastClick: () => top_popup(element.id),
+                        };
+                        map.addChild(new YMapDefaultMarker(point));
+                   }
+
+                       
                     });
                 }
             }

@@ -12,7 +12,8 @@ namespace GeoItemMap.DAL.Interfaces
     {
         Task <IEnumerable<TEntity>> GetAll();
 
-      
+        TEntity FindById(int id);
+
         void Save();
         
     }

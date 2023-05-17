@@ -27,6 +27,10 @@ namespace GeoItemMap.DAL.Repositories
             return await _dbSet.ToListAsync();
 
         }
+        public TEntity FindById(int id)
+        {
+            return _dbSet.Find(id);
+        }
 
         public void Save()
         {

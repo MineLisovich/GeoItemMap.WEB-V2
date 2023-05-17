@@ -12,22 +12,12 @@ namespace GeoItemMap.WEB.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private IGenericRepository<GeoItem> GeoItemGenericRepository;
-        private IGenericRepository<Technopark> TechnoparkGenericRepository;
-        private IGenericRepository<InnProject> InnProgectGenericRepository;
-        private IGenericRepository<NtpProject> NtpProjectGenericRepository;
-        private IGenericRepository<TechTransferCenter> TechTransferCenterGenericRepository;
+        private IGenericRepository<GeoItem> GeoItemGenericRepository; 
 
-        public HomeController(ILogger<HomeController> logger , IGenericRepository<GeoItem> _GeoItemGenericRepository, 
-            IGenericRepository<Technopark> _TechnoparkGenericRepository, IGenericRepository<InnProject> _InnGenericRepository,
-            IGenericRepository<NtpProject> _NtpGenericRepository, IGenericRepository<TechTransferCenter> _TTCgenericRepository)
+        public HomeController(ILogger<HomeController> logger , IGenericRepository<GeoItem> _GeoItemGenericRepository)
         {
             _logger = logger;     
             GeoItemGenericRepository = _GeoItemGenericRepository;
-            TechnoparkGenericRepository = _TechnoparkGenericRepository;
-            InnProgectGenericRepository = _InnGenericRepository;
-            NtpProjectGenericRepository = _NtpGenericRepository;
-            TechTransferCenterGenericRepository = _TTCgenericRepository;
         }
 
         public IActionResult Index()
@@ -46,46 +36,13 @@ namespace GeoItemMap.WEB.Controllers
         }
 
 
+        // ДЛЯ ЯНДЕКС API 2.1 (потом удалить)
         [HttpPost]
         public async Task<JsonResult> PostData()
         {
            var model = await GeoItemGenericRepository.GetAll();
             return Json(model);
         }
-
-        [HttpGet]
-        public async Task <IEnumerable<GeoItem>> GetGeoCoordinates()
-        {
-            IEnumerable<GeoItem> model = await GeoItemGenericRepository.GetAll(); 
-            return model;
-        }
-
-        [HttpPost]
-        public async Task<JsonResult> GetAllData ()
-        {  
-            var innProj = await InnProgectGenericRepository.GetAll();
-            var ntpProj = await NtpProjectGenericRepository.GetAll();
-            var tehPark = await TechnoparkGenericRepository.GetAll();
-            var ttc = await TechTransferCenterGenericRepository.GetAll();   
-            GeoItemViewModel geoItemViewModel = new GeoItemViewModel
-            {
-                InnProjects = innProj,
-                NtpProjects = ntpProj,
-                Technoparks = tehPark,
-                TechTransferCenter = ttc
-            };
-            return Json(geoItemViewModel);  
-        }
-
-        //[HttpGet]
-        //public async Task<IEnumerable<Technopark>> GetGeoItems()
-        //{
-        //    IEnumerable<Technopark> model = await TechnoparkGenericRepository.GetAll();
-
-            
-        //    return model;
-        //}
-
 
         public IActionResult Privacy()
         {

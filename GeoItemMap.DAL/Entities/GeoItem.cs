@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeoItemMap.DAL.Predefined;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace GeoItemMap.DAL.Entities
         /// </summary>
         [Required]
         public float Y { get; set; }
-
+        
+        public GeoItemType GeoType { get; set; }
     }
 }

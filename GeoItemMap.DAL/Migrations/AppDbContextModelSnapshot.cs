@@ -30,6 +30,9 @@ namespace GeoItemMap.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("GeoType")
+                        .HasColumnType("int");
+
                     b.Property<float>("X")
                         .HasColumnType("real");
 
@@ -155,6 +158,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 201,
+                            GeoType = 2,
                             X = 53.25875f,
                             Y = 26.65414f,
                             AddedValueProject = 16778.1m,
@@ -185,6 +189,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 202,
+                            GeoType = 2,
                             X = 52.593758f,
                             Y = 28.961386f,
                             AddedValueProject = 8832.4m,
@@ -215,6 +220,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 203,
+                            GeoType = 2,
                             X = 53.7577f,
                             Y = 29.155598f,
                             AddedValueProject = 49728.9m,
@@ -306,6 +312,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 1001,
+                            GeoType = 3,
                             X = 55.538757f,
                             Y = 27.750422f,
                             AreaImplemOrg = "Витебская область",
@@ -325,6 +332,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 1002,
+                            GeoType = 3,
                             X = 53.07713f,
                             Y = 26.669676f,
                             AreaImplemOrg = "Витебская область",
@@ -412,6 +420,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 101,
+                            GeoType = 0,
                             X = 53.604725f,
                             Y = 26.890274f,
                             AddressTechnopark = "220013, Республика Беларусь, г. Минск, ул. Я. Коласа, д. 24, к. 34/1",
@@ -433,6 +442,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 102,
+                            GeoType = 0,
                             X = 54.929348f,
                             Y = 29.174215f,
                             AddressTechnopark = "211446, Витебская обл., г. Новополоцк, ул. Блохина, 29/114мк",
@@ -454,6 +464,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 103,
+                            GeoType = 0,
                             X = 54.588676f,
                             Y = 27.651588f,
                             AddressTechnopark = "Республика Беларусь, 210038, г. Витебск, Московский пр-т, 72",
@@ -475,6 +486,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 104,
+                            GeoType = 0,
                             X = 55.24945f,
                             Y = 27.915718f,
                             AddressTechnopark = "ул. Днепровской флотилии, 23; 225710 Пинск, Брестская область, Республика Беларусь",
@@ -496,6 +508,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 105,
+                            GeoType = 0,
                             X = 52.74804f,
                             Y = 27.232088f,
                             AddressTechnopark = "Республика Беларусь, г. Минск, ул.Академика Курчатова, 1, к.10",
@@ -517,6 +530,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 106,
+                            GeoType = 0,
                             X = 52.65389f,
                             Y = 24.124687f,
                             AddressTechnopark = "230005, г. Гродно, ул. Гаспадарчая, 21/А",
@@ -538,6 +552,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 107,
+                            GeoType = 0,
                             X = 54.696564f,
                             Y = 29.531567f,
                             AddressTechnopark = "г. Горки, ул. Мичурина, 5 оф. 480",
@@ -559,6 +574,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 108,
+                            GeoType = 0,
                             X = 55.080826f,
                             Y = 28.226458f,
                             AddressTechnopark = "Республика Беларусь, г.Брест, ул.Пионерская, 52, 224020",
@@ -580,6 +596,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 109,
+                            GeoType = 0,
                             X = 53.623158f,
                             Y = 30.758991f,
                             AddressTechnopark = "г.Витебск, ул.П.Бровки, 50",
@@ -601,6 +618,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 110,
+                            GeoType = 0,
                             X = 53.761154f,
                             Y = 28.024477f,
                             AddressTechnopark = "246000, Республика Беларусь, г.Гомель, ул.Лепешинского,7,",
@@ -622,6 +640,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 111,
+                            GeoType = 0,
                             X = 55.514248f,
                             Y = 27.527292f,
                             AddressTechnopark = "246144, Республика Беларусь, г. Гомель, ул. Федюнинского, д. 17",
@@ -643,6 +662,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 112,
+                            GeoType = 0,
                             X = 53.769756f,
                             Y = 26.898483f,
                             AddressTechnopark = "Минская обл., Смолевичский район, д.Станок-водица, ул. Заводская, д.1;",
@@ -664,6 +684,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 113,
+                            GeoType = 0,
                             X = 53.316044f,
                             Y = 27.063278f,
                             AddressTechnopark = "Республика Беларусь Минская область, Смолевичский район, территория Индустриального парка «Великий камень»,ул. Рубиновая,  Могилевская область, Бобруйский район, г.Бобруйск",
@@ -685,6 +706,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 114,
+                            GeoType = 0,
                             X = 54.60542f,
                             Y = 29.623093f,
                             AddressTechnopark = "Республика Беларусь Минская область, Смолевичский район, территория Индустриального парка «Великий камень», ул. Рубиновая",
@@ -706,6 +728,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 115,
+                            GeoType = 0,
                             X = 54.60542f,
                             Y = 29.623093f,
                             AddressTechnopark = "Могилевская область, Бобруйский район, г.Бобруйск",
@@ -727,6 +750,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 116,
+                            GeoType = 0,
                             X = 54.726143f,
                             Y = 27.392868f,
                             AddressTechnopark = "212030 г. Могилев, ул. Ленинская, д.63 ",
@@ -748,6 +772,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 117,
+                            GeoType = 0,
                             X = 52.54654f,
                             Y = 27.912638f,
                             AddressTechnopark = "220070, Республика Беларусь г. Минск, ул. Солтыса, 187, г. Минск, Партизанский просп. 8, г. Минск, ул. Центральная 47.",
@@ -769,6 +794,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 118,
+                            GeoType = 0,
                             X = 54.747032f,
                             Y = 27.500906f,
                             AddressTechnopark = "220070, Республика Беларусь г. Минск, ул. Солтыса, 187, г. Минск, ул. Центральная 47",
@@ -790,6 +816,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 119,
+                            GeoType = 0,
                             X = 55.18851f,
                             Y = 28.743868f,
                             AddressTechnopark = "г. Минск, Партизанский просп. 8,",
@@ -811,6 +838,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 120,
+                            GeoType = 0,
                             X = 53.720943f,
                             Y = 29.450802f,
                             AddressTechnopark = "220092, г. Минск, пр. Пушкина 20, каб. 102.",
@@ -832,6 +860,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 121,
+                            GeoType = 0,
                             X = 55.431683f,
                             Y = 55.431683f,
                             AddressTechnopark = "Республика Беларусь, 220037, г. Минск, пер. Козлова, д. 7В, пом. 2/1 ",
@@ -922,6 +951,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 1,
+                            GeoType = 1,
                             X = 53.462738f,
                             Y = 24.354662f,
                             AdressTechTransferCenter = "230023, г. Гродно, ул. Ожешко,22",
@@ -942,6 +972,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 2,
+                            GeoType = 1,
                             X = 55.546116f,
                             Y = 30.421865f,
                             AdressTechTransferCenter = "Минская область, Дзержинский район, Путчинский сельский Совет, аг. Волма, ул. Парковая, 11",
@@ -962,6 +993,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 3,
+                            GeoType = 1,
                             X = 54.921528f,
                             Y = 27.446527f,
                             AdressTechTransferCenter = "Брестская обл. г. Барановичи, ул. Войкова, д. 21",
@@ -982,6 +1014,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 4,
+                            GeoType = 1,
                             X = 53.592037f,
                             Y = 29.279894f,
                             AdressTechTransferCenter = "210023, г. Витебск, пр-т Фрунзе, д. 27",
@@ -1002,6 +1035,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 5,
+                            GeoType = 1,
                             X = 54.890263f,
                             Y = 27.563055f,
                             AdressTechTransferCenter = "246050, г. Гомель, пр-т Ленина, д. 3, комн. 306",
@@ -1022,6 +1056,7 @@ namespace GeoItemMap.DAL.Migrations
                         new
                         {
                             Id = 6,
+                            GeoType = 1,
                             X = 52.777412f,
                             Y = 26.933805f,
                             AdressTechTransferCenter = "231300, г. Лида,  Гродненская обл, ул. Советская, д. 43",
