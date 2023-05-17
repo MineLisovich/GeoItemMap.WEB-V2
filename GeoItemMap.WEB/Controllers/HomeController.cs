@@ -35,15 +35,6 @@ namespace GeoItemMap.WEB.Controllers
             return View();
         }
 
-
-        // ДЛЯ ЯНДЕКС API 2.1 (потом удалить)
-        [HttpPost]
-        public async Task<JsonResult> PostData()
-        {
-           var model = await GeoItemGenericRepository.GetAll();
-            return Json(model);
-        }
-
         public IActionResult Privacy()
         {
             return View();
