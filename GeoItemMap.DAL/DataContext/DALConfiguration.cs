@@ -22,7 +22,6 @@ namespace GeoItemMap.DAL.DataContext
             var appSetings = root.GetSection("ConnectionString:DefaultConnection");
             sqlConnectionString = appSetings.Value;
         }
-
         public string sqlConnectionString { get; set; } 
     }
 }

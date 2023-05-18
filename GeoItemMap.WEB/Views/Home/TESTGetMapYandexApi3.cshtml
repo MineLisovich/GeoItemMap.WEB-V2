@@ -218,19 +218,27 @@
             restrictMapArea: RESTRICT_AREA,
             zoomRange: ZOOM_RANGE,
         });
-
         map.addChild(scheme = new YMapDefaultSchemeLayer());
+
+        //  map.addChild(new YMapDefaultFeaturesLayer({ id: 'features' }));
         map.addChild(new YMapDefaultFeaturesLayer());
+
         map.addChild(new YMapFeature(FEATUREBY));
         map.addChild(new YMapFeature(FEATURERU));
+
         map.addChild(new YMapFeature(FEATUREPL));
         map.addChild(new YMapFeature(FEATUREKALININGRAD));
         map.addChild(new YMapFeature(FEATURELV));
         map.addChild(new YMapFeature(FEATURELT));
         map.addChild(new YMapFeature(FEATURELT2));
+
         map.addChild(new YMapFeature(FEATUREUA));
+
         map.addChild(new YMapFeatureDataSource({ id: 'popups' }));
         map.addChild(new YMapLayer({ source: 'popups' }));
+
+
+
 
         async function getGeoItems() {
             const response = await fetch("https://localhost:7215/GeoItem", {
@@ -239,8 +247,9 @@
             });
             if (response.ok === true) {
                 const geoitems = await response.json();
+                // console.log(geoitems)
                 geoitems.forEach((element) => {
-
+                    //     console.log("ID: " + element.id + " X: " + element.x +" Y: "+element.y)
                     if (element.geoType == 0) {
                         point = {
                             'coordinates': [element.y, element.x],
@@ -249,7 +258,6 @@
                         };
                         map.addChild(new YMapDefaultMarker(point));
                     }
-
                     if (element.geoType == 1) {
                         point = {
                             'coordinates': [element.y, element.x],
@@ -258,7 +266,6 @@
                         };
                         map.addChild(new YMapDefaultMarker(point));
                     }
-
                     if (element.geoType == 2) {
                         point = {
                             'coordinates': [element.y, element.x],
@@ -276,9 +283,12 @@
                         };
                         map.addChild(new YMapDefaultMarker(point));
                     }
+
+
                 });
             }
         }
+
         getGeoItems();
     }
 </script>

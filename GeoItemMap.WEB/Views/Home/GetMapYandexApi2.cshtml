@@ -1,0 +1,229 @@
+﻿﻿<script src="https://api-maps.yandex.ru/2.1/?apikey=ba1ff065-3dae-4e01-931f-f1cf08bd2f1b&lang=ru_RU" type="text/javascript"></script>
+
+<style>
+    html, body, #map {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    a {
+        color: #04b; /* Цвет ссылки */
+        text-decoration: none; /* Убираем подчеркивание у ссылок */
+    }
+
+        a:visited {
+            color: #04b; /* Цвет посещённой ссылки */
+        }
+
+        a:hover {
+            color: #f50000; /* Цвет ссылки при наведении на нее курсора мыши */
+        }
+</style>
+
+<script type="text/javascript">
+    ymaps.ready(function () {
+        var myMap = new ymaps.Map(
+            "YMapsID", 
+            {
+                center: [53.90, 27.56],
+                zoom: 1
+              
+            }, 
+            {
+                maxZoom: 17,
+                restrictMapArea: [
+                    [58.486077093111334, 15.89679288089655],
+                    [49.77185323695446, 39.58331354601873]
+                ]
+            });
+        var zoomControl = new ymaps.control.ZoomControl({
+            options: {
+                zoomStep: 1,
+                zoomDuration: 1000
+            }
+        });
+        myMap.controls.add(zoomControl);
+
+
+        // Загрузим регионы.
+        ymaps.borders.load('001', {
+            lang: 'ru',
+            quality: 2
+        }).then(function (result) {
+
+            // Создадим многоугольник, который будет скрывать весь мир, кроме заданной страны.
+            var background = new ymaps.Polygon([
+                [
+                    [85, -179.99],
+                    [85, 179.99],
+                    [-85, 179.99],
+                    [-85, -179.99],
+                    [85, -179.99]
+                ]
+            ], {}, {
+                fillColor: '#ffffff',
+                strokeWidth: 0,
+                coordRendering: 'straightPath'
+            });
+            // Найдём страну по её iso коду.
+            var region = result.features.filter(function (feature) { return feature.properties.iso3166 == 'BY'; })[0];
+            var masks = region.geometry.coordinates;
+            masks.forEach(function (mask) {
+                background.geometry.insert(1, mask);
+            });
+            // Добавим многоугольник на карту.
+            myMap.geoObjects.add(background);
+        })
+
+        // получение данных 
+        async function getGeoItem(id) {
+            var geoitem;
+            const response = await fetch(`https://localhost:7215/GeoItem/${id}`, {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            if (response.ok === true) {
+                geoitem = await response.json();
+                if (geoitem.value.geoType == 0) {
+                    return "Технопарк" + "<br/>" + "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameTechnopark + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
+                }
+                else if (geoitem.value.geoType == 1) {
+                    return "Центр трансфера технологий" + "<br/>" + "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameTechTransferCenter + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
+                }
+                else if (geoitem.value.geoType == 2) {
+                    return "Инн проект" + "<br/>" + "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameInnProject + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
+                }
+                else if (geoitem.value.geoType == 3) {
+                    return "НТП" + "<br/>" + "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameTask + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
+                }
+            }
+            else {
+                const error = await response.json();
+            }
+        }
+
+        // всплывающего окна
+        function top_popup(id) {
+            var result = getGeoItem(id);
+            result.then(function (value) {
+                $('#exampleModal > div > div > div.modal-body').html(value);
+                $('#exampleModal').modal('show');
+            })
+        }
+        
+        // создание кластера
+        clusterer = new ymaps.Clusterer({
+            // Макет метки кластера pieChart.
+            clusterIconLayout: 'default#pieChart',
+            // Радиус диаграммы в пикселях.
+            clusterIconPieChartRadius: 25,
+            // Радиус центральной части макета.
+            clusterIconPieChartCoreRadius: 10,
+            // Ширина линий-разделителей секторов и внешней обводки диаграммы.
+            clusterIconPieChartStrokeWidth: 3,
+            // Определяет наличие поля balloon.
+            hasBalloon: false
+        });
+
+        // получение координат для меток из бд
+        async function getGeoItems() {
+            const response = await fetch("https://localhost:7215/GeoItem", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            if (response.ok === true) {
+                const geoitems = await response.json();
+                console.log(geoitems)
+                geoitems.forEach((element) => {
+
+                    if (element.geoType == 0)
+                    {
+                        var myGeoObject = new ymaps.GeoObject({
+                            geometry: {
+                                type: "Point", // тип геометрии - точка
+                                coordinates: [element.x, element.y], // координаты точки
+                            },
+                        }, {
+                            iconColor: "#33FF00"
+                        });
+                    }
+                
+                    if (element.geoType == 1)
+                    {
+                        var myGeoObject = new ymaps.GeoObject({
+                            geometry: {
+                                type: "Point", // тип геометрии - точка
+                                coordinates: [element.x, element.y], // координаты точки
+                            },
+                        }, {
+                            iconColor: "#5863FF"
+                        });
+                    }
+                        
+                    if (element.geoType == 2)
+                    {
+                        var myGeoObject = new ymaps.GeoObject({
+                            geometry: {
+                                type: "Point", // тип геометрии - точка
+                                coordinates: [element.x, element.y], // координаты точки
+                            },
+                        }, {
+                            iconColor: "#FFEF58"
+                        });
+                    }
+                       
+                    if (element.geoType == 3)
+                    {
+                        var myGeoObject = new ymaps.GeoObject({
+                            geometry: {
+                                type: "Point", // тип геометрии - точка
+                                coordinates: [element.x, element.y], // координаты точки
+                            },
+                        }, {
+                            iconColor: "#FFA158"
+                        });
+                    }
+
+                    //Можно менять опции кластеризатора после создания.
+                    clusterer.options.set({
+                        gridSize: 100,
+                        clusterDisableClickZoom: false
+                    });
+
+                    clusterer.add(myGeoObject);
+                    myMap.geoObjects.add(clusterer);
+
+                    myMap.setBounds(clusterer.getBounds(), {
+                        checkZoomRange: true
+                    });
+
+                    myGeoObject.events.add('click', function () {
+                        top_popup(element.id);
+
+                    });
+                });
+            }
+        }
+        getGeoItems();
+    });
+</script>
+
+
+<div id="YMapsID" style="width: 100%; height: 842px "></div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Информация об объекте</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>

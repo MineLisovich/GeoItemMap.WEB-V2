@@ -28,30 +28,30 @@ namespace GeoItemMap.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    NameInnProject = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NameOrgImplementingProject = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Customer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TermsImplementation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GPIR = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DocumentByWhichGPIR = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LocationProjectImplementation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProjectStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InnovatProject = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductsRelease = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TypeEconomicActivity = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Criterion1 = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    Criterion2 = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    Criterion3 = table.Column<bool>(type: "bit", nullable: false),
-                    UseTechnologies = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AnnualProductionVolumeBY = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    AnnualExportVolumeBY = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    AnnualExportVolumeEUR = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    ImportSubstituting = table.Column<bool>(type: "bit", nullable: false),
-                    ValueAddedPerEmployee = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    AddedValueProject = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    NumberUpgradedJobs = table.Column<short>(type: "smallint", nullable: false),
-                    NumberNewJobs = table.Column<short>(type: "smallint", nullable: false),
-                    VolumeFinancing = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false)
+                    NameInnProject = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NameOrgImplementingProject = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Customer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TermsImplementation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GPIR = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DocumentByWhichGPIR = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LocationProjectImplementation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProjectStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InnovatProject = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductsRelease = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TypeEconomicActivity = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Criterion1 = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true),
+                    Criterion2 = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true),
+                    Criterion3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UseTechnologies = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AnnualProductionVolumeBY = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true),
+                    AnnualExportVolumeBY = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true),
+                    AnnualExportVolumeEUR = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true),
+                    ImportSubstituting = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ValueAddedPerEmployee = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true),
+                    AddedValueProject = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true),
+                    NumberUpgradedJobs = table.Column<short>(type: "smallint", nullable: true),
+                    NumberNewJobs = table.Column<short>(type: "smallint", nullable: true),
+                    VolumeFinancing = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -68,19 +68,17 @@ namespace GeoItemMap.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    NameProgramm = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StateCustomer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ParentImplemOrg = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImplemOrg = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CountryImplemOrg = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AreaImplemOrg = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CityImplemOrg = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NameTask = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StateTask = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Thelevelstructure = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NameNewDevProducts = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InformationExports = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InformationNewProduct = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    NameProgramm = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StateCustomer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ParentImplemOrg = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NameTask = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImplemOrg = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AdressImplemOrg = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StateTask = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TheLevelStructure = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NameNewDevProducts = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InformationExports = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InformationNewProduct = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -97,21 +95,21 @@ namespace GeoItemMap.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    NameTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AddressTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmailTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WebsiteTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NameTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WebsiteTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TotalAreaPremises = table.Column<float>(type: "real", nullable: false),
                     FreeAreaPremises = table.Column<float>(type: "real", nullable: false),
-                    TechSpecialization = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TypesProducts = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ServicesProvided = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TechInfrastructure = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TotalNumberResident = table.Column<short>(type: "smallint", nullable: false),
-                    NumberEmployees = table.Column<short>(type: "smallint", nullable: false),
-                    VolComplProducts = table.Column<float>(type: "real", nullable: false),
-                    AmountFunding = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false)
+                    TechSpecialization = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TypesProducts = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ServicesProvided = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TechInfrastructure = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TotalNumberResident = table.Column<short>(type: "smallint", nullable: true),
+                    NumberEmployees = table.Column<short>(type: "smallint", nullable: true),
+                    VolComplProducts = table.Column<float>(type: "real", nullable: true),
+                    AmountFunding = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -128,20 +126,20 @@ namespace GeoItemMap.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    NameTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdressTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmailTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WebsiteTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ServicesProvidedTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NumberAcceptedWorkProposals = table.Column<short>(type: "smallint", nullable: false),
-                    NumberAcceptedWorkRequests = table.Column<short>(type: "smallint", nullable: false),
-                    NumberTransactionsConcluded = table.Column<short>(type: "smallint", nullable: false),
-                    VolumeTransactionsConcluded = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    NumberGeneratedProjects = table.Column<short>(type: "smallint", nullable: false),
-                    VolumeGeneratedProjects = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    VolumeWorkPerformed = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    AmountFunding = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false)
+                    NameTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AdressTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WebsiteTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ServicesProvidedTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NumberAcceptedWorkProposals = table.Column<short>(type: "smallint", nullable: true),
+                    NumberAcceptedWorkRequests = table.Column<short>(type: "smallint", nullable: true),
+                    NumberTransactionsConcluded = table.Column<short>(type: "smallint", nullable: true),
+                    VolumeTransactionsConcluded = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true),
+                    NumberGeneratedProjects = table.Column<short>(type: "smallint", nullable: true),
+                    VolumeGeneratedProjects = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true),
+                    VolumeWorkPerformed = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true),
+                    AmountFunding = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -158,38 +156,38 @@ namespace GeoItemMap.DAL.Migrations
                 columns: new[] { "Id", "GeoType", "X", "Y" },
                 values: new object[,]
                 {
-                    { 201, 2, 53.25875f, 26.65414f },
-                    { 202, 2, 52.593758f, 28.961386f },
-                    { 203, 2, 53.7577f, 29.155598f },
-                    { 1001, 3, 55.538757f, 27.750422f },
-                    { 1002, 3, 53.07713f, 26.669676f },
-                    { 1, 1, 53.462738f, 24.354662f },
-                    { 2, 1, 55.546116f, 30.421865f },
-                    { 3, 1, 54.921528f, 27.446527f },
-                    { 4, 1, 53.592037f, 29.279894f },
-                    { 5, 1, 54.890263f, 27.563055f },
-                    { 6, 1, 52.777412f, 26.933805f },
-                    { 101, 0, 53.604725f, 26.890274f },
-                    { 102, 0, 54.929348f, 29.174215f },
-                    { 103, 0, 54.588676f, 27.651588f },
-                    { 104, 0, 55.24945f, 27.915718f },
-                    { 105, 0, 52.74804f, 27.232088f },
-                    { 106, 0, 52.65389f, 24.124687f },
-                    { 107, 0, 54.696564f, 29.531567f },
-                    { 108, 0, 55.080826f, 28.226458f },
-                    { 109, 0, 53.623158f, 30.758991f },
-                    { 110, 0, 53.761154f, 28.024477f },
-                    { 111, 0, 55.514248f, 27.527292f },
-                    { 112, 0, 53.769756f, 26.898483f },
-                    { 113, 0, 53.316044f, 27.063278f },
-                    { 114, 0, 54.60542f, 29.623093f },
-                    { 115, 0, 54.60542f, 29.623093f },
-                    { 116, 0, 54.726143f, 27.392868f },
-                    { 117, 0, 52.54654f, 27.912638f },
-                    { 118, 0, 54.747032f, 27.500906f },
-                    { 119, 0, 55.18851f, 28.743868f },
-                    { 120, 0, 53.720943f, 29.450802f },
-                    { 121, 0, 55.431683f, 55.431683f }
+                    { 201, 2, 53.917225f, 27.549812f },
+                    { 202, 2, 53.90289f, 27.51202f },
+                    { 203, 2, 54.189735f, 28.49261f },
+                    { 1001, 3, 53.9387f, 27.602226f },
+                    { 1002, 3, 55.167625f, 30.239363f },
+                    { 1, 1, 53.684956f, 23.839453f },
+                    { 2, 1, 53.88728f, 26.967253f },
+                    { 3, 1, 53.12245f, 26.041328f },
+                    { 4, 1, 55.19271f, 30.21926f },
+                    { 5, 1, 52.42506f, 31.01014f },
+                    { 6, 1, 53.89851f, 25.297256f },
+                    { 101, 0, 53.925674f, 27.59164f },
+                    { 102, 0, 55.530853f, 28.647306f },
+                    { 103, 0, 55.178352f, 30.23797f },
+                    { 104, 0, 52.113556f, 26.112936f },
+                    { 105, 0, 53.84014f, 27.47747f },
+                    { 106, 0, 53.711216f, 23.826435f },
+                    { 107, 0, 54.290287f, 30.987661f },
+                    { 108, 0, 52.097225f, 23.731108f },
+                    { 109, 0, 55.15899f, 30.235449f },
+                    { 110, 0, 52.47443f, 30.99671f },
+                    { 111, 0, 52.479782f, 30.989746f },
+                    { 112, 0, 53.979046f, 28.027534f },
+                    { 113, 0, 53.834774f, 28.011541f },
+                    { 114, 0, 53.834774f, 28.011541f },
+                    { 115, 0, 53.148197f, 29.214527f },
+                    { 116, 0, 53.904915f, 30.343761f },
+                    { 117, 0, 53.90276f, 27.644878f },
+                    { 118, 0, 53.875854f, 27.655737f },
+                    { 119, 0, 53.88313f, 27.592127f },
+                    { 120, 0, 53.901115f, 27.497475f },
+                    { 121, 0, 53.89705f, 27.599731f }
                 });
 
             migrationBuilder.InsertData(
@@ -197,18 +195,18 @@ namespace GeoItemMap.DAL.Migrations
                 columns: new[] { "Id", "AddedValueProject", "AnnualExportVolumeBY", "AnnualExportVolumeEUR", "AnnualProductionVolumeBY", "Criterion1", "Criterion2", "Criterion3", "Customer", "DocumentByWhichGPIR", "GPIR", "ImportSubstituting", "InnovatProject", "LocationProjectImplementation", "NameInnProject", "NameOrgImplementingProject", "NumberNewJobs", "NumberUpgradedJobs", "ProductsRelease", "ProjectStatus", "TermsImplementation", "TypeEconomicActivity", "UseTechnologies", "ValueAddedPerEmployee", "VolumeFinancing" },
                 values: new object[,]
                 {
-                    { 201, 16778.1m, 10371.1m, 4203.1m, 17704.7m, 74359.9m, 5700.0m, false, "Министерство здравоохранения Республики Беларусь", "Постановление СМ от 12.11.2021 № 642", "ГПИР 2021-2025", true, "Инновационность заключается в самообеспечении Республики Беларусь инновационной биотехнологической продукцией, высококачественными и безопасными отечественными лекарственными средствами из плазмы крови, генноинженерными фармсубстанциями, биомедицинским клеточным продуктом по доступным ценам, для снижения зависимости Республики Беларусь от импорта медицинских препаратов, организация экспортных поставок. Проект имеет большую социально-экономическую значимость, экспортную направленность, инновационность, высокий уровень внедряемых технологий. Создание современного биофармацевтического производства позволит: располагать собственными стратегическими для безопасности республики технологиями производства и контроля качества биотехнологических продуктов; реализовать принцип независимости государства от колебаний мирового рынка плазмы и лекарственных средств из плазмы крови; обеспечить дополнительные рабочие места; ежегодно экономить бюджетные ассигнования, при существующем объеме заготовки плазмы за счет отказа от покупки импортных лекарственных средств из плазмы крови и рекомбинантных белков; обеспечить высокую социально-экономическую эффективность и заложить экспортный потенциал ввиду высокого уровня добавленной стоимости на одного работника нового производства и наличия уникальных отечественных биофармацевтических технологий; обеспечить экспорт биотехнологической продукции.", "г. Минск / «Великий камень», г. Ганцевичи, Брестская обл.", "Организация биофармацевтического производства лекарственных средств на основе рекомбинантных технологий и фракционирования плазмы крови, соответствующего требованиям GMP", "Государственное учреждение «Республиканский научно-практический центр трансфузиологии и медицинских биотехнологий»", (short)20, (short)70, "Планируются к производству новые иинновационные лекарственные средства: иммуноглобулин человека для внутривенного введения (иммунологический препарат, обладает антибактериальными, противовирусными свойствами, неспецифической иммунорегуляторной активностью); концентрат факторов протромбинового комплекса (ППСБ) (гемостатическое средство для внутривенного введения, используется для профилактики кровотечений при приобретенном дефиците факторов протромбинового комплекса и врожденном дефиците одного из витамин К-зависимых факторов свертывания); Плазмабел (вирусинактивированная криоплазма), Нормоплаз (сухая плазма, патогенредуцированная е пролонгированным сроком хранения); Концентрат фактора VIII (антигемофильное лекарственное средство для терапии и профилактика кровотечений у пациентов с врожденньш (гемофилия А) и приобретенным дефицитом фактора). Инновационный проект предусматривает организацию промышленного производства рекомбинантных фармсубстанций по разработанным технологиям: фармацевтическая субстанция человеческого рекомбинантного интерферона альфа 2Ь, продуцируется генетически измененным штаммом бактерии EscherichiacoHBL21 (DE3)/pET - интерферон альфа 2Ь, обладает неспецифнчеекой противовирусной и антапролиферативной активностью, оказывает угнетающее влияние на синтез некоторых онкогенов, приводящее к ингибированию опухолевого роста; фармацевтическая субстанция человеческого рекомбинантного гранулоцитарного колониестимулирующего фактора (филграстим), продуцируется генетически измененным штаммом бактерии EscherichiacoKBL21 (DE3)/pET-r-КСФ, в геном которой методами генной инженерии введен ген гранулоцитарного колониестимулирующего фактора человека. Стимулятор лейкопоэза, регулирующий образование функционально активных нейтрофилов и их выход в кровь из костного мозга, значительно уменьшает частоту тяжесть и продолжительность нейтропении при химиотерапии цитостатикамии др.Также запланировано производство новых инновационных изделий медицинского назначения: клей хирургический двухкомпонентный на основе альбумина для герметизации и укрепления хирургических швов, склеивания тканей; плазма обогащенная ростовыми факторами тромбоцитов. Планируется производство биомедицинского клеточного продукта.", "В стадии реализации", "2021-2024 гг.", "Секция Q* Здравоохранение и социальные услуги Подсекция QA: Здравоохранение Код раздела 86: Здравоохранение", "1;2", 186.4m, 90233.4m },
-                    { 202, 8832.4m, 10117.8m, 0m, 46396.1m, 184659.0m, 3063.5m, false, "Национальная академия наук Беларуси", "Постановление СМ от 12.11.2021 № 642", "ГПИР 2021-2025", true, "Инновационная направленность реализации проекта «Создание опытно-промышленного производства твердых лекарственных форм с применением инновационных технологий» заключается в инновационности применяемых технологических решений.В части локализации производства на территории Республики Беларусь эффективных и безопасных лекарственных средств для лечения социально-значимых заболеваний: ВИЧ-инфекции, гепатита В, болезни Альцгеймера, подагры, эпилепсии, ревматоидного артрита, тромбоэмболии и др. Актуальной тенденцией в области рассматриваемой проблемы является использование экструзии горячих расплавов. Эта технология является инновационной для фармацевтической промышленности, о чем свидетельствуют последние разработки зарубежных ученых.", "г. Минск", "Создание опытно-промышленного производства твердых лекарственных форм с применением инновационных технологий", "Республиканское производственное унитарное предприятие «АКАДЕМФАРМ»", (short)21, (short)0, "Производство широкого ассортимента лекарственных средств, в частности: антиретровирусные препараты; препаратов для лечения нервной системы, болезни Альцгеймера; Препаратов для лечения вирусных гепатитов; препаратов для лечения костно-мышечных заболеваний; препаратов для лечения бронхиальной астмы; антикоагулянта", "В стадии реализации", "2020-2025 гг.", "С21201( производство основных фармацевтических продуктов и прапаратов)", "2", 784.3m, 7835.0m },
-                    { 203, 49728.9m, 103870.9m, 0m, 136492.7m, 79.7m, 58479.8m, false, "Министерство промышленности Республики Беларусь", "Постановление СМ от 20.12.2017 № 977", "ГПИР (2016-2020 гг.; 2021-2025 гг.)", false, "По результатам реализации проекта предполагается к выпуску новая и модернизированная продукция, а также предусматривается замещение жёстких производственных линий на гибкие быстро переналаживаемые линии по производству рулевых систем для автомобилей, оптимизацию использования производственных площадей путем размещения производств на одной производственной площадке. Эти изделия относятся к наукоемкой, высокотехнологичной, импортозамещающей продукции и используется в производстве автомобилей и автобусов. Изделия будут иметь технические характеристики на уровне мировых аналогов и конкурентную цену, а отсутствие аналогов в Республике Беларусь, позволит заместить импортные поставки, а также расширить рынок поставок рулевых систем в страны ближнего и дальнего зарубежья.", "Минская обл., г.Борисов, ул.Чапаева, 56.", "«Создание современного гибкого автоматизированного производства узлов рулевого управления для комплектации автомобильной техники»", "Открытое Акционерное Общество «Борисовский завод «Автогидроусилитель»", (short)43, (short)0, "Механизмы рулевого управления,насосы общепромышленного применения,гидравлические системы, гидроцилиндры", "В стадии реализации", "2017-2023 гг.", "Секция С «Обрабатывающая промышленность№ ; Подсекция CL» производство транспортных средств и оборудования» раздел 29", "3", 181.5m, 56652.5m }
+                    { 201, 16778.1m, 10371.1m, 4203.1m, 17704.7m, 74359.9m, 5700.0m, "новизна для Республики Беларусь", "Министерство здравоохранения Республики Беларусь", "Постановление СМ от 12.11.2021 № 642", "ГПИР 2021-2025", "проект не направлен на импортозамещение", "Инновационность заключается в самообеспечении Республики Беларусь инновационной биотехнологической продукцией, высококачественными и безопасными отечественными лекарственными средствами из плазмы крови, генноинженерными фармсубстанциями, биомедицинским клеточным продуктом по доступным ценам, для снижения зависимости Республики Беларусь от импорта медицинских препаратов, организация экспортных поставок. Проект имеет большую социально-экономическую значимость, экспортную направленность, инновационность, высокий уровень внедряемых технологий. Создание современного биофармацевтического производства позволит: располагать собственными стратегическими для безопасности республики технологиями производства и контроля качества биотехнологических продуктов; реализовать принцип независимости государства от колебаний мирового рынка плазмы и лекарственных средств из плазмы крови; обеспечить дополнительные рабочие места; ежегодно экономить бюджетные ассигнования, при существующем объеме заготовки плазмы за счет отказа от покупки импортных лекарственных средств из плазмы крови и рекомбинантных белков; обеспечить высокую социально-экономическую эффективность и заложить экспортный потенциал ввиду высокого уровня добавленной стоимости на одного работника нового производства и наличия уникальных отечественных биофармацевтических технологий; обеспечить экспорт биотехнологической продукции.", "г. Минск / «Великий камень», г. Ганцевичи, Брестская обл.", "Организация биофармацевтического производства лекарственных средств на основе рекомбинантных технологий и фракционирования плазмы крови, соответствующего требованиям GMP", "Государственное учреждение «Республиканский научно-практический центр трансфузиологии и медицинских биотехнологий»", (short)20, (short)70, "Планируются к производству новые иинновационные лекарственные средства: иммуноглобулин человека для внутривенного введения (иммунологический препарат, обладает антибактериальными, противовирусными свойствами, неспецифической иммунорегуляторной активностью); концентрат факторов протромбинового комплекса (ППСБ) (гемостатическое средство для внутривенного введения, используется для профилактики кровотечений при приобретенном дефиците факторов протромбинового комплекса и врожденном дефиците одного из витамин К-зависимых факторов свертывания); Плазмабел (вирусинактивированная криоплазма), Нормоплаз (сухая плазма, патогенредуцированная е пролонгированным сроком хранения); Концентрат фактора VIII (антигемофильное лекарственное средство для терапии и профилактика кровотечений у пациентов с врожденньш (гемофилия А) и приобретенным дефицитом фактора). Инновационный проект предусматривает организацию промышленного производства рекомбинантных фармсубстанций по разработанным технологиям: фармацевтическая субстанция человеческого рекомбинантного интерферона альфа 2Ь, продуцируется генетически измененным штаммом бактерии EscherichiacoHBL21 (DE3)/pET - интерферон альфа 2Ь, обладает неспецифнчеекой противовирусной и антапролиферативной активностью, оказывает угнетающее влияние на синтез некоторых онкогенов, приводящее к ингибированию опухолевого роста; фармацевтическая субстанция человеческого рекомбинантного гранулоцитарного колониестимулирующего фактора (филграстим), продуцируется генетически измененным штаммом бактерии EscherichiacoKBL21 (DE3)/pET-r-КСФ, в геном которой методами генной инженерии введен ген гранулоцитарного колониестимулирующего фактора человека. Стимулятор лейкопоэза, регулирующий образование функционально активных нейтрофилов и их выход в кровь из костного мозга, значительно уменьшает частоту тяжесть и продолжительность нейтропении при химиотерапии цитостатикамии др.Также запланировано производство новых инновационных изделий медицинского назначения: клей хирургический двухкомпонентный на основе альбумина для герметизации и укрепления хирургических швов, склеивания тканей; плазма обогащенная ростовыми факторами тромбоцитов. Планируется производство биомедицинского клеточного продукта.", "В стадии реализации", "2021-2024 гг.", "Секция Q* Здравоохранение и социальные услуги Подсекция QA: Здравоохранение Код раздела 86: Здравоохранение", "1;2", 186.4m, 90233.4m },
+                    { 202, 8832.4m, 10117.8m, 0m, 46396.1m, 184659.0m, 3063.5m, "новизна для Республики Беларусь", "Национальная академия наук Беларуси", "Постановление СМ от 12.11.2021 № 642", "ГПИР 2021-2025", "проект не направлен на импортозамещение", "Инновационная направленность реализации проекта «Создание опытно-промышленного производства твердых лекарственных форм с применением инновационных технологий» заключается в инновационности применяемых технологических решений.В части локализации производства на территории Республики Беларусь эффективных и безопасных лекарственных средств для лечения социально-значимых заболеваний: ВИЧ-инфекции, гепатита В, болезни Альцгеймера, подагры, эпилепсии, ревматоидного артрита, тромбоэмболии и др. Актуальной тенденцией в области рассматриваемой проблемы является использование экструзии горячих расплавов. Эта технология является инновационной для фармацевтической промышленности, о чем свидетельствуют последние разработки зарубежных ученых.", "г. Минск", "Создание опытно-промышленного производства твердых лекарственных форм с применением инновационных технологий", "Республиканское производственное унитарное предприятие «АКАДЕМФАРМ»", (short)21, (short)0, "Производство широкого ассортимента лекарственных средств, в частности: антиретровирусные препараты; препаратов для лечения нервной системы, болезни Альцгеймера; Препаратов для лечения вирусных гепатитов; препаратов для лечения костно-мышечных заболеваний; препаратов для лечения бронхиальной астмы; антикоагулянта", "В стадии реализации", "2020-2025 гг.", "С21201( производство основных фармацевтических продуктов и прапаратов)", "2", 784.3m, 7835.0m },
+                    { 203, 49728.9m, 103870.9m, 0m, 136492.7m, 79.7m, 58479.8m, "новизна для Республики Беларусь", "Министерство промышленности Республики Беларусь", "Постановление СМ от 20.12.2017 № 977", "ГПИР (2016-2020 гг.; 2021-2025 гг.)", "проект не направлен на импортозамещение", "По результатам реализации проекта предполагается к выпуску новая и модернизированная продукция, а также предусматривается замещение жёстких производственных линий на гибкие быстро переналаживаемые линии по производству рулевых систем для автомобилей, оптимизацию использования производственных площадей путем размещения производств на одной производственной площадке. Эти изделия относятся к наукоемкой, высокотехнологичной, импортозамещающей продукции и используется в производстве автомобилей и автобусов. Изделия будут иметь технические характеристики на уровне мировых аналогов и конкурентную цену, а отсутствие аналогов в Республике Беларусь, позволит заместить импортные поставки, а также расширить рынок поставок рулевых систем в страны ближнего и дальнего зарубежья.", "Минская обл., г.Борисов, ул.Чапаева, 56.", "«Создание современного гибкого автоматизированного производства узлов рулевого управления для комплектации автомобильной техники»", "Открытое Акционерное Общество «Борисовский завод «Автогидроусилитель»", (short)43, (short)0, "Механизмы рулевого управления,насосы общепромышленного применения,гидравлические системы, гидроцилиндры", "В стадии реализации", "2017-2023 гг.", "Секция С «Обрабатывающая промышленность№ ; Подсекция CL» производство транспортных средств и оборудования» раздел 29", "3", 181.5m, 56652.5m }
                 });
 
             migrationBuilder.InsertData(
                 table: "NtpProject",
-                columns: new[] { "Id", "AreaImplemOrg", "CityImplemOrg", "CountryImplemOrg", "ImplemOrg", "InformationExports", "InformationNewProduct", "NameNewDevProducts", "NameProgramm", "NameTask", "ParentImplemOrg", "StateCustomer", "StateTask", "Thelevelstructure" },
+                columns: new[] { "Id", "AdressImplemOrg", "ImplemOrg", "InformationExports", "InformationNewProduct", "NameNewDevProducts", "NameProgramm", "NameTask", "ParentImplemOrg", "StateCustomer", "StateTask", "TheLevelStructure" },
                 values: new object[,]
                 {
-                    { 1001, "Витебская область", "г. Витебск", "Республика Беларусь", "ОАО «Витязь»", "", "", "Станция электрозарядная стационарная Витязь ЕС-401,EC-401-10, шт.", "БПТ_14", "«Разработать и освоить в серийном производстве стационарную электрозарядную станцию постоянного тока для легковых электромобилей»", "ОАО «Витязь»", "", "", "V технологический уклад" },
-                    { 1002, "Витебская область", "г. Витебск", "Республика Беларусь", "ОАО «Витязь»", "", "", "Станция электрозарядная стационарная Витязь ЕС-401,EC-401-10, шт.", "БПТ_14", "«Разработать и освоить в серийном производстве стационарную электрозарядную станцию постоянного тока для легковых электромобилей»", "ОАО «Витязь»", "", "", "V технологический уклад" }
+                    { 1001, "Республика Беларусь,Минская область, г. Минск ", "ОАО «МНИПИ»", "", "", "Станция электрозарядная стационарная Витязь ЕС-401,EC-401-10, шт.", "РО3.15", "«Разработать и освоить производство подвижного информационного комплекса», шифр «Контент»", "ОАО «МНИПИ»", "", "", "V технологический уклад" },
+                    { 1002, "Республика Беларусь,Витебская область, г. Витебск", "ОАО «Витязь»", "", "", "Станция электрозарядная стационарная Витязь ЕС-401,EC-401-10, шт.", "БПТ_14", "«Разработать и освоить в серийном производстве стационарную электрозарядную станцию постоянного тока для легковых электромобилей»", "ОАО «Витязь»", "", "", "V технологический уклад" }
                 });
 
             migrationBuilder.InsertData(

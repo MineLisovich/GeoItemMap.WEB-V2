@@ -7,26 +7,24 @@ using System.Threading.Tasks;
 
 namespace GeoItemMap.DAL.Predefined
 {
-    internal class PredefinedGNTPadnRNTPList
+    internal class PredefinedNtpProjectList
     {
         NtpProject id1001 = new()
         {
 
          
             Id = 1001,
-            X =  55.53875618539466f,
-            Y = 27.750420691877412f,
+            X = 53.93870244340076f,
+            Y = 27.602226268558294f,
             GeoType = GeoItemType.NtpProject,
-            NameProgramm = "БПТ_14",
+            NameProgramm = "РО3.15",
             StateCustomer = "",
-            ParentImplemOrg = "ОАО «Витязь»",
-            ImplemOrg = "ОАО «Витязь»",
-            CountryImplemOrg = "Республика Беларусь",
-            AreaImplemOrg = "Витебская область",
-            CityImplemOrg = "г. Витебск",
-            NameTask = "«Разработать и освоить в серийном производстве стационарную электрозарядную станцию постоянного тока для легковых электромобилей»",
+            ParentImplemOrg = "ОАО «МНИПИ»",
+            ImplemOrg = "ОАО «МНИПИ»",
+            AdressImplemOrg = "Республика Беларусь,Минская область, г. Минск ",
+            NameTask = "«Разработать и освоить производство подвижного информационного комплекса», шифр «Контент»",
             StateTask = "",
-            Thelevelstructure = "V технологический уклад",
+            TheLevelStructure = "V технологический уклад",
             NameNewDevProducts = "Станция электрозарядная стационарная Витязь ЕС-401,EC-401-10, шт.",
             InformationExports = "",
             InformationNewProduct = ""
@@ -35,29 +33,27 @@ namespace GeoItemMap.DAL.Predefined
         NtpProject id1002 = new()
         {
             Id = 1002,
-            X = 53.07712887150114f,
-            Y = 26.669676564796656f,
+            X = 55.16762421872135f,
+            Y = 30.23936292628765f,
             GeoType = GeoItemType.NtpProject,
             NameProgramm = "БПТ_14",
             StateCustomer = "",
             ParentImplemOrg = "ОАО «Витязь»",
             ImplemOrg = "ОАО «Витязь»",
-            CountryImplemOrg = "Республика Беларусь",
-            AreaImplemOrg = "Витебская область",
-            CityImplemOrg = "г. Витебск",
+            AdressImplemOrg = "Республика Беларусь,Витебская область, г. Витебск",
             NameTask = "«Разработать и освоить в серийном производстве стационарную электрозарядную станцию постоянного тока для легковых электромобилей»",
             StateTask = "",
-            Thelevelstructure = "V технологический уклад",
+            TheLevelStructure = "V технологический уклад",
             NameNewDevProducts = "Станция электрозарядная стационарная Витязь ЕС-401,EC-401-10, шт.",
             InformationExports = "",
             InformationNewProduct = ""
         };
 
-        internal List<NtpProject> gNTPandRNTPs;
+        internal List<NtpProject> ntpProjects;
 
-        internal PredefinedGNTPadnRNTPList() 
-        { 
-         gNTPandRNTPs = new ()
+        internal PredefinedNtpProjectList() 
+        {
+         ntpProjects = new ()
          {
              id1001, id1002
          };

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeoItemMap.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230517080048_mig3")]
+    [Migration("20230518085543_mig3")]
     partial class mig3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,106 +51,82 @@ namespace GeoItemMap.DAL.Migrations
                     b.HasBaseType("GeoItemMap.DAL.Entities.GeoItem");
 
                     b.Property<decimal?>("AddedValueProject")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal?>("AnnualExportVolumeBY")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal?>("AnnualExportVolumeEUR")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal?>("AnnualProductionVolumeBY")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal?>("Criterion1")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal?>("Criterion2")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
-                    b.Property<bool?>("Criterion3")
-                        .IsRequired()
-                        .HasColumnType("bit");
+                    b.Property<string>("Criterion3")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Customer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DocumentByWhichGPIR")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GPIR")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("ImportSubstituting")
-                        .IsRequired()
-                        .HasColumnType("bit");
+                    b.Property<string>("ImportSubstituting")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InnovatProject")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LocationProjectImplementation")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameInnProject")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameOrgImplementingProject")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<short?>("NumberNewJobs")
-                        .IsRequired()
                         .HasColumnType("smallint");
 
                     b.Property<short?>("NumberUpgradedJobs")
-                        .IsRequired()
                         .HasColumnType("smallint");
 
                     b.Property<string>("ProductsRelease")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProjectStatus")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TermsImplementation")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TypeEconomicActivity")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UseTechnologies")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("ValueAddedPerEmployee")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal?>("VolumeFinancing")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
@@ -161,19 +137,19 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 201,
                             GeoType = 2,
-                            X = 53.25875f,
-                            Y = 26.65414f,
+                            X = 53.917225f,
+                            Y = 27.549812f,
                             AddedValueProject = 16778.1m,
                             AnnualExportVolumeBY = 10371.1m,
                             AnnualExportVolumeEUR = 4203.1m,
                             AnnualProductionVolumeBY = 17704.7m,
                             Criterion1 = 74359.9m,
                             Criterion2 = 5700.0m,
-                            Criterion3 = false,
+                            Criterion3 = "новизна для Республики Беларусь",
                             Customer = "Министерство здравоохранения Республики Беларусь",
                             DocumentByWhichGPIR = "Постановление СМ от 12.11.2021 № 642",
                             GPIR = "ГПИР 2021-2025",
-                            ImportSubstituting = true,
+                            ImportSubstituting = "проект не направлен на импортозамещение",
                             InnovatProject = "Инновационность заключается в самообеспечении Республики Беларусь инновационной биотехнологической продукцией, высококачественными и безопасными отечественными лекарственными средствами из плазмы крови, генноинженерными фармсубстанциями, биомедицинским клеточным продуктом по доступным ценам, для снижения зависимости Республики Беларусь от импорта медицинских препаратов, организация экспортных поставок. Проект имеет большую социально-экономическую значимость, экспортную направленность, инновационность, высокий уровень внедряемых технологий. Создание современного биофармацевтического производства позволит: располагать собственными стратегическими для безопасности республики технологиями производства и контроля качества биотехнологических продуктов; реализовать принцип независимости государства от колебаний мирового рынка плазмы и лекарственных средств из плазмы крови; обеспечить дополнительные рабочие места; ежегодно экономить бюджетные ассигнования, при существующем объеме заготовки плазмы за счет отказа от покупки импортных лекарственных средств из плазмы крови и рекомбинантных белков; обеспечить высокую социально-экономическую эффективность и заложить экспортный потенциал ввиду высокого уровня добавленной стоимости на одного работника нового производства и наличия уникальных отечественных биофармацевтических технологий; обеспечить экспорт биотехнологической продукции.",
                             LocationProjectImplementation = "г. Минск / «Великий камень», г. Ганцевичи, Брестская обл.",
                             NameInnProject = "Организация биофармацевтического производства лекарственных средств на основе рекомбинантных технологий и фракционирования плазмы крови, соответствующего требованиям GMP",
@@ -192,19 +168,19 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 202,
                             GeoType = 2,
-                            X = 52.593758f,
-                            Y = 28.961386f,
+                            X = 53.90289f,
+                            Y = 27.51202f,
                             AddedValueProject = 8832.4m,
                             AnnualExportVolumeBY = 10117.8m,
                             AnnualExportVolumeEUR = 0m,
                             AnnualProductionVolumeBY = 46396.1m,
                             Criterion1 = 184659.0m,
                             Criterion2 = 3063.5m,
-                            Criterion3 = false,
+                            Criterion3 = "новизна для Республики Беларусь",
                             Customer = "Национальная академия наук Беларуси",
                             DocumentByWhichGPIR = "Постановление СМ от 12.11.2021 № 642",
                             GPIR = "ГПИР 2021-2025",
-                            ImportSubstituting = true,
+                            ImportSubstituting = "проект не направлен на импортозамещение",
                             InnovatProject = "Инновационная направленность реализации проекта «Создание опытно-промышленного производства твердых лекарственных форм с применением инновационных технологий» заключается в инновационности применяемых технологических решений.В части локализации производства на территории Республики Беларусь эффективных и безопасных лекарственных средств для лечения социально-значимых заболеваний: ВИЧ-инфекции, гепатита В, болезни Альцгеймера, подагры, эпилепсии, ревматоидного артрита, тромбоэмболии и др. Актуальной тенденцией в области рассматриваемой проблемы является использование экструзии горячих расплавов. Эта технология является инновационной для фармацевтической промышленности, о чем свидетельствуют последние разработки зарубежных ученых.",
                             LocationProjectImplementation = "г. Минск",
                             NameInnProject = "Создание опытно-промышленного производства твердых лекарственных форм с применением инновационных технологий",
@@ -223,19 +199,19 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 203,
                             GeoType = 2,
-                            X = 53.7577f,
-                            Y = 29.155598f,
+                            X = 54.189735f,
+                            Y = 28.49261f,
                             AddedValueProject = 49728.9m,
                             AnnualExportVolumeBY = 103870.9m,
                             AnnualExportVolumeEUR = 0m,
                             AnnualProductionVolumeBY = 136492.7m,
                             Criterion1 = 79.7m,
                             Criterion2 = 58479.8m,
-                            Criterion3 = false,
+                            Criterion3 = "новизна для Республики Беларусь",
                             Customer = "Министерство промышленности Республики Беларусь",
                             DocumentByWhichGPIR = "Постановление СМ от 20.12.2017 № 977",
                             GPIR = "ГПИР (2016-2020 гг.; 2021-2025 гг.)",
-                            ImportSubstituting = false,
+                            ImportSubstituting = "проект не направлен на импортозамещение",
                             InnovatProject = "По результатам реализации проекта предполагается к выпуску новая и модернизированная продукция, а также предусматривается замещение жёстких производственных линий на гибкие быстро переналаживаемые линии по производству рулевых систем для автомобилей, оптимизацию использования производственных площадей путем размещения производств на одной производственной площадке. Эти изделия относятся к наукоемкой, высокотехнологичной, импортозамещающей продукции и используется в производстве автомобилей и автобусов. Изделия будут иметь технические характеристики на уровне мировых аналогов и конкурентную цену, а отсутствие аналогов в Республике Беларусь, позволит заместить импортные поставки, а также расширить рынок поставок рулевых систем в страны ближнего и дальнего зарубежья.",
                             LocationProjectImplementation = "Минская обл., г.Борисов, ул.Чапаева, 56.",
                             NameInnProject = "«Создание современного гибкого автоматизированного производства узлов рулевого управления для комплектации автомобильной техники»",
@@ -256,56 +232,37 @@ namespace GeoItemMap.DAL.Migrations
                 {
                     b.HasBaseType("GeoItemMap.DAL.Entities.GeoItem");
 
-                    b.Property<string>("AreaImplemOrg")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CityImplemOrg")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CountryImplemOrg")
-                        .IsRequired()
+                    b.Property<string>("AdressImplemOrg")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImplemOrg")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InformationExports")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InformationNewProduct")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameNewDevProducts")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameProgramm")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameTask")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ParentImplemOrg")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StateCustomer")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StateTask")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Thelevelstructure")
-                        .IsRequired()
+                    b.Property<string>("TheLevelStructure")
                         .HasColumnType("nvarchar(max)");
 
                     b.ToTable("NtpProject", (string)null);
@@ -315,31 +272,27 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 1001,
                             GeoType = 3,
-                            X = 55.538757f,
-                            Y = 27.750422f,
-                            AreaImplemOrg = "Витебская область",
-                            CityImplemOrg = "г. Витебск",
-                            CountryImplemOrg = "Республика Беларусь",
-                            ImplemOrg = "ОАО «Витязь»",
+                            X = 53.9387f,
+                            Y = 27.602226f,
+                            AdressImplemOrg = "Республика Беларусь,Минская область, г. Минск ",
+                            ImplemOrg = "ОАО «МНИПИ»",
                             InformationExports = "",
                             InformationNewProduct = "",
                             NameNewDevProducts = "Станция электрозарядная стационарная Витязь ЕС-401,EC-401-10, шт.",
-                            NameProgramm = "БПТ_14",
-                            NameTask = "«Разработать и освоить в серийном производстве стационарную электрозарядную станцию постоянного тока для легковых электромобилей»",
-                            ParentImplemOrg = "ОАО «Витязь»",
+                            NameProgramm = "РО3.15",
+                            NameTask = "«Разработать и освоить производство подвижного информационного комплекса», шифр «Контент»",
+                            ParentImplemOrg = "ОАО «МНИПИ»",
                             StateCustomer = "",
                             StateTask = "",
-                            Thelevelstructure = "V технологический уклад"
+                            TheLevelStructure = "V технологический уклад"
                         },
                         new
                         {
                             Id = 1002,
                             GeoType = 3,
-                            X = 53.07713f,
-                            Y = 26.669676f,
-                            AreaImplemOrg = "Витебская область",
-                            CityImplemOrg = "г. Витебск",
-                            CountryImplemOrg = "Республика Беларусь",
+                            X = 55.167625f,
+                            Y = 30.239363f,
+                            AdressImplemOrg = "Республика Беларусь,Витебская область, г. Витебск",
                             ImplemOrg = "ОАО «Витязь»",
                             InformationExports = "",
                             InformationNewProduct = "",
@@ -349,7 +302,7 @@ namespace GeoItemMap.DAL.Migrations
                             ParentImplemOrg = "ОАО «Витязь»",
                             StateCustomer = "",
                             StateTask = "",
-                            Thelevelstructure = "V технологический уклад"
+                            TheLevelStructure = "V технологический уклад"
                         });
                 });
 
@@ -358,62 +311,49 @@ namespace GeoItemMap.DAL.Migrations
                     b.HasBaseType("GeoItemMap.DAL.Entities.GeoItem");
 
                     b.Property<string>("AddressTechnopark")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("AmountFunding")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<string>("EmailTechnopark")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("FreeAreaPremises")
                         .HasColumnType("real");
 
                     b.Property<string>("NameTechnopark")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<short?>("NumberEmployees")
-                        .IsRequired()
                         .HasColumnType("smallint");
 
                     b.Property<string>("PhoneTechnopark")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ServicesProvided")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TechInfrastructure")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TechSpecialization")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("TotalAreaPremises")
                         .HasColumnType("real");
 
                     b.Property<short?>("TotalNumberResident")
-                        .IsRequired()
                         .HasColumnType("smallint");
 
                     b.Property<string>("TypesProducts")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float?>("VolComplProducts")
-                        .IsRequired()
                         .HasColumnType("real");
 
                     b.Property<string>("WebsiteTechnopark")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.ToTable("Technoparks", (string)null);
@@ -423,8 +363,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 101,
                             GeoType = 0,
-                            X = 53.604725f,
-                            Y = 26.890274f,
+                            X = 53.925674f,
+                            Y = 27.59164f,
                             AddressTechnopark = "220013, Республика Беларусь, г. Минск, ул. Я. Коласа, д. 24, к. 34/1",
                             AmountFunding = 17963.4m,
                             EmailTechnopark = "post@park.bntu.by",
@@ -445,8 +385,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 102,
                             GeoType = 0,
-                            X = 54.929348f,
-                            Y = 29.174215f,
+                            X = 55.530853f,
+                            Y = 28.647306f,
                             AddressTechnopark = "211446, Витебская обл., г. Новополоцк, ул. Блохина, 29/114мк",
                             AmountFunding = 1310m,
                             EmailTechnopark = "post@park.bntu.by",
@@ -467,8 +407,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 103,
                             GeoType = 0,
-                            X = 54.588676f,
-                            Y = 27.651588f,
+                            X = 55.178352f,
+                            Y = 30.23797f,
                             AddressTechnopark = "Республика Беларусь, 210038, г. Витебск, Московский пр-т, 72",
                             AmountFunding = 384.8m,
                             EmailTechnopark = "info@technopark-vitebsk.by",
@@ -489,8 +429,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 104,
                             GeoType = 0,
-                            X = 55.24945f,
-                            Y = 27.915718f,
+                            X = 52.113556f,
+                            Y = 26.112936f,
                             AddressTechnopark = "ул. Днепровской флотилии, 23; 225710 Пинск, Брестская область, Республика Беларусь",
                             AmountFunding = 1500m,
                             EmailTechnopark = "tpark.kozyr@gmail.com",
@@ -511,8 +451,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 105,
                             GeoType = 0,
-                            X = 52.74804f,
-                            Y = 27.232088f,
+                            X = 53.84014f,
+                            Y = 27.47747f,
                             AddressTechnopark = "Республика Беларусь, г. Минск, ул.Академика Курчатова, 1, к.10",
                             AmountFunding = 24227.5m,
                             EmailTechnopark = "unitehprombgu@gmail.com",
@@ -533,8 +473,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 106,
                             GeoType = 0,
-                            X = 52.65389f,
-                            Y = 24.124687f,
+                            X = 53.711216f,
+                            Y = 23.826435f,
                             AddressTechnopark = "230005, г. Гродно, ул. Гаспадарчая, 21/А",
                             AmountFunding = 3835m,
                             EmailTechnopark = "vasil@grsu.by",
@@ -555,8 +495,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 107,
                             GeoType = 0,
-                            X = 54.696564f,
-                            Y = 29.531567f,
+                            X = 54.290287f,
+                            Y = 30.987661f,
                             AddressTechnopark = "г. Горки, ул. Мичурина, 5 оф. 480",
                             AmountFunding = 5245m,
                             EmailTechnopark = "technoparkgorki@gmail.com",
@@ -577,8 +517,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 108,
                             GeoType = 0,
-                            X = 55.080826f,
-                            Y = 28.226458f,
+                            X = 52.097225f,
+                            Y = 23.731108f,
                             AddressTechnopark = "Республика Беларусь, г.Брест, ул.Пионерская, 52, 224020",
                             AmountFunding = 35774.5m,
                             EmailTechnopark = "infi@bntp.by",
@@ -599,8 +539,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 109,
                             GeoType = 0,
-                            X = 53.623158f,
-                            Y = 30.758991f,
+                            X = 55.15899f,
+                            Y = 30.235449f,
                             AddressTechnopark = "г.Витебск, ул.П.Бровки, 50",
                             AmountFunding = 3639.5m,
                             EmailTechnopark = "zakoniporyadok.vit@gmail.com",
@@ -621,8 +561,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 110,
                             GeoType = 0,
-                            X = 53.761154f,
-                            Y = 28.024477f,
+                            X = 52.47443f,
+                            Y = 30.99671f,
                             AddressTechnopark = "246000, Республика Беларусь, г.Гомель, ул.Лепешинского,7,",
                             AmountFunding = 3500.4m,
                             EmailTechnopark = "tp_korall@mail.ru",
@@ -643,8 +583,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 111,
                             GeoType = 0,
-                            X = 55.514248f,
-                            Y = 27.527292f,
+                            X = 52.479782f,
+                            Y = 30.989746f,
                             AddressTechnopark = "246144, Республика Беларусь, г. Гомель, ул. Федюнинского, д. 17",
                             AmountFunding = 0m,
                             EmailTechnopark = "info@gntp.by, gomel-technopark@tut.by",
@@ -665,8 +605,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 112,
                             GeoType = 0,
-                            X = 53.769756f,
-                            Y = 26.898483f,
+                            X = 53.979046f,
+                            Y = 28.027534f,
                             AddressTechnopark = "Минская обл., Смолевичский район, д.Станок-водица, ул. Заводская, д.1;",
                             AmountFunding = 374m,
                             EmailTechnopark = "nfo@mpark.by",
@@ -687,8 +627,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 113,
                             GeoType = 0,
-                            X = 53.316044f,
-                            Y = 27.063278f,
+                            X = 53.834774f,
+                            Y = 28.011541f,
                             AddressTechnopark = "Республика Беларусь Минская область, Смолевичский район, территория Индустриального парка «Великий камень»,ул. Рубиновая,  Могилевская область, Бобруйский район, г.Бобруйск",
                             AmountFunding = 3103.0m,
                             EmailTechnopark = "em@encata.net",
@@ -709,8 +649,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 114,
                             GeoType = 0,
-                            X = 54.60542f,
-                            Y = 29.623093f,
+                            X = 53.834774f,
+                            Y = 28.011541f,
                             AddressTechnopark = "Республика Беларусь Минская область, Смолевичский район, территория Индустриального парка «Великий камень», ул. Рубиновая",
                             AmountFunding = 2945.2m,
                             EmailTechnopark = "",
@@ -731,8 +671,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 115,
                             GeoType = 0,
-                            X = 54.60542f,
-                            Y = 29.623093f,
+                            X = 53.148197f,
+                            Y = 29.214527f,
                             AddressTechnopark = "Могилевская область, Бобруйский район, г.Бобруйск",
                             AmountFunding = 157.8m,
                             EmailTechnopark = "",
@@ -753,8 +693,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 116,
                             GeoType = 0,
-                            X = 54.726143f,
-                            Y = 27.392868f,
+                            X = 53.904915f,
+                            Y = 30.343761f,
                             AddressTechnopark = "212030 г. Могилев, ул. Ленинская, д.63 ",
                             AmountFunding = 263.5m,
                             EmailTechnopark = "info@technopark.by",
@@ -775,8 +715,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 117,
                             GeoType = 0,
-                            X = 52.54654f,
-                            Y = 27.912638f,
+                            X = 53.90276f,
+                            Y = 27.644878f,
                             AddressTechnopark = "220070, Республика Беларусь г. Минск, ул. Солтыса, 187, г. Минск, Партизанский просп. 8, г. Минск, ул. Центральная 47.",
                             AmountFunding = 362305.3m,
                             EmailTechnopark = "mgtp@tut.by",
@@ -797,8 +737,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 118,
                             GeoType = 0,
-                            X = 54.747032f,
-                            Y = 27.500906f,
+                            X = 53.875854f,
+                            Y = 27.655737f,
                             AddressTechnopark = "220070, Республика Беларусь г. Минск, ул. Солтыса, 187, г. Минск, ул. Центральная 47",
                             AmountFunding = 81469.3m,
                             EmailTechnopark = "",
@@ -819,8 +759,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 119,
                             GeoType = 0,
-                            X = 55.18851f,
-                            Y = 28.743868f,
+                            X = 53.88313f,
+                            Y = 27.592127f,
                             AddressTechnopark = "г. Минск, Партизанский просп. 8,",
                             AmountFunding = 280836.0m,
                             EmailTechnopark = "",
@@ -841,8 +781,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 120,
                             GeoType = 0,
-                            X = 53.720943f,
-                            Y = 29.450802f,
+                            X = 53.901115f,
+                            Y = 27.497475f,
                             AddressTechnopark = "220092, г. Минск, пр. Пушкина 20, каб. 102.",
                             AmountFunding = 2296.7m,
                             EmailTechnopark = "snamiteplee@mail.ru",
@@ -863,8 +803,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 121,
                             GeoType = 0,
-                            X = 55.431683f,
-                            Y = 55.431683f,
+                            X = 53.89705f,
+                            Y = 27.599731f,
                             AddressTechnopark = "Республика Беларусь, 220037, г. Минск, пер. Козлова, д. 7В, пом. 2/1 ",
                             AmountFunding = 0m,
                             EmailTechnopark = "",
@@ -888,63 +828,49 @@ namespace GeoItemMap.DAL.Migrations
                     b.HasBaseType("GeoItemMap.DAL.Entities.GeoItem");
 
                     b.Property<string>("AdressTechTransferCenter")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("AmountFunding")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<string>("EmailTechTransferCenter")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameTechTransferCenter")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<short?>("NumberAcceptedWorkProposals")
-                        .IsRequired()
                         .HasColumnType("smallint");
 
                     b.Property<short?>("NumberAcceptedWorkRequests")
-                        .IsRequired()
                         .HasColumnType("smallint");
 
                     b.Property<short?>("NumberGeneratedProjects")
-                        .IsRequired()
                         .HasColumnType("smallint");
 
                     b.Property<short?>("NumberTransactionsConcluded")
-                        .IsRequired()
                         .HasColumnType("smallint");
 
                     b.Property<string>("PhoneTechTransferCenter")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ServicesProvidedTechTransferCenter")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("VolumeGeneratedProjects")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal?>("VolumeTransactionsConcluded")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal?>("VolumeWorkPerformed")
-                        .IsRequired()
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<string>("WebsiteTechTransferCenter")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.ToTable("TechTransferCenters", (string)null);
@@ -954,8 +880,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 1,
                             GeoType = 1,
-                            X = 53.462738f,
-                            Y = 24.354662f,
+                            X = 53.684956f,
+                            Y = 23.839453f,
                             AdressTechTransferCenter = "230023, г. Гродно, ул. Ожешко,22",
                             AmountFunding = 364m,
                             EmailTechTransferCenter = "ctt@grsu.by",
@@ -975,8 +901,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 2,
                             GeoType = 1,
-                            X = 55.546116f,
-                            Y = 30.421865f,
+                            X = 53.88728f,
+                            Y = 26.967253f,
                             AdressTechTransferCenter = "Минская область, Дзержинский район, Путчинский сельский Совет, аг. Волма, ул. Парковая, 11",
                             AmountFunding = 3868m,
                             EmailTechTransferCenter = "volma@ripo.by, v_o_l_m_a@mail.ru",
@@ -996,8 +922,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 3,
                             GeoType = 1,
-                            X = 54.921528f,
-                            Y = 27.446527f,
+                            X = 53.12245f,
+                            Y = 26.041328f,
                             AdressTechTransferCenter = "Брестская обл. г. Барановичи, ул. Войкова, д. 21",
                             AmountFunding = 0m,
                             EmailTechTransferCenter = "ctt.barsu@yandex.by",
@@ -1017,8 +943,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 4,
                             GeoType = 1,
-                            X = 53.592037f,
-                            Y = 29.279894f,
+                            X = 55.19271f,
+                            Y = 30.21926f,
                             AdressTechTransferCenter = "210023, г. Витебск, пр-т Фрунзе, д. 27",
                             AmountFunding = 0m,
                             EmailTechTransferCenter = "ctmft.vgmu@gmail.com",
@@ -1038,8 +964,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 5,
                             GeoType = 1,
-                            X = 54.890263f,
-                            Y = 27.563055f,
+                            X = 52.42506f,
+                            Y = 31.01014f,
                             AdressTechTransferCenter = "246050, г. Гомель, пр-т Ленина, д. 3, комн. 306",
                             AmountFunding = 0m,
                             EmailTechTransferCenter = " mail@cntdi.gomel.by",
@@ -1059,8 +985,8 @@ namespace GeoItemMap.DAL.Migrations
                         {
                             Id = 6,
                             GeoType = 1,
-                            X = 52.777412f,
-                            Y = 26.933805f,
+                            X = 53.89851f,
+                            Y = 25.297256f,
                             AdressTechTransferCenter = "231300, г. Лида,  Гродненская обл, ул. Советская, д. 43",
                             AmountFunding = 0m,
                             EmailTechTransferCenter = "lidabi@mail.ru",

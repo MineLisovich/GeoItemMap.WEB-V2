@@ -11,9 +11,7 @@ namespace GeoItemMap.DAL.Interfaces
     public interface IGenericRepository<TEntity> where TEntity : class
     {
         Task <IEnumerable<TEntity>> GetAll();
-
         TEntity FindById(int id);
-
         void Save();
         
     }

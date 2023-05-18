@@ -15,8 +15,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id101 = new()
         {
             Id = 101,
-            X = 53.6047235337218f,
-            Y = 26.89027466942939f,
+            X = 53.92567633515678f,
+            Y = 27.59164037040133f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Республиканское инновационное унитарное предприятие «Научно-технологический парк БНТУ «Политехник»",
             AddressTechnopark = "220013, Республика Беларусь, г. Минск, ул. Я. Коласа, д. 24, к. 34/1",
@@ -38,8 +38,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id102 = new()
         { 
             Id = 102,
-            X =  54.92934689702713f,
-            Y = 29.174215494659823f,
+            X = 55.5308526728631f,
+            Y = 28.647307334957322f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Республиканское инновационное унитарное предприятие «Научно-технологический парк Полоцкого государственного университета»",
             AddressTechnopark = "211446, Витебская обл., г. Новополоцк, ул. Блохина, 29/114мк",
@@ -61,8 +61,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id103 = new()
         {
             Id = 103,
-            X = 54.5886749532035f,
-            Y = 27.651588277839537f,
+            X = 55.17835313506437f,
+            Y = 30.2379711410224f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Республиканское инновационное унитарное предприятие «Научно-технологический парк Витебского государственного технологического университета»",
             AddressTechnopark = "Республика Беларусь, 210038, г. Витебск, Московский пр-т, 72",
@@ -84,8 +84,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id104 = new()
         {
             Id = 104,
-            X =  55.249449431769285f,
-            Y =  27.915717488920606f,
+            X = 52.11355704908594f,
+            Y = 26.112936897306287f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Общество с ограниченной ответственностью «Технопарк «Полесье»",
             AddressTechnopark = "ул. Днепровской флотилии, 23; 225710 Пинск, Брестская область, Республика Беларусь",
@@ -107,8 +107,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id105 = new()
         {
             Id = 105,
-            X = 52.74804076056519f,
-            Y = 27.232088942593133f,
+            X = 53.840141696055746f,
+            Y = 27.477471208866287f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Учебно-научно-производственное республиканское унитарное предприятие «УНИТЕХПРОМ БГУ»",
             AddressTechnopark = "Республика Беларусь, г. Минск, ул.Академика Курчатова, 1, к.10",
@@ -130,8 +130,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id106 = new()
         {
             Id = 106,
-            X = 52.65389038834035f,
-            Y = 24.124686459286426f,
+            X = 53.71121573321226f,
+            Y = 23.82643476489058f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Республиканское унитарное предприятие «Учебно-научно-производственный центр «Технолаб»",
             AddressTechnopark = "230005, г. Гродно, ул. Гаспадарчая, 21/А",
@@ -153,8 +153,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id107 = new()
         { 
             Id = 107,
-            X = 54.69656539072973f,
-            Y = 29.531566780240098f,
+            X = 54.29028668193705f,
+            Y = 30.987661243257918f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Общество с ограниченной ответственностью «Технопарк «Горки»",
             AddressTechnopark = "г. Горки, ул. Мичурина, 5 оф. 480",
@@ -176,8 +176,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id108 = new()
         {
             Id = 108,
-            X = 55.08082577153533f,
-            Y = 28.226457737251277f,
+            X = 52.09722412768465f,
+            Y = 23.731107595461975f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Закрытое акционерное общество «Брестский научно-технологический парк»",
             AddressTechnopark = "Республика Беларусь, г.Брест, ул.Пионерская, 52, 224020",
@@ -199,8 +199,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id109 = new()
         {
             Id = 109,
-            X = 53.62315736240684f,
-            Y = 30.758990761146247f,
+            X = 55.1589891640668f,
+            Y = 30.23544833706945f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Инкубатор малого предпринимательства Общество с ограниченной ответственностью Правовая Группа «Закон и Порядок»",
             AddressTechnopark = "г.Витебск, ул.П.Бровки, 50",
@@ -222,8 +222,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id110 = new()
         {
             Id = 110,
-            X = 53.7611546732877f,
-            Y = 28.02447657583634f,
+            X = 52.47443040759271f,
+            Y = 30.99671002098027f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Республиканское унитарное сервисное предприятие «Агенство развития и содействия инвестициям» (Технопарк «Коралл»)",
             AddressTechnopark = "246000, Республика Беларусь, г.Гомель, ул.Лепешинского,7,",
@@ -245,8 +245,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id111 = new()
         {   
             Id = 111,
-            X = 55.51424762767708f,
-            Y = 27.527292178507274f,
+            X = 52.47978318969016f,
+            Y = 30.989746541497514f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Открытое акционерное общество «Гомельский технопарк»",
             AddressTechnopark = "246144, Республика Беларусь, г. Гомель, ул. Федюнинского, д. 17",
@@ -268,8 +268,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id112 = new()
         { 
             Id = 112,
-            X = 53.769755791044034f,
-            Y = 26.898482733222426f,
+            X = 53.9790453151712f,
+            Y = 28.027534338974498f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Коммунальное производственно-торговое унитарное предприятие «Минский областной технопарк»",
             AddressTechnopark = "Минская обл., Смолевичский район, д.Станок-водица, ул. Заводская, д.1;",
@@ -291,8 +291,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id113 = new()
         { 
             Id = 113,
-            X = 53.3160442027159f,
-            Y = 27.063277635809087f,
+            X = 53.834773442486274f,
+            Y = 28.01154196575519f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Общество с ограниченной ответственностью «ИнКата»",
             AddressTechnopark = "Республика Беларусь Минская область, Смолевичский район, территория Индустриального парка «Великий камень»,ул. Рубиновая,  Могилевская область, Бобруйский район, г.Бобруйск",
@@ -314,8 +314,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id114 = new()
         { 
             Id = 114,
-            X = 54.60542063210755f,
-            Y = 29.623091789321823f,
+            X = 53.834773442486274f,
+            Y = 28.01154196575519f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Общество с ограниченной ответственностью «ИнКата»",
             AddressTechnopark = "Республика Беларусь Минская область, Смолевичский район, территория Индустриального парка «Великий камень», ул. Рубиновая",
@@ -337,8 +337,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id115 = new()
         {
             Id = 115,
-            X = 54.60542063210755f,
-            Y = 29.623091789321823f,
+            X = 53.148197359817196f,
+            Y = 29.21452660113076f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Общество с ограниченной ответственностью «ИнКата»",
             AddressTechnopark = "Могилевская область, Бобруйский район, г.Бобруйск",
@@ -360,8 +360,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id116 = new()
         {
             Id = 116,
-            X = 54.72614437379667f,
-            Y = 27.392867440982396f,
+            X = 53.904914836639385f,
+            Y = 30.343761583298324f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Закрытое акционерное общество «Технологический парк Могилев»",
             AddressTechnopark = "212030 г. Могилев, ул. Ленинская, д.63 ",
@@ -383,8 +383,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id117 = new()
         { 
             Id = 117,
-            X = 52.546539724323054f,
-            Y = 27.912637558119343f,
+            X = 53.90276131310699f,
+            Y = 27.644878153217267f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Общество с ограниченной ответственностью «Минский городской технопарк»",
             AddressTechnopark = "220070, Республика Беларусь г. Минск, ул. Солтыса, 187, г. Минск, Партизанский просп. 8, г. Минск, ул. Центральная 47.",
@@ -406,8 +406,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id118 = new()
         { 
             Id = 118,
-            X = 54.747033304887744f,
-            Y = 27.5009067290812f,
+            X = 53.87585567326809f,
+            Y = 27.65573779739013f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Общество с ограниченной ответственностью «Минский городской технопарк»",
             AddressTechnopark = "220070, Республика Беларусь г. Минск, ул. Солтыса, 187, г. Минск, ул. Центральная 47",
@@ -429,8 +429,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id119 = new()
         {      
             Id = 119,
-            X = 55.18850948950069f,
-            Y = 28.743867722403888f,
+            X = 53.88312835044696f,
+            Y = 27.592126329339663f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Общество с ограниченной ответственностью «Минский городской технопарк»",
             AddressTechnopark = "г. Минск, Партизанский просп. 8,",
@@ -452,8 +452,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id120 = new()
         {
             Id = 120,
-            X = 53.72094479153242f,
-            Y = 29.450801787356163f,
+            X = 53.9011144121389f,
+            Y = 27.497474368556322f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Общество с ограниченной ответственностью «Борисовский региональный технопарк»",
             AddressTechnopark = "220092, г. Минск, пр. Пушкина 20, каб. 102.",
@@ -475,8 +475,8 @@ namespace GeoItemMap.DAL.Predefined
         Technopark id121 = new()
         { 
             Id = 121,
-            X = 55.43168150356719f,
-            Y = 55.43168150356719f,
+            X = 53.897048074975075f,
+            Y = 27.59973225506066f,
             GeoType = GeoItemType.Technopark,
             NameTechnopark = "Общество с ограниченной ответственностью «Технопарк Олика»",
             AddressTechnopark = "Республика Беларусь, 220037, г. Минск, пер. Козлова, д. 7В, пом. 2/1 ",

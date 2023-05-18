@@ -12,17 +12,16 @@ namespace GeoItemMap.WEB.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private IGenericRepository<GeoItem> GeoItemGenericRepository; 
+     
 
-        public HomeController(ILogger<HomeController> logger , IGenericRepository<GeoItem> _GeoItemGenericRepository)
+        public HomeController(ILogger<HomeController> logger )
         {
             _logger = logger;     
-            GeoItemGenericRepository = _GeoItemGenericRepository;
         }
 
         public IActionResult Index()
         {
-            return RedirectToAction(nameof(GetMapYandexApi3));
+            return RedirectToAction(nameof(GetMapYandexApi2));
         }
 
         public IActionResult GetMapYandexApi2()
@@ -31,6 +30,11 @@ namespace GeoItemMap.WEB.Controllers
         }
 
         public IActionResult GetMapYandexApi3()
+        {
+            return View();
+        }
+
+        public IActionResult TESTGetMapYandexApi3()
         {
             return View();
         }

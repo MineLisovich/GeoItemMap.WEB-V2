@@ -40,12 +40,17 @@ namespace GeoItemMap.DAL.DataContext
             modelBuilder.Entity<InnProject>().ToTable("InnProjects");
             modelBuilder.Entity<Technopark>().ToTable("Technoparks");
             modelBuilder.Entity<TechTransferCenter>().ToTable("TechTransferCenters");
-           
 
-            modelBuilder.Entity<Technopark>().HasData( new Predefined.PredefinedTechnoparkList().Technoparks);
+
+            modelBuilder.Entity<Technopark>().HasData(new Predefined.PredefinedTechnoparkList().Technoparks);
             modelBuilder.Entity<TechTransferCenter>().HasData(new Predefined.PredefinedTechTransferCenterList().TechTransferCenters);
             modelBuilder.Entity<InnProject>().HasData(new Predefined.PredefinedInnProjectList().innProjects);
-            modelBuilder.Entity<NtpProject>().HasData(new Predefined.PredefinedGNTPadnRNTPList().gNTPandRNTPs);
+            modelBuilder.Entity<NtpProject>().HasData(new Predefined.PredefinedNtpProjectList().ntpProjects);
+
+            //modelBuilder.Entity<Technopark>().HasData(new Predefined.TESTPredTechnopark().technoparks);
+            //modelBuilder.Entity<TechTransferCenter>().HasData(new Predefined.TESTPredTechTransferCenterList().techTransferCenters);
+            //modelBuilder.Entity<InnProject>().HasData(new Predefined.TESTPredInnProject().innProjects);
+            //modelBuilder.Entity<NtpProject>().HasData(new Predefined.TESTPredNtpList().ntpProjects);
 
 
 

@@ -21,7 +21,7 @@ namespace GeoItemMap.DAL.Entities
         /// </summary>
         [Required]
         public float Y { get; set; }
-        
+        [Required]
         public GeoItemType GeoType { get; set; }
     }
 }

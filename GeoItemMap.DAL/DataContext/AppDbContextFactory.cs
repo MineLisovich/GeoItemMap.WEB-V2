@@ -17,7 +17,5 @@ namespace GeoItemMap.DAL.DataContext
             opsBuilder.UseSqlServer(configuration.sqlConnectionString);
             return new AppDbContext(opsBuilder.Options);
         }
-
-
     }
 }
