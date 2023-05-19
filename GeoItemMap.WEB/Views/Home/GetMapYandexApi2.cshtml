@@ -50,8 +50,9 @@
                     [85, -179.99]
                 ]
             ], {}, {
-                fillColor: '#ffffff',
-                strokeWidth: 0,
+                fillColor: '#B0B0B0',
+                fillOpacity:0.5,
+                strokeWidth: 1.5,
                 coordRendering: 'straightPath'
             });
             // Найдём страну по её iso коду.
@@ -125,6 +126,7 @@
                 console.log(geoitems)
                 geoitems.forEach((element) => {
 
+                    // Технопарки
                     if (element.geoType == 0)
                     {
                         var myGeoObject = new ymaps.GeoObject({
@@ -136,7 +138,7 @@
                             iconColor: "#33FF00"
                         });
                     }
-                
+                    //Центр трансфера технологий
                     if (element.geoType == 1)
                     {
                         var myGeoObject = new ymaps.GeoObject({
@@ -148,7 +150,7 @@
                             iconColor: "#5863FF"
                         });
                     }
-                        
+                        // ИНН проекты
                     if (element.geoType == 2)
                     {
                         var myGeoObject = new ymaps.GeoObject({
@@ -157,10 +159,10 @@
                                 coordinates: [element.x, element.y], // координаты точки
                             },
                         }, {
-                            iconColor: "#FFEF58"
+                            iconColor: "#FF0000"
                         });
                     }
-                       
+                       //НТП
                     if (element.geoType == 3)
                     {
                         var myGeoObject = new ymaps.GeoObject({
