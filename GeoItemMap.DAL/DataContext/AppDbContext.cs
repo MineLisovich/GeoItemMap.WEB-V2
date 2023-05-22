@@ -46,14 +46,6 @@ namespace GeoItemMap.DAL.DataContext
             modelBuilder.Entity<TechTransferCenter>().HasData(new Predefined.PredefinedTechTransferCenterList().TechTransferCenters);
             modelBuilder.Entity<InnProject>().HasData(new Predefined.PredefinedInnProjectList().innProjects);
             modelBuilder.Entity<NtpProject>().HasData(new Predefined.PredefinedNtpProjectList().ntpProjects);
-
-            //modelBuilder.Entity<Technopark>().HasData(new Predefined.TESTPredTechnopark().technoparks);
-            //modelBuilder.Entity<TechTransferCenter>().HasData(new Predefined.TESTPredTechTransferCenterList().techTransferCenters);
-            //modelBuilder.Entity<InnProject>().HasData(new Predefined.TESTPredInnProject().innProjects);
-            //modelBuilder.Entity<NtpProject>().HasData(new Predefined.TESTPredNtpList().ntpProjects);
-
-
-
         }
     }
 }
