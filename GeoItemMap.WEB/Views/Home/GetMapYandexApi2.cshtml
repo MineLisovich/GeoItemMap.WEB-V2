@@ -74,15 +74,19 @@
             });
             if (response.ok === true) {
                 geoitem = await response.json();
+                //Технопарк
                 if (geoitem.value.geoType == 0) {
                     return "Технопарк" + "<br/>" + "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameTechnopark + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
                 }
+                // Центр трансфера технологий
                 else if (geoitem.value.geoType == 1) {
                     return "Центр трансфера технологий" + "<br/>" + "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameTechTransferCenter + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
                 }
+                //ИНН проекты
                 else if (geoitem.value.geoType == 2) {
                     return "Инн проект" + "<br/>" + "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameInnProject + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
                 }
+                //НТП проекты
                 else if (geoitem.value.geoType == 3) {
                     return "НТП" + "<br/>" + "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameTask + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
                 }
@@ -91,6 +95,8 @@
                 const error = await response.json();
             }
         }
+
+
 
         // всплывающего окна
         function top_popup(id) {
@@ -112,7 +118,7 @@
             // Ширина линий-разделителей секторов и внешней обводки диаграммы.
             clusterIconPieChartStrokeWidth: 3,
             // Определяет наличие поля balloon.
-            hasBalloon: false
+            hasBalloon: true
         });
 
         // получение координат для меток из бд
