@@ -21,7 +21,8 @@ namespace GeoItemMap.WEB.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction(nameof(GetMapYandexApi2));
+            return View();  
+           // return RedirectToAction(nameof(GetMapYandexApi2));
         }
 
         public IActionResult GetMapYandexApi2()
