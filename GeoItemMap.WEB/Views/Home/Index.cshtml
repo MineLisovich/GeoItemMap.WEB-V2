@@ -2019,27 +2019,27 @@
                 <!-- window-images -->
                 <div class="window-images">
                     <div class="col-img">
-                        <img src="/src/img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
+                        <img src="~/img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
                              class="hover-shadow cursor">
                     </div>
                     <div class="col-img">
-                        <img src="/src/img/foto-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
+                        <img src="~/img/foto-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
                              class="hover-shadow cursor">
                     </div>
                     <div class="col-img">
-                        <img src="/src/img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
+                        <img src="~/img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
                              class="hover-shadow cursor">
                     </div>
                     <div class="col-img">
-                        <img src="/src/img/grgu-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
+                        <img src="~/img/grgu-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
                              class="hover-shadow cursor">
                     </div>
                     <div class="col-img">
-                        <img src="/src/img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(5)"
+                        <img src="~/img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(5)"
                              class="hover-shadow cursor">
                     </div>
                     <div class="col-img">
-                        <img src="/src/img/art_420_orig.jpg" style="width:100%" onclick="openModal();currentSlide(6)"
+                        <img src="~/img/art_420_orig.jpg" style="width:100%" onclick="openModal();currentSlide(6)"
                              class="hover-shadow cursor">
                     </div>
                 </div>
@@ -2052,52 +2052,52 @@
                     <div class="gallery-content">
                         <div class="slides-gallery">
                             <div class="numbertext">1 / 6</div>
-                            <img src="/src/img/grsu_myuniver.jpg" style="width:100%">
+                            <img src="~/img/grsu_myuniver.jpg" style="width:100%">
                         </div>
                         <div class="slides-gallery">
                             <div class="numbertext">2 / 6</div>
-                            <img src="/src/img/foto-grgu.jpg" style="width:100%">
+                            <img src="~/img/foto-grgu.jpg" style="width:100%">
                         </div>
                         <div class="slides-gallery">
                             <div class="numbertext">3 / 6</div>
-                            <img src="/src/img/grsu_myuniver.jpg" style="width:100%">
+                            <img src="~/img/grsu_myuniver.jpg" style="width:100%">
                         </div>
                         <div class="slides-gallery">
                             <div class="numbertext">4 / 6</div>
-                            <img src="/src/img/grgu-grgu.jpg" style="width:100%">
+                            <img src="~/img/grgu-grgu.jpg" style="width:100%">
                         </div>
                         <div class="slides-gallery">
                             <div class="numbertext">5 / 6</div>
-                            <img src="/src/img/grsu_myuniver.jpg" style="width:100%">
+                            <img src="~/img/grsu_myuniver.jpg" style="width:100%">
                         </div>
                         <div class="slides-gallery">
                             <div class="numbertext">6 / 6</div>
-                            <img src="/src/img/art_420_orig.jpg" style="width:100%">
+                            <img src="~/img/art_420_orig.jpg" style="width:100%">
                         </div>
                         <div class="caption-container">
                             <p id="caption"></p>
                         </div>
                         <div class="row row-img">
                             <div class="col-img">
-                                <img class="demo cursor" src="/src/img/grsu_myuniver.jpg" style="width:100%"
+                                <img class="demo cursor" src="~/img/grsu_myuniver.jpg" style="width:100%"
                                      onclick="currentSlide(1)">
                             </div>
                             <div class="col-img">
-                                <img class="demo cursor" src="/src/img/foto-grgu.jpg" style="width:100%" onclick="currentSlide(2)">
+                                <img class="demo cursor" src="~/img/foto-grgu.jpg" style="width:100%" onclick="currentSlide(2)">
                             </div>
                             <div class="col-img">
-                                <img class="demo cursor" src="/src/img/grsu_myuniver.jpg" style="width:100%"
+                                <img class="demo cursor" src="~/img/grsu_myuniver.jpg" style="width:100%"
                                      onclick="currentSlide(3)">
                             </div>
                             <div class="col-img">
-                                <img class="demo cursor" src="/src/img/grgu-grgu.jpg" style="width:100%" onclick="currentSlide(4)">
+                                <img class="demo cursor" src="~/img/grgu-grgu.jpg" style="width:100%" onclick="currentSlide(4)">
                             </div>
                             <div class="col-img">
-                                <img class="demo cursor" src="/src/img/grsu_myuniver.jpg" style="width:100%"
+                                <img class="demo cursor" src="~/img/grsu_myuniver.jpg" style="width:100%"
                                      onclick="currentSlide(5)">
                             </div>
                             <div class="col-img">
-                                <img class="demo cursor" src="/src/img/art_420_orig.jpg" style="width:100%"
+                                <img class="demo cursor" src="~/img/art_420_orig.jpg" style="width:100%"
                                      onclick="currentSlide(6)">
                             </div>
                         </div>
@@ -2351,3 +2351,49 @@
 
     </div>
     <!--end window-child -->
+
+   <script>
+    // modal window for the gallery
+
+    function openModal() {
+        document.getElementById("modal-gallery").style.display = "block";
+        showSlides(slideIndex); // Показать первый слайд при открытии модального окна
+    }
+
+    function closeModal() {
+        document.getElementById("modal-gallery").style.display = "none";
+    }
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("slides-gallery");
+        var dots = document.getElementsByClassName("demo");
+        var captionText = document.getElementById("caption");
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        captionText.innerHTML = dots[slideIndex - 1].alt;
+    }
+   </script>

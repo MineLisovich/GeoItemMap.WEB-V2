@@ -406,6 +406,7 @@
 .itsystem-header.collapsed {
     position: absolute;
     right: 82px;
+    z-index:1;
 }
 
 .itsystem-header {
@@ -706,6 +707,7 @@ a[data-lang_id=ru] {
     position: absolute;
     width: 512px;
     top: 87px;
+    z-index: 1;
     left: 15px;
     bottom: 15px;
     border-radius: 3px;
