@@ -78,7 +78,7 @@
     &:hover,
     &:active {
         border-color: #77797b;
-        ;
+        
         text-decoration: none;
     }
 
@@ -358,7 +358,7 @@
 
 .scrollable.default-skin .scroll-bar .thumb {
     background-color: rgba(85, 88, 90, 0.5);
-    transition: backgroundcolor 0.3s;
+    transition: background-color 0.3s;
     cursor: default;
     left: 0px;
     width: 335px;
@@ -389,7 +389,7 @@
 
 .scrollable.default-skin .scroll-bar .thumb {
     background-color: rgba(85, 88, 90, 0.5);
-    transition: backgroundcolor 0.3s;
+    transition: background-color 0.3s;
     cursor: default;
     top: 0px;
     height: 150.914px;
@@ -451,7 +451,7 @@
 .itsystem-search .search-magnifier {
     height: 29px;
     width: 29px;
-    background: url(/src/icons/search.png) right center no-repeat #fff;
+    background: url(../../icons/search.png) right center no-repeat #fff;
     background-size: 29px 29px;
     position: absolute;
     right: 1px;
@@ -485,7 +485,7 @@
 }
 
 .comparison-tool {
-    background-image: url(../icons/comparison_white.png);
+    background-image: url(../../icons/comparison_white.png);
 }
 
 .comparison-tool:hover {
@@ -496,7 +496,7 @@
 }
 
 .comparison-tool:active {
-    background-image: url(../icons/comparison_blue.png);
+    background-image: url(../../icons/comparison_blue.png);
 }
 
 @media only screen and (max-width: 994px) {
@@ -527,22 +527,22 @@
 }
 
 .itsystem-tool-button.about {
-    background-image: url(/src/icons/tool-ok.png);
+    background-image: url(../../icons/tool-ok.png);
 }
 
 /*Справка*/
 .itsystem-tool-button.help {
-    background-image: url(/src/icons/help.png);
+    background-image: url(../../icons/help.png);
 }
 
 /*Печать*/
 .itsystem-tool-button.print {
-    background-image: url(/src/icons/print.png);
+    background-image: url(../../icons/print.png);
 }
 
 /*Ссылка на карту*/
 .itsystem-tool-button.link {
-    background-image: url(/src/icons/link.png);
+    background-image: url(../../icons/link.png);
 } 
 
 /*Инструменты измерения*/
@@ -563,7 +563,7 @@
 }
 
 .measure {
-    background-image: url(/src/icons/arrow.png);
+    background-image: url(../../icons/arrow.png);
 }
 
 /*Язык*/
@@ -591,7 +591,7 @@ a[data-lang_id] {
 }
 
 a[data-lang_id=ru] {
-    background-image: url(/src/icons/langrus.png);
+    background-image: url(../../icons/langrus.png);
 }
 
 .itsystem-header .itsystem-curr-lang:hover {
@@ -696,7 +696,7 @@ a[data-lang_id=ru] {
 }
 
 .show_background {
-    background-image: url(/src/icons/comparison_blue.png);
+    background-image: url(../../icons/comparison_blue.png);
 }
 
 //О проекте
@@ -854,27 +854,27 @@ a[data-lang_id=ru] {
 }
 
 .about-drp-logo {
-    background: url(/src/icons/drp-logo.png) left top no-repeat;
+    background: url(../../icons/drp-logo.png) left top no-repeat;
 }
 
 .about-orbis-logo {
-    background: url(/src/icons/orbis-logo.png) left top no-repeat;
+    background: url(../../icons/orbis-logo.png) left top no-repeat;
 }
 
 .about-indpark-logo {
-    background: url(/src/icons/indpark-logo.png) left top no-repeat;
+    background: url(../../icons/indpark-logo.png) left top no-repeat;
 }
 
 .about-tech-logo {
-    background: url(/src/icons/tech-logo.png) left top no-repeat;
+    background: url(../../icons/tech-logo.png) left top no-repeat;
 }
 
 .about-hse-logo {
-    background: url(/src/icons/hse-logo.png) left top no-repeat;
+    background: url(../../icons/hse-logo.png) left top no-repeat;
 }
 
 .about-monkeybusiness-logo {
-    background: url(/src/icons/monkeybusiness-logo.png) left top no-repeat;
+    background: url(../../icons/monkeybusiness-logo.png) left top no-repeat;
 }
 
 
@@ -912,23 +912,23 @@ a[data-lang_id] {
 
 .itsystem-lang-menu a:hover {
     background-color: #00a7e5;
-    ;
+    
 }
 
 a[data-lang_id=ru] {
-    background-image:  url(/src/icons/langrus.png);
+    background-image: url(../../icons/langrus.png);
 }
 
 a[data-lang_id=en] {
-    background-image: url(/src/icons/enlang.png);
+    background-image: url(../../icons/enlang.png);
 }
 
 a[data-lang_id=es] {
-    background-image: url(/src/icons/eslang.png);
+    background-image: url(../../icons/eslang.png);
 }
 
 a[data-lang_id=zh] {
-    background-image: url(/src/icons/zhlang.png);
+    background-image: url(../../icons/zhlang.png);
 }
 
 
@@ -964,21 +964,22 @@ a[data-lang_id=zh] {
 }
 
 .measure {
-    background-image: url(/src/icons/arrow.png);
+    background-image: url(../../icons/arrow.png);
 }
 
 .distance-measure {
-    background-image: url(/src/icons/measure.png) !important;
+    background-image: url(../../icons/measure.png) !important;
 }
 
 .area-measure {
-    background-image: url(/src/icons/area-measure.png) !important;
+    background-image: url(../../icons/area-measure.png) !important;
     background-repeat: no-repeat;
     background-position: center;
 }
 
+
 .area-measure_hec {
-    background-image: url(/src/icons/area-measure_hec.png) !important;
+    background-image: url('../../icons/area-measure_hec.png') !important;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -986,3 +987,4 @@ a[data-lang_id=zh] {
 .show_block {
     display: block;
 }
+

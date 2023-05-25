@@ -1,4 +1,5 @@
- //Сравнение
+
+//Сравнение
         function comparison_function() {
             document.getElementById("comparison-popup").classList.toggle("show_block");
             document.getElementById("comparison-tool").classList.toggle("show_background");
@@ -7,6 +8,7 @@
         //О проекте 
         function aboutProject() {
             document.getElementById("new-about-cont").classList.toggle("show_block");
+            console.log("fwsfwsf")
         }
 
         //Закрыть окно О проекте
