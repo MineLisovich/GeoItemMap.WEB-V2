@@ -11,6 +11,7 @@
     height: auto;
     transition-property: width;
     transition-duration: .3s;
+    pointer-events:none;
 
     &-container {
         position: relative;
@@ -30,6 +31,8 @@
     margin-left: 20px;
     max-width: 300px;
     height: auto;
+    pointer-events: none;
+
 
     &_item {
         /* accordion sections */
@@ -40,6 +43,7 @@
         max-width: 380px;
         transition: all 0.3s ease;
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.4);
+        pointer-events: all;
     }
 
     .title_block {
@@ -50,6 +54,7 @@
         color: $accordion-text;
         min-height: min-content;
         cursor: pointer;
+        user-select: none;
         background: $accordion-back;
         text-transform: uppercase;
         padding: 10px 55px 10px 15px;

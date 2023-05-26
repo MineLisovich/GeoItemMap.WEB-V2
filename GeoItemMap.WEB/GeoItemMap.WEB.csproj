@@ -14,8 +14,4 @@
     <ProjectReference Include="..\GeoItemMap.DAL\GeoItemMap.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\bundle\" />
-  </ItemGroup>
-
 </Project>
