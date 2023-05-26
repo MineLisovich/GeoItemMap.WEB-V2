@@ -1,6 +1,6 @@
 ﻿using GeoItemMap.DAL.Entities;
 using GeoItemMap.DAL.Interfaces;
-using Microsoft.AspNetCore.Http;
+using GeoItemMap.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeoItemMap.WEB.Controllers
@@ -19,7 +19,7 @@ namespace GeoItemMap.WEB.Controllers
         [HttpGet]
         public async Task<IEnumerable<GeoItem>> GetGeoCoordinates()
         {
-            IEnumerable<GeoItem> model = await GeoItemGenericRepository.GetAll();
+            IEnumerable<GeoItem> model = await GeoItemGenericRepository.GetAllCoordinates();
             return model;
         }
 
@@ -32,5 +32,6 @@ namespace GeoItemMap.WEB.Controllers
             return Results.Json(geoItemObject);
         }
 
+  
     }
 }
