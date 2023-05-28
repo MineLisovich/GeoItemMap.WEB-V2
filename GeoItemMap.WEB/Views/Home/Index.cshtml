@@ -87,6 +87,127 @@
             }
         }
 
+      
+       
+            $.ajax({
+                url: 'https://localhost:7215/Home/PostData',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                success: function (result) {
+                      console.log(result)
+                // Технопарки
+                result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
+                // ЦТТ
+                result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
+                // ИНН
+                result.innProject.forEach(itemInnProject => { $("#info_object_Inn").append(getInfoInn(itemInnProject)); })
+               
+                // НТП
+                result.ntpProject.forEach(itemNtpProject => { $("#info_object_ntp").append(getInfoNtp(itemNtpProject)); })
+                }
+            });
+
+        // Технопарк
+        function getInfoTechnopark(itemTechnopark) {
+         
+            return `
+                    <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+
+                               
+                            <div class="info_item-data">
+                                        <h3>${itemTechnopark.nameTechnopark}</h3>
+                                    <span class="info_item-region">Республика</span>
+                                            <span class="info_item-area">${itemTechnopark.totalAreaPremises} Га</span>
+                                    <div class="buttons-box">
+                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                    </div>
+                                    <!-- buttons-box -->
+                            </div>
+                               
+                            </a>   
+            `;
+            }
+        // ЦТТ
+        function getInfoTechTransferCenter(itemTechTransferCenter) {
+            return `
+                        <a href="#" class="info_item">
+                                    <div class="info_item-icon parks-actual-big"></div>
+
+
+                                <div class="info_item-data">
+                                                <h3>${itemTechTransferCenter.nameTechTransferCenter}</h3>
+                                        <span class="info_item-region">Республика</span>
+                                                <span class="info_item-area"> Га</span>
+                                        <div class="buttons-box">
+                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                        </div>
+                                        <!-- buttons-box -->
+                                </div>
+
+                                </a>
+                `;
+        }
+        //ИНН
+        function getInfoInn(itemInnProject) {
+            return `
+                        <a href="#" class="info_item">
+                        <div class="info_item-icon parks-actual-big"></div>
+                               <div class="info_item-data">
+                                <h3>${itemInnProject.nameInnProject}</h3>
+                                        <span class="info_item-region">Республика</span>
+                                                <span class="info_item-area"> Га</span>
+                                        <div class="buttons-box">
+                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                        </div>
+                                        <!-- buttons-box -->
+                                </div>
+                                </a>
+                `;
+        }
+        // НТП
+        function getInfoNtp(itemNtpProject) {
+            return `
+                            <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                                   <div class="info_item-data">
+                                            <h3>${itemNtpProject.nameTask }</h3>
+                                            <span class="info_item-region">Республика</span>
+                                                    <span class="info_item-area"> Га</span>
+                                            <div class="buttons-box">
+                                                <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                            </div>
+                                            <!-- buttons-box -->
+                                    </div>
+                                    </a>
+                    `;
+        }
+  
+
+     
+  
 
 
         // всплывающего окна
@@ -191,6 +312,10 @@
         getGeoItems();
     });
 </script>
+<div class="MyTest">
+  
+</div>
+
 <div id="YMapsID"></div>
 
 
@@ -225,7 +350,7 @@
             <div class="sidebarmap-accordion">
 
             <!-- Субъекты инновационной инфраструктуры -->
-                <section class="sidebarmap-accordion_item">
+            <section class="sidebarmap-accordion_item">
                     <h3 class="title_block ">
                         Субъекты инновационной <br> инфраструктуры
                     </h3>
@@ -238,28 +363,11 @@
                             </div>
                         </div>
 
-                        <div class="info_object">
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-
-                                 <!-- СЮДА ПОДСТАВЛЯТЬ ИНФУ ИЗ БД -->
-                                <div class="info_item-data">
-                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- КОЕЦ -->
-                            </a>   
+                        <!-- СЮДА ПОДСТАВЛЯТЬ ИНФУ ИЗ БД -->
+                        <div class="info_object" id="info_object_tehnoparck_ctt">
+                            
                         </div>
+                         <!-- КОЕЦ -->
                     </div>
                 </section>
                 <!--КОНЕЦ Субъекты инновационной инфраструктуры -->
@@ -276,28 +384,8 @@
                             </div>
                         </div>
                         <!-- info_panel -->
-                        <div class="info_object">
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-
-                            <!-- СЮДА ПОДСТАВЛЯТЬ ИНФУ ИЗ БД -->
-                                <div class="info_item-data">
-                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                            <!-- КОЕЦ -->
-                                <!-- list-item-data -->
-                            </a>
+                    <div class="info_object" id="info_object_Inn">
+                        
                         </div>
                     </div>
                     <!-- info -->
@@ -316,28 +404,13 @@
                             </div>
                         </div>
                         <!-- info_panel -->
-                        <div class="info_object">
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                               <!-- СЮДА ПОДСТАВЛЯТЬ ИНФУ ИЗ БД -->
-                                <div class="info_item-data">
-                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- КОЕЦ -->
-                                <!-- list-item-data -->
-                            </a> 
+                         <!-- СЮДА ПОДСТАВЛЯТЬ ИНФУ ИЗ БД -->
+                    <div class="info_object" id="info_object_ntp">
+
+                            
+
                         </div>
+                    <!-- КОЕЦ -->
                     </div>
                     <!-- info -->
                 </section>

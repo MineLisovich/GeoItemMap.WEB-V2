@@ -12,6 +12,7 @@ namespace GeoItemMap.DAL.Interfaces
     {
         Task <IEnumerable<TEntity>> GetAllCoordinates();
         TEntity FindById(int id);
+       
         void Save();
         
     }

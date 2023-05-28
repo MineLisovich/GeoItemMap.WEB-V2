@@ -29,9 +29,10 @@ namespace GeoItemMap.DAL.Repositories
         }
         public TEntity FindById(int id)
         {
-            return _dbSet.Find(id);
-        }
+           return _dbSet.Find(id);
 
+        }
+        
         public void Save()
         {
             _dbContext.SaveChanges();
