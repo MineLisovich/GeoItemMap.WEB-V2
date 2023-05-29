@@ -27,17 +27,7 @@
             document.getElementById("itsystem-measure-menu").classList.toggle("show_block");
         }
 
-        //Слои
-        $('.itsystem-layers-button').click(function() 
-            {
-                $(".itsystem-layers-button").css("display", "none");
-                $(".itsystem-header.collapsed").css("right", "15px");
-                $(".comparison-popup").css("right", "173px");
-                $(".layer-switcher-window").css("display", "block");
 
-                $(".comparison-popup").css("right", "168px");
-            }
-        );
 
         //Закрыть окно слоёв
         $('.layer-close-button').click(function() 

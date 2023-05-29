@@ -1,3 +1,5 @@
+
+
 // active accordion and variable width 
 (function ($) {
   const accordionItem = $('.sidebarmap-accordion_item');
@@ -157,3 +159,21 @@ function openModal() {
     dots[slideIndex - 1].className += " active";
     captionText.innerHTML = dots[slideIndex - 1].alt;
   }
+
+//$('#multiple-select-field').select2({
+//    theme: "bootstrap-5",
+//    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+//    placeholder: $(this).data('placeholder'),
+//    closeOnSelect: false,
+//});
+$('#small-select2-options-multiple-field').select2({
+    theme: "bootstrap-5",
+    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+    placeholder: $(this).data('placeholder'),
+    closeOnSelect: false,
+    selectionCssClass: 'select2--small',
+    dropdownCssClass: 'select2--small',
+});
+function multipleField() {
+    document.getElementById("option").classList.toggle("select2-search");
+}

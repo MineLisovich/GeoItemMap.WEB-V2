@@ -1,5 +1,5 @@
-﻿
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <style>
     #YMapsID {
         width: 100%;
@@ -233,7 +233,132 @@
         </div>
     </div>
     <!-- end modal-window -->
-    <!-- itsystem -->
+
+<div class="itsystem-header collapsed">
+
+    <!--Логотип-->
+    <div class="itsystem-logo-container">
+
+        <a href="#" class="itsystem-logo">
+            <h1>Геоинформационная система</h1>
+        </a>
+
+        <h1 class="itsystem-logo-link">
+            <a class="link_latets">
+                Индустриальные парки. Технопарки.<br>Кластеры 
+            </a>
+        </h1>
+    </div>
+
+    <!--Ccылки меню-->
+    <ul class="itsystem-menu">
+        <li><a role="materials" href="javascript:void(0)" class="h-icon-button">Материалы</a></li>
+        <li><a role="profile" href="//gisp.gov.ru/gisip/admin" target="_blank" class="h-icon-button">Управление</a></li>
+    </ul>
+
+    <!--Инструменты-->
+    <a class="itsystem-tool-button help" title="Справка" href=""></a>
+    <a class="itsystem-tool-button about" title="О проекте" onclick="aboutProject()" href="#"></a>
+</div>
+
+
+<!--О проекте (выпадающий блок)-->
+<div class="new-about-cont" id="new-about-cont">
+    <a class="about_project_close_button" href="#" title="Закрыть">×</a>
+
+    <div class="left-page">
+        <h1 class="new-about-title">О проекте</h1>
+
+        <div class="content-box-left scrollable">
+            <div class="vertical-scroll">
+                <div class="scroll-bar-vertical"></div>
+            </div>
+
+            <div class="viewport">
+                <div class="overview">
+                    <br>«Геоинформационная система индустриальных парков, технопарков и кластеров Российской Федерации» –
+                    это система ввода, хранения, систематизации, анализа и графической визуализации на карте-схеме
+                    пространственных данных и связанной с ними информации об индустриальных парках, технопарках и кластерах
+                    Российской Федерации.<br>
+                    <br>Система разработана в рамках реализации Государственной программы «Развитие промышленности и
+                    повышение ее конкурентоспособности».<br>
+                    <br>В 2015 году геоинформационная система индустриальных парков, технопарков и кластеров Российской
+                    Федерации стала лауреатом Всероссийской интернет-премии «Прометей» в номинации «Власть и
+                    государство».<br>
+                    <br>
+                    <br>
+
+                    <h3>Координация проекта</h3>
+                    <div class="links">
+                        <div class="link_description">
+                            Отдел проектов территориального развития Департамента региональной промышленной политики
+                            Минпромторга России
+                            <a href="//minpromtorg.gov.ru/ministry/dep/#!20&amp; click_tab_vp_ind=1"
+                               target="_blank">minpromtorg.gov.ru</a>
+                        </div>
+                        <div class="links_logo">
+                            <a class="about-drp-logo" href="//minpromtorg.gov.ru/ministry/dep/#!20&amp;click_tab_vp_ind=1"
+                               target="_blank"></a>
+                        </div>
+                    </div>
+
+                    <h3>Техническая реализация</h3>
+                    <div class="links">
+                        <div class="link_description">
+                            ORBIS
+                            <a href="#" target="_blank">www.orbisystems.ru</a>
+                        </div>
+                        <div class="links_logo">
+                            <a class="about-orbis-logo" href="#" target="_blank"></a>
+                        </div>
+                    </div>
+
+
+                    <h3>Информационная поддержка</h3>
+                    <div class="links">
+                        <div class="link_description">
+                            Ассоциация индустриальных парков
+                            <a href="#" target="_blank">www.indparks.ru</a>
+                        </div>
+                        <div class="links_logo">
+                            <a class="about-indpark-logo" href="#" target="_blank"></a>
+                        </div>
+                    </div>
+                    <div class="links">
+                        <div class="link_description">
+                            Ассоциация кластеров, технопарков и ОЭЗ России
+                            <a href="#" target="_blank">www.akitrf.ru</a>
+                        </div>
+                        <div class="links_logo">
+                            <a class="about-tech-logo" href="#" target="_blank"></a>
+                        </div>
+                    </div>
+                    <div class="links">
+                        <div class="link_description">
+                            Национальный исследовательский университет «Высшая школа экономики»
+                            <a href="#" target="_blank">www.cluster.hse.ru</a>
+                        </div>
+                        <div class="links_logo">
+                            <a class="about-hse-logo" href="#" target="_blank"></a>
+                        </div>
+                    </div>
+                    <div class="links">
+                        <div class="link_description">
+                            Онлайн консультации по поддержке МСП
+                            <a href="#" target="_blank">www.msp.economy.gov.ru</a>
+                        </div>
+                        <div class="links_logo">
+                            <a class="about-monkeybusiness-logo" href="#" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- itsystem -->
     <div class="sidebarmap">
         <div class="sidebarmap-container">
             <!-- accordion -->
@@ -249,82 +374,87 @@
                                 <div class="switcher" style="border-bottom: 3px solid #ff9601;">ЦТТ</div>
                                 <div class="switcher" style="border-bottom: 3px solid #9494b6">БИФ и НЦИС</div>
                             </div>
+                        <div class="info_panel-filter">
+                            <span class="filter-name" style="font-weight: 500; color: rgb(85, 88, 90);">Регион</span>
+                            <div class="mb-3">
+                                <select class="form-select" id="small-select2-options-multiple-field" data-placeholder="Не выбран"
+                                        placeholder="Выберите" multiple>
+                                    <option>Минск</option>
+                                    <option>Минская область</option>
+                                    <option >Могилевская область</option>
+                                    <option >Брестская область</option>
+                                    <option>Гомельская область</option>
+                                    <option >Гродненская область</option>
+                                    <option>Витебская  область</option>
+                                </select>
+                            </div>
+                          @*  <select class="form-select" id="multiple-select-field" data-placeholder="Не выбран"
+                                placeholder="Выберите" multiple>
+                            <option data-tokens=""></option>
+                            <option value="1">
+                                    Минск
+                            </option>
+                            <option value="1">
+                                    Минская область
+                                </option>
+                            <option value="2">
+                                    Могилевская область
+                                </option>
+                                    <option value="3">
+                                    Брестская область
+                                </option>
+                                    <option value="4">
+                                    Гомельская область
+                                </option>
+                                <option value="5">
+                                    Гродненская область
+                                </option>
+                                <option value="6">
+                                    Витебская  область
+                                </option>
+                        </select>*@
                         </div>
+                    </div>
+                
+                    <div class="info_object">
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
+                                    <span class="info_item-region">Республика</span>
+   
+                                    <!-- buttons-box -->
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                    <span class="info_item-region">Республика</span>
+      
+                                    <!-- buttons-box -->
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Барановичский государственный университет»</h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>
+                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
+                                        деятельности
+                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
+                                    </h3>
+                                    <span class="info_item-region">Республика</span>
 
-                        <div class="info_object">
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Барановичский государственный университет»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>
-                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
-                                        деятельности
-                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
-                                    </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
                                 </div>
                                 <!-- list-item-data -->
                             </a>
@@ -333,693 +463,16 @@
                                 <div class="info_item-data">
                                     <h3>РУП «Центр научно-технической и деловой информации»</h3>
                                     <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Барановичский государственный университет»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>
-                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
-                                        деятельности
-                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
-                                    </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Барановичский государственный университет»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>
-                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
-                                        деятельности
-                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
-                                    </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Барановичский государственный университет»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>
-                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
-                                        деятельности
-                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
-                                    </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Барановичский государственный университет»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>
-                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
-                                        деятельности
-                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
-                                    </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Барановичский государственный университет»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>
-                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
-                                        деятельности
-                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
-                                    </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Барановичский государственный университет»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>
-                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
-                                        деятельности
-                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
-                                    </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Барановичский государственный университет»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>
-                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
-                                        деятельности
-                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
-                                    </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
 
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
                             <a href="#" class="info_item">
                                 <div class="info_item-icon parks-actual-big"></div>
                                 <div class="info_item-data">
                                     <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
                                     <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
+    
                                 </div>
                                 <!-- list-item-data -->
                             </a>
@@ -1028,16 +481,7 @@
                                 <div class="info_item-data">
                                     <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
                                     <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
+  
                                 </div>
                                 <!-- list-item-data -->
                             </a>
@@ -1046,16 +490,6 @@
                                 <div class="info_item-data">
                                     <h3>УО «Барановичский государственный университет»</h3>
                                     <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
                                 </div>
                                 <!-- list-item-data -->
                             </a>
@@ -1068,16 +502,6 @@
                                         обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
                                     </h3>
                                     <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
                                 </div>
                                 <!-- list-item-data -->
                             </a>
@@ -1086,16 +510,6 @@
                                 <div class="info_item-data">
                                     <h3>РУП «Центр научно-технической и деловой информации»</h3>
                                     <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
                                 </div>
                                 <!-- list-item-data -->
                             </a>
@@ -1104,207 +518,72 @@
                                 <div class="info_item-data">
                                     <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
                                     <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Барановичский государственный университет»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>
-                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
-                                        деятельности
-                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
-                                    </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>УО «Барановичский государственный университет»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>
-                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
-                                        деятельности
-                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
-                                    </h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
-                            </a>
-                            <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>ООО «Апсель»</h3>
-                                    <span class="info_item-region">Республика</span>
-                                    <span class="info_item-area">193.15 Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                                </div>
-                                <!-- list-item-data -->
 
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Барановичский государственный университет»</h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>
+                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
+                                        деятельности
+                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
+                                    </h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
+                                    <span class="info_item-region">Республика</span>
+
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
+                                    <span class="info_item-region">Республика</span>
+         
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                    <span class="info_item-region">Республика</span>
+          
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Барановичский государственный университет»</h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
                             </a>
                         </div>
                     </div>
@@ -1316,7 +595,7 @@
                             <div class="info_panel-switchers d-flex justify-content-center">
                                 <div class="switcher" style="border-bottom: 3px solid #3fab3c;">Завершен</div>
                                 <div class="switcher" style="border-bottom: 3px solid #ff9601;">Продолжается</div>
-                                <div class="switcher" style="border-bottom: 3px solid #9494b6">Продолжается</div>
+                                <div class="switcher" style="border-bottom: 3px solid #9494b6">Выполнится</div>
                             </div>
                         </div>
                         <!-- info_panel -->
@@ -2613,3 +1892,80 @@
 
        
       
+<script>
+
+    //Сравнение
+    function comparison_function() {
+        document.getElementById("comparison-popup").classList.toggle("show_block");
+        document.getElementById("comparison-tool").classList.toggle("show_background");
+    }
+
+    //О проекте
+    function aboutProject() {
+        document.getElementById("new-about-cont").classList.toggle("show_block");
+        console.log("fwsfwsf")
+    }
+
+    //Закрыть окно О проекте
+    $('.about_project_close_button').click(function () {
+        document.getElementById("new-about-cont").classList.remove("show_block");
+    }
+    );
+    
+    //Языки
+    function language_change() {
+        document.getElementById("itsystem-lang-menu").classList.toggle("show_block");
+    }
+
+    //Инструменты
+    function measurementTools() {
+        document.getElementById("itsystem-measure-menu").classList.toggle("show_block");
+    }
+
+    //Слои
+    $('.itsystem-layers-button').click(function () {
+        $(".itsystem-layers-button").css("display", "none");
+        $(".itsystem-header.collapsed").css("right", "15px");
+        $(".comparison-popup").css("right", "173px");
+        $(".layer-switcher-window").css("display", "block");
+
+        $(".comparison-popup").css("right", "168px");
+    }
+    );
+
+    //Закрыть окно слоёв
+    $('.layer-close-button').click(function () {
+        $(".layer-switcher-window").css("display", "none");
+        $(".itsystem-header.collapsed").css("right", "82px");
+        $(".itsystem-layers-button").css("display", "block");
+
+        $(".comparison-popup").css("right", "235px");
+    }
+    );
+
+    window.onclick = function (event) {
+        if (!event.target.matches('.itsystem-curr-lang')) {
+            var dropdowns = document.getElementsByClassName("itsystem-lang-menu");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show_block')) {
+                    openDropdown.classList.remove('show_block');
+                }
+            }
+        }
+
+        if (!event.target.matches('.itsystem-tool-button')) {
+            var dropdowns = document.getElementsByClassName("itsystem-measure-menu");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show_block')) {
+                    openDropdown.classList.remove('show_block');
+                }
+            }
+        }
+    }
+
+
+</script>

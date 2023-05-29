@@ -7,7 +7,7 @@
     overflow: hidden;
     width: 410px;
     min-height: 187px;
-    bottom: 10px;
+    bottom: 35px;
     height: auto;
     transition-property: width;
     transition-duration: .3s;
@@ -94,7 +94,6 @@
 
         &::-webkit-scrollbar {
             width: 7px;
-            height: 100%;
         }
 
         &::-webkit-scrollbar-track {
@@ -172,6 +171,12 @@
         &_panel {
             margin-top: 7px;
             margin-bottom: 13px;
+
+            &-filter {
+                padding-top: 10px;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
 
             &::after {
                 content: "";
@@ -398,7 +403,7 @@
   right: 0;
   top: 0;
   text-align: center;
-  line-height: 52px;
+  line-height: 47px;
   font-size: 30px;
   cursor: pointer;
   transition: .3s;
@@ -663,4 +668,17 @@ li>div:before {
 
 li>div:hover {
   color: $active-text;
+}
+.form-select{
+border: 1px solid #d9d9d9;
+position: relative;
+-ms-user-select: none;
+user-select: none;
+}
+.select2-search{
+    &.active{
+ border:1px solid black;
+    }
+   
+    
 }

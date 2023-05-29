@@ -1,3 +1,42 @@
+
+#itsystem-header{
+    height:53px;
+}
+.header-main {
+    height: 80px;
+    background: #151515;
+    color: #fff;
+    position: fixed;
+    padding: 10px 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    z-index: 1003;
+}
+
+.header-main .container {
+    max-width: 1730px;
+    width: 100%;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.logos {
+    display: flex;
+    align-items: center;
+}
+
+
+
+
 /*Логотип*/
 .itsystem-header .itsystem-logo-container {
     width: 360px;
@@ -402,27 +441,20 @@
     display: block;
 }
 
-/*Разметка ленты горизонтального меню*/
-.itsystem-header.collapsed {
-    position: absolute;
-    right: 82px;
-    z-index:1;
-}
-
 .itsystem-header {
     height: 63px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
     background-color: #55585a;
-    border-radius: 3px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
-
     position: absolute;
     left: 15px;
     right: 15px;
     top: 15px;
     white-space: nowrap;
-
+    border-radius: 3px;
     padding: 0 15px 0 1px;
+    overflow: hidden;
     transition: .2s right;
+    z-index: 200;
 }
 
 /*Окно поиска*/
