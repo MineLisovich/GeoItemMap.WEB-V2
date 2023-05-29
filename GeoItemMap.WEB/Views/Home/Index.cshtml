@@ -87,110 +87,42 @@
             }
         }
 
-      
-       
-            $.ajax({
-                url: 'https://localhost:7215/Home/PostData',
-                type: 'POST',
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                async: true,
-                success: function (result) {
-                      console.log(result)
-                // Технопарки
-                result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
-                // ЦТТ
-                result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
-                // ИНН
-                result.innProject.forEach(itemInnProject => { $("#info_object_Inn").append(getInfoInn(itemInnProject)); })
-               
-                // НТП
-                result.ntpProject.forEach(itemNtpProject => { $("#info_object_ntp").append(getInfoNtp(itemNtpProject)); })
-                }
-            });
+        // При нажатии на Субъекты инновационной инфраструктуры
+          $(document).ready(function()
+          {
+            const $showDataItem_techpar_ctt = $("#Item_techparck_ctt");
+            $showDataItem_techpar_ctt.click(function () {
+                let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
+                $("#info_object_Inn").empty();
+                $("#info_object_ntp").empty();
+                if(hasClass)
+                {
+                    $.ajax({
+                        url: 'https://localhost:7215/Home/PostData',
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        async: true,
+                        success: function (result) {
+                            //  console.log(result)
+                            // Технопарки
+                            result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
+                            // ЦТТ
+                            result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
+                        }
+                    });
+                    // Технопарк
+                    function getInfoTechnopark(itemTechnopark) {
 
-        // Технопарк
-        function getInfoTechnopark(itemTechnopark) {
-         
-            return `
-                    <a href="#" class="info_item">
-                                <div class="info_item-icon parks-actual-big"></div>
-
-                               
-                            <div class="info_item-data">
-                                        <h3>${itemTechnopark.nameTechnopark}</h3>
-                                    <span class="info_item-region">Республика</span>
-                                            <span class="info_item-area">${itemTechnopark.totalAreaPremises} Га</span>
-                                    <div class="buttons-box">
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                    </div>
-                                    <!-- buttons-box -->
-                            </div>
-                               
-                            </a>   
-            `;
-            }
-        // ЦТТ
-        function getInfoTechTransferCenter(itemTechTransferCenter) {
-            return `
-                        <a href="#" class="info_item">
-                                    <div class="info_item-icon parks-actual-big"></div>
-
-
-                                <div class="info_item-data">
-                                                <h3>${itemTechTransferCenter.nameTechTransferCenter}</h3>
-                                        <span class="info_item-region">Республика</span>
-                                                <span class="info_item-area"> Га</span>
-                                        <div class="buttons-box">
-                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        </div>
-                                        <!-- buttons-box -->
-                                </div>
-
-                                </a>
-                `;
-        }
-        //ИНН
-        function getInfoInn(itemInnProject) {
-            return `
-                        <a href="#" class="info_item">
-                        <div class="info_item-icon parks-actual-big"></div>
-                               <div class="info_item-data">
-                                <h3>${itemInnProject.nameInnProject}</h3>
-                                        <span class="info_item-region">Республика</span>
-                                                <span class="info_item-area"> Га</span>
-                                        <div class="buttons-box">
-                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                            <span class="yes-nat-standard" title="Сертифицирован"></span>
-                                        </div>
-                                        <!-- buttons-box -->
-                                </div>
-                                </a>
-                `;
-        }
-        // НТП
-        function getInfoNtp(itemNtpProject) {
-            return `
+                        return `
                             <a href="#" class="info_item">
-                            <div class="info_item-icon parks-actual-big"></div>
-                                   <div class="info_item-data">
-                                            <h3>${itemNtpProject.nameTask }</h3>
+                                        <div class="info_item-icon parks-actual-big"></div>
+
+
+                                    <div class="info_item-data">
+                                                <h3>${itemTechnopark.nameTechnopark}</h3>
                                             <span class="info_item-region">Республика</span>
-                                                    <span class="info_item-area"> Га</span>
+                                                    <span class="info_item-area">${itemTechnopark.totalAreaPremises} Га</span>
                                             <div class="buttons-box">
                                                 <span class="yes-nat-standard" title="Сертифицирован"></span>
                                                 <span class="yes-nat-standard" title="Сертифицирован"></span>
@@ -201,9 +133,160 @@
                                             </div>
                                             <!-- buttons-box -->
                                     </div>
+
                                     </a>
                     `;
-        }
+                    }
+                    // ЦТТ
+                    function getInfoTechTransferCenter(itemTechTransferCenter) {
+                        return `
+                                <a href="#" class="info_item">
+                                            <div class="info_item-icon parks-actual-big"></div>
+
+
+                                        <div class="info_item-data">
+                                                        <h3>${itemTechTransferCenter.nameTechTransferCenter}</h3>
+                                                <span class="info_item-region">Республика</span>
+                                                        <span class="info_item-area"> Га</span>
+                                                <div class="buttons-box">
+                                                    <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                    <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                    <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                    <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                    <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                    <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                </div>
+                                                <!-- buttons-box -->
+                                        </div>
+
+                                        </a>
+                        `;
+                    }
+
+                }
+                else{
+                    $('.sidebarmap-accordion_item').removeClass('active_block');
+                    $("#info_object_tehnoparck_ctt").empty();
+                }
+
+               
+            });
+          });
+
+        // При нажатии на Инновационные проекты
+           $(document).ready(function ()
+           {
+            const $showDataItem_inn = $("#Item_inn");
+            $showDataItem_inn.click(function () {
+               let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
+                $("#info_object_ntp").empty();
+                $("#info_object_tehnoparck_ctt").empty();
+                if (hasClass) {
+                   
+                    $.ajax({
+                        url: 'https://localhost:7215/Home/PostData',
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        async: true,
+                        success: function (result) {
+                            //  console.log(result)
+                            // ИНН
+                            result.innProject.forEach(itemInnProject => { $("#info_object_Inn").append(getInfoInn(itemInnProject)); })
+
+
+                        }
+                    });
+                    //ИНН
+                    function getInfoInn(itemInnProject) {
+                        return `
+                                <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                       <div class="info_item-data">
+                                        <h3>${itemInnProject.nameInnProject}</h3>
+                                                <span class="info_item-region">Республика</span>
+                                                        <span class="info_item-area"> Га</span>
+                                                <div class="buttons-box">
+                                                    <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                    <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                    <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                    <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                    <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                    <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                </div>
+                                                <!-- buttons-box -->
+                                        </div>
+                                        </a>
+                        `;
+                    }
+                }
+                else  {
+                   $('.sidebarmap-accordion_item').removeClass('active_block');
+                    $("#info_object_Inn").empty(); 
+                }
+            
+            });
+           });
+        // При нажатии на Научно-технологические  программы
+           $(document).ready(function() 
+           {
+            const $showDataItem_ntp = $("#Item_ntp");
+                $showDataItem_ntp.click (function () {
+                let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
+                $("#info_object_Inn").empty();
+                $("#info_object_tehnoparck_ctt").empty();
+                // если меню открыто, то выполнить ajax запрос и подставить данные
+                if (hasClass) {
+                    $.ajax({
+                        url: 'https://localhost:7215/Home/PostData',
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        async: true,
+                        success: function (result) {
+                            //  console.log(result)
+                            // НТП
+                            result.ntpProject.forEach(itemNtpProject => { $("#info_object_ntp").append(getInfoNtp(itemNtpProject)); })
+                        }
+                    });
+                    // НТП
+                    function getInfoNtp(itemNtpProject) {
+                        return `
+                                    <a href="#" class="info_item">
+                                    <div class="info_item-icon parks-actual-big"></div>
+                                           <div class="info_item-data">
+                                                    <h3>${itemNtpProject.nameTask}</h3>
+                                                    <span class="info_item-region">Республика</span>
+                                                            <span class="info_item-area"> Га</span>
+                                                    <div class="buttons-box">
+                                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                        <span class="yes-nat-standard" title="Сертифицирован"></span>
+                                                    </div>
+                                                    <!-- buttons-box -->
+                                            </div>
+                                            </a>
+                            `;
+                    }
+                    }
+                    // При закртии меню происходит очистка div, чтобы избежать дублирования информации
+                    else
+                    {
+
+                    $('.sidebarmap-accordion_item').removeClass('active_block');
+                    $("#info_object_ntp").empty();
+                    }
+             
+               
+                });
+           });
+       
+    
+       
+       
   
 
      
@@ -214,8 +297,29 @@
         function top_popup(id) {
             var result = getGeoItem(id);
             result.then(function (value) {
-                $('#exampleModal > div > div > div.modal-body').html(value);
-                $('#exampleModal').modal('show');
+               // $('#window').html(value);
+                $(document).ready(function () {
+                    const $btnToggle = $(".info_item-data");
+                    const $closeWindow = $(".close-window");
+                    const $windowbar = $(".window");
+                    const $windowChild = $(".window-child");
+                    $btnToggle.click(function () {
+                        $windowbar.toggleClass("active");
+                        $windowChild.toggleClass("active");
+                    });
+                    $closeWindow.click(function () {
+                        $windowbar.removeClass("active");
+                        $windowChild.removeClass("active");
+                    });
+                    const $btnToggleChild = $(".info_item-data");
+                    const $closeBtn = $(".window-side-button");
+                    $btnToggleChild.click(function () {
+                        $windowChild.addClass("active");
+                    });
+                    $closeBtn.click(function () {
+                        $windowChild.removeClass("active");
+                    });
+                });
             })
         }
 
@@ -351,7 +455,7 @@
 
             <!-- Субъекты инновационной инфраструктуры -->
             <section class="sidebarmap-accordion_item">
-                    <h3 class="title_block ">
+                    <h3 class="title_block " id="Item_techparck_ctt">
                         Субъекты инновационной <br> инфраструктуры
                     </h3>
                     <div class="info">
@@ -373,8 +477,8 @@
                 <!--КОНЕЦ Субъекты инновационной инфраструктуры -->
 
                 <!-- Инновационные проекты -->
-                <section class="sidebarmap-accordion_item">
-                    <h3 class="title_block">Инновационные проекты</h3>
+            <section class="sidebarmap-accordion_item">
+                    <h3 class="title_block" id="Item_inn">Инновационные проекты</h3>
                     <div class="info">
                         <div class="info_panel">
                             <div class="info_panel-switchers d-flex justify-content-center">
@@ -386,15 +490,15 @@
                         <!-- info_panel -->
                     <div class="info_object" id="info_object_Inn">
                         
-                        </div>
+                    </div>
                     </div>
                     <!-- info -->
                 </section>
                 <!--КОНЕЦ Инновационные проекты -->
              
                 <!--Научно-технологические программы -->
-                <section class="sidebarmap-accordion_item">
-                    <h3 class="title_block">Научно-технологические <br> программы</h3>
+                <section class="sidebarmap-accordion_item" >
+                <h3 class="title_block" id="Item_ntp">Научно-технологические <br> программы</h3>
                     <div class="info">
                         <div class="info_panel">
                             <div class="info_panel-switchers d-flex justify-content-center">
@@ -407,9 +511,7 @@
                          <!-- СЮДА ПОДСТАВЛЯТЬ ИНФУ ИЗ БД -->
                     <div class="info_object" id="info_object_ntp">
 
-                            
-
-                        </div>
+                    </div>
                     <!-- КОЕЦ -->
                     </div>
                     <!-- info -->
@@ -426,7 +528,7 @@
 
 
     <!-- window -->
-    <div class="window">
+<div class="window" id="window">
         <div class="window-container">
             <div class="window-header">
                 <div class="window-header_wrapper">
@@ -780,6 +882,9 @@
     <!--end window-child -->
 
    <script>
+
+
+
     // modal window for the gallery
 
     function openModal() {
