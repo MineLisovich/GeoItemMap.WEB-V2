@@ -184,7 +184,7 @@
 
 
                                         <div class="info_item-data">
-                                                    <h3>${itemTechnopark.nameTechnopark}</h3>
+                                                        <h3 onclick = "getGeoItem(${itemTechnopark.id})">${itemTechnopark.nameTechnopark}</h3>
                                                 <span class="info_item-region">Республика</span>
                                                         <span class="info_item-area">${itemTechnopark.totalAreaPremises} Га</span>
                                                 <div class="buttons-box">
@@ -209,7 +209,7 @@
 
 
                                             <div class="info_item-data" >
-                                                                <h3>${itemTechTransferCenter.nameTechTransferCenter}</h3>
+                                                                <h3 onclick = "getGeoItem(${itemTechTransferCenter.id})">${itemTechTransferCenter.nameTechTransferCenter}</h3>
                                                     <span class="info_item-region">Республика</span>
                                                             <span class="info_item-area"> Га</span>
                                                     <div class="buttons-box">
@@ -265,7 +265,7 @@
                                     <a href="#" class="info_item">
                                     <div class="info_item-icon parks-actual-big"></div>
                                            <div class="info_item-data">
-                                            <h3>${itemInnProject.nameInnProject}</h3>
+                                            <h3 onclick = "getGeoItem(${itemInnProject.id})">${itemInnProject.nameInnProject}</h3>
                                                     <span class="info_item-region">Республика</span>
                                                             <span class="info_item-area"> Га</span>
                                                     <div class="buttons-box">
@@ -316,7 +316,7 @@
                                         <a href="#" class="info_item">
                                         <div class="info_item-icon parks-actual-big"></div>
                                                <div class="info_item-data">
-                                                        <h3>${itemNtpProject.nameTask}</h3>
+                                                            <h3 onclick = "getGeoItem(${itemNtpProject.id})">${itemNtpProject.nameTask}</h3>
                                                         <span class="info_item-region">Республика</span>
                                                                 <span class="info_item-area"> Га</span>
                                                         <div class="buttons-box">
@@ -380,9 +380,7 @@
                 top_popup();
             }
         }
-        else {
-            const error = await response.json();
-        }
+        else {const error = await response.json();}
     }
     // модальное окно ЦТТ
     function getInfoById_ctt(getByid_ctt) {
@@ -661,7 +659,6 @@
                 <div class="footer-window"></div>
         `;
     }
-
     // модальное окно Технопарки
     function getInfoById_technoparck (getByid_technoparck)
     {
@@ -929,7 +926,6 @@
                     <div class="footer-window"></div>
         `;
     }
- 
     // модальное окно ИНН
     function getInfoByid_inn (getById_inn) 
     {
@@ -1255,7 +1251,6 @@
                     <div class="footer-window"></div>
         `;
     }
-    
     // модальное окно НТП
     function getInfoById_ntp(getById_ntp)
     {
@@ -1449,7 +1444,6 @@
                     <div class="footer-window"></div>
         `;
     }
-
     // всплывающего окна
     function top_popup() { 
             $(document).ready(function () {
@@ -1484,13 +1478,10 @@
                 });
             });
     }
-
-
 </script>
 
+
 <div id="YMapsID"></div>
-
-
  <!-- modal-window  ПОДПИСАТЬСЯ НА ОБЪЯВЛЕНИЯ (МНЕ ЭТО НЕ НУЖНО ТРОГАТЬ)-->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
