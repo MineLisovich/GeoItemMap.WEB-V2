@@ -99,7 +99,7 @@ namespace GeoItemMap.DAL.Entities
         public decimal? VolumeWorkPerformed { get; set; }
 
         /// <summary>
-        ///  Объем финансирования 
+        ///  Объем финансирования в рамках ГПИР 2021-2025 (в тыс. бел.рублей)
         /// </summary>
       //  [Required]
         [Precision(10, 2)]
