@@ -38,7 +38,6 @@ namespace GeoItemMap.WEB.Controllers
             return View();  
            
         }
-
         public IActionResult GetMapYandexApi2()
         {
             return View();
@@ -49,19 +48,22 @@ namespace GeoItemMap.WEB.Controllers
             return View();
         }
 
-        public IActionResult TESTGetMapYandexApi3()
+        [HttpPost]
+        public async Task<JsonResult> GetCoordinates()
         {
-            return View();
+            IEnumerable<GeoItem> geoItems = await GeoItemGenericRepository.GetAllCoordinates();
+            GeoItemsViewModel viewModel = new GeoItemsViewModel
+            {
+                GeoItems = geoItems
+            };
+            return Json(viewModel);
         }
-        public IActionResult testPage()
-        {
-            return View();
-        }
+
 
         [HttpPost]
         public async Task<JsonResult> PostData()
         {
-            IEnumerable<GeoItem> GeoItem = await GeoItemGenericRepository.GetAllCoordinates();
+            
             IEnumerable<InnProject> InnProject = await InnProjectGenericRepository.GetAllCoordinates();
             IEnumerable<NtpProject> NtpProject = await NtpProjectGenericRepository.GetAllCoordinates();
             IEnumerable<Technopark> Technopark = await TechnoparkGenericRepository.GetAllCoordinates();
@@ -69,7 +71,7 @@ namespace GeoItemMap.WEB.Controllers
 
             GeoItemsViewModel viewModel = new GeoItemsViewModel 
             { 
-                GeoItems = GeoItem,
+               
                 InnProject = InnProject,
                 NtpProject = NtpProject,
                 Technopark = Technopark,
