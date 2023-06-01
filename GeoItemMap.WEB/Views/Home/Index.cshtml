@@ -23,8 +23,6 @@
                     [49.77185323695446, 39.58331354601873]
                 ]
             });
-  
-
 
         // Загрузим регионы.
         ymaps.borders.load('001', {
@@ -58,7 +56,7 @@
         })
 
         // создание кластера
-        clusterer = new ymaps.Clusterer({
+      var clusterer = new ymaps.Clusterer({
             // Макет метки кластера pieChart.
             clusterIconLayout: 'default#pieChart',
             // Радиус диаграммы в пикселях.
@@ -70,6 +68,8 @@
             // Определяет наличие поля balloon.
             hasBalloon: true
         });
+
+        
 
         // получение координат для меток из бд
         async function getGeoItems() {
@@ -84,7 +84,7 @@
 
                     // Технопарки
                     if (element.geoType == 0) {
-                        var myGeoObject = new ymaps.GeoObject({
+                       var  myGeoObject = new ymaps.GeoObject({
                             geometry: {
                                 type: "Point", // тип геометрии - точка
                                 coordinates: [element.x, element.y], // координаты точки
@@ -95,7 +95,7 @@
                     }
                     //Центр трансфера технологий
                     if (element.geoType == 1) {
-                        var myGeoObject = new ymaps.GeoObject({
+                      var   myGeoObject = new ymaps.GeoObject({
                             geometry: {
                                 type: "Point", // тип геометрии - точка
                                 coordinates: [element.x, element.y], // координаты точки
@@ -106,7 +106,7 @@
                     }
                     // ИНН проекты
                     if (element.geoType == 2) {
-                        var myGeoObject = new ymaps.GeoObject({
+                       var  myGeoObject = new ymaps.GeoObject({
                             geometry: {
                                 type: "Point", // тип геометрии - точка
                                 coordinates: [element.x, element.y], // координаты точки
@@ -143,17 +143,63 @@
                     myGeoObject.events.add('click', function () {
                         getGeoItem(element.id);
 
-                    });
+                    }); 
+
+
+                   // фильтрация меток
+                   $(document).ready(function (){
+                        const $srtBTN_tech = $("#filtr");
+                       $srtBTN_tech.click(function ()
+                       {
+                            clusterer.add(myGeoObject);
+                            myMap.geoObjects.add(clusterer);
+                          if ($('#techparck').is(':checked')) {
+                               
+
+                                if (element.geoType != 0) {
+                                clusterer.remove(myGeoObject);
+                              }
+                               
+                          } 
+                          if ($('#ctt').is(':checked'))
+                          {
+                            
+
+                              if (element.geoType != 1) {
+                                clusterer.remove(myGeoObject);
+                              }
+                          }
+                           if ($('#techparck').is(':checked') && $('#ctt').is(':checked'))
+                           {
+                                clusterer.add(myGeoObject);
+                                myMap.geoObjects.add(clusterer);
+                                if (element.geoType != 0 && element.geoType != 1) {
+                                clusterer.remove(myGeoObject);
+                              }
+                           }
+
+                          if (!$('#techparck').is(':checked') && !$('#ctt').is(':checked'))
+                          {
+                                clusterer.add(myGeoObject);
+                                myMap.geoObjects.add(clusterer);
+                          }
+                
+                       });
+                   });
+
+
+                    
                 });
+
+                
             }
+           
         }
         getGeoItems();
     });
-
     // КОНЕЦ СОЗДАНИИ КАРТЫ
 
-
-    // При нажатии на Субъекты инновационной инфраструктуры
+    // При нажатии на вкладку "Субъекты инновационной инфраструктуры"
     $(document).ready(function () {
         const $showDataItem_techpar_ctt = $("#Item_techparck_ctt");
         $showDataItem_techpar_ctt.click(function () {
@@ -236,7 +282,7 @@
 
         });
     });
-    // При нажатии на Инновационные проекты
+    // При нажатии на вкладку "Инновационные проекты""
     $(document).ready(function () {
         const $showDataItem_inn = $("#Item_inn");
         $showDataItem_inn.click(function () {
@@ -244,7 +290,6 @@
             $("#info_object_ntp").empty();
             $("#info_object_tehnoparck_ctt").empty();
             if (hasClass) {
-
                 $.ajax({
                     url: 'https://localhost:7215/Home/PostData',
                     type: 'POST',
@@ -255,8 +300,6 @@
                         //  console.log(result)
                         // ИНН
                         result.innProject.forEach(itemInnProject => { $("#info_object_Inn").append(getInfoInn(itemInnProject)); })
-
-
                     }
                 });
                 //ИНН
@@ -286,10 +329,9 @@
                 $('.sidebarmap-accordion_item').removeClass('active_block');
                 $("#info_object_Inn").empty();
             }
-
         });
     });
-    // При нажатии на Научно-технологические  программы
+    // При нажатии на вкладку "Научно-технологические  программы""
     $(document).ready(function () {
         const $showDataItem_ntp = $("#Item_ntp");
         $showDataItem_ntp.click(function () {
@@ -339,8 +381,6 @@
                 $('.sidebarmap-accordion_item').removeClass('active_block');
                 $("#info_object_ntp").empty();
             }
-
-
         });
     });
 
@@ -1480,8 +1520,8 @@
     }
 </script>
 
-
 <div id="YMapsID"></div>
+
  <!-- modal-window  ПОДПИСАТЬСЯ НА ОБЪЯВЛЕНИЯ (МНЕ ЭТО НЕ НУЖНО ТРОГАТЬ)-->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -1518,16 +1558,20 @@
                         Субъекты инновационной <br> инфраструктуры
                     </h3>
                     <div class="info">
-                        <div class="info_panel">
+                        <div class="info_panel" id="filtr">
                             <div class="info_panel-switchers d-flex justify-content-center">
-                                <div class="switcher" style="border-bottom: 3px solid #3fab3c;">Технопарки</div>
-                                <div class="switcher" style="border-bottom: 3px solid #ff9601;">ЦТТ</div>
-                                <div class="switcher" style="border-bottom: 3px solid #9494b6">БИФ и НЦИС</div>
+                            <div class="switcher" id="sortBtn_techparck" style="border-bottom: 3px solid #3fab3c;">Технопарки</div>
+                            <div class="switcher" id="sortBtn_ctt" style="border-bottom: 3px solid #ff9601;">ЦТТ</div>
+                            <div class="switcher" style="border-bottom: 3px solid #9494b6">БИФ и НЦИС</div>
                             </div>
+                            <div class="info_panel-switchers d-flex justify-content-center">
+                            <div class="switcher" id="Btn_techparck"><input type="checkbox" id="techparck">Технопарки</input></div>
+                            <div class="switcher" id="Btn_techparck">  <input type="checkbox" id="ctt">ЦТТ</input></div>
+                        </div>
                         </div>
 
                         <!-- СЮДА ПОДСТАВЛЯТЬ ИНФУ ИЗ БД -->
-                        <div class="info_object" id="info_object_tehnoparck_ctt">
+                        <div class="info_object"  id="info_object_tehnoparck_ctt">
                             
                         </div>
                          <!-- КОЕЦ -->
@@ -1594,7 +1638,7 @@
        
           
             <!-- end footer window -->
-        </div>
+     </div>
         <!-- window-container -->
  </div>
     <!-- end window -->

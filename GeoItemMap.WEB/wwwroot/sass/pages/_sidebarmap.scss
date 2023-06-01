@@ -4,7 +4,7 @@
     position: absolute;
     top: 87px;
     left: 0;
-    overflow: hidden;
+   
     width: 410px;
     min-height: 187px;
     bottom: 10px;
@@ -80,10 +80,9 @@
         /* блоки с содержанием */
         display: none;
         margin-top: -2px;
-        overflow: hidden;
         background: $accordion-back;
         width: 100%;
-        overflow-y: auto;
+        overflow-y: scroll;
         height: 600px;
 
 
@@ -201,6 +200,10 @@
                 white-space: nowrap;
                 padding: 0 5px;
                 margin-right: 2px;
+
+                &.active {
+                   background-color:red;
+                }
             }
         }
     }
