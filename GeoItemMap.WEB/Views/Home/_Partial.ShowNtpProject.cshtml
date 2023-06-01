@@ -1,0 +1,190 @@
+﻿@model GeoItemsViewModel
+@{var item = Model.NtpProject.First();}
+
+<div class="window-header">
+    <div class="window-header_wrapper">
+        <h1 class="icon parks-actual-big" title="@item.ParentImplemOrg">
+            @item.ParentImplemOrg
+        </h1>
+        <a href="#" title=" В избранное" class="header-button favorites"></a>
+    </div>
+</div>
+<div class="close-window" title="Закрыть">×</div>
+<div class="window-body">
+    <div class="window-side-button"></div>
+    <!-- burger-btn -->
+    <!-- window-images -->
+    <div class="window-images">
+        <div class="col-img">
+            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/foto-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/grgu-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(5)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/art_420_orig.jpg" style="width:100%" onclick="openModal();currentSlide(6)"
+                 class="hover-shadow cursor">
+        </div>
+    </div>
+    <!-- end window-images -->
+    <!-- modal-gallery -->
+    <div id="modal-gallery" class="modal-gallery">
+        <span class="close cursor" onclick="closeModal()">&times;</span>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="gallery-content">
+            <div class="slides-gallery">
+                <div class="numbertext">1 / 6</div>
+                <img src="../../img/grsu_myuniver.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <div class="numbertext">2 / 6</div>
+                <img src="../../img/foto-grgu.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <div class="numbertext">3 / 6</div>
+                <img src="../../img/grsu_myuniver.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <div class="numbertext">4 / 6</div>
+                <img src="../../img/grgu-grgu.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <div class="numbertext">5 / 6</div>
+                <img src="../../img/grsu_myuniver.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <div class="numbertext">6 / 6</div>
+                <img src="../../img/art_420_orig.jpg" style="width:100%">
+            </div>
+            <div class="caption-container">
+                <p id="caption"></p>
+            </div>
+            <div class="row row-img">
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
+                         onclick="currentSlide(1)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/foto-grgu.jpg" style="width:100%" onclick="currentSlide(2)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
+                         onclick="currentSlide(3)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/grgu-grgu.jpg" style="width:100%" onclick="currentSlide(4)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
+                         onclick="currentSlide(5)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/art_420_orig.jpg" style="width:100%"
+                         onclick="currentSlide(6)">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal-gallery -->
+    <!-- data table -->
+    <div>
+        <table class="window-object-data">
+            <tbody>
+                <tr>
+                    <td class="object-field-name header first_level" colspan="2">
+                        <h2 id="windh0">Общая информация</h2>
+                        <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
+                            <table class="window-object-data">
+                                <tbody>
+                                    <tr>
+                                        <td class="object-field-name  ">
+                                            Наименование выполняемого задания
+                                        </td>
+                                        <td class="object-field-value">
+                                            @item.NameTask
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name  ">
+                                            Государственный заказчик (ответственный заказчик)
+                                        </td>
+                                        <td class="object-field-value">
+                                            @item.StateCustomer
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name">Головная организация-исполнитель</td>
+                                        <td class="object-field-value">@item.ParentImplemOrg</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="object-field-name  ">Организации-исполнители НИОК(Т)Р</td>
+                                        <td class="object-field-value"> @item.ImplemOrg</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name  ">Региональная принадлежность</td>
+                                        <td class="object-field-value"> @item.AdressImplemOrg</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name  ">Информация о стадии выполнения задания программы</td>
+                                        <td class="object-field-value"> @item.StateTask</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name  ">Уровень технического уклада разработки по заданию</td>
+                                        <td class="object-field-value"> @item.TheLevelStructure</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name  ">Наименование вновь освоенной продукции (инновации)</td>
+                                        <td class="object-field-value"> @item.NameNewDevProducts</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name  ">Информация о наличии экспорта по заданию (имеется или не имеется)</td>
+                                        <td class="object-field-value"> @item.InformationExports</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name  ">Информация о создании новых производств, модернизации действующих производств</td>
+                                        <td class="object-field-value"> @item.InformationNewProduct</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr></tr>
+            </tbody>
+        </table>
+        <div style="height: 122px;">&nbsp;</div>
+    </div>
+    <!-- end data table -->
+</div>
+<div class="window-side-button"></div>
+<div class="window-footer noselect d-flex justify-content-between">
+    <div class="window-footer-left">
+        <a href="#" class="icon-wf city" title="Города"></a>
+        <a href="#" class="icon-wf zoom no-label" title="Приблизить"></a>
+        <a target="_blank" href="#" role="pdf-button" class="icon-wf file no-label" title="PDF"></a>
+        <a href="#" class="icon-wf link no-label" title="Ссылка"></a>
+    </div>
+    <div class="window-footer-right">
+        <a href="#" class="icon-wf subscribe" title="Подписаться на обновления" data-bs-toggle="modal"
+           data-bs-target="#staticBackdrop"><span class="label">Подписаться</span></a>
+        <a href="#" class="icon-wf comparison"><span class="label">К сравнению</span></a>
+    </div>
+</div>
+<!-- footer window -->
+<div class="footer-window"></div>

@@ -32,6 +32,7 @@ namespace GeoItemMap.WEB.Controllers
             return Results.Json(geoItemObject);
         }
 
+      
   
     }
 }

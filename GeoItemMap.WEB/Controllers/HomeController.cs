@@ -79,6 +79,51 @@ namespace GeoItemMap.WEB.Controllers
             return Json(viewModel);
         }
 
+        // ИНН (отбор по id + вызов представления)
+        public IActionResult GetPartialInnProject(int id)
+        {
+            List<InnProject> listInnProject = new();
+            InnProject innProject = InnProjectGenericRepository.FindById(id);
+            listInnProject.Add(innProject);
+            GeoItemsViewModel viewModel = new GeoItemsViewModel { InnProject = listInnProject };
+            return PartialView("_Partial.ShowInnProject", viewModel);
+        }
+
+        // НТП (отбор по id + вызов представления)
+        public IActionResult GetPartialNtpProject(int id)
+        {
+            List<NtpProject> listNtpProject = new();
+            NtpProject ntpProject = NtpProjectGenericRepository.FindById(id);
+            listNtpProject.Add(ntpProject);
+            GeoItemsViewModel viewModel = new GeoItemsViewModel { NtpProject = listNtpProject };
+            return PartialView("_Partial.ShowNtpProject", viewModel);
+        }
+        // Технопарки (отбор по id + вызов представления)
+        public IActionResult GetPartialTechParck (int id) 
+        {
+            List<Technopark> listTechParck = new();
+            Technopark technopark = TechnoparkGenericRepository.FindById(id);
+            listTechParck.Add(technopark);
+            GeoItemsViewModel viewModel = new GeoItemsViewModel { Technopark = listTechParck };
+            return PartialView("_Partial.ShowTechParck", viewModel);
+        }
+
+        // ЦТТ (отбор по id + вызов представления)
+        public IActionResult GetPartialCTT(int id)
+        {
+
+            List<TechTransferCenter> listCTT = new();
+            TechTransferCenter techTransferCenter = TechTransferCenterGenericRepository.FindById(id);
+            listCTT.Add(techTransferCenter);
+            GeoItemsViewModel viewModel = new GeoItemsViewModel
+            {
+                TechTransferCenter = listCTT     
+            };
+            
+            return PartialView("_Partial.ShowCTT", viewModel);
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

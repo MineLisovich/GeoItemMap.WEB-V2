@@ -141,11 +141,59 @@
                     });
 
                     myGeoObject.events.add('click', function () {
-                        getGeoItem(element.id);
+                    
+                    // Технопарки
+                        if (element.geoType == 0) 
+                        {
+                             var url = "@Url.Action("GetPartialTechParck", "Home")";
+                             var wrapperid = "#window-container";
+                             AjaxAxtion(url, element.id, wrapperid);
+                         }
 
-                    }); 
+                    //Центр трансфера технологий
+                        if (element.geoType == 1)
+                         {
+                             var url = "@Url.Action("GetPartialCTT", "Home")";
+                             var wrapperid = "#window-container";
+                             AjaxAxtion(url, element.id, wrapperid);
+                         }
 
+                          // ИНН проекты
+                        if (element.geoType == 2) 
+                        {
+                            var url = "@Url.Action("GetPartialInnProject", "Home")";
+                             var wrapperid = "#window-container";
+                             AjaxAxtion(url, element.id, wrapperid);
+                        }
+                          //НТП
+                        if (element.geoType == 3) 
+                        {
+                            var url = "@Url.Action("GetPartialNtpProject", "Home")";
+                            var wrapperid = "#window-container";
+                            AjaxAxtion(url, element.id, wrapperid);
+                        }
 
+                    });
+
+                    function AjaxAxtion(url, id, wrapperid) {
+
+                        $.ajax({
+                            cache: false,
+                            type: "GET",
+                            url: url,
+                            data: { id: id },
+                            dataType: "html",
+                            success: function (data) {
+                                $(wrapperid).empty();
+                                $(wrapperid).append(data);
+                                top_popup();
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert('Ошибка загрузки таблицы!');
+                            }
+                        });
+
+                    }
                    // фильтрация меток
                    $(document).ready(function (){
                         const $srtBTN_tech = $("#filtr");
@@ -225,12 +273,12 @@
                 function getInfoTechnopark(itemTechnopark) {
 
                     return `
-                                <a href="#" class="info_item">
+                                <a href="#" class="info_item  item-header-js" data-type="tehParckHeader"data-id="${itemTechnopark.id}">
                                             <div class="info_item-icon parks-actual-big"></div>
 
 
                                         <div class="info_item-data">
-                                                        <h3 onclick = "getGeoItem(${itemTechnopark.id})">${itemTechnopark.nameTechnopark}</h3>
+                                                        <h3>${itemTechnopark.nameTechnopark}</h3>
                                                 <span class="info_item-region">Республика</span>
                                                         <span class="info_item-area">${itemTechnopark.totalAreaPremises} Га</span>
                                                 <div class="buttons-box">
@@ -250,12 +298,13 @@
                 // ЦТТ
                 function getInfoTechTransferCenter(itemTechTransferCenter) {
                     return `
-                                    <a href="#" class="info_item">
+                                        <a href="#" class="info_item  item-header-js" data-type="cctHeader" data-id="${itemTechTransferCenter.id}">
                                                 <div class="info_item-icon parks-actual-big"></div>
 
 
                                             <div class="info_item-data" >
-                                                                <h3 onclick = "getGeoItem(${itemTechTransferCenter.id})">${itemTechTransferCenter.nameTechTransferCenter}</h3>
+
+                                                     <h3>${itemTechTransferCenter.nameTechTransferCenter}</h3>
                                                     <span class="info_item-region">Республика</span>
                                                             <span class="info_item-area"> Га</span>
                                                     <div class="buttons-box">
@@ -282,7 +331,7 @@
 
         });
     });
-    // При нажатии на вкладку "Инновационные проекты""
+    // При нажатии на вкладку "Инновационные проекты"
     $(document).ready(function () {
         const $showDataItem_inn = $("#Item_inn");
         $showDataItem_inn.click(function () {
@@ -305,10 +354,10 @@
                 //ИНН
                 function getInfoInn(itemInnProject) {
                     return `
-                                    <a href="#" class="info_item">
+                                    <a href="#" class="info_item  item-header-js" data-type="InnHeader"data-id="${itemInnProject.id}">
                                     <div class="info_item-icon parks-actual-big"></div>
                                            <div class="info_item-data">
-                                            <h3 onclick = "getGeoItem(${itemInnProject.id})">${itemInnProject.nameInnProject}</h3>
+                                            <h3>${itemInnProject.nameInnProject}</h3>
                                                     <span class="info_item-region">Республика</span>
                                                             <span class="info_item-area"> Га</span>
                                                     <div class="buttons-box">
@@ -331,7 +380,7 @@
             }
         });
     });
-    // При нажатии на вкладку "Научно-технологические  программы""
+    // При нажатии на вкладку "Научно-технологические  программы"
     $(document).ready(function () {
         const $showDataItem_ntp = $("#Item_ntp");
         $showDataItem_ntp.click(function () {
@@ -355,10 +404,10 @@
                 // НТП
                 function getInfoNtp(itemNtpProject) {
                     return `
-                                        <a href="#" class="info_item">
+                                        <a href="#" class="info_item  item-header-js" data-type="NtpHeader" data-id="${itemNtpProject.id}">
                                         <div class="info_item-icon parks-actual-big"></div>
                                                <div class="info_item-data">
-                                                            <h3 onclick = "getGeoItem(${itemNtpProject.id})">${itemNtpProject.nameTask}</h3>
+                                                            <h3>${itemNtpProject.nameTask}</h3>
                                                         <span class="info_item-region">Республика</span>
                                                                 <span class="info_item-area"> Га</span>
                                                         <div class="buttons-box">
@@ -383,1107 +432,6 @@
             }
         });
     });
-
-    // Получение данных по ID 
-    async function getGeoItem(id) {
-        var geoitem;
-        const response = await fetch(`https://localhost:7215/GeoItem/${id}`, {
-            method: "GET",
-            headers: { "Accept": "application/json" }
-        });
-        if (response.ok === true) {
-            geoitem = await response.json();
-            //Технопарк
-            if (geoitem.value.geoType == 0) {
-                var getByid_technoparck = geoitem.value;
-            //    console.log(getByid_technoparck);
-                $("#window-container").append(getInfoById_technoparck(getByid_technoparck));
-                top_popup();
-            }
-            // Центр трансфера технологий
-            else if (geoitem.value.geoType == 1) {
-               
-                var getByid_ctt = geoitem.value;
-                $("#window-container").append(getInfoById_ctt(getByid_ctt));
-                top_popup();
-            }
-            //ИНН проекты
-            else if (geoitem.value.geoType == 2) {
-                var getById_inn = geoitem.value;
-                $("#window-container").append(getInfoByid_inn(getById_inn));
-                top_popup();
-            }
-            //НТП проекты
-            else if (geoitem.value.geoType == 3) {
-                var getById_ntp = geoitem.value;
-                 $("#window-container").append(getInfoById_ntp(getById_ntp));
-                top_popup();
-            }
-        }
-        else {const error = await response.json();}
-    }
-    // модальное окно ЦТТ
-    function getInfoById_ctt(getByid_ctt) {
-        return `
-             <div class="window-header">
-                    <div class="window-header_wrapper">
-                            <h1 class="icon parks-actual-big" title="${getByid_ctt.nameTechTransferCenter}">
-                                   ${getByid_ctt.nameTechTransferCenter}
-                        </h1>
-                        <a href="#" title=" В избранное" class="header-button favorites"></a>
-                    </div>
-                </div>
-                   <div class="close-window" title="Закрыть">×</div>
-                        <div class="window-body">
-                    <div class="window-side-button"></div>
-                    <!-- burger-btn -->
-                    <!-- window-images -->
-                    <div class="window-images">
-                        <div class="col-img">
-                            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
-                                 class="hover-shadow cursor">
-                        </div>
-                        <div class="col-img">
-                            <img src="../../img/foto-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
-                                 class="hover-shadow cursor">
-                        </div>
-                        <div class="col-img">
-                            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
-                                 class="hover-shadow cursor">
-                        </div>
-                        <div class="col-img">
-                                <img src="../../img/grgu-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
-                                 class="hover-shadow cursor">
-                        </div>
-                        <div class="col-img">
-                            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(5)"
-                                 class="hover-shadow cursor">
-                        </div>
-                        <div class="col-img">
-                                <img src="../../img/art_420_orig.jpg" style="width:100%" onclick="openModal();currentSlide(6)"
-                                 class="hover-shadow cursor">
-                        </div>
-                    </div>
-                    <!-- end window-images -->
-                    <!-- modal-gallery -->
-                    <div id="modal-gallery" class="modal-gallery">
-                        <span class="close cursor" onclick="closeModal()">&times;</span>
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                        <div class="gallery-content">
-                            <div class="slides-gallery">
-                                <div class="numbertext">1 / 6</div>
-                                <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                            </div>
-                            <div class="slides-gallery">
-                                <div class="numbertext">2 / 6</div>
-                                    <img src="../../img/foto-grgu.jpg" style="width:100%">
-                            </div>
-                            <div class="slides-gallery">
-                                <div class="numbertext">3 / 6</div>
-                                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                            </div>
-                            <div class="slides-gallery">
-                                <div class="numbertext">4 / 6</div>
-                                <img src="../../img/grgu-grgu.jpg" style="width:100%">
-                            </div>
-                            <div class="slides-gallery">
-                                <div class="numbertext">5 / 6</div>
-                                <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                            </div>
-                            <div class="slides-gallery">
-                                <div class="numbertext">6 / 6</div>
-                                    <img src="../../img/art_420_orig.jpg" style="width:100%">
-                            </div>
-                            <div class="caption-container">
-                                <p id="caption"></p>
-                            </div>
-                            <div class="row row-img">
-                                <div class="col-img">
-                                    <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
-                                         onclick="currentSlide(1)">
-                                </div>
-                                <div class="col-img">
-                                    <img class="demo cursor" src="../../img/foto-grgu.jpg" style="width:100%" onclick="currentSlide(2)">
-                                </div>
-                                <div class="col-img">
-                                    <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
-                                         onclick="currentSlide(3)">
-                                </div>
-                                <div class="col-img">
-                                    <img class="demo cursor" src="../../img/grgu-grgu.jpg" style="width:100%" onclick="currentSlide(4)">
-                                </div>
-                                <div class="col-img">
-                                    <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
-                                         onclick="currentSlide(5)">
-                                </div>
-                                <div class="col-img">
-                                        <img class="demo cursor" src="../../img/art_420_orig.jpg" style="width:100%"
-                                         onclick="currentSlide(6)">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end modal-gallery -->
-                    <!-- data table -->
-                    <div>
-                        <table class="window-object-data">
-                            <tbody>
-                                <tr>
-                                    <td class="object-field-name header first_level" colspan="2">
-                                        <h2 id="windh0">Общая информация</h2>
-                                        <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
-                                            <table class="window-object-data">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="object-field-name  ">
-                                                            Наименование центра трансфера технологий
-                                                        </td>
-                                                        <td class="object-field-value">
-                                                                 ${getByid_ctt.nameTechTransferCenter}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="object-field-name  ">
-                                                            Услуги, предоставляемые центром трансфера технологий
-                                                        </td>
-                                                        <td class="object-field-value">
-                                                                ${getByid_ctt.servicesProvidedTechTransferCenter}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="object-field-name">Адрес</td>
-                                                        <td class="object-field-value">${getByid_ctt.adressTechTransferCenter}</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="object-field-name  ">Телефон</td>
-                                                        <td class="object-field-value"> ${getByid_ctt.phoneTechTransferCenter}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="object-field-name  ">E-mail</td>
-                                                        <td class="object-field-value">
-                                                                <a href=" ${getByid_ctt.emailTechTransferCenter}"
-                                                                   target="_blank">${getByid_ctt.emailTechTransferCenter}</a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="object-field-name  ">
-                                                            Адрес сайта центра трансфера технологий в сети интернет
-                                                        </td>
-                                                        <td class="object-field-value">
-                                                            <a href="${getByid_ctt.websiteTechTransferCenter}"
-                                                                   target="_blank">${getByid_ctt.websiteTechTransferCenter}</a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="object-field-name header first_level" colspan="2">
-                                        <h2 id="windh1">Финансирование</h2>
-                                        <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
-                                            <table class="window-object-data">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="object-field-name  ">
-                                                            Объем финансирования в рамках ГПИР 2021-2025 (в тыс.
-                                                            бел.рублей)
-                                                        </td>
-                                                            <td class="object-field-value">${getByid_ctt.amountFunding}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="object-field-name header first_level" colspan="2">
-                                        <h2 id="windh2">Показатели деятельности </h2>
-                                        <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
-                                            <table class="window-object-data">
-                                                <tbody>
-                                                    <tr>
-                                                        <td id="windh3" class="object-field-name  ">
-                                                            Количество поступивших в центр и принятых к
-                                                            работе
-                                                            технологических предложений в 2022 году (ед.)
-                                                        </td>
-                                                            <td class="object-field-value">${getByid_ctt.numberAcceptedWorkProposals}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td id="windh4" class="object-field-name  ">
-                                                            Количество поступивших в центр и принятых к
-                                                            работе
-                                                            технологических запросов в 2022 году (ед.)
-                                                        </td>
-                                                            <td class="object-field-value">${getByid_ctt.numberAcceptedWorkRequests}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td id="windh5" class="object-field-name  ">
-                                                            Количество заключенных при содействии центра
-                                                            сделок по
-                                                            передаче (приобретению) прав на результаты научно-технической и (или) инновационной
-                                                            деятельности за 2022 год (ед.)
-                                                        </td>
-                                                        <td class="object-field-value">${getByid_ctt.numberTransactionsConcluded}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td id="windh6" class="object-field-name  ">
-                                                            Объем заключенных при содействии центра
-                                                            сделок
-                                                            по
-                                                            передаче
-                                                            (приобретению) прав на результаты научно-технической и (или) инновационной
-                                                            деятельности
-                                                            за 2022 год (тыс. рублей)
-                                                        </td>
-                                                            <td class="object-field-value">${getByid_ctt.volumeTransactionsConcluded}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td id="windh7" class="object-field-name  ">
-                                                            Количество сформированных при содействии
-                                                            центра
-                                                            научно-технических, инновационных (инвестиционных) и иных проектов (работ) за 2022 год
-                                                            (ед.)
-                                                        </td>
-                                                            <td class="object-field-value">${getByid_ctt.numberGeneratedProjects}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td id="windh8" class="object-field-name  ">
-                                                            Объем сформированных при содействии центра
-                                                            научно-технических, инновационных (инвестиционных) и иных проектов (работ) за 2022 год
-                                                            (тыс. рублей)
-                                                        </td>
-                                                            <td class="object-field-value">${getByid_ctt.volumeGeneratedProjects}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td id="windh9" class="object-field-name  ">
-                                                            Объем выполненных центром работ (услуг),
-                                                            связанных
-                                                            с
-                                                            коммерциализацией результатов научно-технической и (или) инновационной деятельности за
-                                                            2022 год (тыс. рублей)
-                                                        </td>
-                                                        <td class="object-field-value">${getByid_ctt.volumeWorkPerformed}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr></tr>
-                            </tbody>
-                        </table>
-                        <div style="height: 122px;">&nbsp;</div>
-                    </div>
-                    <!-- end data table -->
-                </div>
-                     <div class="window-side-button"></div>
-                <div class="window-footer noselect d-flex justify-content-between">
-                    <div class="window-footer-left">
-                        <a href="#" class="icon-wf city" title="Города"></a>
-                        <a href="#" class="icon-wf zoom no-label" title="Приблизить"></a>
-                        <a target="_blank" href="#" role="pdf-button" class="icon-wf file no-label" title="PDF"></a>
-                        <a href="#" class="icon-wf link no-label" title="Ссылка"></a>
-                    </div>
-                    <div class="window-footer-right">
-                        <a href="#" class="icon-wf subscribe" title="Подписаться на обновления" data-bs-toggle="modal"
-                           data-bs-target="#staticBackdrop"><span class="label">Подписаться</span></a>
-                        <a href="#" class="icon-wf comparison"><span class="label">К сравнению</span></a>
-                    </div>
-                </div>
-                <!-- footer window -->
-                <div class="footer-window"></div>
-        `;
-    }
-    // модальное окно Технопарки
-    function getInfoById_technoparck (getByid_technoparck)
-    {
-        return `
-               <div class="window-header">
-                        <div class="window-header_wrapper">
-                                <h1 class="icon parks-actual-big" title="${getByid_technoparck.nameTechnopark}">
-                                       ${getByid_technoparck.nameTechnopark}
-                            </h1>
-                            <a href="#" title=" В избранное" class="header-button favorites"></a>
-                        </div>
-                    </div>
-                       <div class="close-window" title="Закрыть">×</div>
-                            <div class="window-body">
-                        <div class="window-side-button"></div>
-                        <!-- burger-btn -->
-                        <!-- window-images -->
-                        <div class="window-images">
-                            <div class="col-img">
-                                <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                <img src="../../img/foto-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                    <img src="../../img/grgu-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(5)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                    <img src="../../img/art_420_orig.jpg" style="width:100%" onclick="openModal();currentSlide(6)"
-                                     class="hover-shadow cursor">
-                            </div>
-                        </div>
-                        <!-- end window-images -->
-                        <!-- modal-gallery -->
-                        <div id="modal-gallery" class="modal-gallery">
-                            <span class="close cursor" onclick="closeModal()">&times;</span>
-                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                            <div class="gallery-content">
-                                <div class="slides-gallery">
-                                    <div class="numbertext">1 / 6</div>
-                                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">2 / 6</div>
-                                        <img src="../../img/foto-grgu.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">3 / 6</div>
-                                        <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">4 / 6</div>
-                                    <img src="../../img/grgu-grgu.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">5 / 6</div>
-                                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">6 / 6</div>
-                                        <img src="../../img/art_420_orig.jpg" style="width:100%">
-                                </div>
-                                <div class="caption-container">
-                                    <p id="caption"></p>
-                                </div>
-                                <div class="row row-img">
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
-                                             onclick="currentSlide(1)">
-                                    </div>
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/foto-grgu.jpg" style="width:100%" onclick="currentSlide(2)">
-                                    </div>
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
-                                             onclick="currentSlide(3)">
-                                    </div>
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/grgu-grgu.jpg" style="width:100%" onclick="currentSlide(4)">
-                                    </div>
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
-                                             onclick="currentSlide(5)">
-                                    </div>
-                                    <div class="col-img">
-                                            <img class="demo cursor" src="../../img/art_420_orig.jpg" style="width:100%"
-                                             onclick="currentSlide(6)">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end modal-gallery -->
-                        <!-- data table -->
-                        <div>
-                            <table class="window-object-data">
-                                <tbody>
-                                    <tr>
-                                        <td class="object-field-name header first_level" colspan="2">
-                                            <h2 id="windh0">Общая информация</h2>
-                                            <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
-                                                <table class="window-object-data">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="object-field-name  ">
-                                                                Наименование технопарка
-                                                            </td>
-                                                            <td class="object-field-value">
-                                                                     ${getByid_technoparck.nameTechnopark}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="object-field-name  ">
-                                                                Специализация технопарка
-                                                            </td>
-                                                            <td class="object-field-value">
-                                                                        ${getByid_technoparck.techSpecialization}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="object-field-name">Адрес</td>
-                                                            <td class="object-field-value">${getByid_technoparck.addressTechnopark}</td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="object-field-name">Телефон</td>
-                                                            <td class="object-field-value"> ${getByid_technoparck.phoneTechnopark}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="object-field-name">E-mail</td>
-                                                            <td class="object-field-value">
-                                                                    <a href=" ${getByid_technoparck.emailTechnopark}" target="_blank">${getByid_technoparck.emailTechnopark}</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="object-field-name  ">
-                                                                Адрес сайта технопарка в сети интернет
-                                                            </td>
-                                                            <td class="object-field-value">
-                                                                <a href="${getByid_technoparck.websiteTechnopark}"
-                                                                           target="_blank">${getByid_technoparck.websiteTechnopark}</a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="object-field-name header first_level" colspan="2">
-                                            <h2 id="windh1">Финансирование</h2>
-                                            <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
-                                                <table class="window-object-data">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="object-field-name  ">
-                                                                Объем финансирования в рамках ГПИР 2021-2025 (в тыс.
-                                                                бел.рублей)
-                                                            </td>
-                                                                    <td class="object-field-value">${getByid_technoparck.amountFunding}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="object-field-name header first_level" colspan="2">
-                                            <h2 id="windh2">Подробная информация</h2>
-                                            <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
-                                                <table class="window-object-data">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td id="windh3" class="object-field-name  ">
-                                                               Общая площадь помощений (м/2)
-                                                            </td>
-                                                                <td class="object-field-value">${getByid_technoparck.totalAreaPremises}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td id="windh4" class="object-field-name  ">
-                                                                Свободная площадь помещений (м/2)
-                                                            </td>
-                                                                <td class="object-field-value">${getByid_technoparck.freeAreaPremises}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td id="windh5" class="object-field-name  ">
-                                                               Ключевые виды продукции резидентов технопарка
-                                                            </td>
-                                                            <td class="object-field-value">${getByid_technoparck.typesProducts}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td id="windh6" class="object-field-name">
-                                                               Услуги, предоставляемые технопарком резиденту
-                                                               (сдача в аренду готовых помещений, телефонная связь,
-                                                               бухгалтерские услуги и т.д.)
-                                                            </td>
-                                                                    <td class="object-field-value">${getByid_technoparck.servicesProvided}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td id="windh7" class="object-field-name  ">
-                                                              Технологическая инфраструктура технопарка,
-                                                              технологическое оборудование (бизнес-инкубатор,
-                                                              центр коллективного пользования оборудованием,
-                                                              коворкинг-центр, лаборатория и т.д.)
-                                                            </td>
-                                                                <td class="object-field-value">${getByid_technoparck.techInfrastructure}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td id="windh8" class="object-field-name  ">
-                                                               Общее количество резидентов технопарка, ед (по итогам 2022г.)
-                                                            </td>
-                                                                    <td class="object-field-value">${getByid_technoparck.totalNumberResident}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td id="windh9" class="object-field-name  ">
-                                                               Количество работников резидентов технопарка на конец отчётного периода, ед. (по итогам 2022г.)
-                                                            </td>
-                                                            <td class="object-field-value">${getByid_technoparck.numberEmployees}</td>
-                                                        </tr>
-                                                               <tr>
-                                                                <td id="windh9" class="object-field-name  ">
-                                                                   Объём отгруженной (выполненной) резидентами технопарка продукции (работ, услуг) за 2022г. (в тыс. бел.рублей)
-                                                                </td>
-                                                                <td class="object-field-value">${getByid_technoparck.volComplProducts}</td>
-                                                            </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr></tr>
-                                </tbody>
-                            </table>
-                            <div style="height: 122px;">&nbsp;</div>
-                        </div>
-                        <!-- end data table -->
-                    </div>
-                         <div class="window-side-button"></div>
-                    <div class="window-footer noselect d-flex justify-content-between">
-                        <div class="window-footer-left">
-                            <a href="#" class="icon-wf city" title="Города"></a>
-                            <a href="#" class="icon-wf zoom no-label" title="Приблизить"></a>
-                            <a target="_blank" href="#" role="pdf-button" class="icon-wf file no-label" title="PDF"></a>
-                            <a href="#" class="icon-wf link no-label" title="Ссылка"></a>
-                        </div>
-                        <div class="window-footer-right">
-                            <a href="#" class="icon-wf subscribe" title="Подписаться на обновления" data-bs-toggle="modal"
-                               data-bs-target="#staticBackdrop"><span class="label">Подписаться</span></a>
-                            <a href="#" class="icon-wf comparison"><span class="label">К сравнению</span></a>
-                        </div>
-                    </div>
-                    <!-- footer window -->
-                    <div class="footer-window"></div>
-        `;
-    }
-    // модальное окно ИНН
-    function getInfoByid_inn (getById_inn) 
-    {
-        return `
-             <div class="window-header">
-                        <div class="window-header_wrapper">
-                                <h1 class="icon parks-actual-big" title="${getById_inn.nameOrgImplementingProject}">
-                                       ${getById_inn.nameOrgImplementingProject}
-                            </h1>
-                            <a href="#" title=" В избранное" class="header-button favorites"></a>
-                        </div>
-                    </div>
-                       <div class="close-window" title="Закрыть">×</div>
-                            <div class="window-body">
-                        <div class="window-side-button"></div>
-                        <!-- burger-btn -->
-                        <!-- window-images -->
-                        <div class="window-images">
-                            <div class="col-img">
-                                <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                <img src="../../img/foto-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                    <img src="../../img/grgu-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(5)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                    <img src="../../img/art_420_orig.jpg" style="width:100%" onclick="openModal();currentSlide(6)"
-                                     class="hover-shadow cursor">
-                            </div>
-                        </div>
-                        <!-- end window-images -->
-                        <!-- modal-gallery -->
-                        <div id="modal-gallery" class="modal-gallery">
-                            <span class="close cursor" onclick="closeModal()">&times;</span>
-                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                            <div class="gallery-content">
-                                <div class="slides-gallery">
-                                    <div class="numbertext">1 / 6</div>
-                                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">2 / 6</div>
-                                        <img src="../../img/foto-grgu.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">3 / 6</div>
-                                        <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">4 / 6</div>
-                                    <img src="../../img/grgu-grgu.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">5 / 6</div>
-                                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">6 / 6</div>
-                                        <img src="../../img/art_420_orig.jpg" style="width:100%">
-                                </div>
-                                <div class="caption-container">
-                                    <p id="caption"></p>
-                                </div>
-                                <div class="row row-img">
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
-                                             onclick="currentSlide(1)">
-                                    </div>
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/foto-grgu.jpg" style="width:100%" onclick="currentSlide(2)">
-                                    </div>
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
-                                             onclick="currentSlide(3)">
-                                    </div>
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/grgu-grgu.jpg" style="width:100%" onclick="currentSlide(4)">
-                                    </div>
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
-                                             onclick="currentSlide(5)">
-                                    </div>
-                                    <div class="col-img">
-                                            <img class="demo cursor" src="../../img/art_420_orig.jpg" style="width:100%"
-                                             onclick="currentSlide(6)">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end modal-gallery -->
-                        <!-- data table -->
-                        <div>
-                            <table class="window-object-data">
-                                <tbody>
-                                    <tr>
-                                        <td class="object-field-name header first_level" colspan="2">
-                                            <h2 id="windh0">Общая информация</h2>
-                                            <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
-                                                <table class="window-object-data">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="object-field-name  ">
-                                                                Наименование проекта
-                                                            </td>
-                                                            <td class="object-field-value">
-                                                                     ${getById_inn.nameInnProject}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="object-field-name  ">
-                                                                Наименование организации, реализующий проект (мероприятие)
-                                                            </td>
-                                                            <td class="object-field-value">
-                                                                        ${getById_inn.nameOrgImplementingProject}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="object-field-name">Место реализации проекта</td>
-                                                                <td class="object-field-value">${getById_inn.locationProjectImplementation}</td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="object-field-name  ">Статус проекта</td>
-                                                            <td class="object-field-value"> ${getById_inn.projectStatus}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="object-field-name header first_level" colspan="2">
-                                            <h2 id="windh1">Финансирование</h2>
-                                            <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
-                                                <table class="window-object-data">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="object-field-name  ">
-                                                                Объем финансирования проекта (в тыс.
-                                                                бел.рублей)
-                                                            </td>
-                                                                    <td class="object-field-value">${getById_inn.volumeFinancing}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="object-field-name header first_level" colspan="2">
-                                            <h2 id="windh2">Подробная информация о проекте</h2>
-                                            <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
-                                                <table class="window-object-data">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td id="windh3" class="object-field-name  ">
-                                                               Заказчик
-                                                            </td>
-                                                                    <td class="object-field-value">${getById_inn.customer}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td id="windh4" class="object-field-name  ">
-                                                               Сроки реализации
-                                                            </td>
-                                                                <td class="object-field-value">${getById_inn.termsImplementation}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td id="windh5" class="object-field-name  ">
-                                                               ГПИР (2016-2020 гг.; 2021-2025 гг.)
-                                                            </td>
-                                                            <td class="object-field-value">${getById_inn.gpir}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td id="windh6" class="object-field-name  ">
-                                                              Документ, которым проект включен в ГПИР
-                                                            </td>
-                                                                <td class="object-field-value">${getById_inn.documentByWhichGPIR}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td id="windh7" class="object-field-name  ">
-                                                               Инновационность проекта
-                                                            </td>
-                                                                <td class="object-field-value">${getById_inn.innovatProject}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td id="windh8" class="object-field-name  ">
-                                                               Продукция, планируемая к выпуску
-                                                            </td>
-                                                                    <td class="object-field-value">${getById_inn.productsRelease}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td id="windh9" class="object-field-name  ">
-                                                              Вид экономической деятельности
-                                                            </td>
-                                                            <td class="object-field-value">${getById_inn.typeEconomicActivity}</td>
-                                                        </tr>
-                                                         <tr>
-                                                                <td id="windh9" class="object-field-name  ">
-                                                                  Критерий №1 Указа № 357:
-                                                                  Организация технологического процесса, обеспечивающего средний
-                                                                  уровень добавленной стоимости на одного работающего,
-                                                                  аналогичный среднему уровню добавленной стоимости на одного
-                                                                  работающего по соответствующему виду экономической деятельности
-                                                                  в ЕС, либо превышающий этот уровень, EUR
-                                                                </td>
-                                                                <td class="object-field-value">${getById_inn.criterion1}</td>
-                                                         </tr>
-                                                               <tr>
-                                                                    <td id="windh9" class="object-field-name  ">
-                                                                      Критерий №2 Указа № 357:
-                                                                      Экспортная ориентированность инновационного проекта
-                                                                      (превышение экспорта над импортом), тыс. евро (в год,
-                                                                      следующий за годом выхода на проектную мощность)
-                                                                    </td>
-                                                                    <td class="object-field-value">${getById_inn.criterion2}</td>
-                                                               </tr>
-                                                                <tr>
-                                                                    <td id="windh9" class="object-field-name  ">
-                                                                          Критерий №3 Указа № 357:
-                                                                          Создание и внедрение новых технологий и (или) производство
-                                                                          новой для Республики Беларусь и (или) мировой экономики
-                                                                          продукции (мировая новизна; новизна для Республики Беларусь)
-                                                                     </td>
-                                                                     <td class="object-field-value">${getById_inn.criterion3}</td>
-                                                                </tr>
-                                                                 <tr>
-                                                                     <td id="windh9" class="object-field-name  ">
-                                                                         Использование технологий V или VI технолоических укладов
-                                                                         (1- VI уклад; 2- V уклад; 3- проект другого технического
-                                                                         уклада)
-                                                                     </td>
-                                                                        <td class="object-field-value">${getById_inn.useTechnologies}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                     <td id="windh9" class="object-field-name  ">
-                                                                       Годовой объем производства продукции по проекту
-                                                                       (год, следующий за годом выхода на проектную мощность), тыс. руб.
-                                                                     </td>
-                                                                        <td class="object-field-value">${getById_inn.annualProductionVolumeBY}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                     <td id="windh9" class="object-field-name  ">
-                                                                       Годовой объем экспорта по проекту 
-                                                                       (год, следующий за годом выхода на проектуную мощность), тыс. рублей/ тыс. евро
-                                                                     </td>
-                                                                        <td class="object-field-value">${getById_inn.annualExportVolumeBY}/${getById_inn.annualExportVolumeEUR}</td>
-                                                               </tr>
-                                                               <tr>
-                                                                     <td id="windh9" class="object-field-name  ">
-                                                                      Импортозамещающая направленность проекта
-                                                                      (проект направлен на импортозамещение;
-                                                                      проект не направлен на импортозамещение)
-                                                                     </td>
-                                                                        <td class="object-field-value">${getById_inn.importSubstituting}</td>
-                                                               </tr>
-                                                               <tr>
-                                                                     <td id="windh9" class="object-field-name  ">
-                                                                      Добавленная стоимость на одного работника по проекту, тыс. рублей
-                                                                      (в год, следующий за годом выхода на проектную мощность)
-                                                                     </td>
-                                                                     <td class="object-field-value">${getById_inn.valueAddedPerEmployee}</td>
-                                                              </tr>
-                                                              <tr>
-                                                                  <td id="windh9" class="object-field-name  ">
-                                                                         Добавленная стоимость по проекту в год, следующий за годом
-                                                                         выхода проекта на проектную мощность, тыс. рублей
-                                                                  </td>
-                                                                   <td class="object-field-value">${getById_inn.addedValueProject}</td>
-                                                             </tr>
-                                                              <tr>
-                                                                  <td id="windh9" class="object-field-name  ">
-                                                                      Количество модернизированных рабочих мест, едениц
-                                                                  </td>
-                                                                 <td class="object-field-value">${getById_inn.numberUpgradedJobs}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                  <td id="windh9" class="object-field-name  ">
-                                                                      Количество новых рабочих мест, едениц
-                                                                  </td>
-                                                                 <td class="object-field-value">${getById_inn.numberNewJobs}</td>
-                                                            </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr></tr>
-                                </tbody>
-                            </table>
-                            <div style="height: 122px;">&nbsp;</div>
-                        </div>
-                        <!-- end data table -->
-                    </div>
-                         <div class="window-side-button"></div>
-                    <div class="window-footer noselect d-flex justify-content-between">
-                        <div class="window-footer-left">
-                            <a href="#" class="icon-wf city" title="Города"></a>
-                            <a href="#" class="icon-wf zoom no-label" title="Приблизить"></a>
-                            <a target="_blank" href="#" role="pdf-button" class="icon-wf file no-label" title="PDF"></a>
-                            <a href="#" class="icon-wf link no-label" title="Ссылка"></a>
-                        </div>
-                        <div class="window-footer-right">
-                            <a href="#" class="icon-wf subscribe" title="Подписаться на обновления" data-bs-toggle="modal"
-                               data-bs-target="#staticBackdrop"><span class="label">Подписаться</span></a>
-                            <a href="#" class="icon-wf comparison"><span class="label">К сравнению</span></a>
-                        </div>
-                    </div>
-                    <!-- footer window -->
-                    <div class="footer-window"></div>
-        `;
-    }
-    // модальное окно НТП
-    function getInfoById_ntp(getById_ntp)
-    {
-        return `
-                <div class="window-header">
-                        <div class="window-header_wrapper">
-                                <h1 class="icon parks-actual-big" title="${getById_ntp.parentImplemOrg}">
-                                       ${getById_ntp.parentImplemOrg}
-                            </h1>
-                            <a href="#" title=" В избранное" class="header-button favorites"></a>
-                        </div>
-                    </div>
-                       <div class="close-window" title="Закрыть">×</div>
-                            <div class="window-body">
-                        <div class="window-side-button"></div>
-                        <!-- burger-btn -->
-                        <!-- window-images -->
-                        <div class="window-images">
-                            <div class="col-img">
-                                <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                <img src="../../img/foto-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                    <img src="../../img/grgu-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(5)"
-                                     class="hover-shadow cursor">
-                            </div>
-                            <div class="col-img">
-                                    <img src="../../img/art_420_orig.jpg" style="width:100%" onclick="openModal();currentSlide(6)"
-                                     class="hover-shadow cursor">
-                            </div>
-                        </div>
-                        <!-- end window-images -->
-                        <!-- modal-gallery -->
-                        <div id="modal-gallery" class="modal-gallery">
-                            <span class="close cursor" onclick="closeModal()">&times;</span>
-                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                            <div class="gallery-content">
-                                <div class="slides-gallery">
-                                    <div class="numbertext">1 / 6</div>
-                                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">2 / 6</div>
-                                        <img src="../../img/foto-grgu.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">3 / 6</div>
-                                        <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">4 / 6</div>
-                                    <img src="../../img/grgu-grgu.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">5 / 6</div>
-                                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                                </div>
-                                <div class="slides-gallery">
-                                    <div class="numbertext">6 / 6</div>
-                                        <img src="../../img/art_420_orig.jpg" style="width:100%">
-                                </div>
-                                <div class="caption-container">
-                                    <p id="caption"></p>
-                                </div>
-                                <div class="row row-img">
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
-                                             onclick="currentSlide(1)">
-                                    </div>
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/foto-grgu.jpg" style="width:100%" onclick="currentSlide(2)">
-                                    </div>
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
-                                             onclick="currentSlide(3)">
-                                    </div>
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/grgu-grgu.jpg" style="width:100%" onclick="currentSlide(4)">
-                                    </div>
-                                    <div class="col-img">
-                                        <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
-                                             onclick="currentSlide(5)">
-                                    </div>
-                                    <div class="col-img">
-                                            <img class="demo cursor" src="../../img/art_420_orig.jpg" style="width:100%"
-                                             onclick="currentSlide(6)">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end modal-gallery -->
-                        <!-- data table -->
-                        <div>
-                            <table class="window-object-data">
-                                <tbody>
-                                    <tr>
-                                        <td class="object-field-name header first_level" colspan="2">
-                                            <h2 id="windh0">Общая информация</h2>
-                                            <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
-                                                <table class="window-object-data">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="object-field-name  ">
-                                                                Наименование выполняемого задания
-                                                            </td>
-                                                            <td class="object-field-value">
-                                                                     ${getById_ntp.nameTask}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="object-field-name  ">
-                                                               Государственный заказчик (ответственный заказчик)
-                                                            </td>
-                                                            <td class="object-field-value">
-                                                                        ${getById_ntp.stateCustomer}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="object-field-name">Головная организация-исполнитель</td>
-                                                                <td class="object-field-value">${getById_ntp.parentImplemOrg}</td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="object-field-name  ">Организации-исполнители НИОК(Т)Р</td>
-                                                                <td class="object-field-value"> ${getById_ntp.implemOrg}</td>
-                                                        </tr>
-                                                         <tr>
-                                                            <td class="object-field-name  ">Региональная принадлежность</td>
-                                                                <td class="object-field-value"> ${getById_ntp.adressImplemOrg}</td>
-                                                        </tr>
-                                                         <tr>
-                                                                <td class="object-field-name  ">Информация о стадии выполнения задания программы</td>
-                                                                <td class="object-field-value"> ${getById_ntp.stateTask}</td>
-                                                        </tr>
-                                                        <tr>
-                                                                <td class="object-field-name  ">Уровень технического уклада разработки по заданию</td>
-                                                                <td class="object-field-value"> ${getById_ntp.theLevelStructure}</td>
-                                                        </tr>
-                                                         <tr>
-                                                                <td class="object-field-name  ">Наименование вновь освоенной продукции (инновации)</td>
-                                                                <td class="object-field-value"> ${getById_ntp.nameNewDevProducts}</td>
-                                                         </tr>
-                                                         <tr>
-                                                                   <td class="object-field-name  ">Информация о наличии экспорта по заданию (имеется или не имеется)</td>
-                                                                   <td class="object-field-value"> ${getById_ntp.informationExports}</td>
-                                                        </tr>
-                                                        <tr>
-                                                                   <td class="object-field-name  ">Информация о создании новых производств, модернизации действующих производств</td>
-                                                                   <td class="object-field-value"> ${getById_ntp.informationNewProduct}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </td>
-                                    </tr>                            
-                                    <tr></tr>
-                                </tbody>
-                            </table>
-                            <div style="height: 122px;">&nbsp;</div>
-                        </div>
-                        <!-- end data table -->
-                    </div>
-                         <div class="window-side-button"></div>
-                    <div class="window-footer noselect d-flex justify-content-between">
-                        <div class="window-footer-left">
-                            <a href="#" class="icon-wf city" title="Города"></a>
-                            <a href="#" class="icon-wf zoom no-label" title="Приблизить"></a>
-                            <a target="_blank" href="#" role="pdf-button" class="icon-wf file no-label" title="PDF"></a>
-                            <a href="#" class="icon-wf link no-label" title="Ссылка"></a>
-                        </div>
-                        <div class="window-footer-right">
-                            <a href="#" class="icon-wf subscribe" title="Подписаться на обновления" data-bs-toggle="modal"
-                               data-bs-target="#staticBackdrop"><span class="label">Подписаться</span></a>
-                            <a href="#" class="icon-wf comparison"><span class="label">К сравнению</span></a>
-                        </div>
-                    </div>
-                    <!-- footer window -->
-                    <div class="footer-window"></div>
-        `;
-    }
     // всплывающего окна
     function top_popup() { 
             $(document).ready(function () {
@@ -1518,7 +466,60 @@
                 });
             });
     }
-</script>
+    // получение данных по id
+    $(document).ready(function () {
+        $('.sidebarmap').on('click', '.item-header-js', function () {
+            var url = "";
+            var wrapperid = "";
+            var id = $(this).attr("data-id");
+
+            switch ($(this).attr("data-type")) {
+                case 'cctHeader':
+                   url = "@Url.Action("GetPartialCTT", "Home")";
+                   wrapperid = "#window-container";
+                break;
+                case 'tehParckHeader':
+                    url = "@Url.Action("GetPartialTechParck", "Home")";
+                    wrapperid = "#window-container";
+                break;
+                case 'InnHeader':
+                    url = "@Url.Action("GetPartialInnProject", "Home")";
+                    wrapperid = "#window-container";
+                break;
+                case 'NtpHeader':
+                    url = "@Url.Action("GetPartialNtpProject", "Home")";
+                    wrapperid = "#window-container";
+                      
+                break;
+            }
+            if (url != "") {
+                AjaxAxtion(url, id, wrapperid);
+            }
+        });
+        function AjaxAxtion(url, id, wrapperid) {
+
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: url,
+                data: { id: id },
+                dataType: "html",
+                success: function (data)
+                {
+                    $(wrapperid).empty();
+                    $(wrapperid).append(data);
+                    top_popup();
+                },
+                error: function (xhr, ajaxOptions, thrownError)
+                {
+                    alert('Ошибка загрузки данных!');
+                }
+            });
+
+            }
+         });
+    </script>
+
 
 <div id="YMapsID"></div>
 
