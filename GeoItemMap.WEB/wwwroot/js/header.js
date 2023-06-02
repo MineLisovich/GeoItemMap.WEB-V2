@@ -1,9 +1,5 @@
 
-//Сравнение
-        function comparison_function() {
-            document.getElementById("comparison-popup").classList.toggle("show_block");
-            document.getElementById("comparison-tool").classList.toggle("show_background");
-        }
+
 
         //О проекте 
         function aboutProject() {
@@ -17,10 +13,6 @@
             }
         );
 
-        //Языки
-        function language_change() {
-            document.getElementById("itsystem-lang-menu").classList.toggle("show_block");
-        }
 
         //Инструменты
         function measurementTools() {
@@ -28,17 +20,6 @@
         }
 
 
-
-        //Закрыть окно слоёв
-        $('.layer-close-button').click(function() 
-            {
-                $(".layer-switcher-window").css("display", "none");  
-                $(".itsystem-header.collapsed").css("right", "82px");
-                $(".itsystem-layers-button").css("display", "block");  
-                
-                $(".comparison-popup").css("right", "235px");
-            }
-        );
         
         window.onclick = function(event) {
             if (!event.target.matches('.itsystem-curr-lang')) {
@@ -63,3 +44,4 @@
                 }
             }
         }
+
