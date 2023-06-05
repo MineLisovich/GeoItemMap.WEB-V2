@@ -35,68 +35,74 @@
   });
 })(jQuery); 
 
-//window call 
-$(function () {
-const $btnToggle = $(".info_item-data");
-const $closeWindow = $(".close-window");
-const $windowbar = $(".window");
-const $windowChild = $(".window-child");
-$btnToggle.on('click',function(){
-$windowbar.toggleClass("active");
-$windowChild.toggleClass("active");
-});
-$closeWindow.on('click',function(){
-$windowbar.removeClass("active");
-$windowChild.removeClass("active");
-});
-const $btnToggleChild = $(".info_item-data");
-const $closeBtn = $(".window-side-button");
-$btnToggleChild.on('click',function(){
-$windowChild.addClass("active");
-});
-$closeBtn.on('click',function(){
-$windowChild.removeClass("active");
-});
-});
+////window call 
+//$(function () {
+//const $btnToggle = $(".info_item-data");
+//const $closeWindow = $(".close-window");
+//const $windowbar = $(".window");
+//const $windowChild = $(".window-child");
+//$btnToggle.on('click',function(){
+//$windowbar.toggleClass("active");
+//$windowChild.toggleClass("active");
+//});
+//    let hasClass = $('.window').hasClass('active');
+
+//    if (!hasClass) {
+//        $("#window-container").empty();
+//    }
+//$closeWindow.on('click',function(){
+//    $windowbar.removeClass("active");
+//    $windowChild.removeClass("active");
+//    $("#window-container").empty();
+//});
+//const $btnToggleChild = $(".info_item-data");
+//const $closeBtn = $(".window-side-button");
+//$btnToggleChild.on('click',function(){
+//$windowChild.addClass("active");
+//});
+//$closeBtn.on('click',function(){
+//$windowChild.removeClass("active");
+//});
+//});
 
 
-//dark window background
-$(function () {
-    const $btnToggle = $(".info_item-data");
-    const $closeWindow = $(".close-window");
-    const $windowBlock = $(".window-block");
-    $btnToggle.on('click', function () {
-        $windowBlock.removeClass("d-none");
-    });
-    $closeWindow.on('click', function () {
-        $windowBlock.toggleClass("d-none");
-    });
-});
+////dark window background
+//$(function () {
+//    const $btnToggle = $(".info_item-data");
+//    const $closeWindow = $(".close-window");
+//    const $windowBlock = $(".window-block");
+//    $btnToggle.on('click', function () {
+//        $windowBlock.removeClass("d-none");
+//    });
+//    $closeWindow.on('click', function () {
+//        $windowBlock.toggleClass("d-none");
+//    });
+//});
 
-//window-button call
-$(function () {
-  const $buttonLeft = $(".window-side-button_left");
-  const $childContainer = $(".window-child-container")
-  const $closeBtn = $(".window-side-button");
-  const $windowChild = $(".window-child");
+////window-button call
+//$(function () {
+//  const $buttonLeft = $(".window-side-button_left");
+//  const $childContainer = $(".window-child-container");
+//  const $closeBtn = $(".window-side-button");
+//  const $windowChild = $(".window-child");
 
-  $buttonLeft.on('click',function(){
-    $windowChild.animate({
-      width: 0
-    }, 200);
-    $buttonLeft.hide();
-    $childContainer.hide();
-  });
+//  $buttonLeft.on('click',function(){
+//    $windowChild.animate({
+//      width: 0
+//    }, 200);
+//    $buttonLeft.hide();
+//    $childContainer.hide();
+//  });
 
-    $closeBtn.on('click', function () {
-    $windowChild.toggleClass("active");
-    $windowChild.animate({
-      width: 300
-    }, 250);
-    $buttonLeft.show();
-    $childContainer.show();
-  });
-});
+//    $closeBtn.on('click', function () {
+//    $windowChild.toggleClass("active");
+//    $windowChild.animate({
+//      width: 300
+//    }, 250);
+//    $buttonLeft.show();
+//    $childContainer.show();
+//  });
+//});
 
 
 //anchors window

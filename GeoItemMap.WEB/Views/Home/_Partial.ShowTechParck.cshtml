@@ -1,0 +1,325 @@
+﻿@model GeoItemsViewModel
+@{
+    var item = Model.Technopark.First();
+}
+<div class="window-header">
+    <div class="window-header_wrapper">
+        <h1 class="icon parks-actual-big" title="@item.NameTechnopark">
+            @item.NameTechnopark
+        </h1>
+        <a href="#" title=" В избранное" class="header-button favorites"></a>
+    </div>
+</div>
+
+<!-- close-window -->
+<div class="close-window" title="Закрыть">×</div>
+
+<div class="window-body">
+    <div class="window-side-button"></div>
+    <!-- burger-btn -->
+    <!-- window-images -->
+    <div class="window-images">
+        <div class="col-img">
+            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/foto-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/grgu-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(5)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/art_420_orig.jpg" style="width:100%" onclick="openModal();currentSlide(6)"
+                 class="hover-shadow cursor">
+        </div>
+    </div>
+    <!-- end window-images -->
+    <!-- modal-gallery -->
+    <div id="modal-gallery" class="modal-gallery">
+        <span class="close cursor" onclick="closeModal()">&times;</span>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="gallery-content">
+            <div class="slides-gallery">
+                <img src="../../img/grsu_myuniver.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <img src="../../img/foto-grgu.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <img src="../../img/grsu_myuniver.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <img src="../../img/grgu-grgu.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <img src="../../img/grsu_myuniver.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <img src="../../img/art_420_orig.jpg" style="width:100%">
+            </div>
+            <div class="caption-container">
+                <p id="caption"></p>
+            </div>
+            <div class="row row-img">
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
+                         onclick="currentSlide(1)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/foto-grgu.jpg" style="width:100%" onclick="currentSlide(2)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
+                         onclick="currentSlide(3)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/grgu-grgu.jpg" style="width:100%" onclick="currentSlide(4)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
+                         onclick="currentSlide(5)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/art_420_orig.jpg" style="width:100%"
+                         onclick="currentSlide(6)">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal-gallery -->
+    <!-- data table -->
+    <div>
+        <table class="window-object-data">
+            <tbody>
+                <tr>
+                    <td class="object-field-name header first_level" colspan="2">
+                        <h2 id="windh0">Общая информация</h2>
+                        <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
+                            <table class="window-object-data">
+                                <tbody>
+                                    <tr>
+                                        <td class="object-field-name  ">
+                                            Наименование технопарка
+                                        </td>
+                                        <td class="object-field-value">
+                                            @item.NameTechnopark
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name  ">
+                                            Специализация технопарка
+                                        </td>
+                                        <td class="object-field-value">
+                                            @item.TechSpecialization
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name">Адрес</td>
+                                        <td class="object-field-value">@item.AddressTechnopark</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="object-field-name">Телефон</td>
+                                        <td class="object-field-value"> @item.PhoneTechnopark</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name">E-mail</td>
+                                        <td class="object-field-value">
+                                            <a href=" @item.EmailTechnopark" target="_blank">@item.EmailTechnopark</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name  ">
+                                            Адрес сайта технопарка в сети интернет
+                                        </td>
+                                        <td class="object-field-value">
+                                            <a href="@item.WebsiteTechnopark"
+                                               target="_blank">@item.WebsiteTechnopark</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="object-field-name header first_level" colspan="2">
+                        <h2 id="windh1">Финансирование</h2>
+                        <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
+                            <table class="window-object-data">
+                                <tbody>
+                                    <tr>
+                                        <td class="object-field-name  ">
+                                            Объем финансирования в рамках ГПИР 2021-2025 (в тыс.
+                                            бел.рублей)
+                                        </td>
+                                        <td class="object-field-value">@item.AmountFunding</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="object-field-name header first_level" colspan="2">
+                        <h2 id="windh2">Подробная информация</h2>
+                        <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
+                            <table class="window-object-data">
+                                <tbody>
+                                    <tr>
+                                        <td id="windh3" class="object-field-name  ">
+                                            Общая площадь помощений (м/2)
+                                        </td>
+                                        <td class="object-field-value">@item.TotalAreaPremises</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh4" class="object-field-name  ">
+                                            Свободная площадь помещений (м/2)
+                                        </td>
+                                        <td class="object-field-value">@item.FreeAreaPremises</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh5" class="object-field-name  ">
+                                            Ключевые виды продукции резидентов технопарка
+                                        </td>
+                                        <td class="object-field-value">@item.TypesProducts</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh6" class="object-field-name">
+                                            Услуги, предоставляемые технопарком резиденту
+                                            (сдача в аренду готовых помещений, телефонная связь,
+                                            бухгалтерские услуги и т.д.)
+                                        </td>
+                                        <td class="object-field-value">@item.ServicesProvided</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh7" class="object-field-name  ">
+                                            Технологическая инфраструктура технопарка,
+                                            технологическое оборудование (бизнес-инкубатор,
+                                            центр коллективного пользования оборудованием,
+                                            коворкинг-центр, лаборатория и т.д.)
+                                        </td>
+                                        <td class="object-field-value">@item.TechInfrastructure</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh8" class="object-field-name  ">
+                                            Общее количество резидентов технопарка, ед (по итогам 2022г.)
+                                        </td>
+                                        <td class="object-field-value">@item.TotalNumberResident</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh9" class="object-field-name  ">
+                                            Количество работников резидентов технопарка на конец отчётного периода, ед. (по итогам 2022г.)
+                                        </td>
+                                        <td class="object-field-value">@item.NumberEmployees</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh10" class="object-field-name  ">
+                                            Объём отгруженной (выполненной) резидентами технопарка продукции (работ, услуг) за 2022г. (в тыс. бел.рублей)
+                                        </td>
+                                        <td class="object-field-value">@item.VolComplProducts</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr></tr>
+            </tbody>
+        </table>
+        <div style="height: 122px;">&nbsp;</div>
+    </div>
+    <!-- end data table -->
+</div>
+<div class="window-side-button"></div>
+<div class="window-footer noselect d-flex justify-content-between">
+    <div class="window-footer-left">
+        <a href="#" class="icon-wf city" title="Города"></a>
+        <a target="_blank" href="#" role="pdf-button" class="icon-wf file no-label" title="PDF"></a>
+    </div>
+</div>
+<!-- footer window -->
+<div class="footer-window"></div>
+<!-- end footer window -->
+<!-- window-child -->
+<div class="window-child">
+    <div class="window-child-container">
+        <div class="overview" style="top: 0px; left: 0px; bottom: 10px; display: block;">
+            <ol>
+                <li data-link="windh0">
+                    <div class="active-li">Общая информация</div>
+                </li>
+                <li data-link="windh1">
+                    <div>Финансирование</div>
+                </li>
+                <li data-link="windh2">
+                    <div>Подробная информация</div>
+                </li>
+                <ol class="mt-1">
+                    <li data-link="windh3">
+                        <div>
+                            Общая площадь помощений (м/2)
+                        </div>
+                    </li>
+                    <li data-link="windh4">
+                        <div>
+                            Свободная площадь помещений (м/2)
+                        </div>
+                    </li>
+                    <li data-link="windh5">
+                        <div>
+                            Ключевые виды продукции резидентов технопарка
+                        </div>
+                    </li>
+                    <li data-link="windh6">
+                        <div>
+                            Услуги, предоставляемые технопарком резиденту
+                            (сдача в аренду готовых помещений, телефонная связь,
+                            бухгалтерские услуги и т.д.)
+                        </div>
+                    </li>
+                    <li data-link="windh7">
+                        <div>
+                            Технологическая инфраструктура технопарка,
+                            технологическое оборудование (бизнес-инкубатор,
+                            центр коллективного пользования оборудованием,
+                            коворкинг-центр, лаборатория и т.д.)
+                        </div>
+                    </li>
+                    <li data-link="windh8">
+                        <div>
+                            Общее количество резидентов технопарка, ед (по итогам 2022г.)
+                        </div>
+                    </li>
+                    <li data-link="windh9">
+                        <div>
+                            Количество работников резидентов технопарка на конец отчётного периода, ед. (по итогам 2022г.)
+                        </div>
+                    </li>
+                    <li data-link="windh10">
+                        <div>
+                            Объём отгруженной (выполненной) резидентами технопарка продукции (работ, услуг) за 2022г. (в тыс. бел.рублей)
+                        </div>
+                    </li>
+                </ol>
+            </ol>
+        </div>
+
+    </div>
+    <div class="window-side-button_left"></div>
+
+</div>
+<!--end window-child -->

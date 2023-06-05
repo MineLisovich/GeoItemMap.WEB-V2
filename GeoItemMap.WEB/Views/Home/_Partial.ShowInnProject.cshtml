@@ -1,0 +1,447 @@
+﻿@model GeoItemsViewModel
+@{
+    var item = Model.InnProject.First();
+}
+<div class="window-header">
+    <div class="window-header_wrapper">
+        <h1 class="icon parks-actual-big" title="@item.NameOrgImplementingProject">
+            @item.NameOrgImplementingProject
+        </h1>
+    </div>
+</div>
+
+<!-- close-window -->
+<div class="close-window" title="Закрыть">×</div>
+
+<div class="window-body">
+    <div class="window-side-button"></div>
+    <!-- burger-btn -->
+    <!-- window-images -->
+    <div class="window-images">
+        <div class="col-img">
+            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/foto-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/grgu-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(5)"
+                 class="hover-shadow cursor">
+        </div>
+        <div class="col-img">
+            <img src="../../img/art_420_orig.jpg" style="width:100%" onclick="openModal();currentSlide(6)"
+                 class="hover-shadow cursor">
+        </div>
+    </div>
+    <!-- end window-images -->
+    <!-- modal-gallery -->
+    <div id="modal-gallery" class="modal-gallery">
+        <span class="close cursor" onclick="closeModal()">&times;</span>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="gallery-content">
+            <div class="slides-gallery">
+                <img src="../../img/grsu_myuniver.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <img src="../../img/foto-grgu.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <img src="../../img/grsu_myuniver.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <img src="../../img/grgu-grgu.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <img src="../../img/grsu_myuniver.jpg" style="width:100%">
+            </div>
+            <div class="slides-gallery">
+                <img src="../../img/art_420_orig.jpg" style="width:100%">
+            </div>
+            <div class="caption-container">
+                <p id="caption"></p>
+            </div>
+            <div class="row row-img">
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
+                         onclick="currentSlide(1)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/foto-grgu.jpg" style="width:100%" onclick="currentSlide(2)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
+                         onclick="currentSlide(3)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/grgu-grgu.jpg" style="width:100%" onclick="currentSlide(4)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/grsu_myuniver.jpg" style="width:100%"
+                         onclick="currentSlide(5)">
+                </div>
+                <div class="col-img">
+                    <img class="demo cursor" src="../../img/art_420_orig.jpg" style="width:100%"
+                         onclick="currentSlide(6)">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal-gallery -->
+    <!-- data table -->
+    <div>
+        <table class="window-object-data">
+            <tbody>
+                <tr>
+                    <td class="object-field-name header first_level" colspan="2">
+                        <h2 id="windh0">Общая информация</h2>
+                        <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
+                            <table class="window-object-data">
+                                <tbody>
+                                    <tr>
+                                        <td class="object-field-name  ">
+                                            Наименование проекта
+                                        </td>
+                                        <td class="object-field-value">
+                                            @item.NameInnProject
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name  ">
+                                            Наименование организации, реализующий проект (мероприятие)
+                                        </td>
+                                        <td class="object-field-value">
+                                            @item.NameOrgImplementingProject
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="object-field-name">Место реализации проекта</td>
+                                        <td class="object-field-value"> @item.LocationProjectImplementation</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="object-field-name  ">Статус проекта</td>
+                                        <td class="object-field-value">  @item.ProjectStatus</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="object-field-name header first_level" colspan="2">
+                        <h2 id="windh1">Финансирование</h2>
+                        <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
+                            <table class="window-object-data">
+                                <tbody>
+                                    <tr>
+                                        <td class="object-field-name  ">
+                                            Объем финансирования проекта (в тыс.
+                                            бел.рублей)
+                                        </td>
+                                        <td class="object-field-value"> @item.VolumeFinancing</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="object-field-name header first_level" colspan="2">
+                        <h2 id="windh2">Подробная информация о проекте</h2>
+                        <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
+                            <table class="window-object-data">
+                                <tbody>
+                                    <tr>
+                                        <td id="windh3" class="object-field-name  ">
+                                            Заказчик
+                                        </td>
+                                        <td class="object-field-value"> @item.Customer</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh4" class="object-field-name  ">
+                                            Сроки реализации
+                                        </td>
+                                        <td class="object-field-value">@item.TermsImplementation</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh5" class="object-field-name  ">
+                                            ГПИР (2016-2020 гг.; 2021-2025 гг.)
+                                        </td>
+                                        <td class="object-field-value">@item.GPIR</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh6" class="object-field-name  ">
+                                            Документ, которым проект включен в ГПИР
+                                        </td>
+                                        <td class="object-field-value">@item.DocumentByWhichGPIR</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh7" class="object-field-name  ">
+                                            Инновационность проекта
+                                        </td>
+                                        <td class="object-field-value">@item.InnovatProject</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh8" class="object-field-name  ">
+                                            Продукция, планируемая к выпуску
+                                        </td>
+                                        <td class="object-field-value">@item.ProductsRelease</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh9" class="object-field-name  ">
+                                            Вид экономической деятельности
+                                        </td>
+                                        <td class="object-field-value">@item.TypeEconomicActivity</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh10" class="object-field-name  ">
+                                            Критерий №1 Указа № 357:
+                                            Организация технологического процесса, обеспечивающего средний
+                                            уровень добавленной стоимости на одного работающего,
+                                            аналогичный среднему уровню добавленной стоимости на одного
+                                            работающего по соответствующему виду экономической деятельности
+                                            в ЕС, либо превышающий этот уровень, EUR
+                                        </td>
+                                        <td class="object-field-value">@item.Criterion1</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh11" class="object-field-name  ">
+                                            Критерий №2 Указа № 357:
+                                            Экспортная ориентированность инновационного проекта
+                                            (превышение экспорта над импортом), тыс. евро (в год,
+                                            следующий за годом выхода на проектную мощность)
+                                        </td>
+                                        <td class="object-field-value">@item.Criterion2</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh12" class="object-field-name  ">
+                                            Критерий №3 Указа № 357:
+                                            Создание и внедрение новых технологий и (или) производство
+                                            новой для Республики Беларусь и (или) мировой экономики
+                                            продукции (мировая новизна; новизна для Республики Беларусь)
+                                        </td>
+                                        <td class="object-field-value">@item.Criterion3</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh13" class="object-field-name  ">
+                                            Использование технологий V или VI технолоических укладов
+                                            (1- VI уклад; 2- V уклад; 3- проект другого технического
+                                            уклада)
+                                        </td>
+                                        <td class="object-field-value">@item.UseTechnologies</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh14" class="object-field-name  ">
+                                            Годовой объем производства продукции по проекту
+                                            (год, следующий за годом выхода на проектную мощность), тыс. руб.
+                                        </td>
+                                        <td class="object-field-value">@item.AnnualProductionVolumeBY</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh15" class="object-field-name  ">
+                                            Годовой объем экспорта по проекту
+                                            (год, следующий за годом выхода на проектуную мощность), тыс. рублей/ тыс. евро
+                                        </td>
+                                        <td class="object-field-value">@item.AnnualExportVolumeBY/@item.AnnualExportVolumeEUR</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh16" class="object-field-name  ">
+                                            Импортозамещающая направленность проекта
+                                            (проект направлен на импортозамещение;
+                                            проект не направлен на импортозамещение)
+                                        </td>
+                                        <td class="object-field-value">@item.ImportSubstituting</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh17" class="object-field-name  ">
+                                            Добавленная стоимость на одного работника по проекту, тыс. рублей
+                                            (в год, следующий за годом выхода на проектную мощность)
+                                        </td>
+                                        <td class="object-field-value">@item.ValueAddedPerEmployee</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh18" class="object-field-name  ">
+                                            Добавленная стоимость по проекту в год, следующий за годом
+                                            выхода проекта на проектную мощность, тыс. рублей
+                                        </td>
+                                        <td class="object-field-value">@item.AddedValueProject</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh19" class="object-field-name  ">
+                                            Количество модернизированных рабочих мест, едениц
+                                        </td>
+                                        <td class="object-field-value">@item.NumberUpgradedJobs</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="windh20" class="object-field-name  ">
+                                            Количество новых рабочих мест, едениц
+                                        </td>
+                                        <td class="object-field-value">@item.NumberNewJobs</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr></tr>
+            </tbody>
+        </table>
+        <div style="height: 122px;">&nbsp;</div>
+    </div>
+    <!-- end data table -->
+</div>
+<div class="window-side-button"></div>
+<div class="window-footer noselect d-flex justify-content-between">
+    <div class="window-footer-left">
+        <a href="#" class="icon-wf city" title="Города"></a>
+        <a target="_blank" href="#" role="pdf-button" class="icon-wf file no-label" title="PDF"></a>
+    </div>
+</div>
+<!-- footer window -->
+<div class="footer-window"></div>
+<!-- end footer window -->
+<!-- window-child -->
+<div class="window-child">
+    <div class="window-child-container">
+        <div class="overview" style="top: 0px; left: 0px; bottom: 10px; display: block;">
+            <ol>
+                <li data-link="windh0">
+                    <div class="active-li">Общая информация</div>
+                </li>
+                <li data-link="windh1">
+                    <div>Финансирование</div>
+                </li>
+                <li data-link="windh2">
+                    <div>Подробная информация о проекте</div>
+                </li>
+                <ol class="mt-1">
+                    <li data-link="windh3">
+                        <div>
+                            Заказчик
+                        </div>
+                    </li>
+                    <li data-link="windh4">
+                        <div>
+                            Сроки реализации
+                        </div>
+                    </li>
+                    <li data-link="windh5">
+                        <div>
+                            ГПИР (2016-2020 гг.; 2021-2025 гг.)
+                        </div>
+                    </li>
+                    <li data-link="windh6">
+                        <div>
+                            Документ, которым проект включен в ГПИР
+                        </div>
+                    </li>
+                    <li data-link="windh7">
+                        <div>
+                            Инновационность проекта
+                        </div>
+                    </li>
+                    <li data-link="windh8">
+                        <div>
+                            Продукция, планируемая к выпуску
+                        </div>
+                    </li>
+                    <li data-link="windh9">
+                        <div>
+                            Вид экономической деятельности
+                        </div>
+                    </li>
+                      <li data-link="windh10">
+                        <div>
+                            Критерий №1 Указа № 357:
+                            Организация технологического процесса, обеспечивающего средний
+                            уровень добавленной стоимости на одного работающего,
+                            аналогичный среднему уровню добавленной стоимости на одного
+                            работающего по соответствующему виду экономической деятельности
+                            в ЕС, либо превышающий этот уровень, EUR
+                        </div>
+                    </li>
+                      <li data-link="windh11">
+                        <div>
+                            Критерий №2 Указа № 357:
+                            Экспортная ориентированность инновационного проекта
+                            (превышение экспорта над импортом), тыс. евро (в год,
+                            следующий за годом выхода на проектную мощность)
+                        </div>
+                    </li>
+                      <li data-link="windh12">
+                        <div>
+                            Критерий №3 Указа № 357:
+                            Создание и внедрение новых технологий и (или) производство
+                            новой для Республики Беларусь и (или) мировой экономики
+                            продукции (мировая новизна; новизна для Республики Беларусь)
+                        </div>
+                    </li>
+
+                      <li data-link="windh13">
+                        <div>
+                            Использование технологий V или VI технолоических укладов
+                            (1- VI уклад; 2- V уклад; 3- проект другого технического
+                            уклада)
+                        </div>
+                    </li>
+                    <li data-link="windh14">
+                        <div>
+                            Годовой объем производства продукции по проекту
+                            (год, следующий за годом выхода на проектную мощность), тыс. руб.
+                        </div>
+                    </li>
+                      <li data-link="windh15">
+                        <div>
+                            Годовой объем экспорта по проекту
+                            (год, следующий за годом выхода на проектуную мощность), тыс. рублей/ тыс. евро
+                        </div>
+                    </li>
+                      <li data-link="windh16">
+                        <div>
+                            Импортозамещающая направленность проекта
+                            (проект направлен на импортозамещение;
+                            проект не направлен на импортозамещение)
+                        </div>
+                    </li>
+                      <li data-link="windh17">
+                        <div>
+                            Добавленная стоимость на одного работника по проекту, тыс. рублей
+                            (в год, следующий за годом выхода на проектную мощность)
+                        </div>
+                    </li>
+                      <li data-link="windh18">
+                        <div>
+                            Добавленная стоимость по проекту в год, следующий за годом
+                            выхода проекта на проектную мощность, тыс. рублей
+                        </div>
+                    </li>
+                      <li data-link="windh19">
+                        <div>
+                            Количество модернизированных рабочих мест, едениц
+                        </div>
+                    </li>
+                    <li data-link="windh20">
+                        <div>
+                            Количество новых рабочих мест, едениц
+                        </div>
+                    </li>
+                </ol>
+            </ol>
+        </div>
+
+    </div>
+    <div class="window-side-button_left"></div>
+
+</div>
+<!--end window-child -->
