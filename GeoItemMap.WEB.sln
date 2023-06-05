@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoItemMap.WEB", "GeoItemMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoItemMap.DAL", "GeoItemMap.DAL\GeoItemMap.DAL.csproj", "{8FE92BEE-05F3-4502-A25F-F07138C759D9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{04421D73-3115-4C33-9534-441ABF8CDD4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

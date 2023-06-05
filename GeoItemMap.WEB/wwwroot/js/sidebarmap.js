@@ -106,31 +106,8 @@
 
 
 //anchors window
-document.addEventListener("DOMContentLoaded", function () {
-  var listItems = document.querySelectorAll("ol li[data-link], ol li ol li[data-link]");
-  listItems.forEach(function (listItem) {
-    var linkValue = listItem.getAttribute("data-link");
-    var targetElement = document.getElementById(linkValue);
-    if (targetElement) {
-      listItem.addEventListener("click", function (e) {
-        e.stopPropagation(); // останавливаю всплытие события 
-        targetElement.scrollIntoView({
-          behavior: "smooth"
-        });
-      });
-    }
-  });
-});
 
-//active element on click li
-document.querySelectorAll("ol li > div").forEach(div => {
-  div.addEventListener("click", function (e) {
-    document.querySelectorAll(".active-li").forEach(active => {
-      active.classList.remove("active-li");
-    });
-    this.classList.add("active-li");
-  });
-});
+
 
 
 //modal window for the gallery
