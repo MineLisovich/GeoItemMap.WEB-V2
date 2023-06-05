@@ -7,4 +7,4 @@ import '../sass/components/_modals.scss'
 import '../sass/pages/_footer.scss'
 import '../sass/pages/_header.scss'
 import '../sass/pages/_sidebarmap.scss'
-
+import '../sass/pages/_navbar.scss'

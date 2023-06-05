@@ -210,3 +210,15 @@ $('#small-select2-options-multiple-field_ntp').select2({
     });
 
 
+
+//$(function () {
+//    const $oIcon = $(".o-icon");
+//    const $btnFooter = $("btn");
+//    const $parksProcesSmall = $(".parks-process-small");
+//    $oIcon.on('click', function () {
+//        $parksProcesSmall.removeClass("d-none");
+//    });
+//    $btnFooter.on('click', function () {
+//        $parksProcesSmall.toggleClass("d-none");
+//    });
+//});

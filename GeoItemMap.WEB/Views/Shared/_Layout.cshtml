@@ -18,22 +18,14 @@
 <body>
     <div id="main-container">
         @await Html.PartialAsync("_HeaderPartial")
-    <!--header area -->
     <div id="itsystem-container">
-
-  
-        
-    <!-- End header area -->
+            @await Html.PartialAsync("_NavbarPartial")
     @RenderBody()
         </div>
-    <!-- footer top area -->
   @*  @await Html.PartialAsync("_FooterPartial")*@
-    <!-- End footer bottom area -->
-
     </div>
-
-    <script src="~/bundle/JSModul.bundle.js"></script>
-   @* <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>*@
+    
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="~/bundle/JSModul.bundle.js"></script>
 </body>
 </html>
