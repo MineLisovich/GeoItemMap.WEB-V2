@@ -70,7 +70,10 @@
             hasBalloon: true
         });
 
-        var circleLayout = ymaps.templateLayoutFactory.createClass('<div class="o-icon"><div class="parks-process-small"></div></div>');
+
+
+
+        var circleLayout = ymaps.templateLayoutFactory.createClass('<div class="o-icon"><div class="parks-process-small d-none"></div></div>');
         // получение координат для меток из бд
         $.ajax({
             url: 'https://localhost:7215/Home/GetCoordinates',
@@ -142,6 +145,26 @@
                     myMap.setBounds(clusterer.getBounds(), {
                         checkZoomRange: true
                     });
+
+                    myGeoObject.events
+                        .add('mouseenter', function (e) {
+                            if (element.geoType == 0) {
+                               // var element123 = this.getParentElement().getElementsByClassName('parks-process-small')[0];
+                                console.log(element.id);
+                                const $parksProcessSmall = $(".parks-process-small");
+                                $parksProcessSmall.removeClass("d-none");
+                            }
+                            
+                           
+                        })
+                        .add('mouseleave', function (e) {
+                            if (element.geoType == 0) {
+                                const $parksProcessSmall = $(".parks-process-small");
+                                $parksProcessSmall.toggleClass("d-none");
+                            }
+                           
+                        });
+
 
                     myGeoObject.events.add('click', function () {
 
@@ -383,6 +406,7 @@
                 const $buttonLeft = $(".window-side-button_left");
                 const $childContainer = $(".window-child-container");
                 const $closeBtn = $(".window-side-button");
+           // const $parksProcessSmall = $(".parks-process-small");
 
                 $windowbar.toggleClass("active");
                 $windowChild.toggleClass("active");
@@ -398,6 +422,8 @@
                     $windowChild.removeClass("active");
                 $("#window-container").empty();
                   $windowBlock.toggleClass("d-none");
+               
+                   // $parksProcessSmall.add("d-none");
                 });
 
                 $closeBtn.click(function () {
@@ -412,6 +438,7 @@
               });
     });
    }
+
 
  // получение данных по id
     $(document).ready(function () {
@@ -471,9 +498,6 @@
 <div id="YMapsID"></div>
 
 <!-- end map -->
-
-
-
 
 <!-- left sidebar map -->
     <div class="sidebarmap">
@@ -614,14 +638,10 @@
     </div>
 <!-- end <!-- left sidebar map -->
 
-
     <!-- window -->
 <div class="window-block d-none"></div>
     <div class="window">
         <div class="window-container" id="window-container">
-
-         
-       
        
         </div>
         <!-- window-container -->
@@ -673,8 +693,6 @@
     }
    </script>
 <!-- end modal window for the gallery -->
-
-
 
 <!--navbar scripts-->
 <script>

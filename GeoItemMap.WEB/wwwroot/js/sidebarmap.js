@@ -193,3 +193,14 @@ $('#small-select2-options-multiple-field_ntp').select2({
     });
 
 
+$(function () {
+const $oIcon = $(".o-icon");
+const $parksProcessSmall = $(".parks-process-small");
+const $closeWindow = $(".close-window");
+$oIcon.on('click', function () {
+    $parksProcessSmall.removeClass("d-none");
+    });
+$closeWindow.on('click', function () {
+        $parksProcessSmall.toggleClass("d-none");
+    });
+});
