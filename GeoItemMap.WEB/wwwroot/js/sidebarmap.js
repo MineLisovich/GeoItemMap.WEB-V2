@@ -35,123 +35,9 @@
   });
 })(jQuery); 
 
-////window call 
-//$(function () {
-//const $btnToggle = $(".info_item-data");
-//const $closeWindow = $(".close-window");
-//const $windowbar = $(".window");
-//const $windowChild = $(".window-child");
-//$btnToggle.on('click',function(){
-//$windowbar.toggleClass("active");
-//$windowChild.toggleClass("active");
-//});
-//    let hasClass = $('.window').hasClass('active');
-
-//    if (!hasClass) {
-//        $("#window-container").empty();
-//    }
-//$closeWindow.on('click',function(){
-//    $windowbar.removeClass("active");
-//    $windowChild.removeClass("active");
-//    $("#window-container").empty();
-//});
-//const $btnToggleChild = $(".info_item-data");
-//const $closeBtn = $(".window-side-button");
-//$btnToggleChild.on('click',function(){
-//$windowChild.addClass("active");
-//});
-//$closeBtn.on('click',function(){
-//$windowChild.removeClass("active");
-//});
-//});
-
-
-////dark window background
-//$(function () {
-//    const $btnToggle = $(".info_item-data");
-//    const $closeWindow = $(".close-window");
-//    const $windowBlock = $(".window-block");
-//    $btnToggle.on('click', function () {
-//        $windowBlock.removeClass("d-none");
-//    });
-//    $closeWindow.on('click', function () {
-//        $windowBlock.toggleClass("d-none");
-//    });
-//});
-
-////window-button call
-//$(function () {
-//  const $buttonLeft = $(".window-side-button_left");
-//  const $childContainer = $(".window-child-container");
-//  const $closeBtn = $(".window-side-button");
-//  const $windowChild = $(".window-child");
-
-//  $buttonLeft.on('click',function(){
-//    $windowChild.animate({
-//      width: 0
-//    }, 200);
-//    $buttonLeft.hide();
-//    $childContainer.hide();
-//  });
-
-//    $closeBtn.on('click', function () {
-//    $windowChild.toggleClass("active");
-//    $windowChild.animate({
-//      width: 300
-//    }, 250);
-//    $buttonLeft.show();
-//    $childContainer.show();
-//  });
-//});
-
-
-//anchors window
 
 
 
-
-//modal window for the gallery
-//function openModal() {
-//    document.getElementById("modal-gallery").style.display = "block";
-//    showSlides(slideIndex); // Показать первый слайд при открытии модального окна
-//  }
-
-//  function closeModal() {
-//    document.getElementById("modal-gallery").style.display = "none";
-//  }
-
-//  var slideIndex = 1;
-//  showSlides(slideIndex);
-
-//  function plusSlides(n) {
-//    showSlides(slideIndex += n);
-//  }
-
-//  function currentSlide(n) {
-//    showSlides(slideIndex = n);
-//  }
-
-//  function showSlides(n) {
-//    var i;
-//    var slides = document.getElementsByClassName("slides-gallery");
-//    var dots = document.getElementsByClassName("demo");
-//    var captionText = document.getElementById("caption");
-//    if (n > slides.length) {
-//      slideIndex = 1;
-//    }
-//    if (n < 1) {
-//      slideIndex = slides.length;
-//    }
-//    for (i = 0; i < slides.length; i++) {
-//      slides[i].style.display = "none";
-//    }
-//    for (i = 0; i < dots.length; i++) {
-//      dots[i].className = dots[i].className.replace(" active", "");
-//    }
-//    slides[slideIndex - 1].style.display = "block";
-//    dots[slideIndex - 1].className += " active";
-//    captionText.innerHTML = dots[slideIndex - 1].alt;
-//  }
 
 
   //multiple-select 
@@ -204,3 +90,50 @@ $closeWindow.on('click', function () {
         $parksProcessSmall.toggleClass("d-none");
     });
 });
+
+
+//СЛАЙДЕР НАЧАЛО
+
+//modal window for the gallery
+function openModal() {
+    document.getElementById("modal-gallery").style.display = "block";
+    showSlides(slideIndex); // Показать первый слайд при открытии модального окна
+}
+
+function closeModal() {
+    document.getElementById("modal-gallery").style.display = "none";
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("slides-gallery");
+    var dots = document.getElementsByClassName("demo");
+    var captionText = document.getElementById("caption");
+    if (n > slides.length) {
+        slideIndex = 1;
+    }
+    if (n < 1) {
+        slideIndex = slides.length;
+    }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+    captionText.innerHTML = dots[slideIndex - 1].alt;
+}
+// СЛАЙДЕР КОНЕЦ
