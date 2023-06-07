@@ -1,5 +1,4 @@
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <style>
     #YMapsID {
         width: 100%;
@@ -73,7 +72,8 @@
 
 
 
-        var circleLayout = ymaps.templateLayoutFactory.createClass('<div class="o-icon"><div class="parks-process-small d-none"></div></div>');
+        
+        
         // получение координат для меток из бд
         $.ajax({
             url: 'https://localhost:7215/Home/GetCoordinates',
@@ -85,14 +85,17 @@
                   //console.log(result)
                 result.geoItems.forEach(element => {
                     // Технопарки
+                    
                     if (element.geoType == 0) {
+                        var circleLayout = ymaps.templateLayoutFactory.createClass(`<div class="o-icon"><div class="parks-process-small d-none" id='${element.id}'></div></div>`);
+                       
                         var myGeoObject = new ymaps.GeoObject({
                             geometry: {
                                 type: "Point", // тип геометрии - точка
                                 coordinates: [element.x, element.y], // координаты точки
                             },
                         }, {
-                            //iconColor: "#33FF00"
+                            iconColor: "#33FF00",
                             iconLayout: circleLayout,
                            //iconImageHref: '../../icons/parks-actual.png',
                            //iconImageSize: [38, 38],
@@ -146,30 +149,29 @@
                         checkZoomRange: true
                     });
 
-                    myGeoObject.events
-                        .add('mouseenter', function (e) {
-                            if (element.geoType == 0) {
-                               // var element123 = this.getParentElement().getElementsByClassName('parks-process-small')[0];
-                                console.log(element.id);
-                                const $parksProcessSmall = $(".parks-process-small");
-                                $parksProcessSmall.removeClass("d-none");
-                            }
-                            
+                    //myGeoObject.events
+                    //    .add('mouseenter', function (e) {
+                    //        if (element.geoType == 0) {
+                    //            const $parksProcessSmall = $(`#${element.id}`);
+                    //            $parksProcessSmall.removeClass("d-none");
+                    //        }  
+                    //    })
+                    //    .add('mouseleave', function (e) {
+                    //        if (element.geoType == 0) {
+                    //            const $parksProcessSmall = $(`#${element.id}`);
+                    //            $parksProcessSmall.toggleClass("d-none");
+                    //        }
                            
-                        })
-                        .add('mouseleave', function (e) {
-                            if (element.geoType == 0) {
-                                const $parksProcessSmall = $(".parks-process-small");
-                                $parksProcessSmall.toggleClass("d-none");
-                            }
-                           
-                        });
+                    //    });
 
 
                     myGeoObject.events.add('click', function () {
 
                         // Технопарки
                         if (element.geoType == 0) {
+                            const $parksProcessSmall = $(`#${element.id}`);
+                            $parksProcessSmall.removeClass("d-none");
+
                             var url = "@Url.Action("GetPartialTechParck", "Home")";
                             var wrapperid = "#window-container";
                             AjaxAxtion(url, element.id, wrapperid);
@@ -406,7 +408,7 @@
                 const $buttonLeft = $(".window-side-button_left");
                 const $childContainer = $(".window-child-container");
                 const $closeBtn = $(".window-side-button");
-           // const $parksProcessSmall = $(".parks-process-small");
+                const $parksProcessSmall = $(".parks-process-small");
 
                 $windowbar.toggleClass("active");
                 $windowChild.toggleClass("active");
@@ -423,7 +425,7 @@
                 $("#window-container").empty();
                   $windowBlock.toggleClass("d-none");
                
-                   // $parksProcessSmall.add("d-none");
+                  $parksProcessSmall.addClass("d-none");
                 });
 
                 $closeBtn.click(function () {
@@ -482,7 +484,10 @@
                 {
                     $(wrapperid).empty();
                     $(wrapperid).append(data);
+                    const $parksProcessSmall = $(`#${id}`);
+                    $parksProcessSmall.removeClass("d-none");
                     top_popup();
+
                 },
                 error: function (xhr, ajaxOptions, thrownError)
                 {
@@ -649,7 +654,7 @@
     <!-- end window -->
 
 <!--  modal window for the gallery -->
-   <script>
+@*   <script>
     function openModal() {
         document.getElementById("modal-gallery").style.display = "block";
         showSlides(slideIndex); // Показать первый слайд при открытии модального окна
@@ -691,57 +696,5 @@
         dots[slideIndex - 1].className += " active";
         captionText.innerHTML = dots[slideIndex - 1].alt;
     }
-   </script>
+   </script>*@
 <!-- end modal window for the gallery -->
-
-<!--navbar scripts-->
-<script>
-    //Сравнение
-    function comparison_function() {
-        document.getElementById("comparison-popup").classList.toggle("show_block");
-        document.getElementById("comparison-tool").classList.toggle("show_background");
-    }
-
-    //О проекте
-    function aboutProject() {
-        document.getElementById("new-about-cont").classList.toggle("show_block");
-        console.log("fwsfwsf")
-    }
-
-    //Закрыть окно О проекте
-    $('.about_project_close_button').click(function () {
-        document.getElementById("new-about-cont").classList.remove("show_block");
-    }
-    );
-
-
-    //Инструменты
-    function measurementTools() {
-        document.getElementById("itsystem-measure-menu").classList.toggle("show_block");
-    }
-
-    window.onclick = function (event) {
-        if (!event.target.matches('.itsystem-curr-lang')) {
-            var dropdowns = document.getElementsByClassName("itsystem-lang-menu");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show_block')) {
-                    openDropdown.classList.remove('show_block');
-                }
-            }
-        }
-
-        if (!event.target.matches('.itsystem-tool-button')) {
-            var dropdowns = document.getElementsByClassName("itsystem-measure-menu");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show_block')) {
-                    openDropdown.classList.remove('show_block');
-                }
-            }
-        }
-    }
-</script>
-<!-- end navbar scripts-->
