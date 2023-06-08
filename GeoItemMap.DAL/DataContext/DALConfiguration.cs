@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace GeoItemMap.DAL.DataContext
 {
     /// <summary>
-    /// Класс нужен для того чтобы взять строку подключения из  conString.json
+    /// Класс нужен для того чтобы взять строку подключения из  appsettings.json
     /// </summary>
     public class DALConfiguration
     {

@@ -39,6 +39,8 @@ namespace GeoItemMap.WEB.Controllers
           
         }
 
+     
+
         [HttpPost]
         public async Task<JsonResult> GetCoordinates()
         {
