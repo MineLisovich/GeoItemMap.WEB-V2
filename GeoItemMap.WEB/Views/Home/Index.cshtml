@@ -8,126 +8,26 @@
     }
 </style>
 <script type="text/javascript">
-    var optionsTemplate = [].join('');
-    ymaps.ready(init);
-    function init() {
-         var RegionControlLayout = ymaps.templateLayoutFactory.createClass(optionsTemplate, {}),
-        // Наследуем класс нашего контрола от ymaps.control.Button.
-         RegionControl = ymaps.util.defineClass(function (parameters) {
-            RegionControl.superclass.constructor.call(this, parameters);
-        }, ymaps.control.Button, {
-            onAddToMap: function (map) {
-                RegionControl.superclass.onAddToMap.call(this, map);
-                this.setupStateMonitor();
-                this.loadRegions(this.state.get('values'));
-            },
-
-            onRemoveFromMap: function (map) {
-                map.geoObjects.remove(this.regions);
-                this.clearStateMonitor();
-                RegionControl.superclass.onRemoveFromMap.call(this, map);
-            },
-
-            setupStateMonitor: function () {
-                this.stateMonitor = new ymaps.Monitor(this.state);
-                this.stateMonitor.add('values', this.handleStateChange, this);
-            },
-
-            clearStateMonitor: function () {
-                this.stateMonitor.removeAll();
-            },
-
-            handleStateChange: function (params) {
-                this.loadRegions(params);
-            },
-
-            handleRegionsLoaded: function (res) {
-                if (this.regions) {
-                    map.geoObjects.remove(this.regions);
-                }
-
-                this.regions = new ymaps.ObjectManager();
-                this.regions
-                    .add(res.features.map(function (feature) {
-                        feature.id = feature.properties.iso3166;
-                        feature.options = {
-                            strokeColor: '#ffffff',
-                            strokeOpacity: 1,
-                                fillColor: '#336897',
-                            fillOpacity: 0.9,
-                            hintCloseTimeout: 0,
-                            hintOpenTimeout: 0
-                        };
-                        return feature;
-                    }));
-                map.geoObjects.add(this.regions);
-
-                this.selectedRegionId = '';
-                this.regions.events
-                    .add('mouseenter', function (e) {
-                        var id = e.get('objectId');
-                        this.regions.objects.setObjectOptions(id, { strokeWidth: 2 });
-                    }, this)
-                    .add('mouseleave', function (e) {
-                        var id = e.get('objectId');
-                        if (this.selectedRegionId !== id) {
-                            this.regions.objects.setObjectOptions(id, { strokeWidth: 1 });
-                        }
-                    }, this);
-               
-                this.getMap().setBounds(
-                    this.regions.getBounds(),
-                    { checkZoomRange: true }
-                );
-            },
-
-            loadRegions: function (params) {
-                this.disable();
-                return ymaps.borders.load(params.region, params)
-                    .then(this.handleRegionsLoaded, this)
-                    .always(this.enable, this);
-            }
-        }),
-
-            map = new ymaps.Map('YMapsID', {
+    ymaps.ready(function () {
+        var myMap = new ymaps.Map(
+            "YMapsID",
+            {
                 center: [53.90, 27.56],
                 zoom: 1,
                 controls: []
-            }, {
+            },
+            {
                 maxZoom: 17,
                 restrictMapArea: [
-                      [58.486077093111334, 15.89679288089655],
-                      [49.77185323695446, 39.58331354601873]
-                     ],
-            }),
-
-            // Создадим экземпляр RegionControl.
-            regionControl = new RegionControl({
-                state: {
-                    enabled: true,
-                    values: {
-                        region: 'BY',
-                        lang: 'ru',
-                        quality: '3'
-                    }
-                },
-                options: {
-                    layout: RegionControlLayout
-                }
-
+                    [58.486077093111334, 15.89679288089655],
+                    [49.77185323695446, 39.58331354601873]
+                ]
             });
-
-        // Добавим контрол на карту.
-        map.controls.add(regionControl);
-        // Узнавать о изменениях параметров RegionControl можно следующим образом.
-        regionControl.events.add('statechange', function (e) {
-            console.log(e.get('target').get('values'));
-        });
-
+  
         // Загрузим регионы.
         ymaps.borders.load('001', {
             lang: 'ru',
-            quality: 3
+            quality: 2
         }).then(function (result) {
 
             // Создадим многоугольник, который будет скрывать весь мир, кроме заданной страны.
@@ -140,22 +40,21 @@
                     [85, -179.99]
                 ]
             ], {}, {
-                fillColor: '#648baf',
+                fillColor: '#B0B0B0',
                 fillOpacity: 0.5,
                 strokeWidth: 1.5,
-                strokeColor: '#ffffff',
                 coordRendering: 'straightPath'
             });
             // Найдём страну по её iso коду.
-            var region = result.features.filter(function (feature) { return feature.properties.iso3166 == 'BY'; })[0];         
+            var region = result.features.filter(function (feature) { return feature.properties.iso3166 == 'BY'; })[0];
             var masks = region.geometry.coordinates;
             masks.forEach(function (mask) {
                 background.geometry.insert(1, mask);
             });
             // Добавим многоугольник на карту.
-            map.geoObjects.add(background);
-
+            myMap.geoObjects.add(background);
         })
+
         // создание кластера
         clusterer = new ymaps.Clusterer({
             // Макет метки кластера pieChart.
@@ -169,6 +68,12 @@
             // Определяет наличие поля balloon.
             hasBalloon: true
         });
+
+
+
+
+        
+        
         // получение координат для меток из бд
         $.ajax({
             url: 'https://localhost:7215/Home/GetCoordinates',
@@ -177,10 +82,13 @@
             contentType: 'application/json; charset=utf-8',
             async: true,
             success: function (result) {
+                  //console.log(result)
                 result.geoItems.forEach(element => {
                     // Технопарки
+                    
                     if (element.geoType == 0) {
                         var circleLayout = ymaps.templateLayoutFactory.createClass(`<div class="o-icon"><div class="parks-process-small d-none" id='${element.id}'></div></div>`);
+                       
                         var myGeoObject = new ymaps.GeoObject({
                             geometry: {
                                 type: "Point", // тип геометрии - точка
@@ -189,8 +97,10 @@
                         }, {
                             iconColor: "#33FF00",
                             iconLayout: circleLayout,
-                            pane: 'overlaps',
-                            iconImageOffset: [0, 0],
+                           //iconImageHref: '../../icons/parks-actual.png',
+                           //iconImageSize: [38, 38],
+                           pane:'overlaps',
+                           iconImageOffset: [0, 0],
                         });
                     }
                     //Центр трансфера технологий
@@ -233,9 +143,9 @@
                     });
 
                     clusterer.add(myGeoObject);
-                    map.geoObjects.add(clusterer);
+                    myMap.geoObjects.add(clusterer);
 
-                    map.setBounds(clusterer.getBounds(), {
+                    myMap.setBounds(clusterer.getBounds(), {
                         checkZoomRange: true
                     });
 
@@ -244,17 +154,19 @@
                     //        if (element.geoType == 0) {
                     //            const $parksProcessSmall = $(`#${element.id}`);
                     //            $parksProcessSmall.removeClass("d-none");
-                    //        }
+                    //        }  
                     //    })
                     //    .add('mouseleave', function (e) {
                     //        if (element.geoType == 0) {
                     //            const $parksProcessSmall = $(`#${element.id}`);
                     //            $parksProcessSmall.toggleClass("d-none");
                     //        }
-
+                           
                     //    });
 
+
                     myGeoObject.events.add('click', function () {
+
                         // Технопарки
                         if (element.geoType == 0) {
                             const $parksProcessSmall = $(`#${element.id}`);
@@ -284,9 +196,11 @@
                             var wrapperid = "#window-container";
                             AjaxAxtion(url, element.id, wrapperid);
                         }
+
                     });
 
                     function AjaxAxtion(url, id, wrapperid) {
+
                         $.ajax({
                             cache: false,
                             type: "GET",
@@ -302,40 +216,49 @@
                                 alert('Ошибка загрузки таблицы!');
                             }
                         });
+
                     }
                     // фильтрация меток
                     $(document).ready(function () {
                         const $srtBTN_tech = $("#filtr_teh_ctt_bif");
                         $srtBTN_tech.click(function () {
                             clusterer.add(myGeoObject);
-                            map.geoObjects.add(clusterer);
+                            myMap.geoObjects.add(clusterer);
                             if ($('#filtr_techparck').is(':checked')) {
+
+
                                 if (element.geoType != 0) {
                                     clusterer.remove(myGeoObject);
                                 }
+
                             }
                             if ($('#filtr_ctt').is(':checked')) {
+
+
                                 if (element.geoType != 1) {
                                     clusterer.remove(myGeoObject);
                                 }
                             }
                             if ($('#filtr_techparck').is(':checked') && $('#filtr_ctt').is(':checked')) {
                                 clusterer.add(myGeoObject);
-                                map.geoObjects.add(clusterer);
+                                myMap.geoObjects.add(clusterer);
                                 if (element.geoType != 0 && element.geoType != 1) {
                                     clusterer.remove(myGeoObject);
                                 }
                             }
+
                             if (!$('#filtr_techparck').is(':checked') && !$('#filtr_ctt').is(':checked') && !$('#filtr_bif').is(':checked')) {
                                 clusterer.add(myGeoObject);
-                                map.geoObjects.add(clusterer);
+                                myMap.geoObjects.add(clusterer);
                             }
+                            //filtr_bif
                         });
                     });
                 });
             }
         });
-    }
+    });// КОНЕЦ СОЗДАНИИ КАРТЫ
+
  // При нажатии на вкладку "Субъекты инновационной инфраструктуры"
     $(document).ready(function () {
         const $showDataItem_techpar_ctt = $("#Item_techparck_ctt");
@@ -351,6 +274,7 @@
                     contentType: 'application/json; charset=utf-8',
                     async: true,
                     success: function (result) {
+                        //  console.log(result)
                         // Технопарки
                         result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
                         // ЦТТ
@@ -388,9 +312,10 @@
                 $('.sidebarmap-accordion_item').removeClass('active_block');
                 $("#info_object_tehnoparck_ctt").empty();
             }
+
+
         });
     });
-
 // При нажатии на вкладку "Инновационные проекты"
     $(document).ready(function () {
         const $showDataItem_inn = $("#Item_inn");
@@ -406,6 +331,7 @@
                     contentType: 'application/json; charset=utf-8',
                     async: true,
                     success: function (result) {
+                        //  console.log(result)
                         // ИНН
                         result.innProject.forEach(itemInnProject => { $("#info_object_Inn").append(getInfoInn(itemInnProject)); })
                     }
@@ -429,7 +355,6 @@
             }
         });
     });
-
  // При нажатии на вкладку "Научно-технологические  программы"
     $(document).ready(function () {
         const $showDataItem_ntp = $("#Item_ntp");
@@ -466,6 +391,7 @@
             }
             // При закртии меню происходит очистка div, чтобы избежать дублирования информации
             else {
+
                 $('.sidebarmap-accordion_item').removeClass('active_block');
                 $("#info_object_ntp").empty();
             }
@@ -507,14 +433,14 @@
                     $buttonLeft.show();
                     $childContainer.show();
                 });
-
                $buttonLeft.on('click',function(){
                     $windowChild.animate({width: 0}, 200);
                     $buttonLeft.hide();
                     $childContainer.hide();
-               });
+              });
     });
- }
+   }
+
 
  // получение данных по id
     $(document).ready(function () {
@@ -538,7 +464,8 @@
                 break;
                 case 'NtpHeader':
                     url = "@Url.Action("GetPartialNtpProject", "Home")";
-                    wrapperid = "#window-container";                      
+                    wrapperid = "#window-container";
+                      
                 break;
             }
             if (url != "") {
@@ -567,11 +494,15 @@
                     alert('Ошибка загрузки данных!');
                 }
             });
+
             }
          });
 </script>
 
+<!-- map -->
 <div id="YMapsID"></div>
+
+<!-- end map -->
 
 <!-- left sidebar map -->
     <div class="sidebarmap">
@@ -584,6 +515,7 @@
                         Субъекты инновационной <br> инфраструктуры
                     </h3>
                 <div class="info">
+
                         <div class="info_panel" id="filtr_teh_ctt_bif">
                         <div class="info_panel-switchers d-flex justify-content-center">
                             <input type="checkbox" id="filtr_techparck">
@@ -600,11 +532,11 @@
                                         placeholder="Выберите" multiple>
                                     <option>Минск</option>
                                     <option>Минская область</option>
-                                    <option>Могилевская область</option>
-                                    <option>Брестская область</option>
+                                    <option >Могилевская область</option>
+                                    <option >Брестская область</option>
                                     <option>Гомельская область</option>
-                                    <option>Гродненская область</option>
-                                    <option>Витебская область</option>
+                                    <option >Гродненская область</option>
+                                    <option>Витебская  область</option>
                                 </select>
                             </div>
                         </div>
@@ -613,9 +545,9 @@
                         <span class="sort-icon"></span>
                         <span class="sort-button">Название</span>
                     </div>
-                        <div class="info_object" id="info_object_tehnoparck_ctt">
+                    <div class="info_object" id="info_object_tehnoparck_ctt">
                           
-                        </div>
+                    </div>
                     </div>
                 </section>
                  <!--КОНЕЦ Субъекты инновационной инфраструктуры -->
@@ -644,7 +576,7 @@
                                     <option>Брестская область</option>
                                     <option>Гомельская область</option>
                                     <option>Гродненская область</option>
-                                    <option>Витебская область</option>
+                                    <option>Витебская  область</option>
                                 </select>
                             </div>
                         </div>
@@ -654,10 +586,13 @@
                         <span class="sort-icon"></span>
                         <span class="sort-button" data-field="name">Название</span>
                     </div>
+
+                        <!-- info_panel -->
                         <div class="info_object" id="info_object_Inn">
 
                         </div>
                     </div>
+                    <!-- info -->
                 </section>
                 <!--КОНЕЦ Инновационные проекты -->
 
@@ -685,7 +620,7 @@
                                     <option>Брестская область</option>
                                     <option>Гомельская область</option>
                                     <option>Гродненская область</option>
-                                    <option>Витебская область</option>
+                                    <option>Витебская  область</option>
                                 </select>
                             </div>
                         </div>
@@ -694,15 +629,17 @@
                         <span class="sort-icon"></span>
                         <span class="sort-button">Название</span>
                     </div>
-                        <div class="info_object" id="info_object_ntp">
+                    <!-- info_panel -->
+                    <div class="info_object" id="info_object_ntp">
 
-                        </div>
+                    </div>
                 </div>
             </section>
              <!--КОНЕЦ Научно-технологические программы -->
             </div>
             <!-- end accordion -->
         </div>
+
     </div>
 <!-- end <!-- left sidebar map -->
 
