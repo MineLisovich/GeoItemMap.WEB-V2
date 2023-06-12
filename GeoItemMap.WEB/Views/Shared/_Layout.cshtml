@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
@@ -6,36 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>geoportal</title>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
     
 @*    <link rel="stylesheet" href="~/css/vendors/bootstrap.min.css" />*@
     <script src="https://api-maps.yandex.ru/2.1/?apikey=ba1ff065-3dae-4e01-931f-f1cf08bd2f1b&lang=ru_RU" type="text/javascript"></script>
     <script src="~/bundle/ScssModul.bundle.js"></script>
   <script src ="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
    
 </head>
 <body>
     <div id="main-container">
-    <!--header area -->
+        @await Html.PartialAsync("_HeaderPartial")
     <div id="itsystem-container">
-
-    @await Html.PartialAsync("_HeaderPartial")
-        
-    <!-- End header area -->
+            @await Html.PartialAsync("_NavbarPartial")
     @RenderBody()
         </div>
-    <!-- footer top area -->
-    @await Html.PartialAsync("_FooterPartial")
-    <!-- End footer bottom area -->
-
+  @*  @await Html.PartialAsync("_FooterPartial")*@
     </div>
-
-  @*  
-    <script src="~/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/header.js"></script>
-    <script src="~/js/jquery.js"></script>
-    <script src="~/js/sidebarmap.js"></script>*@
+    
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="~/bundle/JSModul.bundle.js"></script>
-   
 </body>
 </html>

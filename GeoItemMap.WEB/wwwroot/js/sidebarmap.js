@@ -1,4 +1,5 @@
-// active accordion and variable width 
+
+//active accordion and variable width 
 (function ($) {
   const accordionItem = $('.sidebarmap-accordion_item');
   const initialWidth = accordionItem.width(); 
@@ -10,7 +11,7 @@
 
     currentItem.toggleClass('active_block');
 
-    currentItem.css('overflow', 'hidden')
+    currentItem.css('overflow', 'scroll')
       .siblings('.active_block')
       .removeClass('active_block')
       .children('.info')
@@ -34,40 +35,52 @@
   });
 })(jQuery); 
 
-// window 
-
-$(document).ready(function () {
+//window call 
+$(function () {
 const $btnToggle = $(".info_item-data");
 const $closeWindow = $(".close-window");
 const $windowbar = $(".window");
 const $windowChild = $(".window-child");
-$btnToggle.click(function () {
+$btnToggle.on('click',function(){
 $windowbar.toggleClass("active");
 $windowChild.toggleClass("active");
 });
-$closeWindow.click(function () {
+$closeWindow.on('click',function(){
 $windowbar.removeClass("active");
 $windowChild.removeClass("active");
 });
 const $btnToggleChild = $(".info_item-data");
 const $closeBtn = $(".window-side-button");
-$btnToggleChild.click(function () {
+$btnToggleChild.on('click',function(){
 $windowChild.addClass("active");
 });
-$closeBtn.click(function () {
+$closeBtn.on('click',function(){
 $windowChild.removeClass("active");
 });
 });
 
-// window-button 
 
-$(document).ready(function () {
+//dark window background
+$(function () {
+    const $btnToggle = $(".info_item-data");
+    const $closeWindow = $(".close-window");
+    const $windowBlock = $(".window-block");
+    $btnToggle.on('click', function () {
+        $windowBlock.removeClass("d-none");
+    });
+    $closeWindow.on('click', function () {
+        $windowBlock.toggleClass("d-none");
+    });
+});
+
+//window-button call
+$(function () {
   const $buttonLeft = $(".window-side-button_left");
   const $childContainer = $(".window-child-container")
   const $closeBtn = $(".window-side-button");
   const $windowChild = $(".window-child");
 
-  $buttonLeft.click(function () {
+  $buttonLeft.on('click',function(){
     $windowChild.animate({
       width: 0
     }, 200);
@@ -75,7 +88,7 @@ $(document).ready(function () {
     $childContainer.hide();
   });
 
-  $closeBtn.click(function () {
+    $closeBtn.on('click', function () {
     $windowChild.toggleClass("active");
     $windowChild.animate({
       width: 300
@@ -84,6 +97,7 @@ $(document).ready(function () {
     $childContainer.show();
   });
 });
+
 
 //anchors window
 document.addEventListener("DOMContentLoaded", function () {
@@ -102,8 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// active element on click li
-
+//active element on click li
 document.querySelectorAll("ol li > div").forEach(div => {
   div.addEventListener("click", function (e) {
     document.querySelectorAll(".active-li").forEach(active => {
@@ -114,8 +127,7 @@ document.querySelectorAll("ol li > div").forEach(div => {
 });
 
 
-// modal window for the gallery
-
+//modal window for the gallery
 function openModal() {
     document.getElementById("modal-gallery").style.display = "block";
     showSlides(slideIndex); // Показать первый слайд при открытии модального окна
@@ -157,3 +169,56 @@ function openModal() {
     dots[slideIndex - 1].className += " active";
     captionText.innerHTML = dots[slideIndex - 1].alt;
   }
+
+
+  //multiple-select 
+$('#small-select2-options-multiple-field').select2({
+    theme: "bootstrap-5",
+    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+    placeholder: $(this).data('placeholder'),
+    closeOnSelect: false,
+    selectionCssClass: 'select2--small',
+    dropdownCssClass: 'select2--small',
+});
+$('#small-select2-options-multiple-field_inn').select2({
+    theme: "bootstrap-5",
+    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+    placeholder: $(this).data('placeholder'),
+    closeOnSelect: false,
+    selectionCssClass: 'select2--small',
+    dropdownCssClass: 'select2--small',
+});
+$('#small-select2-options-multiple-field_ntp').select2({
+    theme: "bootstrap-5",
+    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+    placeholder: $(this).data('placeholder'),
+    closeOnSelect: false,
+    selectionCssClass: 'select2--small',
+    dropdownCssClass: 'select2--small',
+});
+
+
+//filter name
+    $(".sort-button").click(function () {
+        if ($(this).hasClass("actv")) {
+            $(this).removeClass("actv").addClass("desc");
+        }
+        else
+        {
+            $(this).removeClass("desc").addClass("actv");
+        }
+    });
+
+
+
+//$(function () {
+//    const $oIcon = $(".o-icon");
+//    const $btnFooter = $("btn");
+//    const $parksProcesSmall = $(".parks-process-small");
+//    $oIcon.on('click', function () {
+//        $parksProcesSmall.removeClass("d-none");
+//    });
+//    $btnFooter.on('click', function () {
+//        $parksProcesSmall.toggleClass("d-none");
+//    });
+//});

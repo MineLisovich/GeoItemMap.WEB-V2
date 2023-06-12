@@ -7,10 +7,12 @@
    
     width: 410px;
     min-height: 187px;
-    bottom: 10px;
+    bottom: 35px;
     height: auto;
+    z-index:0;
     transition-property: width;
     transition-duration: .3s;
+    pointer-events:none;
 
     &-container {
         position: relative;
@@ -30,6 +32,8 @@
     margin-left: 20px;
     max-width: 300px;
     height: auto;
+    pointer-events: none;
+
 
     &_item {
         /* accordion sections */
@@ -40,6 +44,7 @@
         max-width: 380px;
         transition: all 0.3s ease;
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.4);
+        pointer-events: all;
     }
 
     .title_block {
@@ -50,6 +55,7 @@
         color: $accordion-text;
         min-height: min-content;
         cursor: pointer;
+        user-select: none;
         background: $accordion-back;
         text-transform: uppercase;
         padding: 10px 55px 10px 15px;
@@ -82,13 +88,13 @@
         margin-top: -2px;
         background: $accordion-back;
         width: 100%;
-        overflow-y: scroll;
+
+        overflow-y: scroll !important;
         height: 600px;
 
 
         &::-webkit-scrollbar {
             width: 7px;
-            height: 100%;
         }
 
         &::-webkit-scrollbar-track {
@@ -105,6 +111,7 @@
 
         &_object {
             display: block;
+            background-color: #f7f7f7;
         }
 
         &_item {
@@ -150,7 +157,8 @@
                 margin-bottom: 4px;
                 line-height: 17px;
                 font-weight: 300;
-                font-size: 12px;
+                font-size: 11px;
+                margin-top: 2px;
             }
 
             &-area {
@@ -165,7 +173,12 @@
 
         &_panel {
             margin-top: 7px;
-            margin-bottom: 13px;
+
+            &-filter {
+                padding-top: 10px;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
 
             &::after {
                 content: "";
@@ -201,8 +214,24 @@
                 padding: 0 5px;
                 margin-right: 2px;
 
+
                 &.active {
                    background-color:red;
+
+                &:hover {
+                    background-color: #00a7e5;
+                    color: #fff;
+                }
+
+                &:focus {
+                    background-color: #00a7e5;
+                    color: #fff;
+                }
+
+                &:active {
+                    background-color: #00a7e5;
+                    color: #fff;
+
                 }
             }
         }
@@ -236,6 +265,25 @@
 .parks-actual-big {
     background-image: url(../../icons/transfer.svg);
     background-size: 34px 34px;
+}
+
+.window-block {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    z-index:1;
+}
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
 }
 
 .window {
@@ -281,6 +329,7 @@
 
     &.active {
         left: 80px;
+        z-index:2;
     }
 
     &-footer {
@@ -396,7 +445,7 @@
   right: 0;
   top: 0;
   text-align: center;
-  line-height: 52px;
+  line-height: 47px;
   font-size: 30px;
   cursor: pointer;
   transition: .3s;
@@ -560,75 +609,74 @@
 }
 
 .window-child {
-  position: absolute;
-  top: 87px;
-  bottom: 10px;
-  left: -850px;
-  width: 300px;
-  height: auto;
-  max-height: 750px;
-  background-color: $window-back;
-  transition: left 0.3s ease-in-out;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, .4);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: -850px;
+    width: 300px;
+    height: auto;
+    max-height: 750px;
+    background-color: $window-back;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, .4);
 
-  &.active {
-    // position: fixed;
-    left: 580px;
-  }
-
-  &-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow-y: scroll;
-    overflow-x: hidden;
-
-    &::-webkit-scrollbar {
-      width: 7px;
+    &.active {
+        // position: fixed;
+        left: 500px;
+        overflow:visible!important;
     }
 
-    &::-webkit-scrollbar-track {
-      background-color: #fff;
+    &-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        &::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: #fff;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(85, 88, 90, 0.5);
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(0, 167, 229, 0.4);
+        }
     }
 
-    &::-webkit-scrollbar-thumb {
-      background-color: rgba(85, 88, 90, 0.5);
+    &-viewport {
+        background: $window-back;
+        overflow-y: scroll;
+        height: 750px;
+
+        .overview {
+            right: 0;
+        }
     }
 
-    &::-webkit-scrollbar-thumb:hover {
-      background-color: rgba(0, 167, 229, 0.4);
+    ol li ol {
+        margin-top: 0;
     }
-  }
 
-  &-viewport {
-    background: $window-back;
-    overflow-y: scroll;
-    height: 750px;
-
-    .overview {
-      right: 0;
+    ol {
+        margin: 20px 10px 20px 10px;
+        counter-reset: item;
     }
-  }
 
-  ol li ol {
-    margin-top: 0;
-
-  }
-
-  ol {
-    margin: 20px 10px 20px 10px;
-    counter-reset: item;
-
-  }
-
-  li {
-    display: block;
-    position: relative;
-    font-size: 12.5px;
-    font-weight: 500;
-    color: $accordion-text;
-    cursor: pointer;
-  }
+    li {
+        display: block;
+        position: relative;
+        font-size: 12.5px;
+        font-weight: 500;
+        color: $accordion-text;
+        cursor: pointer;
+    }
 }
 
 .window-side-button_left {
@@ -661,4 +709,137 @@ li>div:before {
 
 li>div:hover {
   color: $active-text;
+}
+
+.sort-bar {
+    margin-top: 1px;
+    height: 28px;
+    line-height: 25px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 380px;
+    background-color: #f7f7f7;
+
+}
+.sort-button {
+    color: grey;
+    margin-left: 20px;
+    margin-right: 14px;
+    cursor: pointer;
+    user-select: none;
+    padding-right: 15px;
+    background: url(../../icons/sort.png) right 5px no-repeat;
+    font-weight: 100;
+}
+.actv {
+    margin-left: 20px;
+    margin-right: 14px;
+    cursor: pointer;
+    user-select: none;
+    padding-right: 15px;
+    color: black;
+    background: url(../../icons/sort-active.png) right 5px no-repeat;
+    font-weight: 100;
+}
+.desc {
+    margin-left: 20px;
+    margin-right: 14px;
+    cursor: pointer;
+    user-select: none;
+    padding-right: 15px;
+    color: black;
+    background: url(../../icons/sort-desc.png) right 5px no-repeat;
+    font-weight: 100;
+}
+.firstate {
+    color: black;
+    background: url(../../icons/sort-active.png) center center no-repeat;
+}
+.sort-icon {
+    user-select: none;
+    line-height: 22px;
+    padding-left: 11px;
+    padding-right: 11px;
+    margin-left: 20px;
+    background: url(../../icons/sort-icon.png) center center no-repeat;
+}
+
+.logos {
+    display: flex;
+    align-items: center;
+    width: 300px;
+
+    a {
+        width: 100%;
+        height: 100%;
+    }
+
+    img {
+        width: 70%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox] + label {
+    background-color: #fff;
+    text-align: center;
+    color: #6e6e6e;
+    font-size: 12px;
+    width: 110px;
+    line-height: 24px;
+    height: 24px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px;
+    margin-right: 2px;
+}
+
+input[type=checkbox]:checked + label {
+    background-color: #00a7e5;
+    color: #fff;
+    transition: .2s;
+}
+.filter-name {
+    user-select: none;
+    font-weight: 500;
+    color: rgb(85, 88, 90);
+}
+.o-icon {
+    display: inline-block;
+    border-radius: 50%;
+    background: url(../../icons/parks-actual.png) center center no-repeat;
+    background-size: 38px 38px;
+    position: relative;
+    width: 38px;
+    height: 38px;
+}
+.parks-process-small {
+    display: block;
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 50%;
+    animation: blink 1s linear infinite;
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    bottom: 2px;
+}
+
+@keyframes blink {
+    100% {
+        transform: scale(1.5, 1.5);
+        opacity: 0;
+    }
 }
