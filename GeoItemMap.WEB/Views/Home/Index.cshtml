@@ -1,0 +1,1130 @@
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<style>
+    #YMapsID {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+</style>
+<script type="text/javascript">
+    ymaps.ready(function () {
+        var myMap = new ymaps.Map(
+            "YMapsID",
+            {
+                center: [53.90, 27.56],
+                zoom: 1,
+                controls: []
+            },
+            {
+                maxZoom: 17,
+                restrictMapArea: [
+                    [58.486077093111334, 15.89679288089655],
+                    [49.77185323695446, 39.58331354601873]
+                ]
+            });
+  
+        // Загрузим регионы.
+        ymaps.borders.load('001', {
+            lang: 'ru',
+            quality: 2
+        }).then(function (result) {
+
+            // Создадим многоугольник, который будет скрывать весь мир, кроме заданной страны.
+            var background = new ymaps.Polygon([
+                [
+                    [85, -179.99],
+                    [85, 179.99],
+                    [-85, 179.99],
+                    [-85, -179.99],
+                    [85, -179.99]
+                ]
+            ], {}, {
+                fillColor: '#B0B0B0',
+                fillOpacity: 0.5,
+                strokeWidth: 1.5,
+                coordRendering: 'straightPath'
+            });
+            // Найдём страну по её iso коду.
+            var region = result.features.filter(function (feature) { return feature.properties.iso3166 == 'BY'; })[0];
+            var masks = region.geometry.coordinates;
+            masks.forEach(function (mask) {
+                background.geometry.insert(1, mask);
+            });
+            // Добавим многоугольник на карту.
+            myMap.geoObjects.add(background);
+        })
+
+        // получение данных
+        async function getGeoItem(id) {
+            var geoitem;
+            const response = await fetch(`https://localhost:7215/GeoItem/${id}`, {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            if (response.ok === true) {
+                geoitem = await response.json();
+                //Технопарк
+                if (geoitem.value.geoType == 0) {
+                    return "Технопарк" + "<br/>" + "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameTechnopark + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
+                }
+                // Центр трансфера технологий
+                else if (geoitem.value.geoType == 1) {
+                    return "Центр трансфера технологий" + "<br/>" + "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameTechTransferCenter + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
+                }
+                //ИНН проекты
+                else if (geoitem.value.geoType == 2) {
+                    return "Инн проект" + "<br/>" + "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameInnProject + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
+                }
+                //НТП проекты
+                else if (geoitem.value.geoType == 3) {
+                    return "НТП" + "<br/>" + "ID: " + geoitem.value.id + "<br/>" + geoitem.value.nameTask + "<br/>" + "Координаты: " + geoitem.value.x + " " + geoitem.value.y;
+                }
+            }
+            else {
+                const error = await response.json();
+            }
+        }
+
+
+        // всплывающего окна
+        function top_popup(id) {
+            var result = getGeoItem(id);
+            result.then(function (value) {
+                $('#exampleModal > div > div > div.modal-body').html(value);
+                $('#exampleModal').modal('show');
+            })
+        }
+
+        // создание кластера
+        clusterer = new ymaps.Clusterer({
+            // Макет метки кластера pieChart.
+            clusterIconLayout: 'default#pieChart',
+            // Радиус диаграммы в пикселях.
+            clusterIconPieChartRadius: 25,
+            // Радиус центральной части макета.
+            clusterIconPieChartCoreRadius: 10,
+            // Ширина линий-разделителей секторов и внешней обводки диаграммы.
+            clusterIconPieChartStrokeWidth: 3,
+            // Определяет наличие поля balloon.
+            hasBalloon: true
+        });
+
+
+        var circleLayout = ymaps.templateLayoutFactory.createClass('<div class="o-icon"><div class="parks-process-small">&nbsp;</div></div>');
+
+        $(".o-icon").click(function () {
+            $(this).addClass("desc");
+        });
+     
+
+            // получение координат для меток из бд
+        async function getGeoItems() {
+            const response = await fetch("https://localhost:7215/GeoItem", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            if (response.ok === true) {
+                const geoitems = await response.json();
+                console.log(geoitems)
+                geoitems.forEach((element) => {
+
+                    // Технопарки
+                    if (element.geoType == 0) {
+                        var myGeoObject = new ymaps.GeoObject({
+                            geometry: {
+                                type: "Point", // тип геометрии - точка
+                                coordinates: [element.x, element.y], // координаты точки
+                            },
+                        }, {
+                           //iconColor: "#33FF00"
+                            iconLayout: circleLayout,
+                           //iconImageHref: '../../icons/parks-actual.png',
+                           //iconImageSize: [38, 38],
+                           pane:'overlaps',
+                           iconImageOffset: [0, 0],
+                         
+                        });
+                    }
+                    //Центр трансфера технологий
+                    if (element.geoType == 1) {
+                        var myGeoObject = new ymaps.GeoObject({
+                            geometry: {
+                                type: "Point", // тип геометрии - точка
+                                coordinates: [element.x, element.y], // координаты точки
+                            },
+                        }, {
+                            iconColor: "#5863FF"
+                            
+                        });
+                    }
+                    // ИНН проекты
+                    if (element.geoType == 2) {
+                        var myGeoObject = new ymaps.GeoObject({
+                            geometry: {
+                                type: "Point", // тип геометрии - точка
+                                coordinates: [element.x, element.y], // координаты точки
+                            },
+                        }, {
+                            iconColor: "#FF0000"
+                        });
+                    }
+                    //НТП
+                    if (element.geoType == 3) {
+                        var myGeoObject = new ymaps.GeoObject({
+                            geometry: {
+                                type: "Point", // тип геометрии - точка
+                                coordinates: [element.x, element.y], // координаты точки
+                            },
+                        }, {
+                            iconColor: "#FFA158"
+                        });
+                    }
+
+                    //Можно менять опции кластеризатора после создания.
+                    clusterer.options.set({
+                        gridSize: 100,
+                        clusterDisableClickZoom: false
+                    });
+
+                    clusterer.add(myGeoObject);
+                    myMap.geoObjects.add(clusterer);
+
+                    myMap.setBounds(clusterer.getBounds(), {
+                        checkZoomRange: true
+                    });
+
+                    myGeoObject.events.add('click', function () {
+                        top_popup(element.id);
+
+                    });
+                });
+            }
+        }
+        getGeoItems();
+    });
+</script>
+
+<!-- map -->
+<div id="YMapsID"></div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Информация об объекте</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end map -->
+
+<!-- left sidebar map -->
+    <div class="sidebarmap">
+        <div class="sidebarmap-container">
+            <!-- accordion -->
+            <div class="sidebarmap-accordion">
+                <section class="sidebarmap-accordion_item">
+                    <h3 class="title_block ">
+                        Субъекты инновационной <br> инфраструктуры
+                    </h3>
+                <div class="info">
+
+                        <div class="info_panel">
+                        <div class="info_panel-switchers d-flex justify-content-center">
+                            <input type="checkbox" id="chk1">
+                            <label for="chk1" style="border-bottom: 3px solid #3fab3c;">Технопарки</label>
+                            <input type="checkbox" id="chk2">
+                            <label for="chk2" style="border-bottom: 3px solid #ff9601;">ЦТТ</label>
+                            <input type="checkbox" id="chk3">
+                            <label for="chk3" style="border-bottom: 3px solid #9494b6">БИФ и НЦИС</label>
+                        </div>
+                        <div class="info_panel-filter">
+                            <span class="filter-name">Регион</span>
+                            <div class="mb-3">
+                                <select class="form-select" id="small-select2-options-multiple-field" data-placeholder="Найти"
+                                        placeholder="Выберите" multiple>
+                                    <option>Минск</option>
+                                    <option>Минская область</option>
+                                    <option >Могилевская область</option>
+                                    <option >Брестская область</option>
+                                    <option>Гомельская область</option>
+                                    <option >Гродненская область</option>
+                                    <option>Витебская  область</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sort-bar">
+                        <span class="sort-icon"></span>
+                        <span class="sort-button">Название</span>
+                    </div>
+                    <div class="info_object">
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Барановичский государственный университет»</h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>
+                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
+                                        деятельности
+                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
+                                    </h3>
+                                    <span class="info_item-region">Республика</span>
+
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
+                                    <span class="info_item-region">Республика</span>
+
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
+                                    <span class="info_item-region">Республика</span>
+    
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                    <span class="info_item-region">Республика</span>
+  
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Барановичский государственный университет»</h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>
+                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
+                                        деятельности
+                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
+                                    </h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
+                                    <span class="info_item-region">Республика</span>
+
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Барановичский государственный университет»</h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>
+                                        УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
+                                        деятельности
+                                        обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
+                                    </h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>РУП «Центр научно-технической и деловой информации»</h3>
+                                    <span class="info_item-region">Республика</span>
+
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
+                                    <span class="info_item-region">Республика</span>
+         
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                    <span class="info_item-region">Республика</span>
+          
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                            <a href="#" class="info_item">
+                                <div class="info_item-icon parks-actual-big"></div>
+                                <div class="info_item-data">
+                                    <h3>УО «Барановичский государственный университет»</h3>
+                                    <span class="info_item-region">Республика</span>
+                                </div>
+                                <!-- list-item-data -->
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                <section class="sidebarmap-accordion_item">
+                    <h3 class="title_block">Инновационные проекты</h3>
+                    <div class="info">
+                        <div class="info_panel">
+                        <div class="info_panel-switchers d-flex justify-content-center">
+                            <input type="checkbox" id="chk4">
+                            <label for="chk4" style="border-bottom: 3px solid #3fab3c;">Завершен</label>
+                            <input type="checkbox" id="chk5">
+                            <label for="chk5" style="border-bottom: 3px solid #ff9601;">Продолжается</label>
+                            <input type="checkbox" id="chk6">
+                            <label for="chk6" style="border-bottom: 3px solid #9494b6">Выполнится</label>
+                        </div>
+                        <div class="info_panel-filter">
+                            <span class="filter-name">Регион</span>
+                            <div class="mb-3">
+                                <select class="form-select" id="small-select2-options-multiple-field_inn" data-placeholder="Найти"
+                                        placeholder="Выберите" multiple>
+                                    <option>Минск</option>
+                                    <option>Минская область</option>
+                                    <option>Могилевская область</option>
+                                    <option>Брестская область</option>
+                                    <option>Гомельская область</option>
+                                    <option>Гродненская область</option>
+                                    <option>Витебская  область</option>
+                                </select>
+                            </div>
+                        </div>
+                        </div>
+
+                    <div class="sort-bar">
+                        <span class="sort-icon"></span>
+                        <span class="sort-button" data-field="name">Название</span>
+                    </div>
+
+                        <!-- info_panel -->
+                        <div class="info_object">
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                <span class="info_item-region">Республика</span>
+
+                                <!-- buttons-box -->
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО «Барановичский государственный университет»</h3>
+                                <span class="info_item-region">Республика</span>
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>
+                                    УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
+                                    деятельности
+                                    обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
+                                </h3>
+                                <span class="info_item-region">Республика</span>
+
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>РУП «Центр научно-технической и деловой информации»</h3>
+                                <span class="info_item-region">Республика</span>
+
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
+                                <span class="info_item-region">Республика</span>
+
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                <span class="info_item-region">Республика</span>
+
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО «Барановичский государственный университет»</h3>
+                                <span class="info_item-region">Республика</span>
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>
+                                    УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
+                                    деятельности
+                                    обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
+                                </h3>
+                                <span class="info_item-region">Республика</span>
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>РУП «Центр научно-технической и деловой информации»</h3>
+                                <span class="info_item-region">Республика</span>
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
+                                <span class="info_item-region">Республика</span>
+
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                <span class="info_item-region">Республика</span>
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО «Барановичский государственный университет»</h3>
+                                <span class="info_item-region">Республика</span>
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        </div>
+                    </div>
+                    <!-- info -->
+                </section>
+                <section class="sidebarmap-accordion_item">
+                    <h3 class="title_block">Научно-технологические <br> программы</h3>
+                <div class="info">
+                    <div class="info_panel">
+                        <div class="info_panel-switchers d-flex justify-content-center">
+                            <input type="checkbox" id="chk7">
+                            <label for="chk7" style="border-bottom: 3px solid #3fab3c;">Программа 1</label>
+                            <input type="checkbox" id="chk8" >
+                            <label for="chk8" style="border-bottom: 3px solid #ff9601;">Программа 2</label>
+                            <input type="checkbox" id="chk9">
+                            <label for="chk9" style="border-bottom: 3px solid #9494b6">Программа 3</label>
+                        </div>
+                        <div class="info_panel-filter">
+                            <span class="filter-name">Регион</span>
+                            <div class="mb-3">
+                                <select class="form-select" id="small-select2-options-multiple-field_ntp" data-placeholder="Найти"
+                                        placeholder="Выберите" multiple>
+                                    <option>Минск</option>
+                                    <option>Минская область</option>
+                                    <option>Могилевская область</option>
+                                    <option>Брестская область</option>
+                                    <option>Гомельская область</option>
+                                    <option>Гродненская область</option>
+                                    <option>Витебская  область</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sort-bar">
+                        <span class="sort-icon"></span>
+                        <span class="sort-button">Название</span>
+                    </div>
+                    <!-- info_panel -->
+                    <div class="info_object">
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                <span class="info_item-region">Республика</span>
+
+                                <!-- buttons-box -->
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО «Барановичский государственный университет»</h3>
+                                <span class="info_item-region">Республика</span>
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>
+                                    УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
+                                    деятельности
+                                    обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
+                                </h3>
+                                <span class="info_item-region">Республика</span>
+
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>РУП «Центр научно-технической и деловой информации»</h3>
+                                <span class="info_item-region">Республика</span>
+
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
+                                <span class="info_item-region">Республика</span>
+
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                <span class="info_item-region">Республика</span>
+
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО «Барановичский государственный университет»</h3>
+                                <span class="info_item-region">Республика</span>
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>
+                                    УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части
+                                    деятельности
+                                    обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)
+                                </h3>
+                                <span class="info_item-region">Республика</span>
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>РУП «Центр научно-технической и деловой информации»</h3>
+                                <span class="info_item-region">Республика</span>
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО «Гродненский государственный университет имени Янки Купалы» </h3>
+                                <span class="info_item-region">Республика</span>
+
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»</h3>
+                                <span class="info_item-region">Республика</span>
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                        <a href="#" class="info_item">
+                            <div class="info_item-icon parks-actual-big"></div>
+                            <div class="info_item-data">
+                                <h3>УО «Барановичский государственный университет»</h3>
+                                <span class="info_item-region">Республика</span>
+                            </div>
+                            <!-- list-item-data -->
+                        </a>
+                    </div>
+                </div>
+            </section>
+            </div>
+            <!-- end accordion -->
+        </div>
+
+    </div>
+<!-- end <!-- left sidebar map -->
+
+
+    <!-- window -->
+<div class="window-block d-none"></div>
+    <div class="window">
+        <div class="window-container">
+            <div class="window-header">
+                <div class="window-header_wrapper">
+                    <h1 class="icon parks-actual-big" title="УО «Гродненский государственный университет имени Янки Купалы» ">
+                        УО «Гродненский государственный университет имени Янки Купалы»
+                    </h1>
+                </div>
+            </div>
+
+            <!-- close-window -->
+            <div class="close-window" title="Закрыть">×</div>
+
+            <div class="window-body">
+                <div class="window-side-button"></div>
+                <!-- burger-btn -->
+                <!-- window-images -->
+                <div class="window-images">
+                    <div class="col-img">
+                        <img src="~/img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
+                             class="hover-shadow cursor">
+                    </div>
+                    <div class="col-img">
+                        <img src="~/img/foto-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
+                             class="hover-shadow cursor">
+                    </div>
+                    <div class="col-img">
+                        <img src="~/img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
+                             class="hover-shadow cursor">
+                    </div>
+                    <div class="col-img">
+                        <img src="~/img/grgu-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
+                             class="hover-shadow cursor">
+                    </div>
+                    <div class="col-img">
+                        <img src="~/img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(5)"
+                             class="hover-shadow cursor">
+                    </div>
+                    <div class="col-img">
+                        <img src="~/img/art_420_orig.jpg" style="width:100%" onclick="openModal();currentSlide(6)"
+                             class="hover-shadow cursor">
+                    </div>
+                </div>
+                <!-- end window-images -->
+                <!-- modal-gallery -->
+                <div id="modal-gallery" class="modal-gallery">
+                    <span class="close cursor" onclick="closeModal()">&times;</span>
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    <div class="gallery-content">
+                        <div class="slides-gallery">
+                            <img src="~/img/grsu_myuniver.jpg" style="width:100%">
+                        </div>
+                        <div class="slides-gallery">
+                            <img src="~/img/foto-grgu.jpg" style="width:100%">
+                        </div>
+                        <div class="slides-gallery">
+                            <img src="~/img/grsu_myuniver.jpg" style="width:100%">
+                        </div>
+                        <div class="slides-gallery">
+                            <img src="~/img/grgu-grgu.jpg" style="width:100%">
+                        </div>
+                        <div class="slides-gallery">
+                            <img src="~/img/grsu_myuniver.jpg" style="width:100%">
+                        </div>
+                        <div class="slides-gallery">
+                            <img src="~/img/art_420_orig.jpg" style="width:100%">
+                        </div>
+                        <div class="caption-container">
+                            <p id="caption"></p>
+                        </div>
+                        <div class="row row-img">
+                            <div class="col-img">
+                                <img class="demo cursor" src="~/img/grsu_myuniver.jpg" style="width:100%"
+                                     onclick="currentSlide(1)">
+                            </div>
+                            <div class="col-img">
+                                <img class="demo cursor" src="~/img/foto-grgu.jpg" style="width:100%" onclick="currentSlide(2)">
+                            </div>
+                            <div class="col-img">
+                                <img class="demo cursor" src="~/img/grsu_myuniver.jpg" style="width:100%"
+                                     onclick="currentSlide(3)">
+                            </div>
+                            <div class="col-img">
+                                <img class="demo cursor" src="~/img/grgu-grgu.jpg" style="width:100%" onclick="currentSlide(4)">
+                            </div>
+                            <div class="col-img">
+                                <img class="demo cursor" src="~/img/grsu_myuniver.jpg" style="width:100%"
+                                     onclick="currentSlide(5)">
+                            </div>
+                            <div class="col-img">
+                                <img class="demo cursor" src="~/img/art_420_orig.jpg" style="width:100%"
+                                     onclick="currentSlide(6)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal-gallery -->
+                <!-- data table -->
+                <div>
+                    <table class="window-object-data">
+                        <tbody>
+                            <tr>
+                                <td class="object-field-name header first_level" colspan="2">
+                                    <h2 id="windh0">Общая информация</h2>
+                                    <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
+                                        <table class="window-object-data">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="object-field-name  ">
+                                                        Наименование центра трансфера технологий
+                                                    </td>
+                                                    <td class="object-field-value">
+                                                        УО «Гродненский государственный университет имени Янки
+                                                        Купалы»
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="object-field-name  ">
+                                                        Услуги, предоставляемые центром трансфера технологий
+                                                    </td>
+                                                    <td class="object-field-value">
+                                                        комплекс услуг участникам инновационного процесса по
+                                                        введению в гражданский оборот результатов интеллектуальной деятельности,
+                                                        консалтинговые услуги по проектной деятельности, в том числе
+                                                        международной, проведение конференций и семинаров, оказание
+                                                        образовательных услуг по развитию инновационного предпринимательства
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="object-field-name  ">Адрес</td>
+                                                    <td class="object-field-value">230023, г. Гродно, ул. Ожешко,22</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="object-field-name  ">Телефон</td>
+                                                    <td class="object-field-value">(80152) 395896</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="object-field-name  ">E-mail</td>
+                                                    <td class="object-field-value">
+                                                        <a href="mailto:ctt@grsu.by"
+                                                           target="_blank">ctt@grsu.by</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="object-field-name  ">
+                                                        Адрес сайта центра трансфера технологий в сети интернет
+                                                    </td>
+                                                    <td class="object-field-value">
+                                                        <a href="https://ctt.grsu.by"
+                                                           target="_blank">ctt.grsu.by</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="object-field-name header first_level" colspan="2">
+                                    <h2 id="windh1">Финансирование</h2>
+                                    <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
+                                        <table class="window-object-data">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="object-field-name  ">
+                                                        Объем финансирования в рамках ГПИР 2021-2025 (в тыс.
+                                                        бел.рублей)
+                                                    </td>
+                                                    <td class="object-field-value">364</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="object-field-name header first_level" colspan="2">
+                                    <h2 id="windh2">Показатели деятельности </h2>
+                                    <div style="display:block; padding-bottom:10px; padding-left:20px; cursor:default;">
+                                        <table class="window-object-data">
+                                            <tbody>
+                                                <tr>
+                                                    <td id="windh3" class="object-field-name  ">
+                                                        Количество поступивших в центр и принятых к
+                                                        работе
+                                                        технологических предложений в 2022 году (ед.)
+                                                    </td>
+                                                    <td class="object-field-value">25</td>
+                                                </tr>
+                                                <tr>
+                                                    <td id="windh4" class="object-field-name  ">
+                                                        Количество поступивших в центр и принятых к
+                                                        работе
+                                                        технологических запросов в 2022 году (ед.)
+                                                    </td>
+                                                    <td class="object-field-value">3</td>
+                                                </tr>
+                                                <tr>
+                                                    <td id="windh5" class="object-field-name  ">
+                                                        Количество заключенных при содействии центра
+                                                        сделок по
+                                                        передаче (приобретению) прав на результаты научно-технической и (или) инновационной
+                                                        деятельности за 2022 год (ед.)
+                                                    </td>
+                                                    <td class="object-field-value">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td id="windh6" class="object-field-name  ">
+                                                        Объем заключенных при содействии центра
+                                                        сделок
+                                                        по
+                                                        передаче
+                                                        (приобретению) прав на результаты научно-технической и (или) инновационной
+                                                        деятельности
+                                                        за 2022 год (тыс. рублей)
+                                                    </td>
+                                                    <td class="object-field-value">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td id="windh7" class="object-field-name  ">
+                                                        Количество сформированных при содействии
+                                                        центра
+                                                        научно-технических, инновационных (инвестиционных) и иных проектов (работ) за 2022 год
+                                                        (ед.)
+                                                    </td>
+                                                    <td class="object-field-value">11</td>
+                                                </tr>
+                                                <tr>
+                                                    <td id="windh8" class="object-field-name  ">
+                                                        Объем сформированных при содействии центра
+                                                        научно-технических, инновационных (инвестиционных) и иных проектов (работ) за 2022 год
+                                                        (тыс. рублей)
+                                                    </td>
+                                                    <td class="object-field-value">270</td>
+                                                </tr>
+                                                <tr>
+                                                    <td id="windh9" class="object-field-name  ">
+                                                        Объем выполненных центром работ (услуг),
+                                                        связанных
+                                                        с
+                                                        коммерциализацией результатов научно-технической и (или) инновационной деятельности за
+                                                        2022 год (тыс. рублей)
+                                                    </td>
+                                                    <td class="object-field-value">0</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                    <div style="height: 122px;">&nbsp;</div>
+                </div>
+                <!-- end data table -->
+            </div>
+            <div class="window-side-button"></div>
+            <div class="window-footer noselect d-flex justify-content-between">
+                <div class="window-footer-left">
+                    <a href="#" class="icon-wf city" title="Города"></a>
+                    <a target="_blank" href="#" role="pdf-button" class="icon-wf file no-label" title="PDF"></a>
+                </div>
+            </div>
+            <!-- footer window -->
+            <div class="footer-window"></div>
+            <!-- end footer window -->
+        <!-- window-child -->
+        <div class="window-child">
+            <div class="window-child-container">
+                <div class="overview" style="top: 0px; left: 0px; bottom: 10px; display: block;">
+                    <ol>
+                        <li data-link="windh0">
+                            <div class="active-li">Общая информация</div>
+                        </li>
+                        <li data-link="windh1">
+                            <div>Финансирование</div>
+                        </li>
+                        <li data-link="windh2">
+                            <div>Показатели деятельности </div>
+                        </li>
+                        <ol class="mt-1">
+                            <li data-link="windh3">
+                                <div>
+                                    Количество поступивших в центр и принятых к работе технологических предложений в 2022 году (ед.)
+                                </div>
+                            </li>
+                            <li data-link="windh4">
+                                <div>
+                                    Количество поступивших в центр и принятых к работе технологических запросов в 2022 году (ед.)
+                                </div>
+                            </li>
+                            <li data-link="windh5">
+                                <div>
+                                    Количество заключенных при содействии центра сделок по передаче (приобретению) прав на
+                                    результаты научно-технической и (или) инновационной деятельности за 2022 год (ед.)
+                                </div>
+                            </li>
+                            <li data-link="windh6">
+                                <div>
+                                    Объем заключенных при содействии центра сделок по передаче (приобретению) прав на результаты
+                                    научно-технической и (или) инновационной деятельности за 2022 год (тыс. рублей)
+                                </div>
+                            </li>
+                            <li data-link="windh7">
+                                <div>
+                                    Количество сформированных при содействии центра научно-технических, инновационных
+                                    (инвестиционных) и иных проектов (работ) за 2022 год (ед.)
+                                </div>
+                            </li>
+                            <li data-link="windh8">
+                                <div>
+                                    Объем сформированных при содействии центра научно-технических, инновационных (инвестиционных)
+                                    и
+                                    иных проектов (работ) за 2022 год (тыс. рублей)
+                                </div>
+                            </li>
+                            <li data-link="windh9">
+                                <div>
+                                    Объем выполненных центром работ (услуг), связанных с коммерциализацией результатов
+                                    научно-технической и (или) инновационной деятельности за 2022 год (тыс. рублей)
+                                </div>
+                            </li>
+                        </ol>
+                    </ol>
+                </div>
+
+            </div>
+            <div class="window-side-button_left"></div>
+
+        </div>
+        <!--end window-child -->
+        </div>
+        <!-- window-container -->
+    </div>
+    <!-- end window -->
+
+<!--  modal window for the gallery -->
+   <script>
+    function openModal() {
+        document.getElementById("modal-gallery").style.display = "block";
+        showSlides(slideIndex); // Показать первый слайд при открытии модального окна
+    }
+
+    function closeModal() {
+        document.getElementById("modal-gallery").style.display = "none";
+    }
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("slides-gallery");
+        var dots = document.getElementsByClassName("demo");
+        var captionText = document.getElementById("caption");
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        captionText.innerHTML = dots[slideIndex - 1].alt;
+    }
+   </script>
+<!-- end modal window for the gallery -->
+
+

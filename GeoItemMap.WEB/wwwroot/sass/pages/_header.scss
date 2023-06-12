@@ -1,0 +1,41 @@
+
+#itsystem-header{
+    height:80px;
+}
+.header-main {
+    height: 80px;
+    background: #151515;
+    color: #fff;
+    position: fixed;
+    padding: 10px 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    z-index: 1003;
+}
+
+.header-main .container {
+    max-width: 1730px;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-right: 0;
+    margin-left: 50px;
+}
+
+
+.logos {
+    display: flex;
+    align-items: center;
+}
+
+
+

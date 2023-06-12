@@ -1,0 +1,55 @@
+
+
+#itsystem-footer { 
+ z-index: 10000;
+    display: none;
+    height: 46px;
+    background: #232323;
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.itsystem-footer-copyright {
+    display: flex;
+    padding-bottom: 7px;
+}
+
+.itsystem-footer-contacts {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding-bottom: 7px;
+}
+
+.itsystem-footer-contacts .itsystem-footer-contacts-label {
+    font-weight: 700;
+    margin-right: 15px;
+}
+
+.itsystem-footer-contacts .itsystem-footer-contacts-email a {
+    background-image: url('../../icons/email.svg');
+    padding-left: 20px;
+
+    
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.itsystem-footer-contacts a {
+    color: #fff;
+    background-repeat: no-repeat;
+    background-position-y: 3px;
+    margin-right: 15px;
+
+    &:hover {
+        color: #fff;
+    }
+}
+
+.itsystem-footer-contacts .itsystem-footer-contacts-phone a {
+    text-decoration: underline;
+}

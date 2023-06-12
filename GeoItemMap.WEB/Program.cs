@@ -29,7 +29,7 @@ builder.Services.AddScoped<IGenericRepository<Technopark>, EFGenericRepository<T
 builder.Services.AddScoped<IGenericRepository<InnProject>, EFGenericRepository<InnProject>>();
 builder.Services.AddScoped<IGenericRepository<NtpProject>, EFGenericRepository<NtpProject>>();
 builder.Services.AddScoped<IGenericRepository<TechTransferCenter>, EFGenericRepository<TechTransferCenter>>();
-builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(@"Data Source=PC11-1203-3N\SQLEXPRESS;  Database=GeoItemDB;  Persist Security Info =false; User='sa'; Password='sa'; MultipleActiveResultSets=True; Trusted_Connection=False;"));
+builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(@"Data Source=PC11-1215-3N\SQLEXPRESS;  Database=GeoItemDB;  Persist Security Info =false; User='sa'; Password='sa'; MultipleActiveResultSets=True; Trusted_Connection=False;"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
