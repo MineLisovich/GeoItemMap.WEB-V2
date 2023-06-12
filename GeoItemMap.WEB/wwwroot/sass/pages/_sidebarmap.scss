@@ -4,7 +4,7 @@
     position: absolute;
     top: 87px;
     left: 0;
-    overflow: hidden;
+   
     width: 410px;
     min-height: 187px;
     bottom: 35px;
@@ -88,6 +88,7 @@
         margin-top: -2px;
         background: $accordion-back;
         width: 100%;
+
         overflow-y: scroll !important;
         height: 600px;
 
@@ -213,6 +214,10 @@
                 padding: 0 5px;
                 margin-right: 2px;
 
+
+                &.active {
+                   background-color:red;
+
                 &:hover {
                     background-color: #00a7e5;
                     color: #fff;
@@ -226,6 +231,7 @@
                 &:active {
                     background-color: #00a7e5;
                     color: #fff;
+
                 }
             }
         }

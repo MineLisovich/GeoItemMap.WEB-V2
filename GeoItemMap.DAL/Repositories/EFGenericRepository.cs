@@ -22,16 +22,17 @@ namespace GeoItemMap.DAL.Repositories
             _dbSet = dbContext.Set<TEntity>();
         }  
         
-        public async Task <IEnumerable<TEntity>> GetAll ()
+        public async Task <IEnumerable<TEntity>> GetAllCoordinates()
         {
             return await _dbSet.ToListAsync();
 
         }
         public TEntity FindById(int id)
         {
-            return _dbSet.Find(id);
-        }
+           return _dbSet.Find(id);
 
+        }
+        
         public void Save()
         {
             _dbContext.SaveChanges();
