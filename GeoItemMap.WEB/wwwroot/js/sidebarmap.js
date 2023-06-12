@@ -137,3 +137,12 @@ function showSlides(n) {
     captionText.innerHTML = dots[slideIndex - 1].alt;
 }
 // СЛАЙДЕР КОНЕЦ
+
+
+
+//var btnColons = $(".selection");
+//btnColons.on("click", function () {
+//    $("#testopt").on("click", function () {
+//        $("#testopt").alert("jfdjb");
+//    });
+//});

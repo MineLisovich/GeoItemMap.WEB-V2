@@ -576,29 +576,28 @@
 <!-- left sidebar map -->
     <div class="sidebarmap">
         <div class="sidebarmap-container">
-            <!-- accordion -->
-            <div class="sidebarmap-accordion">
-                <!-- Субъекты инновационной инфраструктуры -->
+                <!-- Инновационная инфраструктура -->
                 <section class="sidebarmap-accordion_item">
                     <h3 class="title_block" id="Item_techparck_ctt">
-                        Субъекты инновационной <br> инфраструктуры
+                        Инновационная инфраструктура
                     </h3>
+                   
                 <div class="info">
                         <div class="info_panel" id="filtr_teh_ctt_bif">
-                        <div class="info_panel-switchers d-flex justify-content-center">
+                        <div class="info_panel-switchers d-flex">
                             <input type="checkbox" id="filtr_techparck">
-                            <label for="filtr_techparck" style="border-bottom: 3px solid #3fab3c;">Технопарки</label>
+                        <label for="filtr_techparck" data-on-label="Технопарки" data-off-label="Технопарки"></label>
                             <input type="checkbox" id="filtr_ctt">
-                            <label for="filtr_ctt" style="border-bottom: 3px solid #ff9601;">ЦТТ</label>
+                        <label for="filtr_ctt" data-on-label="ЦТТ" data-off-label="ЦТТ"></label>
                             <input type="checkbox" id="filtr_bif">
-                            <label for="filtr_bif" style="border-bottom: 3px solid #9494b6">БИФ и НЦИС</label>
+                        <label for="filtr_bif" data-on-label="Биф и НЦИС" data-off-label="Биф и НЦИС"></label>
                         </div>
                         <div class="info_panel-filter">
                             <span class="filter-name">Регион</span>
                             <div class="mb-3">
-                                <select class="form-select" id="small-select2-options-multiple-field" data-placeholder="Найти"
+                                <select class="form-select" id="small-select2-options-multiple-field" data-placeholder="Регион"
                                         placeholder="Выберите" multiple>
-                                    <option>Минск</option>
+                                    <option id="testopt">Минск</option>
                                     <option>Минская область</option>
                                     <option>Могилевская область</option>
                                     <option>Брестская область</option>
@@ -610,7 +609,7 @@
                         </div>
                     </div>
                     <div class="sort-bar">
-                        <span class="sort-icon"></span>
+
                         <span class="sort-button">Название</span>
                     </div>
                         <div class="info_object" id="info_object_tehnoparck_ctt">
@@ -627,11 +626,11 @@
                         <div class="info_panel" id="filt_inn">
                         <div class="info_panel-switchers d-flex justify-content-center">
                             <input type="checkbox" id="filtr_inn_end">
-                            <label for="filtr_inn_end" style="border-bottom: 3px solid #3fab3c;">Завершен</label>
+                        <label for="filtr_inn_end" data-on-label="Завершен" data-off-label="Завершен"></label>
                             <input type="checkbox" id="filtr_inn_continues">
-                            <label for="filtr_inn_continues" style="border-bottom: 3px solid #ff9601;">Продолжается</label>
+                        <label for="filtr_inn_continues" data-on-label="Продолжается" data-off-label="Продолжается"></label>
                             <input type="checkbox" id="filtr_inn_execute">
-                            <label for="filtr_inn_execute" style="border-bottom: 3px solid #9494b6">Выполнится</label>
+                        <label for="filtr_inn_execute" data-on-label="Выполнится" data-off-label="Выполнится"></label>
                         </div>
                         <div class="info_panel-filter">
                             <span class="filter-name">Регион</span>
@@ -660,19 +659,20 @@
                     </div>
                 </section>
                 <!--КОНЕЦ Инновационные проекты -->
-
-                <!--Научно-технологические программы -->
+            <!-- Научно-технические программы -->
                 <section class="sidebarmap-accordion_item">
-                    <h3 class="title_block" id="Item_ntp">Научно-технологические <br> программы</h3>
+                <h3 class="title_block" id="Item_ntp"> Научно-технические программы</h3>
                 <div class="info">
                     <div class="info_panel" id="filtr_ntp">
                         <div class="info_panel-switchers d-flex justify-content-center">
                             <input type="checkbox" id="filtr_ntp_p1">
-                            <label for="filtr_ntp_p1" style="border-bottom: 3px solid #3fab3c;">Программа 1</label>
+                        <label for="filtr_ntp_p1" data-on-label="Технопарки" data-off-label="Технопарки"></label>
+
                             <input type="checkbox" id="filtr_ntp_p2" >
-                            <label for="filtr_ntp_p2" style="border-bottom: 3px solid #ff9601;">Программа 2</label>
+                        <label for="filtr_ntp_p2" data-on-label="ЦТТ" data-off-label="ЦТТ"></label>
+
                             <input type="checkbox" id="filtr_ntp_p3">
-                            <label for="filtr_ntp_p3" style="border-bottom: 3px solid #9494b6">Программа 3</label>
+                        <label for="filtr_ntp_p3" data-on-label="Биф и НЦИС" data-off-label="Биф и НЦИС"></label>
                         </div>
                         <div class="info_panel-filter">
                             <span class="filter-name">Регион</span>
@@ -702,7 +702,12 @@
              <!--КОНЕЦ Научно-технологические программы -->
             </div>
             <!-- end accordion -->
+<<<<<<< HEAD
+
+
+=======
         </div>
+>>>>>>> 9cb29f043f0d352fbae0a799d26013136a144a13
     </div>
 <!-- end <!-- left sidebar map -->
 

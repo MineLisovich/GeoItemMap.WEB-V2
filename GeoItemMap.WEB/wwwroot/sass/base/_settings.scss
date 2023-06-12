@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,cyrillic");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
 * {
  box-sizing: border-box;
@@ -11,31 +11,21 @@
 body, html {
     height: 100%;
     width: 100%;
-
     padding: 0;
     margin: 0;
     overflow: hidden;
-
-    font-size: 11px;
-    line-height: 1.5;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-
+    font-family: 'Montserrat', sans-serif;
     background-color: rgb(143, 169, 190);
 }
 
 a {
     text-decoration: none;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 a:hover {
     text-decoration: none;
 }
 
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 500;
-}
 
 .new-string {
     width: 100%;
