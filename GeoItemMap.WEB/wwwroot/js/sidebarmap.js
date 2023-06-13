@@ -90,6 +90,18 @@ $closeWindow.on('click', function () {
 });
 
 
+
+$(function (e) {
+    const $d = $(".info_panel-filter");
+    $d.on('click', function () {
+        $d.addClass("filter-name-focus");
+    });
+
+});
+
+
+
+
 //$(document).ready(function () {
 //    $select = $(".select2-selection");
 //    $filterName = $(".filter-name");

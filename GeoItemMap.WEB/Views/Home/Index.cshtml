@@ -593,9 +593,9 @@
                         <label for="filtr_bif" data-on-label="Биф и НЦИС" data-off-label="Биф и НЦИС"></label>
                         </div>
                         <div class="info_panel-filter">
+                        <span for="select2-search__field" class="filter-name">Регион</span>
                             <div class="mb-3">
-                            <span class="filter-name">Регион</span>
-                            <select class="form-select" id="small-select2-options-multiple-field"  multiple data-placeholder-tmp="">
+                            <select class="form-select" id="small-select2-options-multiple-field" @*data-placeholder="Регион"*@ multiple data-placeholder-tmp="">
                                     <option id="testopt">Минск</option>
                                     <option>Минская область</option>
                                     <option>Могилевская область</option>
@@ -627,16 +627,16 @@
                         <div class="info_panel" id="filt_inn">
                         <div class="info_panel-switchers d-flex">
                             <input type="checkbox" id="filtr_inn_end">
-                        <label for="filtr_inn_end" data-on-label="Завершен" data-off-label="Завершен"></label>
+                        <label for="filtr_inn_end" data-on-label="@*Завершен*@" data-off-label="@*Завершен*@"></label>
                             <input type="checkbox" id="filtr_inn_continues">
-                        <label for="filtr_inn_continues" data-on-label="Продолжается" data-off-label="Продолжается"></label>
+                        <label for="filtr_inn_continues" data-on-label="@*Продолжается*@" data-off-label="@*Продолжается*@"></label>
                             <input type="checkbox" id="filtr_inn_execute">
-                        <label for="filtr_inn_execute" data-on-label="Выполнится" data-off-label="Выполнится"></label>
+                        <label for="filtr_inn_execute" data-on-label="@*Выполнится*@" data-off-label="@*Выполнится*@"></label>
                         </div>
                         <div class="info_panel-filter">
                             <span class="filter-name">Регион</span>
                             <div class="mb-3">
-                            <select class="form-select" id="small-select2-options-multiple-field_inn" data-placeholder="Регион" multiple>
+                            <select class="form-select" id="small-select2-options-multiple-field_inn" @*data-placeholder="Регион"*@ multiple data-placeholder-tmp="">
                                     <option>Минск</option>
                                     <option>Минская область</option>
                                     <option>Могилевская область</option>
@@ -667,18 +667,18 @@
                     <div class="info_panel" id="filtr_ntp">
                         <div class="info_panel-switchers d-flex">
                             <input type="checkbox" id="filtr_ntp_p1">
-                        <label for="filtr_ntp_p1" data-on-label="Технопарки" data-off-label="Технопарки"></label>
+                        <label for="filtr_ntp_p1" data-on-label="@*Технопарки*@" data-off-label="@*Технопарки*@"></label>
 
                             <input type="checkbox" id="filtr_ntp_p2" >
-                        <label for="filtr_ntp_p2" data-on-label="ЦТТ" data-off-label="ЦТТ"></label>
+                        <label for="filtr_ntp_p2" data-on-label="@*ЦТТ*@" data-off-label="@*ЦТТ*@"></label>
 
                             <input type="checkbox" id="filtr_ntp_p3">
-                        <label for="filtr_ntp_p3" data-on-label="Биф и НЦИС" data-off-label="Биф и НЦИС"></label>
+                        <label for="filtr_ntp_p3" data-on-label="@*Биф и НЦИС*@" data-off-label="@*Биф и НЦИС*@"></label>
                         </div>
                         <div class="info_panel-filter">
                             <span class="filter-name">Регион</span>
                             <div class="mb-3">
-                            <select class="form-select" id="small-select2-options-multiple-field_ntp" data-placeholder="Регион" multiple>
+                            <select class="form-select" id="small-select2-options-multiple-field_ntp" @*data-placeholder="Регион"*@ data-placeholder-tmp="" multiple >
                                     <option>Минск</option>
                                     <option>Минская область</option>
                                     <option>Могилевская область</option>
