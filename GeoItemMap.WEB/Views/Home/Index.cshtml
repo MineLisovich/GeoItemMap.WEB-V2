@@ -361,9 +361,9 @@
                 function getInfoTechnopark(itemTechnopark) {
 
                     return `
-                                <a href="#" class="info_item">         
-                                    <div class="info_item-icon parks-actual-big"></div>
-                                    <div class="info_item-data item-header-js" data-type="tehParckHeader" data-id="${itemTechnopark.id}">
+                                    <a href="#" class="info_item item-header-js" data-type="tehParckHeader" data-id="${itemTechnopark.id}">
+                                        <div class="info_item-icon parks-actual-big"></div>
+                                    <div class="info_item-data">
                                         <h3>${itemTechnopark.nameTechnopark}</h3>
                                         <span class="info_item-region">Республика</span>
                                    </div>
@@ -373,9 +373,9 @@
                 // ЦТТ
                 function getInfoTechTransferCenter(itemTechTransferCenter) {
                     return `
-                               <a href="#" class="info_item">
+                                    <a href="#" class="info_item item-header-js" data-type="cctHeader" data-id="${itemTechTransferCenter.id}">
                                     <div class="info_item-icon parks-actual-big"></div>
-                                    <div class="info_item-data item-header-js" data-type="cctHeader" data-id="${itemTechTransferCenter.id}">
+                                    <div class="info_item-data">
                                         <h3>${itemTechTransferCenter.nameTechTransferCenter}</h3>
                                         <span class="info_item-region">Республика</span>
                                    </div>
@@ -413,9 +413,9 @@
                 //ИНН
                 function getInfoInn(itemInnProject) { 
                     return `
-                                 <a href="#" class="info_item">
+                                         <a href="#" class="info_item  item-header-js" data-type="InnHeader" data-id="${itemInnProject.id}">
                                      <div class="info_item-icon parks-actual-big"></div>
-                                     <div class="info_item-data item-header-js" data-type="InnHeader" data-id="${itemInnProject.id}">
+                                     <div class="info_item-data">
                                         <h3>${itemInnProject.nameInnProject}</h3>
                                         <span class="info_item-region">Республика</span>
                                      </div>
@@ -593,10 +593,9 @@
                         <label for="filtr_bif" data-on-label="Биф и НЦИС" data-off-label="Биф и НЦИС"></label>
                         </div>
                         <div class="info_panel-filter">
-                            <span class="filter-name">Регион</span>
                             <div class="mb-3">
-                                <select class="form-select" id="small-select2-options-multiple-field" data-placeholder="Регион"
-                                        placeholder="Выберите" multiple>
+                            <span class="filter-name">Регион</span>
+                            <select class="form-select" id="small-select2-options-multiple-field"  multiple data-placeholder-tmp="">
                                     <option id="testopt">Минск</option>
                                     <option>Минская область</option>
                                     <option>Могилевская область</option>
@@ -608,23 +607,25 @@
                             </div>
                         </div>
                     </div>
+    
+                        <div class="info_object" >
                     <div class="sort-bar">
-
                         <span class="sort-button">Название</span>
                     </div>
-                        <div class="info_object" id="info_object_tehnoparck_ctt">
-                          
-                        </div>
+                           <div id="info_object_tehnoparck_ctt">
+
+                          </div>
+                     </div>
                     </div>
                 </section>
-                 <!--КОНЕЦ Субъекты инновационной инфраструктуры -->
+                 <!--КОНЕЦ Инновационная инфраструктура -->
 
                  <!-- Инновационные проекты -->
                 <section class="sidebarmap-accordion_item">
                     <h3 class="title_block" id="Item_inn">Инновационные проекты</h3>
                     <div class="info">
                         <div class="info_panel" id="filt_inn">
-                        <div class="info_panel-switchers d-flex justify-content-center">
+                        <div class="info_panel-switchers d-flex">
                             <input type="checkbox" id="filtr_inn_end">
                         <label for="filtr_inn_end" data-on-label="Завершен" data-off-label="Завершен"></label>
                             <input type="checkbox" id="filtr_inn_continues">
@@ -635,8 +636,7 @@
                         <div class="info_panel-filter">
                             <span class="filter-name">Регион</span>
                             <div class="mb-3">
-                                <select class="form-select" id="small-select2-options-multiple-field_inn" data-placeholder="Найти"
-                                        placeholder="Выберите" multiple>
+                            <select class="form-select" id="small-select2-options-multiple-field_inn" data-placeholder="Регион" multiple>
                                     <option>Минск</option>
                                     <option>Минская область</option>
                                     <option>Могилевская область</option>
@@ -648,13 +648,14 @@
                             </div>
                         </div>
                         </div>
-
+                        <div class="info_object" >
                     <div class="sort-bar">
                         <span class="sort-icon"></span>
                         <span class="sort-button" data-field="name">Название</span>
                     </div>
-                        <div class="info_object" id="info_object_Inn">
+                    <div id="info_object_Inn">
 
+                    </div>
                         </div>
                     </div>
                 </section>
@@ -664,7 +665,7 @@
                 <h3 class="title_block" id="Item_ntp"> Научно-технические программы</h3>
                 <div class="info">
                     <div class="info_panel" id="filtr_ntp">
-                        <div class="info_panel-switchers d-flex justify-content-center">
+                        <div class="info_panel-switchers d-flex">
                             <input type="checkbox" id="filtr_ntp_p1">
                         <label for="filtr_ntp_p1" data-on-label="Технопарки" data-off-label="Технопарки"></label>
 
@@ -677,8 +678,7 @@
                         <div class="info_panel-filter">
                             <span class="filter-name">Регион</span>
                             <div class="mb-3">
-                                <select class="form-select" id="small-select2-options-multiple-field_ntp" data-placeholder="Найти"
-                                        placeholder="Выберите" multiple>
+                            <select class="form-select" id="small-select2-options-multiple-field_ntp" data-placeholder="Регион" multiple>
                                     <option>Минск</option>
                                     <option>Минская область</option>
                                     <option>Могилевская область</option>
@@ -690,25 +690,24 @@
                             </div>
                         </div>
                     </div>
+                  
+                  <div class="info_object" >
                     <div class="sort-bar">
                         <span class="sort-icon"></span>
                         <span class="sort-button">Название</span>
                     </div>
-                        <div class="info_object" id="info_object_ntp">
+                    <div id="info_object_ntp">
 
-                        </div>
+                    </div>
+                  </div>
                 </div>
             </section>
              <!--КОНЕЦ Научно-технологические программы -->
             </div>
             <!-- end accordion -->
-<<<<<<< HEAD
 
-
-=======
         </div>
->>>>>>> 9cb29f043f0d352fbae0a799d26013136a144a13
-    </div>
+
 <!-- end <!-- left sidebar map -->
 
     <!-- window -->
