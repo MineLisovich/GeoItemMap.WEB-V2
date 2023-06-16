@@ -6,7 +6,7 @@ module.exports = {
     mode: 'development',
     entry:
     {
-        JSModul: ["./wwwroot/js/header.js", "./wwwroot/js/jquery.js", "./wwwroot/js/sidebarmap.js", "./wwwroot/js/bootstrap.bundle.min.js", "./wwwroot/js/bootstrap.min.js", "./wwwroot/js/popperjs.js"],
+        JSModul: ["./wwwroot/js/header.js", "./wwwroot/js/sidebarmap.js", "./wwwroot/js/bootstrap.bundle.min.js", "./wwwroot/js/jquery.js"],
         ScssModul: './wwwroot/js/app.js'
     },
 

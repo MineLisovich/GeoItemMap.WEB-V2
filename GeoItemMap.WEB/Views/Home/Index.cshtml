@@ -6,6 +6,14 @@
         padding: 0;
         margin: 0;
     }
+
+    .ymaps-2-1-79-map {
+        font-weight: 700 !important;
+        font-size: 14px !important;
+        line-height: 17px;
+        color: #034580;
+    }
+
 </style>
 <script type="text/javascript">
     var optionsTemplate = [].join('');
@@ -156,16 +164,17 @@
             map.geoObjects.add(background);
 
         })
+    
         // создание кластера
         clusterer = new ymaps.Clusterer({
             // Макет метки кластера pieChart.
-            clusterIconLayout: 'default#pieChart',
+                clusterIconLayout: 'default#pieChart',
             // Радиус диаграммы в пикселях.
-            clusterIconPieChartRadius: 25,
+            clusterIconPieChartRadius: 20,
             // Радиус центральной части макета.
-            clusterIconPieChartCoreRadius: 10,
+            clusterIconPieChartCoreRadius: 13,
             // Ширина линий-разделителей секторов и внешней обводки диаграммы.
-            clusterIconPieChartStrokeWidth: 3,
+            clusterIconPieChartStrokeWidth: 0,
             // Определяет наличие поля balloon.
             hasBalloon: true
         });
@@ -180,28 +189,33 @@
                 result.geoItems.forEach(element => {
                     // Технопарки
                     if (element.geoType == 0) {
-                        var circleLayout = ymaps.templateLayoutFactory.createClass(`<div class="o-icon"><div class="parks-process-small d-none" id='${element.id}'></div></div>`);
+                        var technoParkLayout = ymaps.templateLayoutFactory.createClass(`<div class="o-icon"><div class="parks-process-small d-none" id='${element.id}'></div></div>`);
+                       
                         var myGeoObject = new ymaps.GeoObject({
                             geometry: {
                                 type: "Point", // тип геометрии - точка
                                 coordinates: [element.x, element.y], // координаты точки
                             },
                         }, {
-                            iconColor: "#33FF00",
-                            iconLayout: circleLayout,
+                            iconColor: "#FFA726",
+                            iconLayout: technoParkLayout,
                             pane: 'overlaps',
                             iconImageOffset: [0, 0],
                         });
                     }
                     //Центр трансфера технологий
                     if (element.geoType == 1) {
+                        var CTTLayout = ymaps.templateLayoutFactory.createClass(`<div class="o-icon-ctt"><div class="parks-process-small d-none" id='${element.id}'></div></div>`);
                         var myGeoObject = new ymaps.GeoObject({
                             geometry: {
                                 type: "Point", // тип геометрии - точка
                                 coordinates: [element.x, element.y], // координаты точки
                             },
                         }, {
-                            iconColor: "#5863FF"
+                            iconColor: "#8BC34A",
+                            iconLayout: CTTLayout,
+                            pane: 'overlaps',
+                            iconImageOffset: [0, 0],
                         });
                     }
                     // ИНН проекты
@@ -335,146 +349,145 @@
                 });
             }
         });
-    }
- // При нажатии на вкладку "Субъекты инновационной инфраструктуры"
-    $(document).ready(function () {
-        const $showDataItem_techpar_ctt = $("#Item_techparck_ctt");
-        $showDataItem_techpar_ctt.click(function () {
-            let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
-            $("#info_object_Inn").empty();
-            $("#info_object_ntp").empty();
-            if (hasClass) {
-                $.ajax({
-                    url: 'https://localhost:7215/Home/PostData',
-                    type: 'POST',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    async: true,
-                    success: function (result) {
-                        // Технопарки
-                        result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
-                        // ЦТТ
-                        result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
-                    }
-                });
-                // Технопарк
-                function getInfoTechnopark(itemTechnopark) {
+        // При нажатии на вкладку "Субъекты инновационной инфраструктуры"
+        $(document).ready(function () {
+            const $showDataItem_techpar_ctt = $("#Item_techparck_ctt");
+            $showDataItem_techpar_ctt.click(function () {
+                let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
+                $("#info_object_Inn").empty();
+                $("#info_object_ntp").empty();
+                if (hasClass) {
+                    $.ajax({
+                        url: 'https://localhost:7215/Home/PostData',
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        async: true,
+                        success: function (result) {
+                            // Технопарки
+                            result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark));})
+                            // ЦТТ
+                            result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
+                        }
+                    });
+                    // Технопарк
+                    function getInfoTechnopark(itemTechnopark) {
 
-                    return `
-                                    <a href="#" class="info_item item-header-js" data-type="tehParckHeader" data-id="${itemTechnopark.id}">
-                                        <div class="info_item-icon parks-actual-big"></div>
-                                    <div class="info_item-data">
-                                        <h3>${itemTechnopark.nameTechnopark}</h3>
-                                        <span class="info_item-region">Республика</span>
-                                   </div>
-                                </a>
-                        `;
+                        return `
+                                                <a href="#" class="info_item item-header-js" data-type="tehParckHeader" data-id="${itemTechnopark.id}" data-x="${itemTechnopark.x}" data-y="${itemTechnopark.y}" >
+                                            <div class="info_item-icon parks-actual-big"></div>
+                                        <div class="info_item-data">
+                                            <h3>${itemTechnopark.nameTechnopark}</h3>
+                                            <span class="info_item-region">Республика</span>
+                                       </div>
+                                    </a>
+                            `;
+                    }
+                    // ЦТТ
+                    function getInfoTechTransferCenter(itemTechTransferCenter) {
+                        return `
+                                                    <a href="#" class="info_item item-header-js" data-type="cctHeader" data-id="${itemTechTransferCenter.id}" data-x="${itemTechTransferCenter.x}" data-y="${itemTechTransferCenter.y}">
+                                                <div class="info_item-icon ctt-small"></div>
+                                        <div class="info_item-data">
+                                            <h3>${itemTechTransferCenter.nameTechTransferCenter}</h3>
+                                            <span class="info_item-region">Республика</span>
+                                       </div>
+                                  </a>
+                              `;
+                    }
+
                 }
-                // ЦТТ
-                function getInfoTechTransferCenter(itemTechTransferCenter) {
-                    return `
-                                    <a href="#" class="info_item item-header-js" data-type="cctHeader" data-id="${itemTechTransferCenter.id}">
+                else {
+                    $('.sidebarmap-accordion_item').removeClass('active_block');
+                    $("#info_object_tehnoparck_ctt").empty();
+                }
+            });
+        });
+
+        // При нажатии на вкладку "Инновационные проекты"
+        $(document).ready(function () {
+            const $showDataItem_inn = $("#Item_inn");
+            $showDataItem_inn.click(function () {
+                let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
+                $("#info_object_ntp").empty();
+                $("#info_object_tehnoparck_ctt").empty();
+                if (hasClass) {
+                    $.ajax({
+                        url: 'https://localhost:7215/Home/PostData',
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        async: true,
+                        success: function (result) {
+                            // ИНН
+                            result.innProject.forEach(itemInnProject => { $("#info_object_Inn").append(getInfoInn(itemInnProject)); })
+                        }
+                    });
+                    //ИНН
+                    function getInfoInn(itemInnProject) {
+                        return `
+                                                         <a href="#" class="info_item  item-header-js" data-type="InnHeader" data-id="${itemInnProject.id}" data-x="${itemInnProject.x}" data-y="${itemInnProject.y}">
+                                         <div class="info_item-icon parks-actual-big"></div>
+                                         <div class="info_item-data">
+                                            <h3>${itemInnProject.nameInnProject}</h3>
+                                            <span class="info_item-region">Республика</span>
+                                         </div>
+                                     </a>
+                                `;
+                    }
+                }
+                else {
+                    $('.sidebarmap-accordion_item').removeClass('active_block');
+                    $("#info_object_Inn").empty();
+                }
+            });
+        });
+
+        // При нажатии на вкладку "Научно-технологические  программы"
+        $(document).ready(function () {
+            const $showDataItem_ntp = $("#Item_ntp");
+            $showDataItem_ntp.click(function () {
+                let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
+                $("#info_object_Inn").empty();
+                $("#info_object_tehnoparck_ctt").empty();
+                // если меню открыто, то выполнить ajax запрос и подставить данные
+                if (hasClass) {
+                    $.ajax({
+                        url: 'https://localhost:7215/Home/PostData',
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        async: true,
+                        success: function (result) {
+                            //  console.log(result)
+                            // НТП
+                            result.ntpProject.forEach(itemNtpProject => { $("#info_object_ntp").append(getInfoNtp(itemNtpProject)); })
+                        }
+                    });
+                    // НТП
+                    function getInfoNtp(itemNtpProject) {
+                        return `
+                                             <a href="#" class="info_item  item-header-js" data-type="NtpHeader" data-id="${itemNtpProject.id}" data-x="${itemNtpProject.x}" data-y="${itemNtpProject.y}">
                                     <div class="info_item-icon parks-actual-big"></div>
                                     <div class="info_item-data">
-                                        <h3>${itemTechTransferCenter.nameTechTransferCenter}</h3>
+                                        <h3>${itemNtpProject.nameTask}</h3>
                                         <span class="info_item-region">Республика</span>
                                    </div>
-                              </a>
-                          `;
-                }
-
-            }
-            else {
-                $('.sidebarmap-accordion_item').removeClass('active_block');
-                $("#info_object_tehnoparck_ctt").empty();
-            }
-        });
-    });
-
-// При нажатии на вкладку "Инновационные проекты"
-    $(document).ready(function () {
-        const $showDataItem_inn = $("#Item_inn");
-        $showDataItem_inn.click(function () {
-            let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
-            $("#info_object_ntp").empty();
-            $("#info_object_tehnoparck_ctt").empty();
-            if (hasClass) {
-                $.ajax({
-                    url: 'https://localhost:7215/Home/PostData',
-                    type: 'POST',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    async: true,
-                    success: function (result) {
-                        // ИНН
-                        result.innProject.forEach(itemInnProject => { $("#info_object_Inn").append(getInfoInn(itemInnProject)); })
-                    }
-                });
-                //ИНН
-                function getInfoInn(itemInnProject) { 
-                    return `
-                                         <a href="#" class="info_item  item-header-js" data-type="InnHeader" data-id="${itemInnProject.id}">
-                                     <div class="info_item-icon parks-actual-big"></div>
-                                     <div class="info_item-data">
-                                        <h3>${itemInnProject.nameInnProject}</h3>
-                                        <span class="info_item-region">Республика</span>
-                                     </div>
                                  </a>
-                            `;
-                }
-            }
-            else {
-                $('.sidebarmap-accordion_item').removeClass('active_block');
-                $("#info_object_Inn").empty();
-            }
-        });
-    });
-
- // При нажатии на вкладку "Научно-технологические  программы"
-    $(document).ready(function () {
-        const $showDataItem_ntp = $("#Item_ntp");
-        $showDataItem_ntp.click(function () {
-            let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
-            $("#info_object_Inn").empty();
-            $("#info_object_tehnoparck_ctt").empty();
-            // если меню открыто, то выполнить ajax запрос и подставить данные
-            if (hasClass) {
-                $.ajax({
-                    url: 'https://localhost:7215/Home/PostData',
-                    type: 'POST',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    async: true,
-                    success: function (result) {
-                        //  console.log(result)
-                        // НТП
-                        result.ntpProject.forEach(itemNtpProject => { $("#info_object_ntp").append(getInfoNtp(itemNtpProject)); })
+                                    `;
                     }
-                });
-                // НТП
-                function getInfoNtp(itemNtpProject) { 
-                    return `
-                             <a href="#" class="info_item  item-header-js" data-type="NtpHeader" data-id="${itemNtpProject.id}">
-                                <div class="info_item-icon parks-actual-big"></div>
-                                <div class="info_item-data">
-                                    <h3>${itemNtpProject.nameTask}</h3>
-                                    <span class="info_item-region">Республика</span>
-                               </div>
-                             </a>
-                                `;
                 }
-            }
-            // При закртии меню происходит очистка div, чтобы избежать дублирования информации
-            else {
-                $('.sidebarmap-accordion_item').removeClass('active_block');
-                $("#info_object_ntp").empty();
-            }
+                // При закртии меню происходит очистка div, чтобы избежать дублирования информации
+                else {
+                    $('.sidebarmap-accordion_item').removeClass('active_block');
+                    $("#info_object_ntp").empty();
+                }
+            });
         });
-    });
 
- // всплывающего окна
- function top_popup() { 
-            $(document).ready(function () { 
+        // всплывающего окна
+        function top_popup() {
+            $(document).ready(function () {
                 const $closeWindow = $(".close-window");
                 const $windowbar = $(".window");
                 const $windowChild = $(".window-child");
@@ -488,87 +501,95 @@
                 $windowChild.toggleClass("active");
                 $windowBlock.removeClass("d-none");
                 let hasClass = $('.window').hasClass('active');
-                if (!hasClass)
-                {
-                   $("#window-container").empty();
+                if (!hasClass) {
+                    $("#window-container").empty();
                 }
 
                 $closeWindow.click(function () {
                     $windowbar.removeClass("active");
                     $windowChild.removeClass("active");
-                $("#window-container").empty();
-                  $windowBlock.toggleClass("d-none");
-               
-                  $parksProcessSmall.addClass("d-none");
+                    $("#window-container").empty();
+                    $windowBlock.toggleClass("d-none");
+
+                    $parksProcessSmall.addClass("d-none");
                 });
 
                 $closeBtn.click(function () {
-                    $windowChild.animate({width: 300}, 250);
+                    $windowChild.animate({ width: 300 }, 250);
                     $buttonLeft.show();
                     $childContainer.show();
                 });
 
-               $buttonLeft.on('click',function(){
-                    $windowChild.animate({width: 0}, 200);
+                $buttonLeft.on('click', function () {
+                    $windowChild.animate({ width: 0 }, 200);
                     $buttonLeft.hide();
                     $childContainer.hide();
-               });
-    });
- }
+                });
+            });
+        }
 
- // получение данных по id
-    $(document).ready(function () {
-        $('.sidebarmap').on('click', '.item-header-js', function () {
-            var url = "";
-            var wrapperid = "";
-            var id = $(this).attr("data-id");
+        // получение данных по id
+        $(document).ready(function () {
+            $('.sidebarmap').on('click', '.item-header-js', function () {
+                var url = "";
+                var wrapperid = "";
+                var id = $(this).attr("data-id");
+                var x = $(this).attr("data-x");
+                var y = $(this).attr("data-y");
 
-            switch ($(this).attr("data-type")) {
-                case 'cctHeader':
-                   url = "@Url.Action("GetPartialCTT", "Home")";
-                   wrapperid = "#window-container";
-                break;
-                case 'tehParckHeader':
-                    url = "@Url.Action("GetPartialTechParck", "Home")";
-                    wrapperid = "#window-container";
-                break;
-                case 'InnHeader':
-                    url = "@Url.Action("GetPartialInnProject", "Home")";
-                    wrapperid = "#window-container";
-                break;
-                case 'NtpHeader':
-                    url = "@Url.Action("GetPartialNtpProject", "Home")";
-                    wrapperid = "#window-container";                      
-                break;
-            }
-            if (url != "") {
-                AjaxAxtion(url, id, wrapperid);
-            }
-        });
-        function AjaxAxtion(url, id, wrapperid) {
-
-            $.ajax({
-                cache: false,
-                type: "GET",
-                url: url,
-                data: { id: id },
-                dataType: "html",
-                success: function (data)
-                {
-                    $(wrapperid).empty();
-                    $(wrapperid).append(data);
-                    const $parksProcessSmall = $(`#${id}`);
-                    $parksProcessSmall.removeClass("d-none");
-                    top_popup();
-
-                },
-                error: function (xhr, ajaxOptions, thrownError)
-                {
-                    alert('Ошибка загрузки данных!');
+                switch ($(this).attr("data-type")) {
+                    case 'cctHeader':
+                        url = "@Url.Action("GetPartialCTT", "Home")";
+                        wrapperid = "#window-container";
+                        break;
+                    case 'tehParckHeader':
+                        url = "@Url.Action("GetPartialTechParck", "Home")";
+                        wrapperid = "#window-container";
+                        break;
+                    case 'InnHeader':
+                        url = "@Url.Action("GetPartialInnProject", "Home")";
+                        wrapperid = "#window-container";
+                        break;
+                    case 'NtpHeader':
+                        url = "@Url.Action("GetPartialNtpProject", "Home")";
+                        wrapperid = "#window-container";
+                        break;
+                }
+                if (url != "") {
+                    AjaxAxtion(url, id,x,y, wrapperid);
                 }
             });
+            function AjaxAxtion(url, id, x, y, wrapperid) {
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: url,
+                    data: { 
+                        id: id,
+                        x: x,
+                        y: y
+                    },
+                    dataType: "html",
+                    success: function (data) {
+                       
+                        $(wrapperid).empty();
+                        $(wrapperid).append(data);
+                        const $parksProcessSmall = $(`#${id}`);
+                        $parksProcessSmall.removeClass("d-none");
+                       
+                        map.setCenter([x, y-0.004], 17, {
+                            checkZoomRange: true
+                        });
+                        top_popup();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Ошибка загрузки данных!');
+                    }
+                });
             }
-         });
+        });
+    }
 </script>
 
 <div id="YMapsID"></div>
@@ -585,17 +606,17 @@
                 <div class="info">
                         <div class="info_panel" id="filtr_teh_ctt_bif">
                         <div class="info_panel-switchers d-flex">
-                            <input type="checkbox" id="filtr_techparck">
+                            <input type="checkbox" id="filtr_techparck" checked>
                         <label for="filtr_techparck" data-on-label="Технопарки" data-off-label="Технопарки"></label>
-                            <input type="checkbox" id="filtr_ctt">
+                        <input type="checkbox" id="filtr_ctt" checked>
                         <label for="filtr_ctt" data-on-label="ЦТТ" data-off-label="ЦТТ"></label>
-                            <input type="checkbox" id="filtr_bif">
+                        <input type="checkbox" id="filtr_bif" checked>
                         <label for="filtr_bif" data-on-label="Биф и НЦИС" data-off-label="Биф и НЦИС"></label>
                         </div>
                         <div class="info_panel-filter">
                         <span for="select2-search__field" class="filter-name">Регион</span>
                             <div class="mb-3">
-                            <select class="form-select" id="small-select2-options-multiple-field" @*data-placeholder="Регион"*@ multiple data-placeholder-tmp="">
+                            <select class="form-select" id="small-select2-options-multiple-field" multiple data-placeholder-tmp="">
                                     <option id="testopt">Минск</option>
                                     <option>Минская область</option>
                                     <option>Могилевская область</option>
@@ -626,17 +647,17 @@
                     <div class="info">
                         <div class="info_panel" id="filt_inn">
                         <div class="info_panel-switchers d-flex">
-                            <input type="checkbox" id="filtr_inn_end">
+                        <input type="checkbox" id="filtr_inn_end" checked>
                         <label for="filtr_inn_end" data-on-label="@*Завершен*@" data-off-label="@*Завершен*@"></label>
-                            <input type="checkbox" id="filtr_inn_continues">
+                        <input type="checkbox" id="filtr_inn_continues" checked>
                         <label for="filtr_inn_continues" data-on-label="@*Продолжается*@" data-off-label="@*Продолжается*@"></label>
-                            <input type="checkbox" id="filtr_inn_execute">
+                        <input type="checkbox" id="filtr_inn_execute" checked>
                         <label for="filtr_inn_execute" data-on-label="@*Выполнится*@" data-off-label="@*Выполнится*@"></label>
                         </div>
-                        <div class="info_panel-filter">
+                    <div class="info_panel-filter-inn">
                             <span class="filter-name">Регион</span>
                             <div class="mb-3">
-                            <select class="form-select" id="small-select2-options-multiple-field_inn" @*data-placeholder="Регион"*@ multiple data-placeholder-tmp="">
+                            <select class="form-select" id="small-select2-options-multiple-field_inn" multiple data-placeholder-tmp="">
                                     <option>Минск</option>
                                     <option>Минская область</option>
                                     <option>Могилевская область</option>
@@ -666,19 +687,17 @@
                 <div class="info">
                     <div class="info_panel" id="filtr_ntp">
                         <div class="info_panel-switchers d-flex">
-                            <input type="checkbox" id="filtr_ntp_p1">
+                        <input type="checkbox" id="filtr_ntp_p1" checked>
                         <label for="filtr_ntp_p1" data-on-label="@*Технопарки*@" data-off-label="@*Технопарки*@"></label>
-
-                            <input type="checkbox" id="filtr_ntp_p2" >
+                        <input type="checkbox" id="filtr_ntp_p2" checked>
                         <label for="filtr_ntp_p2" data-on-label="@*ЦТТ*@" data-off-label="@*ЦТТ*@"></label>
-
-                            <input type="checkbox" id="filtr_ntp_p3">
+                        <input type="checkbox" id="filtr_ntp_p3" checked>
                         <label for="filtr_ntp_p3" data-on-label="@*Биф и НЦИС*@" data-off-label="@*Биф и НЦИС*@"></label>
                         </div>
-                        <div class="info_panel-filter">
+                    <div class="info_panel-filter-ntp">
                             <span class="filter-name">Регион</span>
                             <div class="mb-3">
-                            <select class="form-select" id="small-select2-options-multiple-field_ntp" @*data-placeholder="Регион"*@ data-placeholder-tmp="" multiple >
+                            <select class="form-select" id="small-select2-options-multiple-field_ntp" data-placeholder-tmp="" multiple >
                                     <option>Минск</option>
                                     <option>Минская область</option>
                                     <option>Могилевская область</option>
@@ -718,50 +737,21 @@
         </div>
         <!-- window-container -->
     </div>
+
+
     <!-- end window -->
 
 <!--  modal window for the gallery -->
-@*   <script>
+  <script>
     function openModal() {
         document.getElementById("modal-gallery").style.display = "block";
-        showSlides(slideIndex); // Показать первый слайд при открытии модального окна
+        showSlides(slideIndex); 
     }
 
     function closeModal() {
         document.getElementById("modal-gallery").style.display = "none";
     }
 
-    var slideIndex = 1;
-    showSlides(slideIndex);
+   </script>
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
 
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("slides-gallery");
-        var dots = document.getElementsByClassName("demo");
-        var captionText = document.getElementById("caption");
-        if (n > slides.length) {
-            slideIndex = 1;
-        }
-        if (n < 1) {
-            slideIndex = slides.length;
-        }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-        captionText.innerHTML = dots[slideIndex - 1].alt;
-    }
-   </script>*@
-<!-- end modal window for the gallery -->

@@ -1,5 +1,4 @@
 
-
 //modal-gallery//
 .row-img>.col-img {
   padding: 0 8px 15px;
@@ -12,6 +11,7 @@
 .col-img {
   float: left;
   width: 20%;
+  cursor: pointer;
 
 }
 
@@ -19,7 +19,6 @@
   display: none;
   position: fixed;
   z-index: 1000;
-  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
@@ -28,13 +27,6 @@
   background: rgba(0, 0, 0, .7);
 }
 
-.gallery-content {
-  position: relative;
-  margin: auto;
-  padding: 0;
-  width: 50%;
-  max-width: 1200px;
-}
 
 .close {
   color: white;
@@ -52,147 +44,11 @@
   cursor: pointer;
 }
 
-.slides-gallery {
-  display: none;
-}
 
-.cursor {
-  cursor: pointer;
-}
-
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  margin-top: 13%;
-  width: auto;
-  padding: 16px;
-  margin-left: 20%;
-  margin-right: 20%;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-  text-decoration: none;
-}
-
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-img {
-  margin-bottom: -4px;
-}
-
-.caption-container {
-  text-align: center;
-  padding: 2px 16px;
-}
-
-.demo {
-  opacity: 0.6;
-}
-
-.active,
-.demo:hover {
-  opacity: 1;
-}
-
-img.hover-shadow {
-  transition: 0.3s;
-}
-
-.hover-shadow:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  transform: scale(1.1);
-}
-
-
-//modal sign up//
-
-.modal {
-  margin-top: 15%;
-}
-
-.modal-dialog {
-  width: 400px;
-
-}
-
-.modal-header {
-  padding-bottom: 0;
-  border: 0;
-  height: 10px;
-}
-
-.modal-footer {
-  display: flex;
-  flex-shrink: 0;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  border-top: 0;
-  padding-top: 0;
-
-  &__email-submit {
-    padding: 15px 70px;
-    color: #fff;
-    background-color: #00a7e5;
-    outline: 0;
-    border: none;
-    font-size: 16px;
-    margin-top: 10px;
-    cursor: pointer;
-  }
-}
-
-.modal-body {
-  padding-bottom: 0;
-  color: #55585a;
-
-  &__email-message {
-    font-size: 14px;
-    margin: 5px 50px;
-    text-align: center;
-    height: 40px;
-    cursor: default;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 100%;
-  }
-
-  &__email-input {
-    border: none;
-    outline: 0;
-    width: calc(100% - 100px);
-    margin: 5px 50px;
-    text-align: center;
-    padding-bottom: 5px;
-    border-bottom: 1px #ccc solid;
-    font-size: 16px;
-  }
-}
 .carousel {
     position: relative;
     width: 70%;
     margin-left: auto;
     margin-right: auto;
+
 }

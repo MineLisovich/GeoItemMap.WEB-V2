@@ -1,0 +1,31 @@
+
+@media (min-width: 767.98px) and (max-width: 991.98px) {
+    .info_object {
+        height: 345px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .info_object {
+        height: 355px;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+    .info_object {
+        height: 333px;
+    }
+}
+
+
+@media (min-width: 1400px) and (max-width: 1919.98px) {
+    .info_object {
+        height: 320px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .info_object {
+        height: 450px;
+    }
+}
