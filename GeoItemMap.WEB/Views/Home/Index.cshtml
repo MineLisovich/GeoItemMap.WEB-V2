@@ -16,126 +16,114 @@
 
 </style>
 <script type="text/javascript">
-    var optionsTemplate = [].join('');
-    ymaps.ready(init);
-    function init() {
-         var RegionControlLayout = ymaps.templateLayoutFactory.createClass(optionsTemplate, {}),
-        // Наследуем класс нашего контрола от ymaps.control.Button.
-         RegionControl = ymaps.util.defineClass(function (parameters) {
-            RegionControl.superclass.constructor.call(this, parameters);
-        }, ymaps.control.Button, {
-            onAddToMap: function (map) {
-                RegionControl.superclass.onAddToMap.call(this, map);
-                this.setupStateMonitor();
-                this.loadRegions(this.state.get('values'));
-            },
+    ymaps.ready(function () {
+        var map = new ymaps.Map('YMapsID', {
+            center: [53.867095130120916, 27.570731406497565],
+            zoom: 7,
+            controls: []
+        }, {
+            maxZoom: 17,
+            minZoom: 7,
+            restrictMapArea: [
+                [58.486077093111334, 15.89679288089655],
+                [49.77185323695446, 39.58331354601873]
+            ],
+        });
 
-            onRemoveFromMap: function (map) {
-                map.geoObjects.remove(this.regions);
-                this.clearStateMonitor();
-                RegionControl.superclass.onRemoveFromMap.call(this, map);
-            },
 
-            setupStateMonitor: function () {
-                this.stateMonitor = new ymaps.Monitor(this.state);
-                this.stateMonitor.add('values', this.handleStateChange, this);
-            },
+        //ЦВЕТ ГРАНИЦ РБ (И РЕГИОНОВ РБ)
+        var _strokeColorBY = '#CED8E1';
+        // ПРОЗРАЧНОСТЬ ЦВЕТА ГРАНИЦ
+        var _strokeOpacityBY = 1;
+        // ЦВЕТ ЗАЛИВКИ РБ (ВСЕХ РЕГИОНОВ)
+        var _fillColorBY = '#85A2BF';
+        // ПРОЗРАЧНОСТЬ ЗАЛИВКИ ПО УМОЛЧАНИЮ
+        var _fillOpacityBY = 0.8;
+        // ТОЧНОСТЬ ГРАНИЦ РБ И РЕГИОНОВ РБ (1- очень не точно; 2- почти точно; 3- точные границы)
+        var _qualityBY = 3;
 
-            clearStateMonitor: function () {
-                this.stateMonitor.removeAll();
-            },
 
-            handleStateChange: function (params) {
-                this.loadRegions(params);
-            },
+        var objectManager = new ymaps.ObjectManager();
+        var features;
 
-            handleRegionsLoaded: function (res) {
-                if (this.regions) {
-                    map.geoObjects.remove(this.regions);
+        map.events.add('boundschange', function (e) {
+            if (e.get('newZoom') !== e.get('oldZoom')) {
+              //  console.log("NEW ZOOM: " + e.get('newZoom') + " OLD ZOOM: " + e.get('oldZoom'));
+
+                switch (e.get('newZoom')) {
+                    case 7: clearFeature(); _fillOpacityBY = 0.8; addFeature(); break;
+                    case 9: clearFeature(); _fillOpacityBY = 0.5; addFeature(); break;
+                    case 12: clearFeature(); _fillOpacityBY = 0.3; addFeature(); break;
                 }
-
-                this.regions = new ymaps.ObjectManager();
-                this.regions
-                    .add(res.features.map(function (feature) {
-                        feature.id = feature.properties.iso3166;
-                        feature.options = {
-                            strokeColor: '#ffffff',
-                            strokeOpacity: 1,
-                                fillColor: '#336897',
-                            fillOpacity: 0.9,
-                            hintCloseTimeout: 0,
-                            hintOpenTimeout: 0
-                        };
-                        return feature;
-                    }));
-                map.geoObjects.add(this.regions);
-
-                this.selectedRegionId = '';
-                this.regions.events
-                    .add('mouseenter', function (e) {
-                        var id = e.get('objectId');
-                        this.regions.objects.setObjectOptions(id, { strokeWidth: 2 });
-                    }, this)
-                    .add('mouseleave', function (e) {
-                        var id = e.get('objectId');
-                        if (this.selectedRegionId !== id) {
-                            this.regions.objects.setObjectOptions(id, { strokeWidth: 1 });
-                        }
-                    }, this);
-               
-                this.getMap().setBounds(
-                    this.regions.getBounds(),
-                    { checkZoomRange: true }
-                );
-            },
-
-            loadRegions: function (params) {
-                this.disable();
-                return ymaps.borders.load(params.region, params)
-                    .then(this.handleRegionsLoaded, this)
-                    .always(this.enable, this);
             }
-        }),
+        });
+        // Добавление заливки для РБ и регионов с учётом зума и прозрачности
+        function addFeature() {
+            ymaps.borders.load('BY', {
+                lang: 'ru',
+                quality: _qualityBY
+            }).then(function (geojson) {
+                features = geojson.features.map(function (feature) {
+                    feature.id = feature.properties.iso3166;
 
-            map = new ymaps.Map('YMapsID', {
-                center: [53.90, 27.56],
-                zoom: 1,
-                controls: []
-            }, {
-                maxZoom: 17,
-                restrictMapArea: [
-                      [58.486077093111334, 15.89679288089655],
-                      [49.77185323695446, 39.58331354601873]
-                     ],
-            }),
+                    feature.options = {
+                        strokeColor: _strokeColorBY,
+                        strokeOpacity: _strokeOpacityBY,
+                        fillColor: _fillColorBY,
+                        fillOpacity: _fillOpacityBY,
+                        hintCloseTimeout: 0,
+                        hintOpenTimeout: 0
+                    };
+                    return feature;
 
-            // Создадим экземпляр RegionControl.
-            regionControl = new RegionControl({
-                state: {
-                    enabled: true,
-                    values: {
-                        region: 'BY',
-                        lang: 'ru',
-                        quality: '3'
-                    }
-                },
-                options: {
-                    layout: RegionControlLayout
-                }
+                });
+
+                objectManager.add(features);
+                map.geoObjects.add(objectManager);
+            });
+        }
+        // Очиска границ рБ и регионов
+        function clearFeature() {
+            objectManager.remove(features);
+        }
+
+        ymaps.borders.load('BY', {
+            lang: 'ru',
+            quality: _qualityBY
+        }).then(function (geojson) {
+            features = geojson.features.map(function (feature) {
+                feature.id = feature.properties.iso3166;
+
+                feature.options = {
+                    strokeColor: _strokeColorBY,
+                    strokeOpacity: _strokeOpacityBY,
+                    fillColor: _fillColorBY,
+                    fillOpacity: _fillOpacityBY,
+                    hintCloseTimeout: 0,
+                    hintOpenTimeout: 0
+                };
+                return feature;
 
             });
-
-        // Добавим контрол на карту.
-        map.controls.add(regionControl);
-        // Узнавать о изменениях параметров RegionControl можно следующим образом.
-        regionControl.events.add('statechange', function (e) {
-            console.log(e.get('target').get('values'));
+            objectManager.add(features);
+            map.geoObjects.add(objectManager);
         });
+
+        // Цвет Заливки ДРУГИХ СТРАН
+        var _fillColor = '#A6BBCE';
+        // ПРОЗРАЧНОСТЬ ЗАЛИВКИ (от 0 до 1)
+        var _fillOpacity = 0.7;
+        // ЦВЕТ ГРАНИЦ ДРГУИХ СТРАН
+        var _strokeColor = '#ffffff';
+        // ПРОЗРАЧНОСТЬ ЦВЕТА ГРАНИЦЫ (от 0 до 1)
+        var _strokeOpacity = 1;
+        // ТОЧНОСТЬ ГРАНИЦ ДРУГИХ СТРАН (1- очень не точно; 2- почти точно; 3- точные границы)
+        var _quality = 3;
 
         // Загрузим регионы.
         ymaps.borders.load('001', {
             lang: 'ru',
-            quality: 3
+            quality: _quality
         }).then(function (result) {
 
             // Создадим многоугольник, который будет скрывать весь мир, кроме заданной страны.
@@ -148,23 +136,23 @@
                     [85, -179.99]
                 ]
             ], {}, {
-                fillColor: '#648baf',
-                fillOpacity: 0.5,
+                fillColor: _fillColor,
+                fillOpacity: _fillOpacity,
                 strokeWidth: 1.5,
-                strokeColor: '#ffffff',
+                strokeColor: _strokeColor,
+                strokeOpacity: _strokeOpacity,
                 coordRendering: 'straightPath'
             });
             // Найдём страну по её iso коду.
-            var region = result.features.filter(function (feature) { return feature.properties.iso3166 == 'BY'; })[0];         
+            var region = result.features.filter(function (feature) { return feature.properties.iso3166 == 'BY'; })[0];
             var masks = region.geometry.coordinates;
             masks.forEach(function (mask) {
                 background.geometry.insert(1, mask);
             });
             // Добавим многоугольник на карту.
             map.geoObjects.add(background);
-
         })
-    
+
         // создание кластера
         clusterer = new ymaps.Clusterer({
             // Макет метки кластера pieChart.
@@ -589,7 +577,7 @@
                 });
             }
         });
-    }
+    });
 </script>
 
 <div id="YMapsID"></div>
