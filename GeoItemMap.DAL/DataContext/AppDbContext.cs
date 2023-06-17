@@ -5,22 +5,14 @@ namespace GeoItemMap.DAL.DataContext
 {
     public class AppDbContext : DbContext
     {
-        public class OptionsBuild
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            public DbContextOptionsBuilder<AppDbContext> opsBuilder { get; set; }
-            public DbContextOptions<AppDbContext> dbOptins { get; set; }
-            private DALConfiguration _appConfiguration { get; set; }
-            public OptionsBuild()
-            {
-                _appConfiguration = new DALConfiguration();
-                opsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-                opsBuilder.UseSqlServer(_appConfiguration.sqlConnectionString);
-                dbOptins = opsBuilder.Options;
-            }
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-OMG8DCU\\SQLEXPRESS;  Database=GeoItemDB;  Persist Security Info =false; User='sa'; Password='sa'; MultipleActiveResultSets=True; Trusted_Connection=False;");
         }
-        public static OptionsBuild ops = new OptionsBuild();
+
+        // ПРИ МИГРАЦИИ БД, ЗАКОНМЕНТИТЬ НИЖЕ (А НА РЕЛИЗЕ РАСКОМЕНТИТЬ)
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-        public DbContextOptions<AppDbContext> ConnectionString { get; }
+
         public DbSet<GeoItem>? GeoItems { get; set; }
         public DbSet <NtpProject>? NtpProjects { get; set; }
         public DbSet <InnProject>? InnProjects { get; set; }  
