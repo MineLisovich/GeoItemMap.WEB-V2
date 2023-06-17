@@ -862,7 +862,7 @@ li>div:hover {
 }
 
 
-
+/*Технопарки*/
 .o-icon {
     display: inline-block;
     border-radius: 50%;
@@ -873,11 +873,35 @@ li>div:hover {
     height: 25px;
     animation: 3s show ease;
 }
-
+/*ЦТТ*/
 .o-icon-ctt {
     display: inline-block;
     border-radius: 50%;
     background: url(../../icons/ctt-small.svg) center center no-repeat;
+    background-size: 25px 25px;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    animation: 3s show ease;
+}
+
+/*ИНН поменять путь к картинке*/
+.o-icon-inn {
+    display: inline-block;
+    border-radius: 50%;
+    background: url(../../icons/ctt-small.svg) center center no-repeat; /*!!!!!*/
+    background-size: 25px 25px;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    animation: 3s show ease;
+}
+
+/*НТП поменять путь к картинке*/
+.o-icon-ntp {
+    display: inline-block;
+    border-radius: 50%;
+    background: url(../../icons/ctt-small.svg) center center no-repeat; /*!!!!!*/
     background-size: 25px 25px;
     position: relative;
     width: 25px;

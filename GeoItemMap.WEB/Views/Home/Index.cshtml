@@ -208,6 +208,7 @@
                     }
                     // ИНН проекты
                     if (element.geoType == 2) {
+                        var INNLayout = ymaps.templateLayoutFactory.createClass(`<div class="o-icon-inn"><div class="parks-process-small d-none" id='${element.id}'></div></div>`);
                         var myGeoObject = new ymaps.GeoObject({
                             geometry: {
                                 type: "Point", // тип геометрии - точка
@@ -215,10 +216,14 @@
                             },
                         }, {
                             iconColor: "#FF0000"
+                           // iconLayout: INNLayout,
+                           // pane: 'overlaps',
+                           // iconImageOffset: [0, 0],
                         });
                     }
                     //НТП
                     if (element.geoType == 3) {
+                        var NTPLayout = ymaps.templateLayoutFactory.createClass(`<div class="o-icon-ntp"><div class="parks-process-small d-none" id='${element.id}'></div></div>`);
                         var myGeoObject = new ymaps.GeoObject({
                             geometry: {
                                 type: "Point", // тип геометрии - точка
@@ -226,6 +231,9 @@
                             },
                         }, {
                             iconColor: "#FFA158"
+                            // iconLayout: NTPLayout,
+                            // pane: 'overlaps',
+                            // iconImageOffset: [0, 0],
                         });
                     }
                     //Можно менять опции кластеризатора после создания.
@@ -258,9 +266,9 @@
 
                     myGeoObject.events.add('click', function () {
                         // Технопарки
+                        const $ProcessSmall = $(`#${element.id}`);
                         if (element.geoType == 0) {
-                            const $parksProcessSmall = $(`#${element.id}`);
-                            $parksProcessSmall.removeClass("d-none");
+                            $ProcessSmall.removeClass("d-none");
 
                             var url = "@Url.Action("GetPartialTechParck", "Home")";
                             var wrapperid = "#window-container";
@@ -269,6 +277,8 @@
 
                         //Центр трансфера технологий
                         if (element.geoType == 1) {
+                            $ProcessSmall.removeClass("d-none");
+
                             var url = "@Url.Action("GetPartialCTT", "Home")";
                             var wrapperid = "#window-container";
                             AjaxAxtion(url, element.id, wrapperid);
@@ -276,12 +286,15 @@
 
                         // ИНН проекты
                         if (element.geoType == 2) {
+                           //$ProcessSmall.removeClass("d-none");
+
                             var url = "@Url.Action("GetPartialInnProject", "Home")";
                             var wrapperid = "#window-container";
                             AjaxAxtion(url, element.id, wrapperid);
                         }
                         //НТП
                         if (element.geoType == 3) {
+                           // $ProcessSmall.removeClass("d-none");
                             var url = "@Url.Action("GetPartialNtpProject", "Home")";
                             var wrapperid = "#window-container";
                             AjaxAxtion(url, element.id, wrapperid);
