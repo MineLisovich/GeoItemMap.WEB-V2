@@ -339,14 +339,7 @@
                                 if (element.geoType > 1 && element.geoType <= 3) {
                                     clusterer.remove(myGeoObject);
                                 }
-                            }
-                            //if (!$('#filtr_techparck').is(':checked') && !$('#filtr_ctt').is(':checked')) {
-                            //    clusterer.add(myGeoObject);
-                            //    map.geoObjects.add(clusterer);
-                            //    if (element.geoType == 0 && element.geoType == 1) {
-                            //        clusterer.remove(myGeoObject);
-                            //    }
-                            //}
+                            }                      
                             if (!$('#filtr_techparck').is(':checked') && !$('#filtr_ctt').is(':checked') && !$('#filtr_bif').is(':checked')) {
                              clusterer.remove(myGeoObject);
                             }
@@ -370,13 +363,43 @@
                         contentType: 'application/json; charset=utf-8',
                         async: true,
                         success: function (result) {
+                          
                             // Технопарки
                             result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark));})
-                            // ЦТТ
+                           //ЦТТ
                             result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
+
+
+
+                           // Фильтрация данных в выподающем спике
+                        
+                           $("#filtr_teh_ctt_bif").click(function () {
+                                   // Технопарки
+                            if ($('#filtr_techparck').is(':checked') && $('#filtr_ctt').is(':checked')) {
+                                $("#info_object_tehnoparck_ctt").empty();
+                                 result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark));})
+                                 result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
+                            } 
+                               //Технопарки
+                             if (!$('#filtr_techparck').is(':checked')) {
+                                 $("#info_object_tehnoparck_ctt").empty();
+                                 result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
+                             }
+                                //ЦТТ
+                             if (!$('#filtr_ctt').is(':checked')) {
+                                 $("#info_object_tehnoparck_ctt").empty();
+                                 result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
+                             }
+
+                                if (!$('#filtr_techparck').is(':checked') && !$('#filtr_ctt').is(':checked')) {
+                                     $("#info_object_tehnoparck_ctt").empty();
+                             }
+                            
+                           });
                         }
                     });
                     // Технопарк
+                    function Test(itemTechnopark) { return ` `; }
                     function getInfoTechnopark(itemTechnopark) {
 
                         return `
@@ -581,12 +604,13 @@
                        
                         $(wrapperid).empty();
                         $(wrapperid).append(data);
+                        map.setCenter([x, y - 0.004], 17, {
+                            checkZoomRange: false
+                        });
                         const $parksProcessSmall = $(`#${id}`);
                         $parksProcessSmall.removeClass("d-none");
                        
-                        map.setCenter([x, y-0.004], 17, {
-                            checkZoomRange: true
-                        });
+
                         top_popup();
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
