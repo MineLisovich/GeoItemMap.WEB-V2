@@ -324,26 +324,31 @@
                         $srtBTN_tech.click(function () {
                             clusterer.add(myGeoObject);
                             map.geoObjects.add(clusterer);
-                            if ($('#filtr_techparck').is(':checked')) {
-                                if (element.geoType != 0) {
+                            if (!$('#filtr_techparck').is(':checked')) {
+                                if (element.geoType == 0) {
                                     clusterer.remove(myGeoObject);
                                 }
                             }
-                            if ($('#filtr_ctt').is(':checked')) {
-                                if (element.geoType != 1) {
+                            if (!$('#filtr_ctt').is(':checked')) {
+                                if (element.geoType == 1) {
                                     clusterer.remove(myGeoObject);
                                 }
                             }
-                            if ($('#filtr_techparck').is(':checked') && $('#filtr_ctt').is(':checked')) {
-                                clusterer.add(myGeoObject);
-                                map.geoObjects.add(clusterer);
-                                if (element.geoType != 0 && element.geoType != 1) {
+                           // Кода будут остальные данные то удалить этот код ниже
+                           if (!$('#filtr_bif').is(':checked')) {
+                                if (element.geoType > 1 && element.geoType <= 3) {
                                     clusterer.remove(myGeoObject);
                                 }
                             }
+                            //if (!$('#filtr_techparck').is(':checked') && !$('#filtr_ctt').is(':checked')) {
+                            //    clusterer.add(myGeoObject);
+                            //    map.geoObjects.add(clusterer);
+                            //    if (element.geoType == 0 && element.geoType == 1) {
+                            //        clusterer.remove(myGeoObject);
+                            //    }
+                            //}
                             if (!$('#filtr_techparck').is(':checked') && !$('#filtr_ctt').is(':checked') && !$('#filtr_bif').is(':checked')) {
-                                clusterer.add(myGeoObject);
-                                map.geoObjects.add(clusterer);
+                             clusterer.remove(myGeoObject);
                             }
                         });
                     });
