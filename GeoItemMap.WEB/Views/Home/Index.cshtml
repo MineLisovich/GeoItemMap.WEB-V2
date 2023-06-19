@@ -215,10 +215,10 @@
                                 coordinates: [element.x, element.y], // координаты точки
                             },
                         }, {
-                            iconColor: "#FF0000"
-                           // iconLayout: INNLayout,
-                           // pane: 'overlaps',
-                           // iconImageOffset: [0, 0],
+                            iconColor: "#3D5AFE",
+                            iconLayout: INNLayout,
+                            pane: 'overlaps',
+                            iconImageOffset: [0, 0],
                         });
                     }
                     //НТП
@@ -230,10 +230,10 @@
                                 coordinates: [element.x, element.y], // координаты точки
                             },
                         }, {
-                            iconColor: "#FFA158"
-                            // iconLayout: NTPLayout,
-                            // pane: 'overlaps',
-                            // iconImageOffset: [0, 0],
+                            iconColor: "#6A1B9A",
+                             iconLayout: NTPLayout,
+                             pane: 'overlaps',
+                             iconImageOffset: [0, 0],
                         });
                     }
                     //Можно менять опции кластеризатора после создания.
@@ -286,7 +286,7 @@
 
                         // ИНН проекты
                         if (element.geoType == 2) {
-                           //$ProcessSmall.removeClass("d-none");
+                           $ProcessSmall.removeClass("d-none");
 
                             var url = "@Url.Action("GetPartialInnProject", "Home")";
                             var wrapperid = "#window-container";
@@ -294,7 +294,7 @@
                         }
                         //НТП
                         if (element.geoType == 3) {
-                           // $ProcessSmall.removeClass("d-none");
+                            $ProcessSmall.removeClass("d-none");
                             var url = "@Url.Action("GetPartialNtpProject", "Home")";
                             var wrapperid = "#window-container";
                             AjaxAxtion(url, element.id, wrapperid);
@@ -407,7 +407,7 @@
                                             <div class="info_item-icon parks-actual-big"></div>
                                         <div class="info_item-data">
                                             <h3>${itemTechnopark.nameTechnopark}</h3>
-                                            <span class="info_item-region">Республика</span>
+                                                    <span class="info_item-region">${itemTechnopark.addressTechnopark}</span>
                                        </div>
                                     </a>
                             `;
@@ -419,7 +419,7 @@
                                                 <div class="info_item-icon ctt-small"></div>
                                         <div class="info_item-data">
                                             <h3>${itemTechTransferCenter.nameTechTransferCenter}</h3>
-                                            <span class="info_item-region">Республика</span>
+                                                <span class="info_item-region">${itemTechTransferCenter.adressTechTransferCenter}</span>
                                        </div>
                                   </a>
                               `;
@@ -450,16 +450,20 @@
                         success: function (result) {
                             // ИНН
                             result.innProject.forEach(itemInnProject => { $("#info_object_Inn").append(getInfoInn(itemInnProject)); })
+                            console.log(result);
                         }
                     });
                     //ИНН
                     function getInfoInn(itemInnProject) {
                         return `
                                                          <a href="#" class="info_item  item-header-js" data-type="InnHeader" data-id="${itemInnProject.id}" data-x="${itemInnProject.x}" data-y="${itemInnProject.y}">
-                                         <div class="info_item-icon parks-actual-big"></div>
+                                         <div class="info_item-icon inn-big"></div>
                                          <div class="info_item-data">
                                             <h3>${itemInnProject.nameInnProject}</h3>
-                                            <span class="info_item-region">Республика</span>
+                                                <div class ="info_item-cl-nm">
+                                                <span class="info_item-client">Заказчик:</span>
+                                                <span class="info_item-client-name">${itemInnProject.customer}</span>
+                                                  </div>
                                          </div>
                                      </a>
                                 `;
@@ -497,16 +501,19 @@
                     function getInfoNtp(itemNtpProject) {
                         return `
                                              <a href="#" class="info_item  item-header-js" data-type="NtpHeader" data-id="${itemNtpProject.id}" data-x="${itemNtpProject.x}" data-y="${itemNtpProject.y}">
-                                    <div class="info_item-icon parks-actual-big"></div>
+                                        <div class="info_item-icon ntp-big"></div>
                                     <div class="info_item-data">
                                         <h3>${itemNtpProject.nameTask}</h3>
-                                        <span class="info_item-region">Республика</span>
+                                              <div class ="info_item-cl-nm">
+                                                    <span class="info_item-client">Заказчик:</span>
+                                                            <span class="info_item-client-name">${itemNtpProject.stateCustomer}</span>
+                                                  </div>
                                    </div>
                                  </a>
                                     `;
                     }
                 }
-                // При закртии меню происходит очистка div, чтобы избежать дублирования информации
+                // При закрытии меню происходит очистка div, чтобы избежать дублирования информации
                 else {
                     $('.sidebarmap-accordion_item').removeClass('active_block');
                     $("#info_object_ntp").empty();
@@ -514,7 +521,7 @@
             });
         });
 
-        // всплывающего окна
+        // всплывающее окно
         function top_popup() {
             $(document).ready(function () {
                 const $closeWindow = $(".close-window");
@@ -678,11 +685,11 @@
                         <div class="info_panel" id="filt_inn">
                         <div class="info_panel-switchers d-flex">
                         <input type="checkbox" id="filtr_inn_end" checked>
-                        <label for="filtr_inn_end" data-on-label="@*Завершен*@" data-off-label="@*Завершен*@"></label>
+                        <label for="filtr_inn_end" data-on-label="Завершено" data-off-label="Завершено"></label>
                         <input type="checkbox" id="filtr_inn_continues" checked>
-                        <label for="filtr_inn_continues" data-on-label="@*Продолжается*@" data-off-label="@*Продолжается*@"></label>
+                        <label for="filtr_inn_continues" data-on-label="Выполняется" data-off-label="Выполняется"></label>
                         <input type="checkbox" id="filtr_inn_execute" checked>
-                        <label for="filtr_inn_execute" data-on-label="@*Выполнится*@" data-off-label="@*Выполнится*@"></label>
+                        <label for="filtr_inn_execute" data-on-label="План" data-off-label="План"></label>
                         </div>
                     <div class="info_panel-filter-inn">
                             <span class="filter-name">Регион</span>
@@ -718,11 +725,11 @@
                     <div class="info_panel" id="filtr_ntp">
                         <div class="info_panel-switchers d-flex">
                         <input type="checkbox" id="filtr_ntp_p1" checked>
-                        <label for="filtr_ntp_p1" data-on-label="@*Технопарки*@" data-off-label="@*Технопарки*@"></label>
+                        <label for="filtr_ntp_p1" data-on-label="Завершено" data-off-label="Завершено"></label>
                         <input type="checkbox" id="filtr_ntp_p2" checked>
-                        <label for="filtr_ntp_p2" data-on-label="@*ЦТТ*@" data-off-label="@*ЦТТ*@"></label>
+                        <label for="filtr_ntp_p2" data-on-label="Выполняется" data-off-label="Выполнятеся"></label>
                         <input type="checkbox" id="filtr_ntp_p3" checked>
-                        <label for="filtr_ntp_p3" data-on-label="@*Биф и НЦИС*@" data-off-label="@*Биф и НЦИС*@"></label>
+                        <label for="filtr_ntp_p3" data-on-label="План" data-off-label="План"></label>
                         </div>
                     <div class="info_panel-filter-ntp">
                             <span class="filter-name">Регион</span>
