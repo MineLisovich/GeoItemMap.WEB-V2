@@ -14,77 +14,26 @@
 <!-- close-window -->
 <div class="close-window" title="Закрыть">×</div>
 
-<div class="window-body">
+<div class="window-body" id="table_scroll">
     <div class="window-side-button"></div>
     <!-- burger-btn -->
     <!-- window-images -->
     <div class="window-images">
-        <div class="col-img">
-            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
-                 class="hover-shadow cursor">
-        </div>
-        <div class="col-img">
-            <img src="../../img/foto-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
-                 class="hover-shadow cursor">
-        </div>
-        <div class="col-img">
-            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
-                 class="hover-shadow cursor">
-        </div>
-        <div class="col-img">
-            <img src="../../img/grgu-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
-                 class="hover-shadow cursor">
-        </div>
-        <div class="col-img">
-            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(5)"
-                 class="hover-shadow cursor">
-        </div>
-        <div class="col-img">
-            <img src="../../img/art_420_orig.jpg" style="width:100%" onclick="openModal();currentSlide(6)"
-                 class="hover-shadow cursor">
-        </div>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+
     </div>
-    <!-- end window-images -->
-    <!-- modal-gallery -->
-    <div id="modal-gallery" class="modal-gallery">
-        <span class="close cursor" onclick="closeModal()">&times;</span>
-        <div id="carouselExampleFade" class="carousel slide carousel-fade">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../img/foto-grgu.jpg" style="width:100%">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../img/grgu-grgu.jpg" style="width:100%">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../img/art_420_orig.jpg" style="width:100%">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Предыдущий</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Следующий</span>
-            </button>
-        </div>
-    </div>
-    <!-- end modal-gallery -->
     <!-- data table -->
     <div>
         <table class="window-object-data">
             <tbody>
-                <tr>
+                <tr id="scroll_block_1">
                     <td class="object-field-name header first_level" colspan="2">
                         <h2 id="windh0">Общая информация</h2>
                         <div style="display:block; padding-bottom:10px; padding-left:15px; cursor:default;">
@@ -120,7 +69,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr id="scroll_block_2">
                     <td class="object-field-name header first_level" colspan="2">
                         <h2 id="windh1">Финансирование</h2>
                         <div style="display:block; padding-bottom:10px; padding-left:15px; cursor:default;">
@@ -140,53 +89,53 @@
                 </tr>
                 <tr>
                     <td class="object-field-name header first_level" colspan="2">
-                        <h2 id="windh2">Подробная информация о проекте</h2>
+                        <h2 class="scroll_block_3" id="windh2">Подробная информация о проекте</h2>
                         <div style="display:block; padding-bottom:10px; padding-left:15px; cursor:default;">
                             <table class="window-object-data">
                                 <tbody>
-                                    <tr>
+                                    <tr id="scroll_block_4">
                                         <td id="windh3" class="object-field-name  ">
                                             Заказчик
                                         </td>
                                         <td class="object-field-value"> @item.Customer</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_5">
                                         <td id="windh4" class="object-field-name  ">
                                             Сроки реализации
                                         </td>
                                         <td class="object-field-value">@item.TermsImplementation</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_6">
                                         <td id="windh5" class="object-field-name  ">
                                             ГПИР (2016-2020 гг.; 2021-2025 гг.)
                                         </td>
                                         <td class="object-field-value">@item.GPIR</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_7">
                                         <td id="windh6" class="object-field-name  ">
                                             Документ, которым проект включен в ГПИР
                                         </td>
                                         <td class="object-field-value">@item.DocumentByWhichGPIR</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_8">
                                         <td id="windh7" class="object-field-name  ">
                                             Инновационность проекта
                                         </td>
                                         <td class="object-field-value">@item.InnovatProject</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_9">
                                         <td id="windh8" class="object-field-name  ">
                                             Продукция, планируемая к выпуску
                                         </td>
                                         <td class="object-field-value">@item.ProductsRelease</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_10">
                                         <td id="windh9" class="object-field-name  ">
                                             Вид экономической деятельности
                                         </td>
                                         <td class="object-field-value">@item.TypeEconomicActivity</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_11">
                                         <td id="windh10" class="object-field-name  ">
                                             Критерий №1 Указа № 357:
                                             Организация технологического процесса, обеспечивающего средний
@@ -197,7 +146,7 @@
                                         </td>
                                         <td class="object-field-value">@item.Criterion1</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_12">
                                         <td id="windh11" class="object-field-name  ">
                                             Критерий №2 Указа № 357:
                                             Экспортная ориентированность инновационного проекта
@@ -206,7 +155,7 @@
                                         </td>
                                         <td class="object-field-value">@item.Criterion2</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_13">
                                         <td id="windh12" class="object-field-name  ">
                                             Критерий №3 Указа № 357:
                                             Создание и внедрение новых технологий и (или) производство
@@ -215,7 +164,7 @@
                                         </td>
                                         <td class="object-field-value">@item.Criterion3</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_14">
                                         <td id="windh13" class="object-field-name  ">
                                             Использование технологий V или VI технолоических укладов
                                             (1- VI уклад; 2- V уклад; 3- проект другого технического
@@ -223,21 +172,21 @@
                                         </td>
                                         <td class="object-field-value">@item.UseTechnologies</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_15">
                                         <td id="windh14" class="object-field-name  ">
                                             Годовой объем производства продукции по проекту
                                             (год, следующий за годом выхода на проектную мощность), тыс. руб.
                                         </td>
                                         <td class="object-field-value">@item.AnnualProductionVolumeBY</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_16">
                                         <td id="windh15" class="object-field-name  ">
                                             Годовой объем экспорта по проекту
                                             (год, следующий за годом выхода на проектуную мощность), тыс. рублей/ тыс. евро
                                         </td>
                                         <td class="object-field-value">@item.AnnualExportVolumeBY/@item.AnnualExportVolumeEUR</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_17">
                                         <td id="windh16" class="object-field-name  ">
                                             Импортозамещающая направленность проекта
                                             (проект направлен на импортозамещение;
@@ -245,27 +194,27 @@
                                         </td>
                                         <td class="object-field-value">@item.ImportSubstituting</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_18">
                                         <td id="windh17" class="object-field-name  ">
                                             Добавленная стоимость на одного работника по проекту, тыс. рублей
                                             (в год, следующий за годом выхода на проектную мощность)
                                         </td>
                                         <td class="object-field-value">@item.ValueAddedPerEmployee</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_19">
                                         <td id="windh18" class="object-field-name  ">
                                             Добавленная стоимость по проекту в год, следующий за годом
                                             выхода проекта на проектную мощность, тыс. рублей
                                         </td>
                                         <td class="object-field-value">@item.AddedValueProject</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_20">
                                         <td id="windh19" class="object-field-name  ">
                                             Количество модернизированных рабочих мест, едениц
                                         </td>
                                         <td class="object-field-value">@item.NumberUpgradedJobs</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_21">
                                         <td id="windh20" class="object-field-name  ">
                                             Количество новых рабочих мест, едениц
                                         </td>
@@ -291,52 +240,52 @@
         <div class="overview" style="top: 0px; left: 0px; bottom: 10px; display: block;">
             <ol>
                 <li data-link="windh0">
-                    <div class="active-li">Общая информация</div>
+                    <div id="scroll_link_1" class="active-li">Общая информация</div>
                 </li>
                 <li data-link="windh1">
-                    <div>Финансирование</div>
+                    <div id="scroll_link_2">Финансирование</div>
                 </li>
                 <li data-link="windh2">
-                    <div>Подробная информация о проекте</div>
+                    <div id="scroll_link_3">Подробная информация о проекте</div>
                 </li>
                 <ol class="mt-1">
                     <li data-link="windh3">
-                        <div>
+                        <div id="scroll_link_4">
                             Заказчик
                         </div>
                     </li>
                     <li data-link="windh4">
-                        <div>
+                        <div id="scroll_link_5">
                             Сроки реализации
                         </div>
                     </li>
                     <li data-link="windh5">
-                        <div>
+                        <div id="scroll_link_6">
                             ГПИР (2016-2020 гг.; 2021-2025 гг.)
                         </div>
                     </li>
                     <li data-link="windh6">
-                        <div>
+                        <div id="scroll_link_7">
                             Документ, которым проект включен в ГПИР
                         </div>
                     </li>
                     <li data-link="windh7">
-                        <div>
+                        <div id="scroll_link_8">
                             Инновационность проекта
                         </div>
                     </li>
                     <li data-link="windh8">
-                        <div>
+                        <div id="scroll_link_9">
                             Продукция, планируемая к выпуску
                         </div>
                     </li>
                     <li data-link="windh9">
-                        <div>
+                        <div id="scroll_link_10">
                             Вид экономической деятельности
                         </div>
                     </li>
                       <li data-link="windh10">
-                        <div>
+                        <div id="scroll_link_11">
                             Критерий №1 Указа № 357:
                             Организация технологического процесса, обеспечивающего средний
                             уровень добавленной стоимости на одного работающего,
@@ -346,7 +295,7 @@
                         </div>
                     </li>
                       <li data-link="windh11">
-                        <div>
+                        <div id="scroll_link_12">
                             Критерий №2 Указа № 357:
                             Экспортная ориентированность инновационного проекта
                             (превышение экспорта над импортом), тыс. евро (в год,
@@ -354,7 +303,7 @@
                         </div>
                     </li>
                       <li data-link="windh12">
-                        <div>
+                        <div id="scroll_link_13">
                             Критерий №3 Указа № 357:
                             Создание и внедрение новых технологий и (или) производство
                             новой для Республики Беларусь и (или) мировой экономики
@@ -363,50 +312,50 @@
                     </li>
 
                       <li data-link="windh13">
-                        <div>
+                        <div id="scroll_link_14">
                             Использование технологий V или VI технолоических укладов
                             (1- VI уклад; 2- V уклад; 3- проект другого технического
                             уклада)
                         </div>
                     </li>
                     <li data-link="windh14">
-                        <div>
+                        <div id="scroll_link_15">
                             Годовой объем производства продукции по проекту
                             (год, следующий за годом выхода на проектную мощность), тыс. руб.
                         </div>
                     </li>
                       <li data-link="windh15">
-                        <div>
+                        <div id="scroll_link_16">
                             Годовой объем экспорта по проекту
                             (год, следующий за годом выхода на проектуную мощность), тыс. рублей/ тыс. евро
                         </div>
                     </li>
                       <li data-link="windh16">
-                        <div>
+                        <div id="scroll_link_17">
                             Импортозамещающая направленность проекта
                             (проект направлен на импортозамещение;
                             проект не направлен на импортозамещение)
                         </div>
                     </li>
                       <li data-link="windh17">
-                        <div>
+                        <div id="scroll_link_18">
                             Добавленная стоимость на одного работника по проекту, тыс. рублей
                             (в год, следующий за годом выхода на проектную мощность)
                         </div>
                     </li>
                       <li data-link="windh18">
-                        <div>
+                        <div id="scroll_link_19">
                             Добавленная стоимость по проекту в год, следующий за годом
                             выхода проекта на проектную мощность, тыс. рублей
                         </div>
                     </li>
                       <li data-link="windh19">
-                        <div>
+                        <div id="scroll_link_20">
                             Количество модернизированных рабочих мест, едениц
                         </div>
                     </li>
                     <li data-link="windh20">
-                        <div>
+                        <div id="scroll_link_21">
                             Количество новых рабочих мест, едениц
                         </div>
                     </li>
@@ -420,6 +369,63 @@
 <!--end window-child -->
 
 <script>
+
+    //scrolling
+    function full_visible(scroll_table, targets) {
+
+        var final = false;
+
+        for (let i = 0; i < targets.length; i++) {
+            targets[i][1].css("color", "black");
+            var y = $(scroll_table).height(); // Высота блока со скроллингом (только его видимая часть)
+            var z = targets[i][0].height(); // Высота элемента
+            var a = targets[i][0].offset().top; // Расстояние от элемента до верха документа
+            var b = $(scroll_table).offset().top; // Расстояние от блока со скроллингом до верха документа
+            var c = a - b; // Расстояние от элемента до верхней границы
+
+            if (c + z <= y && c - 50<= 0) {
+                final = targets[i][1];
+            }
+        }
+        return final;
+    }
+
+    $(document).ready(function () {
+        var scroll_links =
+            [
+                [$("#scroll_block_1"), $("#scroll_link_1")],
+                [$("#scroll_block_2"), $("#scroll_link_2")],
+                [$(".scroll_block_3"), $("#scroll_link_3")],
+                [$("#scroll_block_4"), $("#scroll_link_4")],
+                [$("#scroll_block_5"), $("#scroll_link_5")],
+                [$("#scroll_block_6"), $("#scroll_link_6")],
+                [$("#scroll_block_7"), $("#scroll_link_7")],
+                [$("#scroll_block_8"), $("#scroll_link_8")],
+                [$("#scroll_block_9"), $("#scroll_link_9")],
+                [$("#scroll_block_10"), $("#scroll_link_10")],
+                [$("#scroll_block_11"), $("#scroll_link_11")],
+                [$("#scroll_block_12"), $("#scroll_link_12")],
+                [$("#scroll_block_13"), $("#scroll_link_13")],
+                [$("#scroll_block_14"), $("#scroll_link_14")],
+                [$("#scroll_block_15"), $("#scroll_link_15")],
+                [$("#scroll_block_16"), $("#scroll_link_16")],
+                [$("#scroll_block_17"), $("#scroll_link_17")],
+                [$("#scroll_block_18"), $("#scroll_link_18")],
+                [$("#scroll_block_19"), $("#scroll_link_19")],
+                [$("#scroll_block_20"), $("#scroll_link_20")],
+                [$("#scroll_block_21"), $("#scroll_link_21")],
+
+            ];
+
+
+        $("#table_scroll").scroll(function () {
+            var link = full_visible(this, scroll_links);
+            if (link) {
+                link.css("color", "#00a7e5");
+            }
+        });
+    });
+
     var listItems = document.querySelectorAll("ol li[data-link], ol li ol li[data-link]");
     listItems.forEach(function (listItem) {
         var linkValue = listItem.getAttribute("data-link");

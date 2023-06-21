@@ -15,77 +15,26 @@
 <!-- close-window -->
 <div class="close-window" title="Закрыть">×</div>
 
-<div class="window-body">
+<div class="window-body" id="table_scroll">
     <div class="window-side-button"></div>
     <!-- burger-btn -->
     <!-- window-images -->
     <div class="window-images">
-        <div class="col-img">
-            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(1)"
-                 class="hover-shadow cursor">
-        </div>
-        <div class="col-img">
-            <img src="../../img/foto-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(2)"
-                 class="hover-shadow cursor">
-        </div>
-        <div class="col-img">
-            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(3)"
-                 class="hover-shadow cursor">
-        </div>
-        <div class="col-img">
-            <img src="../../img/grgu-grgu.jpg" style="width:100%" onclick="openModal();currentSlide(4)"
-                 class="hover-shadow cursor">
-        </div>
-        <div class="col-img">
-            <img src="../../img/grsu_myuniver.jpg" style="width:100%" onclick="openModal();currentSlide(5)"
-                 class="hover-shadow cursor">
-        </div>
-        <div class="col-img">
-            <img src="../../img/art_420_orig.jpg" style="width:100%" onclick="openModal();currentSlide(6)"
-                 class="hover-shadow cursor">
-        </div>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+
     </div>
-    <!-- end window-images -->
-    <!-- modal-gallery -->
-    <div id="modal-gallery" class="modal-gallery">
-        <span class="close cursor" onclick="closeModal()">&times;</span>
-        <div id="carouselExampleFade" class="carousel slide carousel-fade">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../img/foto-grgu.jpg" style="width:100%">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../img/grgu-grgu.jpg" style="width:100%">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../img/grsu_myuniver.jpg" style="width:100%">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../img/art_420_orig.jpg" style="width:100%">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Предыдущий</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Следующий</span>
-            </button>
-        </div>
-    </div>
-    <!-- end modal-gallery -->
     <!-- data table -->
     <div>
         <table class="window-object-data">
             <tbody>
-                <tr>
+                <tr id="scroll_block_1">
                     <td class="object-field-name header first_level" colspan="2">
                         <h2 id="windh0">Общая информация</h2>
                         <div style="display:block; padding-bottom:10px; padding-left:15px; cursor:default;">
@@ -160,7 +109,7 @@
         <div class="overview" style="top: 0px; left: 0px; bottom: 10px; display: block;">
             <ol>
                 <li data-link="windh0">
-                    <div class="active-li">Общая информация</div>
+                    <div id="scroll_link_1" class="active-li">Общая информация</div>
                 </li>
                 <li data-link="windh1">
                     <div>?????</div>
@@ -175,6 +124,42 @@
 <!--end window-child -->
 
 <script>
+
+    //scrolling
+    function full_visible(scroll_table, targets) {
+
+        var final = false;
+
+        for (let i = 0; i < targets.length; i++) {
+            targets[i][1].css("color", "black");
+            var y = $(scroll_table).height(); // Высота блока со скроллингом (только его видимая часть)
+            var z = targets[i][0].height(); // Высота элемента
+            var a = targets[i][0].offset().top; // Расстояние от элемента до верха документа
+            var b = $(scroll_table).offset().top; // Расстояние от блока со скроллингом до верха документа
+            var c = a - b; // Расстояние от элемента до верхней границы
+
+            if (c + z <= y && c - 50 <= 0) {
+                final = targets[i][1];
+            }
+        }
+        return final;
+    }
+
+    $(document).ready(function () {
+        var scroll_links =
+            [
+                [$("#scroll_block_1"), $("#scroll_link_1")],
+
+            ];
+
+
+        $("#table_scroll").scroll(function () {
+            var link = full_visible(this, scroll_links);
+            if (link) {
+                link.css("color", "#00a7e5");
+            }
+        });
+    });
     var listItems = document.querySelectorAll("ol li[data-link], ol li ol li[data-link]");
     listItems.forEach(function (listItem) {
         var linkValue = listItem.getAttribute("data-link");
