@@ -450,4 +450,17 @@
             this.classList.add("active-li");
         });
     });
+
+    //disable some gallery options
+
+    $("[data-fancybox]").fancybox({
+        thumbs: false,
+        hash: false,
+        loop: true,
+        keyboard: true,
+        toolbar: true,
+        animationEffect: false,
+        arrows: true,
+        clickContent: false
+    });
 </script>
