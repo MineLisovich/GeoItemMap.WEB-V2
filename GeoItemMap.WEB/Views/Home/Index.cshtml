@@ -625,6 +625,7 @@
                     }
                 });
             }
+      
         });
     });
 </script>
@@ -641,8 +642,8 @@
                     </h3>
                    
                 <div class="info">
-                        <div class="info_panel" id="filtr_teh_ctt_bif">
-                        <div class="info_panel-switchers d-flex">
+                        <div class="info_panel">
+                        <div class="info_panel-switchers d-flex" id="filtr_teh_ctt_bif">
                             <input type="checkbox" id="filtr_techparck" checked>
                         <label for="filtr_techparck" data-on-label="Технопарки" data-off-label="Технопарки"></label>
                         <input type="checkbox" id="filtr_ctt" checked>
@@ -668,7 +669,7 @@
     
                         <div class="info_object" >
                     <div class="sort-bar">
-                        <span class="sort-button">Название</span>
+                        <span class="sort-button" id="sort_tehnoparck_ctt">Название</span>
                     </div>
                            <div id="info_object_tehnoparck_ctt">
 
@@ -709,7 +710,7 @@
                         <div class="info_object" >
                     <div class="sort-bar">
                         <span class="sort-icon"></span>
-                        <span class="sort-button" data-field="name">Название</span>
+                        <span class="sort-button" id="sort_inn">Название</span>
                     </div>
                     <div id="info_object_Inn">
 
@@ -750,10 +751,9 @@
                   <div class="info_object" >
                     <div class="sort-bar">
                         <span class="sort-icon"></span>
-                        <span class="sort-button">Название</span>
+                        <span class="sort-button" id="sort_ntp">Название</span>
                     </div>
                     <div id="info_object_ntp">
-
                     </div>
                   </div>
                 </div>
@@ -775,11 +775,11 @@
         <!-- window-container -->
     </div>
 
-
     <!-- end window -->
 
 <!--  modal window for the gallery -->
-  <script>
+@*  <script>
+
     function openModal() {
         document.getElementById("modal-gallery").style.display = "block";
         showSlides(slideIndex); 
@@ -789,6 +789,6 @@
         document.getElementById("modal-gallery").style.display = "none";
     }
 
-   </script>
+   </script>*@
 
 

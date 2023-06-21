@@ -1,4 +1,18 @@
 ﻿<!-- navbar-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            <div class="modal-body d-flex flex-column align-items-center">
+                <img class="mt-2" src="../../icons/attention.svg" alt="" />
+                <span class="title-done text-center">
+                    Страница будет доступна в полнофункциональной версии геопортала
+                </span>
+            </div>  
+        </div>
+    </div>
+</div>
+
 <div class="navbar">
     <div class="navbar-container">
         <div class="navbar-container-headline">
@@ -6,10 +20,10 @@
     </div>
 
         <ul class="navbar-container-menu">
-        <li><a href="#" class="">Статистика</a></li>
-        <li><a href="#" class="">Издания</a></li>
-        <li><a href="#" class="">О портале</a></li>
-        <li><a href="#" class="me-0">Вход</a></li>
+        <li><a href="#" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">Статистика</a></li>
+            <li><a href="#" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">Издания</a></li>
+            <li><a href="#" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">О портале</a></li>
+            <li><a href="#" class="me-0" data-bs-toggle="modal" data-bs-target="#exampleModal">Вход</a></li>
 
     </ul>
 </div>

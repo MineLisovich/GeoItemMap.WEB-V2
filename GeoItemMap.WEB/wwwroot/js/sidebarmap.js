@@ -90,3 +90,80 @@ $closeWindow.on('click', function () {
         $parksProcessSmall.toggleClass("d-none");
     });
 });
+
+
+/*sort tehnoparck_ctt*/
+$(document).ready(function () {
+    var isAscOrder = true;
+    $('#sort_tehnoparck_ctt').click(function () {
+        var List = $("#info_object_tehnoparck_ctt");
+        var ListItem = List.children('a').get();
+        ListItem.sort(function (a, b) {
+            var compA = $(a).text().toUpperCase();
+            var compB = $(b).text().toUpperCase();
+            return (isAscOrder ? 1 : -1) * ((compA < compB) ? -1 : (compA > compB) ? 1 : 0);
+        });
+        isAscOrder = !isAscOrder;
+        $.each(ListItem, function (idx, itm) { List.append(itm); });
+    });
+});
+
+
+/*sort object_ntp*/
+$(document).ready(function () {
+    var isAscOrder = true;
+    $('#sort_ntp').click(function () {
+        var List = $("#info_object_ntp");
+        var ListItem = List.children('a').get();
+        ListItem.sort(function (a, b) {
+            var compA = $(a).text().toUpperCase();
+            var compB = $(b).text().toUpperCase();
+            return (isAscOrder ? 1 : -1) * ((compA < compB) ? -1 : (compA > compB) ? 1 : 0);
+        });
+        isAscOrder = !isAscOrder;
+        $.each(ListItem, function (idx, itm) { List.append(itm); });
+    });
+});
+
+
+/*sort object_inn*/
+$(document).ready(function () {
+    var isAscOrder = true;
+    $('#sort_inn').click(function () {
+        var List = $("#info_object_Inn");
+        var ListItem = List.children('a').get();
+        ListItem.sort(function (a, b) {
+            var compA = $(a).text().toUpperCase();
+            var compB = $(b).text().toUpperCase();
+            return (isAscOrder ? 1 : -1) * ((compA < compB) ? -1 : (compA > compB) ? 1 : 0);
+        });
+        isAscOrder = !isAscOrder;
+        $.each(ListItem, function (idx, itm) { List.append(itm); });
+    });
+});
+
+
+$(document).ready(function () {
+
+    $('.window-images a').click(function (e) {
+        e.preventDefault();
+        var images = [];
+        $('.window-images a').each(function () {
+            var src = $(this).attr('href');
+            var title = $(this).find('img').attr('alt');
+            images.push({
+                src: src,
+                opts: {
+                    caption: title
+                }
+            });
+        });
+
+        $.fancybox.open(images, {
+            loop: true,
+            thumbs: {
+                autoStart: true
+            }
+        });
+    });
+});
