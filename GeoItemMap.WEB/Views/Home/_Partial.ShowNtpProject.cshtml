@@ -138,7 +138,13 @@
             var b = $(scroll_table).offset().top; // Расстояние от блока со скроллингом до верха документа
             var c = a - b; // Расстояние от элемента до верхней границы
 
-            if (c + z <= y && c - 50 <= 0) {
+            if (c + z <= y && c > 0 && targets[i][2] === "bottom") {
+                final = targets[i][1];
+            }
+            if (c - 25 <= 0 && targets[i][2] === "top") {
+                final = targets[i][1];
+            }
+            if (c - (y / 2) <= 0 && targets[i][2] === "middle") {
                 final = targets[i][1];
             }
         }
@@ -148,7 +154,7 @@
     $(document).ready(function () {
         var scroll_links =
             [
-                [$("#scroll_block_1"), $("#scroll_link_1")],
+                [$("#scroll_block_1"), $("#scroll_link_1"), "top"],
 
             ];
 

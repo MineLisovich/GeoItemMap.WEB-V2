@@ -270,26 +270,33 @@
             var b = $(scroll_table).offset().top; // Расстояние от блока со скроллингом до верха документа
             var c = a - b; // Расстояние от элемента до верхней границы
 
-            if (c + z <= y && c-50 <= 0) {
+            if (c + z <= y && c > 0 && targets[i][2] === "bottom") {
+                final = targets[i][1];
+            }
+            if (c - 25 <= 0 && targets[i][2] === "top") {
+                final = targets[i][1];
+            }
+            if (c - (y / 2) <= 0 && targets[i][2] === "middle") {
                 final = targets[i][1];
             }
         }
         return final;
     }
 
+
     $(document).ready(function () {
         var scroll_links =
             [
-                [$("#scroll_block_1"), $("#scroll_link_1")],
-                [$("#scroll_block_2"), $("#scroll_link_2")],
-                [$(".scroll_block_3"), $("#scroll_link_3")],
-                [$("#scroll_block_4"), $("#scroll_link_4")],
-                [$("#scroll_block_5"), $("#scroll_link_5")],
-                [$("#scroll_block_6"), $("#scroll_link_6")],
-                [$("#scroll_block_7"), $("#scroll_link_7")],
-                [$("#scroll_block_8"), $("#scroll_link_8")],
-                [$("#scroll_block_9"), $("#scroll_link_9")],
-                [$("#scroll_block_10"), $("#scroll_link_10")],
+                [$("#scroll_block_1"), $("#scroll_link_1"), "top"],
+                [$("#scroll_block_2"), $("#scroll_link_2"), "top"],
+                [$(".scroll_block_3"), $("#scroll_link_3"), "top"],
+                [$("#scroll_block_4"), $("#scroll_link_4"), "top"],
+                [$("#scroll_block_5"), $("#scroll_link_5"), "top"],
+                [$("#scroll_block_6"), $("#scroll_link_6"), "top"],
+                [$("#scroll_block_7"), $("#scroll_link_7"), "bottom"],
+                [$("#scroll_block_8"), $("#scroll_link_8"), "bottom"],
+                [$("#scroll_block_9"), $("#scroll_link_9"), "bottom"],
+                [$("#scroll_block_10"), $("#scroll_link_10"), "bottom"],
             ];
 
 

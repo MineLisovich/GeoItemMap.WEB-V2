@@ -35,7 +35,7 @@
     <div>
         <table class="window-object-data">
             <tbody>
-                <tr id="scroll_block_1">
+                <tr name="scroll_block_1">
                     <td class="object-field-name header first_level" colspan="2">
                         <h2 id="windh0">Общая информация</h2>
                         <div style="display:block; padding-bottom:10px; padding-left:15px; cursor:default;">
@@ -86,7 +86,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr id="scroll_block_2">
+                <tr name="scroll_block_2">
                     <td class="object-field-name header first_level" colspan="2">
                         <h2 id="windh1">Финансирование</h2>
                         <div style="display:block; padding-bottom:10px; padding-left:15px; cursor:default;">
@@ -110,25 +110,25 @@
                         <div style="display:block; padding-bottom:10px; padding-left:15px; cursor:default;">
                             <table class="window-object-data">
                                 <tbody>
-                                    <tr id="scroll_block_4">
+                                    <tr name="scroll_block_4">
                                         <td id="windh3" class="object-field-name  ">
                                             Общая площадь помощений (м<sup>2</sup>)
                                         </td>
                                         <td class="object-field-value">@item.TotalAreaPremises</td>
                                     </tr>
-                                    <tr id="scroll_block_5">
+                                    <tr name="scroll_block_5">
                                         <td id="windh4" class="object-field-name  ">
                                             Свободная площадь помещений (м<sup>2</sup>)
                                         </td>
                                         <td class="object-field-value">@item.FreeAreaPremises</td>
                                     </tr>
-                                    <tr id="scroll_block_6">
+                                    <tr name="scroll_block_6">
                                         <td id="windh5" class="object-field-name  ">
                                             Ключевые виды продукции резидентов технопарка
                                         </td>
                                         <td class="object-field-value">@item.TypesProducts</td>
                                     </tr>
-                                    <tr id="scroll_block_7">
+                                    <tr name="scroll_block_7">
                                         <td id="windh6" class="object-field-name">
                                             Услуги, предоставляемые технопарком резиденту
                                             (сдача в аренду готовых помещений, телефонная связь,
@@ -136,7 +136,7 @@
                                         </td>
                                         <td class="object-field-value">@item.ServicesProvided</td>
                                     </tr>
-                                    <tr id="scroll_block_8">
+                                    <tr name="scroll_block_8">
                                         <td id="windh7" class="object-field-name  ">
                                             Технологическая инфраструктура технопарка,
                                             технологическое оборудование (бизнес-инкубатор,
@@ -145,19 +145,19 @@
                                         </td>
                                         <td class="object-field-value">@item.TechInfrastructure</td>
                                     </tr>
-                                    <tr id="scroll_block_9">
+                                    <tr name="scroll_block_9">
                                         <td id="windh8" class="object-field-name  ">
                                             Общее количество резидентов технопарка, ед (по итогам 2022г.)
                                         </td>
                                         <td class="object-field-value">@item.TotalNumberResident</td>
                                     </tr>
-                                    <tr id="scroll_block_10">
+                                    <tr name="scroll_block_10">
                                         <td id="windh9" class="object-field-name  ">
                                             Количество работников резидентов технопарка на конец отчётного периода, ед. (по итогам 2022г.)
                                         </td>
                                         <td class="object-field-value">@item.NumberEmployees</td>
                                     </tr>
-                                    <tr id="scroll_block_11">
+                                    <tr name="scroll_block_11">
                                         <td id="windh10" class="object-field-name  ">
                                             Объём отгруженной (выполненной) резидентами технопарка продукции (работ, услуг) за 2022г. (в тыс. бел.рублей)
                                         </td>
@@ -261,6 +261,7 @@
                 targetElement.scrollIntoView({
                     behavior: "smooth"
                 });
+
             });
         }
     });
@@ -289,27 +290,34 @@
             var b = $(scroll_table).offset().top; // Расстояние от блока со скроллингом до верха документа
             var c = a - b; // Расстояние от элемента до верхней границы
 
-            if (c + z <= y && c - 50 <= 0) {
+            if (c + z <= y && c > 0 && targets[i][2] === "bottom") {
+                final = targets[i][1];
+            }
+            if (c - 25 <= 0 && targets[i][2] === "top") {
+                final = targets[i][1];
+            }
+            if (c - (y / 2) <= 0 && targets[i][2] === "middle") {
                 final = targets[i][1];
             }
         }
         return final;
     }
 
+
     $(document).ready(function () {
         var scroll_links =
             [
-                [$("#scroll_block_1"), $("#scroll_link_1")],
-                [$("#scroll_block_2"), $("#scroll_link_2")],
-                [$(".scroll_block_3"), $("#scroll_link_3")],
-                [$("#scroll_block_4"), $("#scroll_link_4")],
-                [$("#scroll_block_5"), $("#scroll_link_5")],
-                [$("#scroll_block_6"), $("#scroll_link_6")],
-                [$("#scroll_block_7"), $("#scroll_link_7")],
-                [$("#scroll_block_8"), $("#scroll_link_8")],
-                [$("#scroll_block_9"), $("#scroll_link_9")],
-                [$("#scroll_block_10"), $("#scroll_link_10")],
-                [$("#scroll_block_11"), $("#scroll_link_11")],
+                [$('[name="scroll_block_1"]').first(), $("#scroll_link_1"), "top"],
+                [$('[name="scroll_block_2"]').first(), $("#scroll_link_2"), "top"],
+                [$(".scroll_block_3").first(), $("#scroll_link_3"), "top"],
+                    [$('[name="scroll_block_4"]').first(), $("#scroll_link_4"), "top"],
+                    [$('[name="scroll_block_5"]').first(), $("#scroll_link_5"), "top"],
+                    [$('[name="scroll_block_6"]').first(), $("#scroll_link_6"), "top"],
+                    [$('[name="scroll_block_7"]').first(), $("#scroll_link_7"), "top"],
+                    [$('[name="scroll_block_8"]').first(), $("#scroll_link_8"), "bottom"],
+                    [$('[name="scroll_block_9"]').first(), $("#scroll_link_9"), "bottom"],
+                    [$('[name="scroll_block_10"]').first(), $("#scroll_link_10"), "bottom"],
+                    [$('[name="scroll_block_11"]').first(), $("#scroll_link_11"), "bottom"]
             ];
 
 

@@ -383,7 +383,13 @@
             var b = $(scroll_table).offset().top; // Расстояние от блока со скроллингом до верха документа
             var c = a - b; // Расстояние от элемента до верхней границы
 
-            if (c + z <= y && c - 50<= 0) {
+            if (c + z <= y && c > 0 && targets[i][2] === "bottom") {
+                final = targets[i][1];
+            }
+            if (c - 25 <= 0 && targets[i][2] === "top") {
+                final = targets[i][1];
+            }
+            if (c - (y / 2) <= 0 && targets[i][2] === "middle") {
                 final = targets[i][1];
             }
         }
@@ -393,27 +399,27 @@
     $(document).ready(function () {
         var scroll_links =
             [
-                [$("#scroll_block_1"), $("#scroll_link_1")],
-                [$("#scroll_block_2"), $("#scroll_link_2")],
-                [$(".scroll_block_3"), $("#scroll_link_3")],
-                [$("#scroll_block_4"), $("#scroll_link_4")],
-                [$("#scroll_block_5"), $("#scroll_link_5")],
-                [$("#scroll_block_6"), $("#scroll_link_6")],
-                [$("#scroll_block_7"), $("#scroll_link_7")],
-                [$("#scroll_block_8"), $("#scroll_link_8")],
-                [$("#scroll_block_9"), $("#scroll_link_9")],
-                [$("#scroll_block_10"), $("#scroll_link_10")],
-                [$("#scroll_block_11"), $("#scroll_link_11")],
-                [$("#scroll_block_12"), $("#scroll_link_12")],
-                [$("#scroll_block_13"), $("#scroll_link_13")],
-                [$("#scroll_block_14"), $("#scroll_link_14")],
-                [$("#scroll_block_15"), $("#scroll_link_15")],
-                [$("#scroll_block_16"), $("#scroll_link_16")],
-                [$("#scroll_block_17"), $("#scroll_link_17")],
-                [$("#scroll_block_18"), $("#scroll_link_18")],
-                [$("#scroll_block_19"), $("#scroll_link_19")],
-                [$("#scroll_block_20"), $("#scroll_link_20")],
-                [$("#scroll_block_21"), $("#scroll_link_21")],
+                [$("#scroll_block_1"), $("#scroll_link_1"), "top"],
+                [$("#scroll_block_2"), $("#scroll_link_2"), "top"],
+                [$(".scroll_block_3"), $("#scroll_link_3"), "top"],
+                [$("#scroll_block_4"), $("#scroll_link_4"), "top"],
+                [$("#scroll_block_5"), $("#scroll_link_5"), "top"],
+                [$("#scroll_block_6"), $("#scroll_link_6"), "top"],
+                [$("#scroll_block_7"), $("#scroll_link_7"), "top"],
+                [$("#scroll_block_8"), $("#scroll_link_8"), "top"],
+                [$("#scroll_block_9"), $("#scroll_link_9"), "top"],
+                [$("#scroll_block_10"), $("#scroll_link_10"), "top"],
+                [$("#scroll_block_11"), $("#scroll_link_11"), "bottom"],
+                [$("#scroll_block_12"), $("#scroll_link_12"), "bottom"],
+                [$("#scroll_block_13"), $("#scroll_link_13"), "bottom"],
+                [$("#scroll_block_14"), $("#scroll_link_14"), "bottom"],
+                [$("#scroll_block_15"), $("#scroll_link_15"), "bottom"],
+                [$("#scroll_block_16"), $("#scroll_link_16"), "bottom"],
+                [$("#scroll_block_17"), $("#scroll_link_17"), "bottom"],
+                [$("#scroll_block_18"), $("#scroll_link_18"), "bottom"],
+                [$("#scroll_block_19"), $("#scroll_link_19"), "bottom"],
+                [$("#scroll_block_20"), $("#scroll_link_20"), "bottom"],
+                [$("#scroll_block_21"), $("#scroll_link_21"), "bottom"],
 
             ];
 
