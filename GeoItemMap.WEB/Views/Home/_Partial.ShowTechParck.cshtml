@@ -15,7 +15,7 @@
 <div class="close-window" title="Закрыть">×</div>
 
 <div class="window-body" id="table_scroll">
-    <div class="window-side-button"></div>
+    @* <div class="window-side-button"></div>*@
     <!-- burger-btn -->
     <!-- window-images -->
     <div class="window-images">
@@ -25,12 +25,11 @@
         <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
         <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
         <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
-          <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
+        <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
         <a class="col-img" href="../../images/technopark.jpg" data-fancybox="gallery"><img src="../../images/technopark.jpg" /></a>
 
     </div>
     <!-- end window-images -->
-
     <!-- data table -->
     <div>
         <table class="window-object-data">
@@ -172,12 +171,12 @@
                 <tr></tr>
             </tbody>
         </table>
-      @*  <div style="height: 122px;">&nbsp;</div>*@
+        @*  <div style="height: 122px;">&nbsp;</div>*@
     </div>
     <!-- end data table -->
 </div>
-<div class="window-side-button"></div>
-
+@*<div class="window-side-button"></div>
+*@
 <!-- window-child -->
 <div class="window-child">
     <div class="window-child-container">
@@ -243,7 +242,7 @@
         </div>
 
     </div>
-    <div class="window-side-button_left"></div>
+    @*<div class="window-side-button_left"></div>*@
 
 </div>
 <!--end window-child -->
@@ -310,14 +309,14 @@
                 [$('[name="scroll_block_1"]').first(), $("#scroll_link_1"), "top"],
                 [$('[name="scroll_block_2"]').first(), $("#scroll_link_2"), "top"],
                 [$(".scroll_block_3").first(), $("#scroll_link_3"), "top"],
-                    [$('[name="scroll_block_4"]').first(), $("#scroll_link_4"), "top"],
-                    [$('[name="scroll_block_5"]').first(), $("#scroll_link_5"), "top"],
-                    [$('[name="scroll_block_6"]').first(), $("#scroll_link_6"), "top"],
-                    [$('[name="scroll_block_7"]').first(), $("#scroll_link_7"), "top"],
-                    [$('[name="scroll_block_8"]').first(), $("#scroll_link_8"), "bottom"],
-                    [$('[name="scroll_block_9"]').first(), $("#scroll_link_9"), "bottom"],
-                    [$('[name="scroll_block_10"]').first(), $("#scroll_link_10"), "bottom"],
-                    [$('[name="scroll_block_11"]').first(), $("#scroll_link_11"), "bottom"]
+                [$('[name="scroll_block_4"]').first(), $("#scroll_link_4"), "top"],
+                [$('[name="scroll_block_5"]').first(), $("#scroll_link_5"), "top"],
+                [$('[name="scroll_block_6"]').first(), $("#scroll_link_6"), "top"],
+                [$('[name="scroll_block_7"]').first(), $("#scroll_link_7"), "top"],
+                [$('[name="scroll_block_8"]').first(), $("#scroll_link_8"), "bottom"],
+                [$('[name="scroll_block_9"]').first(), $("#scroll_link_9"), "bottom"],
+                [$('[name="scroll_block_10"]').first(), $("#scroll_link_10"), "bottom"],
+                [$('[name="scroll_block_11"]').first(), $("#scroll_link_11"), "bottom"]
             ];
 
 
@@ -329,8 +328,8 @@
         });
     });
 
-        //disable some gallery options
-    
+    //disable some gallery options
+
     $("[data-fancybox]").fancybox({
         thumbs: false,
         hash: false,

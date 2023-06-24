@@ -26,16 +26,17 @@
         top: 18px;
     }
 }
-    .sidebarmap-accordion_item {
-        position: relative;
-        margin-bottom: 10px;
-        max-width: 420px;
-        width:306px;
-        transition: all 0.3s ease;
-        pointer-events: all;
-        background: #F8FCFF;
-        box-shadow: 4px 4px 5px rgba(148, 164, 178, 0.5);
-    }
+
+.sidebarmap-accordion_item {
+    position: relative;
+    margin-bottom: 10px;
+    max-width: 420px;
+    width: 306px;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    background: #F8FCFF;
+    box-shadow: 4px 4px 5px rgba(148, 164, 178, 0.5);
+}
 
 .title_block {
     font-weight: 500;
@@ -44,8 +45,8 @@
     color: #33536F;
     padding: 15px 0 15px 15px;
     margin: 0;
-    user-select:none;
-    cursor:pointer;
+    user-select: none;
+    cursor: pointer;
 
     &::before {
         /* panel switch, down position */
@@ -214,9 +215,9 @@
     }
 }
 
-.info_item-cl-nm{
-    display:flex;
-    justify-content:flex-start;
+.info_item-cl-nm {
+    display: flex;
+    justify-content: flex-start;
 }
 
 
@@ -233,188 +234,188 @@
     z-index: 2;
 }
 
-    .filter-name-focus {
-        .filter-name {
-            transform: translateY(-15px);
-        }
+.filter-name-focus {
+    .filter-name {
+        transform: translateY(-15px);
     }
+}
 
 
-    .select2-container--bootstrap-5 .select2-selection--multiple .select2-search {
-        display: none;
-        width: 100%;
-        height: 1.5rem;
+.select2-container--bootstrap-5 .select2-selection--multiple .select2-search {
+    display: none;
+    width: 100%;
+    height: 1.5rem;
+}
+
+
+.color {
+    transition: .9s;
+    color: #637B90;
+}
+
+.select2-container--bootstrap-5 .select2--small.select2-selection {
+    min-height: 32px;
+    padding: 8px 0 8px 15px;
+    background: #F8FCFF;
+    border: 1px solid #94A4B2;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 12px;
+    background: url(../../icons/down.svg) right 16px center no-repeat;
+}
+
+.select2-container--bootstrap-5.select2-container--open.select2-container--below .select2-selection {
+    background: url(../../icons/down.svg) right 16px center no-repeat;
+}
+
+.select2-container--bootstrap-5 .select2-selection--multiple .select2-search .select2-search__field {
+    width: 100%;
+    height: 1.5rem;
+    margin-top: 0;
+    margin-left: 0;
+    font-family: inherit;
+    line-height: 1.5;
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 10px;
+    color: #637B90;
+}
+
+.select2-container--bootstrap-5.select2-container--focus .select2-selection, .select2-container--bootstrap-5.select2-container--open .select2-selection {
+    background: #F8FCFF;
+    border: 1px solid #95BFE5;
+    box-shadow: 0 0 0 0;
+}
+
+.select2-container--bootstrap-5 .select2--small.select2-dropdown .select2-results__options .select2-results__option, .select2-container--bootstrap-5 .select2--small.select2-dropdown .select2-search .select2-search__field {
+    padding: 6px 15px;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 12px;
+    color: #637B90;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option.select2-results__option--highlighted {
+    background: #64A5DC;
+    border-width: 0px 1px;
+    border-style: solid;
+    border-color: #64A5DC;
+    color: #F8FCFF;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option.select2-results__option--selected, .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option[aria-selected=true]:not(.select2-results__option--highlighted) {
+    color: #F8FCFF;
+    background-color: #64A5DC;
+}
+
+.select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.35em 0.65em;
+    margin-right: 0.375rem;
+    margin-bottom: 0.375rem;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 12px;
+    color: #046FCC;
+    cursor: auto;
+    border: 1px solid #046FCC;
+    border-radius: 9.25rem;
+}
+
+.select2-container--bootstrap-5 .select2--small.select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
+    padding: 0.35em 0.65em;
+    font-size: 10px;
+}
+
+.select2-container--bootstrap-5 .select2--small.select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    width: 10px;
+    height: 10px;
+    padding: 0.125rem;
+    background: url(../../icons/close-out.svg) 50%/0.5rem auto no-repeat;
+}
+
+.select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    width: 0.75rem;
+    height: 0.75rem;
+    padding: 0.25em;
+    margin-right: 0.25rem;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    background: url(../../icons/close-out.svg) 50%/0.5rem auto no-repeat;
+    border: 0;
+}
+
+.no-click {
+    pointer-events: none;
+    margin-top: -1px;
+}
+
+.buttons-box {
+    float: right;
+    width: 173px;
+    height: 22px;
+
+    span {
+        display: inline-block;
+        width: 22px;
+        height: 16px;
+        background-position: center;
+        background-repeat: no-repeat;
     }
+}
 
+.yes-nat-standard {
+    background-image: url(../../icons/nat-standard-2.png);
+}
 
-    .color {
-        transition: .9s;
-        color: #637B90;
-    }
+.parks-actual-big {
+    background: url(../../icons/tekhnopark.svg) no-repeat center center;
+    background-size: 28px 28px;
+}
 
-    .select2-container--bootstrap-5 .select2--small.select2-selection {
-        min-height: 32px;
-        padding: 8px 0 8px 15px;
-        background: #F8FCFF;
-        border: 1px solid #94A4B2;
-        border-radius: 10px;
-        font-weight: 500;
-        font-size: 10px;
-        line-height: 12px;
-        background: url(../../icons/down.svg) right 16px center no-repeat;
-    }
+.ntp-big {
+    background: url(../../icons/ntp-big.svg) no-repeat center center;
+    background-size: 28px 28px;
+}
 
-    .select2-container--bootstrap-5.select2-container--open.select2-container--below .select2-selection {
-        background: url(../../icons/down.svg) right 16px center no-repeat;
-    }
+.ctt-small {
+    background: url(../../icons/ctt.svg) no-repeat center center;
+    background-size: 28px 28px;
+}
 
-    .select2-container--bootstrap-5 .select2-selection--multiple .select2-search .select2-search__field {
-        width: 100%;
-        height: 1.5rem;
-        margin-top: 0;
-        margin-left: 0;
-        font-family: inherit;
-        line-height: 1.5;
-        background-color: transparent;
-        font-weight: 500;
-        font-size: 10px;
-        color: #637B90;
-    }
+.inn-big {
+    background: url(../../icons/inn-big.svg) no-repeat center center;
+    background-size: 28px 28px;
+}
 
-    .select2-container--bootstrap-5.select2-container--focus .select2-selection, .select2-container--bootstrap-5.select2-container--open .select2-selection {
-        background: #F8FCFF;
-        border: 1px solid #95BFE5;
-        box-shadow: 0 0 0 0;
-    }
+.inn-small {
+    background: url(../../icons/inn-small.svg) no-repeat center center;
+    background-size: 28px 28px;
+}
 
-    .select2-container--bootstrap-5 .select2--small.select2-dropdown .select2-results__options .select2-results__option, .select2-container--bootstrap-5 .select2--small.select2-dropdown .select2-search .select2-search__field {
-        padding: 6px 15px;
-        font-weight: 500;
-        font-size: 10px;
-        line-height: 12px;
-        color: #637B90;
-    }
+.window-block {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
 
-    .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option.select2-results__option--highlighted {
-        background: #64A5DC;
-        border-width: 0px 1px;
-        border-style: solid;
-        border-color: #64A5DC;
-        color: #F8FCFF;
-    }
+.d-none {
+    display: none;
+}
 
-    .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option.select2-results__option--selected, .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option[aria-selected=true]:not(.select2-results__option--highlighted) {
-        color: #F8FCFF;
-        background-color: #64A5DC;
-    }
-
-    .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 0.35em 0.65em;
-        margin-right: 0.375rem;
-        margin-bottom: 0.375rem;
-        font-weight: 500;
-        font-size: 10px;
-        line-height: 12px;
-        color: #046FCC;
-        cursor: auto;
-        border: 1px solid #046FCC;
-        border-radius: 9.25rem;
-    }
-
-    .select2-container--bootstrap-5 .select2--small.select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
-        padding: 0.35em 0.65em;
-        font-size: 10px;
-    }
-
-    .select2-container--bootstrap-5 .select2--small.select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
-        width: 10px;
-        height: 10px;
-        padding: 0.125rem;
-        background: url(../../icons/close-out.svg) 50%/0.5rem auto no-repeat;
-    }
-
-    .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
-        width: 0.75rem;
-        height: 0.75rem;
-        padding: 0.25em;
-        margin-right: 0.25rem;
-        overflow: hidden;
-        text-indent: 100%;
-        white-space: nowrap;
-        background: url(../../icons/close-out.svg) 50%/0.5rem auto no-repeat;
-        border: 0;
-    }
-
-    .no-click {
-        pointer-events: none;
-        margin-top: -1px;
-    }
-
-    .buttons-box {
-        float: right;
-        width: 173px;
-        height: 22px;
-
-        span {
-            display: inline-block;
-            width: 22px;
-            height: 16px;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-    }
-
-    .yes-nat-standard {
-        background-image: url(../../icons/nat-standard-2.png);
-    }
-
-    .parks-actual-big {
-        background: url(../../icons/tekhnopark.svg) no-repeat center center;
-        background-size: 28px 28px;
-    }
-
-    .ntp-big {
-        background: url(../../icons/ntp-big.svg) no-repeat center center;
-        background-size: 28px 28px;
-    }
-
-    .ctt-small {
-        background: url(../../icons/ctt.svg) no-repeat center center;
-        background-size: 28px 28px;
-    }
-
-    .inn-big {
-        background: url(../../icons/inn-big.svg) no-repeat center center;
-        background-size: 28px 28px;
-    }
-
-    .inn-small {
-        background: url(../../icons/inn-small.svg) no-repeat center center;
-        background-size: 28px 28px;
-    }
-
-    .window-block {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, .2);
-        z-index: 1;
-    }
-
-    .d-none {
-        display: none;
-    }
-
-    .d-block {
-        display: block;
-    }
+.d-block {
+    display: block;
+}
 
 .window {
     position: absolute;
@@ -440,10 +441,9 @@
             img {
                 max-height: 49px;
                 width: 100%;
-            
+            }
         }
     }
-}
 
 
     &.active {
@@ -556,38 +556,38 @@
     }
 }
 
-    .close-window {
-        color: #ccc;
-        width: 40px;
-        height: 50px;
-        position: absolute;
-        right: 0;
-        top: -15px;
-        text-align: center;
-        line-height: 47px;
-        font-size: 30px;
-        cursor: pointer;
-        transition: .3s;
+.close-window {
+    color: #ccc;
+    width: 40px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    top: -15px;
+    text-align: center;
+    line-height: 47px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: .3s;
 
-        &:hover,
-        :focus,
-        :active {
-            color: $active-text;
-        }
+    &:hover,
+    :focus,
+    :active {
+        color: $active-text;
     }
+}
 
-    .window-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
+.window-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
 
-    .window-object-data {
-        width: 100%;
-        border-spacing: 0;
-        border-collapse: collapse;
-        color: $accordion-text;
-    }
+.window-object-data {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    color: $accordion-text;
+}
 
 .window-header {
     width: 460px;
@@ -600,7 +600,6 @@
         display: flex;
         flex-direction: row;
         justify-content: start;
-   
     }
 
     .header-button.favorites {
@@ -646,10 +645,10 @@
     }
 }
 
-    .window-object-data td.object-field-name.header {
-        width: auto;
-        padding: 0;
-    }
+.window-object-data td.object-field-name.header {
+    width: auto;
+    padding: 0;
+}
 
 .window-object-data td.object-field-name {
     cursor: default;
@@ -668,16 +667,16 @@
     line-height: 17px !important;
 }
 
-    .window-object-data td.object-field-name.header > h2,
-    .window-object-data td.object-field-name.header > h3 {
-        display: block;
-        color: #1a1a1a;
-        margin: 10px 0;
-        font-size: 14px;
-        line-height: 14px;
-        font-weight: 500;
-        padding: 0 15px;
-    }
+.window-object-data td.object-field-name.header > h2,
+.window-object-data td.object-field-name.header > h3 {
+    display: block;
+    color: #1a1a1a;
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 500;
+    padding: 0 15px;
+}
 
 .window-object-data td.object-field-value {
     width: 252px;
@@ -700,8 +699,8 @@
     align-items: center;
 
     img {
-        width:40px;
-        height:40px;
+        width: 40px;
+        height: 40px;
         margin-right: 15px;
     }
 }
@@ -717,19 +716,19 @@
 }
 
 
-    .window-side-button {
-        position: absolute;
-        margin: auto -33px auto auto;
-        right: 0;
-        bottom: 0;
-        cursor: pointer;
-        top: 0;
-        width: 33px;
-        height: 43px;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-        background: url(../../icons/side-button.png) center center no-repeat;
-    }
+.window-side-button {
+    position: absolute;
+    margin: auto -33px auto auto;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    top: 0;
+    width: 33px;
+    height: 43px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: url(../../icons/side-button.png) center center no-repeat;
+}
 
 .window-child {
     position: absolute;
@@ -804,773 +803,773 @@
     }
 }
 
-    .window-side-button_left {
-        position: absolute;
-        margin: auto -33px auto auto;
-        right: 0;
-        bottom: 0;
-        cursor: pointer;
-        top: 0;
-        width: 33px;
-        height: 43px;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-        background: url(../../icons/side-button_left.png) center center no-repeat;
-    }
+.window-side-button_left {
+    position: absolute;
+    margin: auto -33px auto auto;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    top: 0;
+    width: 33px;
+    height: 43px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: url(../../icons/side-button_left.png) center center no-repeat;
+}
 
-    .active-li {
-        color: $active-text;
-    }
+.active-li {
+    color: $active-text;
+}
 
-    li > div:before {
-        content: counters(item, ".") "";
-        counter-increment: item;
-        position: absolute;
-        margin-right: 100%;
-        right: 10px;
-    }
+li > div:before {
+    content: counters(item, ".") "";
+    counter-increment: item;
+    position: absolute;
+    margin-right: 100%;
+    right: 10px;
+}
 
-    li > div:hover {
-        color: $active-text;
-    }
+li > div:hover {
+    color: $active-text;
+}
 
-    .sort-bar {
-        margin-top: 1px;
-        height: 28px;
-        line-height: 25px;
-        position: relative;
-        top: 0;
-        left: 0;
-        width: 416px;
-        background-color: #F8FCFF;
-        border-top: 1px solid #D1E0ED;
-    }
+.sort-bar {
+    margin-top: 1px;
+    height: 28px;
+    line-height: 25px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 416px;
+    background-color: #F8FCFF;
+    border-top: 1px solid #D1E0ED;
+}
 
-    .sort-button {
-        display: block;
+.sort-button {
+    display: block;
+    height: 100%;
+    margin-left: 29.95px;
+    margin-right: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+    user-select: none;
+    padding-left: 18px;
+    background: url(../../icons/sort.svg) left 0px no-repeat;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 10px;
+    color: #637B90;
+}
+
+.actv {
+    margin-left: 29.95px;
+    margin-right: 14px;
+    cursor: pointer;
+    color: #637B90;
+    user-select: none;
+    padding-right: 15px;
+    background: url(../../icons/sort.svg) left 0px no-repeat;
+    font-weight: 500;
+}
+
+.desc {
+    margin-left: 29.95px;
+    margin-right: 14px;
+    cursor: pointer;
+    user-select: none;
+    color: #637B90;
+    padding-right: 15px;
+    background: url(../../icons/sort-desc.svg) left 0px no-repeat;
+    font-weight: 500;
+}
+
+.logos {
+    display: flex;
+    align-items: center;
+    width: 300px;
+
+    a {
+        width: 100%;
         height: 100%;
-        margin-left: 29.95px;
-        margin-right: 14px;
-        margin-top: 10px;
-        cursor: pointer;
-        user-select: none;
-        padding-left: 18px;
-        background: url(../../icons/sort.svg) left 0px no-repeat;
-        font-weight: 500;
-        font-size: 10px;
-        line-height: 10px;
-        color: #637B90;
     }
 
-    .actv {
-        margin-left: 29.95px;
-        margin-right: 14px;
-        cursor: pointer;
-        color: #637B90;
-        user-select: none;
-        padding-right: 15px;
-        background: url(../../icons/sort.svg) left 0px no-repeat;
-        font-weight: 500;
+    img {
+        width: 70%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+/*Технопарки*/
+.o-icon {
+    display: inline-block;
+    border-radius: 50%;
+    background: url(../../icons/tekhnopark.svg) center center no-repeat;
+    background-size: 33px 33px;
+    position: relative;
+    width: 33px;
+    height: 33px;
+    animation: 3s show ease;
+}
+/*ЦТТ*/
+.o-icon-ctt {
+    display: inline-block;
+    border-radius: 50%;
+    background: url(../../icons/ctt.svg) center center no-repeat;
+    background-size: 33px 33px;
+    position: relative;
+    width: 33px;
+    height: 33px;
+    animation: 3s show ease;
+}
+/*ИНН поменять путь к картинке*/
+.o-icon-inn {
+    display: inline-block;
+    border-radius: 50%;
+    background: url(../../icons/inn-big.svg) center center no-repeat;
+    background-size: 33px 33px;
+    position: relative;
+    width: 33px;
+    height: 33px;
+    animation: 3s show ease;
+}
+/*НТП поменять путь к картинке*/
+.o-icon-ntp {
+    display: inline-block;
+    border-radius: 50%;
+    background: url(../../icons/ntp-big.svg) center center no-repeat;
+    background-size: 33px 33px;
+    position: relative;
+    width: 33px;
+    height: 33px;
+    animation: 3s show ease;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
     }
 
-    .desc {
-        margin-left: 29.95px;
-        margin-right: 14px;
-        cursor: pointer;
-        user-select: none;
-        color: #637B90;
-        padding-right: 15px;
-        background: url(../../icons/sort-desc.svg) left 0px no-repeat;
-        font-weight: 500;
+    to {
+        opacity: 1;
     }
+}
 
-    .logos {
-        display: flex;
-        align-items: center;
-        width: 300px;
+.parks-process-small {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 50%;
+    animation: blink 1s linear infinite;
+    width: 33px;
+    height: 33px;
+    position: absolute;
+}
 
-        a {
-            width: 100%;
-            height: 100%;
-        }
-
-        img {
-            width: 70%;
-            height: 100%;
-            object-fit: contain;
-        }
+@keyframes blink {
+    100% {
+        transform: scale(1.5, 1.5);
+        opacity: 0.6;
     }
-    /*Технопарки*/
-    .o-icon {
-        display: inline-block;
-        border-radius: 50%;
-        background: url(../../icons/parks-actual-big.svg) center center no-repeat;
-        background-size: 25px 25px;
-        position: relative;
-        width: 25px;
-        height: 25px;
-        animation: 3s show ease;
-    }
-    /*ЦТТ*/
-    .o-icon-ctt {
-        display: inline-block;
-        border-radius: 50%;
-        background: url(../../icons/ctt-small.svg) center center no-repeat;
-        background-size: 25px 25px;
-        position: relative;
-        width: 25px;
-        height: 25px;
-        animation: 3s show ease;
-    }
-    /*ИНН поменять путь к картинке*/
-    .o-icon-inn {
-        display: inline-block;
-        border-radius: 50%;
-        background: url(../../icons/inn-small.svg) center center no-repeat; /*!!!!!*/
-        background-size: 25px 25px;
-        position: relative;
-        width: 25px;
-        height: 25px;
-        animation: 3s show ease;
-    }
-    /*НТП поменять путь к картинке*/
-    .o-icon-ntp {
-        display: inline-block;
-        border-radius: 50%;
-        background: url(../../icons/ntp-small.svg) center center no-repeat; /*!!!!!*/
-        background-size: 25px 25px;
-        position: relative;
-        width: 25px;
-        height: 25px;
-        animation: 3s show ease;
-    }
-
-    @keyframes show {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
-
-    .parks-process-small {
-        background-color: white;
-        opacity: 0.9;
-        border-radius: 50%;
-        animation: blink 1s linear infinite;
-        width: 25px;
-        height: 25px;
-        position: absolute;
-    }
-
-    @keyframes blink {
-        100% {
-            transform: scale(1.5, 1.5);
-            opacity: 0;
-        }
-    }
+}
 
 
 
-    label {
-        margin-right: 15px;
-    }
+label {
+    margin-right: 15px;
+}
 
-    input {
-        display: none;
-    }
+input {
+    display: none;
+}
 
-    input + label,
-    input + label::before,
-    input + label::after {
-        -webkit-transition: all .7s;
-        transition: all .7s;
-    }
+input + label,
+input + label::before,
+input + label::after {
+    -webkit-transition: all .7s;
+    transition: all .7s;
+}
 
-    input + label {
-        display: inline-block;
-        position: relative;
-    }
+input + label {
+    display: inline-block;
+    position: relative;
+}
 
-    input + label::before {
-        content: '';
-        position: absolute;
-        top: 7px;
-        left: 76px;
-        width: 16px;
-        height: 16px;
-        background: #D1E0ED;
-        box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
-        border-radius: 50%;
-    }
+input + label::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 76px;
+    width: 16px;
+    height: 16px;
+    background: #D1E0ED;
+    box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
+    border-radius: 50%;
+}
 
-    input + label::after {
-        display: block;
-        content: attr(data-off-label);
-        position: absolute;
-        top: 7px;
-        right: 30px;
-        color: #637B90;
-        font-size: 10px;
-    }
+input + label::after {
+    display: block;
+    content: attr(data-off-label);
+    position: absolute;
+    top: 7px;
+    right: 30px;
+    color: #637B90;
+    font-size: 10px;
+}
 
-    input:checked + label::before {
-        left: 7px;
-        background-color: #f7f7f7;
-    }
+input:checked + label::before {
+    left: 7px;
+    background-color: #f7f7f7;
+}
 
-    input:checked + label::after {
-        content: attr(data-on-label);
-        left: 28px;
-        right: auto;
-        color: #fff;
-    }
-
-
-    input[type=checkbox] + label {
-        text-align: center;
-        color: #F8FCFF;
-        font-size: 10px;
-        width: 104px;
-        height: 32px;
-        margin-bottom: 1px;
-        cursor: pointer;
-        user-select: none;
-        transition: 0.7s;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        padding: 0 5px;
-        background: #F8FCFF;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
-        border-radius: 50px;
-    }
-    /*нажатая кнопка*/
-    input[type=checkbox]:checked + label {
-        color: #637B90;
-        transition: .7s;
-        background: #046FCC;
-        border: 1px solid #046FCC;
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
-        border-radius: 50px;
-    }
-    /*filtr_ctt*/
-
-    #filtr_ctt + label::before {
-        content: '';
-        position: absolute;
-        top: 7px;
-        left: 36px;
-        width: 16px;
-        height: 16px;
-        background: #D1E0ED;
-        box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
-        border-radius: 50%;
-    }
-
-    #filtr_ctt + label::after {
-        display: block;
-        content: attr(data-off-label);
-        position: absolute;
-        top: 7px;
-        right: 30px;
-        color: #637B90;
-        font-size: 10px;
-    }
-
-    #filtr_ctt:checked + label::before {
-        left: 7px;
-        background-color: #f7f7f7;
-    }
-
-    #filtr_ctt:checked + label::after {
-        content: attr(data-on-label);
-        left: 28px;
-        right: auto;
-        color: #fff;
-    }
+input:checked + label::after {
+    content: attr(data-on-label);
+    left: 28px;
+    right: auto;
+    color: #fff;
+}
 
 
-    #filtr_ctt[type=checkbox] + label {
-        text-align: center;
-        color: #F8FCFF;
-        font-size: 10px;
-        width: 62px;
-        height: 32px;
-        margin-bottom: 1px;
-        cursor: pointer;
-        user-select: none;
-        transition: 0.7s;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        padding: 0 5px;
-        background: #F8FCFF;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
-        border-radius: 50px;
-    }
-    /*нажатая кнопка*/
-    #filtr_ctt[type=checkbox]:checked + label {
-        color: #637B90;
-        transition: .7s;
-        background: #046FCC;
-        border: 1px solid #046FCC;
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
-        border-radius: 50px;
-    }
-    /*filtr_bif*/
+input[type=checkbox] + label {
+    text-align: center;
+    color: #F8FCFF;
+    font-size: 10px;
+    width: 104px;
+    height: 32px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.7s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px;
+    background: #F8FCFF;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+}
+/*нажатая кнопка*/
+input[type=checkbox]:checked + label {
+    color: #637B90;
+    transition: .7s;
+    background: #046FCC;
+    border: 1px solid #046FCC;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+/*filtr_ctt*/
 
-    #filtr_bif + label::before {
-        content: '';
-        position: absolute;
-        top: 7px;
-        left: 81px;
-        width: 16px;
-        height: 16px;
-        background: #D1E0ED;
-        box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
-        border-radius: 50%;
-    }
+#filtr_ctt + label::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 36px;
+    width: 16px;
+    height: 16px;
+    background: #D1E0ED;
+    box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
+    border-radius: 50%;
+}
 
-    #filtr_bif + label::after {
-        display: block;
-        content: attr(data-off-label);
-        position: absolute;
-        top: 7px;
-        right: 30px;
-        color: #637B90;
-        font-size: 10px;
-    }
+#filtr_ctt + label::after {
+    display: block;
+    content: attr(data-off-label);
+    position: absolute;
+    top: 7px;
+    right: 30px;
+    color: #637B90;
+    font-size: 10px;
+}
 
-    #filtr_bif:checked + label::before {
-        left: 7px;
-        background-color: #f7f7f7;
-    }
+#filtr_ctt:checked + label::before {
+    left: 7px;
+    background-color: #f7f7f7;
+}
 
-    #filtr_bif:checked + label::after {
-        content: attr(data-on-label);
-        left: 28px;
-        right: auto;
-        color: #fff;
-    }
-
-
-    #filtr_bif[type=checkbox] + label {
-        text-align: center;
-        color: #F8FCFF;
-        font-size: 10px;
-        width: 108px;
-        height: 32px;
-        margin-bottom: 1px;
-        cursor: pointer;
-        user-select: none;
-        transition: .7s;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        padding: 0 5px;
-        background: #F8FCFF;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
-        border-radius: 50px;
-    }
-    /*нажатая кнопка*/
-    #filtr_bif[type=checkbox]:checked + label {
-        color: #637B90;
-        transition: .7s;
-        background: #046FCC;
-        border: 1px solid #046FCC;
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
-        border-radius: 50px;
-    }
-    /*filtr_inn*/
-    #filtr_inn_end + label::before {
-        content: '';
-        position: absolute;
-        top: 7px;
-        left: 77px;
-        width: 16px;
-        height: 16px;
-        background: #D1E0ED;
-        box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
-        border-radius: 50%;
-    }
-
-    #filtr_inn_end + label::after {
-        display: block;
-        content: attr(data-off-label);
-        position: absolute;
-        top: 7px;
-        right: 30px;
-        color: #637B90;
-        font-size: 10px;
-    }
-
-    #filtr_inn_end:checked + label::before {
-        left: 7px;
-        background-color: #f7f7f7;
-    }
-
-    #filtr_inn_end:checked + label::after {
-        content: attr(data-on-label);
-        left: 28px;
-        right: auto;
-        color: #fff;
-    }
+#filtr_ctt:checked + label::after {
+    content: attr(data-on-label);
+    left: 28px;
+    right: auto;
+    color: #fff;
+}
 
 
-    #filtr_inn_end[type=checkbox] + label {
-        text-align: center;
-        color: #F8FCFF;
-        font-size: 10px;
-        width: 102px;
-        height: 32px;
-        margin-bottom: 1px;
-        cursor: pointer;
-        user-select: none;
-        transition: .7s;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        padding: 0 5px;
-        background: #F8FCFF;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
-        border-radius: 50px;
-    }
-    /*нажатая кнопка*/
-    #filtr_inn_end[type=checkbox]:checked + label {
-        color: #637B90;
-        transition: .7s;
-        background: #046FCC;
-        border: 1px solid #046FCC;
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
-        border-radius: 50px;
-    }
-    /*filtr_continues*/
-    #filtr_inn_continues + label::before {
-        content: '';
-        position: absolute;
-        top: 7px;
-        left: 87px;
-        width: 16px;
-        height: 16px;
-        background: #D1E0ED;
-        box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
-        border-radius: 50%;
-    }
+#filtr_ctt[type=checkbox] + label {
+    text-align: center;
+    color: #F8FCFF;
+    font-size: 10px;
+    width: 62px;
+    height: 32px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.7s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px;
+    background: #F8FCFF;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+}
+/*нажатая кнопка*/
+#filtr_ctt[type=checkbox]:checked + label {
+    color: #637B90;
+    transition: .7s;
+    background: #046FCC;
+    border: 1px solid #046FCC;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+/*filtr_bif*/
 
-    #filtr_inn_continues + label::after {
-        display: block;
-        content: attr(data-off-label);
-        position: absolute;
-        top: 7px;
-        right: 30px;
-        color: #637B90;
-        font-size: 10px;
-    }
+#filtr_bif + label::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 81px;
+    width: 16px;
+    height: 16px;
+    background: #D1E0ED;
+    box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
+    border-radius: 50%;
+}
 
-    #filtr_inn_continues:checked + label::before {
-        left: 7px;
-        background-color: #f7f7f7;
-    }
+#filtr_bif + label::after {
+    display: block;
+    content: attr(data-off-label);
+    position: absolute;
+    top: 7px;
+    right: 30px;
+    color: #637B90;
+    font-size: 10px;
+}
 
-    #filtr_inn_continues:checked + label::after {
-        content: attr(data-on-label);
-        left: 28px;
-        right: auto;
-        color: #fff;
-    }
+#filtr_bif:checked + label::before {
+    left: 7px;
+    background-color: #f7f7f7;
+}
 
-
-    #filtr_inn_continues[type=checkbox] + label {
-        text-align: center;
-        color: #F8FCFF;
-        font-size: 10px;
-        width: 112px;
-        height: 32px;
-        margin-bottom: 1px;
-        cursor: pointer;
-        user-select: none;
-        transition: .7s;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        padding: 0 5px;
-        background: #F8FCFF;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
-        border-radius: 50px;
-    }
-    /*нажатая кнопка*/
-    #filtr_inn_continues[type=checkbox]:checked + label {
-        color: #637B90;
-        transition: .7s;
-        background: #046FCC;
-        border: 1px solid #046FCC;
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
-        border-radius: 50px;
-    }
-    /*filtr_inn_execute*/
-    #filtr_inn_execute + label::before {
-        content: '';
-        position: absolute;
-        top: 7px;
-        left: 44px;
-        width: 16px;
-        height: 16px;
-        background: #D1E0ED;
-        box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
-        border-radius: 50%;
-    }
-
-    #filtr_inn_execute + label::after {
-        display: block;
-        content: attr(data-off-label);
-        position: absolute;
-        top: 7px;
-        right: 30px;
-        color: #637B90;
-        font-size: 10px;
-    }
-
-    #filtr_inn_execute:checked + label::before {
-        left: 7px;
-        background-color: #f7f7f7;
-    }
-
-    #filtr_inn_execute:checked + label::after {
-        content: attr(data-on-label);
-        left: 28px;
-        right: auto;
-        color: #fff;
-    }
+#filtr_bif:checked + label::after {
+    content: attr(data-on-label);
+    left: 28px;
+    right: auto;
+    color: #fff;
+}
 
 
-    #filtr_inn_execute[type=checkbox] + label {
-        text-align: center;
-        color: #F8FCFF;
-        font-size: 10px;
-        width: 69px;
-        height: 32px;
-        margin-bottom: 1px;
-        cursor: pointer;
-        user-select: none;
-        transition: .7s;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        padding: 0 5px;
-        background: #F8FCFF;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
-        border-radius: 50px;
-    }
-    /*нажатая кнопка*/
-    #filtr_inn_execute[type=checkbox]:checked + label {
-        color: #637B90;
-        transition: .7s;
-        background: #046FCC;
-        border: 1px solid #046FCC;
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
-        border-radius: 50px;
-    }
-    /*filtr_ntp_p1*/
-    #filtr_ntp_p1 + label::before {
-        content: '';
-        position: absolute;
-        top: 7px;
-        left: 77px;
-        width: 16px;
-        height: 16px;
-        background: #D1E0ED;
-        box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
-        border-radius: 50%;
-    }
+#filtr_bif[type=checkbox] + label {
+    text-align: center;
+    color: #F8FCFF;
+    font-size: 10px;
+    width: 108px;
+    height: 32px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    user-select: none;
+    transition: .7s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px;
+    background: #F8FCFF;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+}
+/*нажатая кнопка*/
+#filtr_bif[type=checkbox]:checked + label {
+    color: #637B90;
+    transition: .7s;
+    background: #046FCC;
+    border: 1px solid #046FCC;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+/*filtr_inn*/
+#filtr_inn_end + label::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 77px;
+    width: 16px;
+    height: 16px;
+    background: #D1E0ED;
+    box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
+    border-radius: 50%;
+}
 
-    #filtr_ntp_p1 + label::after {
-        display: block;
-        content: attr(data-off-label);
-        position: absolute;
-        top: 7px;
-        right: 30px;
-        color: #637B90;
-        font-size: 10px;
-    }
+#filtr_inn_end + label::after {
+    display: block;
+    content: attr(data-off-label);
+    position: absolute;
+    top: 7px;
+    right: 30px;
+    color: #637B90;
+    font-size: 10px;
+}
 
-    #filtr_ntp_p1:checked + label::before {
-        left: 7px;
-        background-color: #f7f7f7;
-    }
+#filtr_inn_end:checked + label::before {
+    left: 7px;
+    background-color: #f7f7f7;
+}
 
-    #filtr_ntp_p1:checked + label::after {
-        content: attr(data-on-label);
-        left: 28px;
-        right: auto;
-        color: #fff;
-    }
-
-
-    #filtr_ntp_p1[type=checkbox] + label {
-        text-align: center;
-        color: #F8FCFF;
-        font-size: 10px;
-        width: 102px;
-        height: 32px;
-        margin-bottom: 1px;
-        cursor: pointer;
-        user-select: none;
-        transition: .7s;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        padding: 0 5px;
-        background: #F8FCFF;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
-        border-radius: 50px;
-    }
-    /*нажатая кнопка*/
-    #filtr_ntp_p1[type=checkbox]:checked + label {
-        color: #637B90;
-        transition: .7s;
-        background: #046FCC;
-        border: 1px solid #046FCC;
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
-        border-radius: 50px;
-    }
-    /*filtr_ntp_p2*/
-    #filtr_ntp_p2 + label::before {
-        content: '';
-        position: absolute;
-        top: 7px;
-        left: 87px;
-        width: 16px;
-        height: 16px;
-        background: #D1E0ED;
-        box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
-        border-radius: 50%;
-    }
-
-    #filtr_ntp_p2 + label::after {
-        display: block;
-        content: attr(data-off-label);
-        position: absolute;
-        top: 7px;
-        right: 30px;
-        color: #637B90;
-        font-size: 10px;
-    }
-
-    #filtr_ntp_p2:checked + label::before {
-        left: 7px;
-        background-color: #f7f7f7;
-    }
-
-    #filtr_ntp_p2:checked + label::after {
-        content: attr(data-on-label);
-        left: 28px;
-        right: auto;
-        color: #fff;
-    }
+#filtr_inn_end:checked + label::after {
+    content: attr(data-on-label);
+    left: 28px;
+    right: auto;
+    color: #fff;
+}
 
 
-    #filtr_ntp_p2[type=checkbox] + label {
-        text-align: center;
-        color: #F8FCFF;
-        font-size: 10px;
-        width: 112px;
-        height: 32px;
-        margin-bottom: 1px;
-        cursor: pointer;
-        user-select: none;
-        transition: .7s;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        padding: 0 5px;
-        background: #F8FCFF;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
-        border-radius: 50px;
-    }
-    /*нажатая кнопка*/
-    #filtr_ntp_p2[type=checkbox]:checked + label {
-        color: #637B90;
-        transition: .7s;
-        background: #046FCC;
-        border: 1px solid #046FCC;
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
-        border-radius: 50px;
-    }
-    /*filtr_ntp_p3*/
-    #filtr_ntp_p3 + label::before {
-        content: '';
-        position: absolute;
-        top: 7px;
-        left: 44px;
-        width: 16px;
-        height: 16px;
-        background: #D1E0ED;
-        box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
-        border-radius: 50%;
-    }
+#filtr_inn_end[type=checkbox] + label {
+    text-align: center;
+    color: #F8FCFF;
+    font-size: 10px;
+    width: 102px;
+    height: 32px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    user-select: none;
+    transition: .7s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px;
+    background: #F8FCFF;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+}
+/*нажатая кнопка*/
+#filtr_inn_end[type=checkbox]:checked + label {
+    color: #637B90;
+    transition: .7s;
+    background: #046FCC;
+    border: 1px solid #046FCC;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+/*filtr_continues*/
+#filtr_inn_continues + label::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 87px;
+    width: 16px;
+    height: 16px;
+    background: #D1E0ED;
+    box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
+    border-radius: 50%;
+}
 
-    #filtr_ntp_p3 + label::after {
-        display: block;
-        content: attr(data-off-label);
-        position: absolute;
-        top: 7px;
-        right: 30px;
-        color: #637B90;
-        font-size: 10px;
-    }
+#filtr_inn_continues + label::after {
+    display: block;
+    content: attr(data-off-label);
+    position: absolute;
+    top: 7px;
+    right: 30px;
+    color: #637B90;
+    font-size: 10px;
+}
 
-    #filtr_ntp_p3:checked + label::before {
-        left: 7px;
-        background-color: #f7f7f7;
-    }
+#filtr_inn_continues:checked + label::before {
+    left: 7px;
+    background-color: #f7f7f7;
+}
 
-    #filtr_ntp_p3:checked + label::after {
-        content: attr(data-on-label);
-        left: 28px;
-        right: auto;
-        color: #fff;
-    }
+#filtr_inn_continues:checked + label::after {
+    content: attr(data-on-label);
+    left: 28px;
+    right: auto;
+    color: #fff;
+}
 
 
-    #filtr_ntp_p3[type=checkbox] + label {
-        text-align: center;
-        color: #F8FCFF;
-        font-size: 10px;
-        width: 69px;
-        height: 32px;
-        margin-bottom: 1px;
-        cursor: pointer;
-        user-select: none;
-        transition: .7s;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        padding: 0 5px;
-        background: #F8FCFF;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
-        border-radius: 50px;
-    }
-    /*нажатая кнопка*/
-    #filtr_ntp_p3[type=checkbox]:checked + label {
-        color: #637B90;
-        transition: .7s;
-        background: #046FCC;
-        border: 1px solid #046FCC;
-        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
-        border-radius: 50px;
-    }
+#filtr_inn_continues[type=checkbox] + label {
+    text-align: center;
+    color: #F8FCFF;
+    font-size: 10px;
+    width: 112px;
+    height: 32px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    user-select: none;
+    transition: .7s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px;
+    background: #F8FCFF;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+}
+/*нажатая кнопка*/
+#filtr_inn_continues[type=checkbox]:checked + label {
+    color: #637B90;
+    transition: .7s;
+    background: #046FCC;
+    border: 1px solid #046FCC;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+/*filtr_inn_execute*/
+#filtr_inn_execute + label::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 44px;
+    width: 16px;
+    height: 16px;
+    background: #D1E0ED;
+    box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
+    border-radius: 50%;
+}
+
+#filtr_inn_execute + label::after {
+    display: block;
+    content: attr(data-off-label);
+    position: absolute;
+    top: 7px;
+    right: 30px;
+    color: #637B90;
+    font-size: 10px;
+}
+
+#filtr_inn_execute:checked + label::before {
+    left: 7px;
+    background-color: #f7f7f7;
+}
+
+#filtr_inn_execute:checked + label::after {
+    content: attr(data-on-label);
+    left: 28px;
+    right: auto;
+    color: #fff;
+}
+
+
+#filtr_inn_execute[type=checkbox] + label {
+    text-align: center;
+    color: #F8FCFF;
+    font-size: 10px;
+    width: 69px;
+    height: 32px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    user-select: none;
+    transition: .7s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px;
+    background: #F8FCFF;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+}
+/*нажатая кнопка*/
+#filtr_inn_execute[type=checkbox]:checked + label {
+    color: #637B90;
+    transition: .7s;
+    background: #046FCC;
+    border: 1px solid #046FCC;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+/*filtr_ntp_p1*/
+#filtr_ntp_end + label::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 77px;
+    width: 16px;
+    height: 16px;
+    background: #D1E0ED;
+    box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
+    border-radius: 50%;
+}
+
+#filtr_ntp_end + label::after {
+    display: block;
+    content: attr(data-off-label);
+    position: absolute;
+    top: 7px;
+    right: 30px;
+    color: #637B90;
+    font-size: 10px;
+}
+
+#filtr_ntp_end:checked + label::before {
+    left: 7px;
+    background-color: #f7f7f7;
+}
+
+#filtr_ntp_end:checked + label::after {
+    content: attr(data-on-label);
+    left: 28px;
+    right: auto;
+    color: #fff;
+}
+
+
+#filtr_ntp_end[type=checkbox] + label {
+    text-align: center;
+    color: #F8FCFF;
+    font-size: 10px;
+    width: 102px;
+    height: 32px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    user-select: none;
+    transition: .7s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px;
+    background: #F8FCFF;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+}
+/*нажатая кнопка*/
+#filtr_ntp_end[type=checkbox]:checked + label {
+    color: #637B90;
+    transition: .7s;
+    background: #046FCC;
+    border: 1px solid #046FCC;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+/*filtr_ntp_p2*/
+#filtr_ntp_continues + label::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 87px;
+    width: 16px;
+    height: 16px;
+    background: #D1E0ED;
+    box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
+    border-radius: 50%;
+}
+
+#filtr_ntp_continues + label::after {
+    display: block;
+    content: attr(data-off-label);
+    position: absolute;
+    top: 7px;
+    right: 30px;
+    color: #637B90;
+    font-size: 10px;
+}
+
+#filtr_ntp_continues:checked + label::before {
+    left: 7px;
+    background-color: #f7f7f7;
+}
+
+#filtr_ntp_continues:checked + label::after {
+    content: attr(data-on-label);
+    left: 28px;
+    right: auto;
+    color: #fff;
+}
+
+
+#filtr_ntp_continues[type=checkbox] + label {
+    text-align: center;
+    color: #F8FCFF;
+    font-size: 10px;
+    width: 112px;
+    height: 32px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    user-select: none;
+    transition: .7s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px;
+    background: #F8FCFF;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+}
+/*нажатая кнопка*/
+#filtr_ntp_continues[type=checkbox]:checked + label {
+    color: #637B90;
+    transition: .7s;
+    background: #046FCC;
+    border: 1px solid #046FCC;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+/*filtr_ntp_p3*/
+#filtr_ntp_execute + label::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 44px;
+    width: 16px;
+    height: 16px;
+    background: #D1E0ED;
+    box-shadow: inset 2px 2px 4px rgba(156, 161, 166, 0.2), inset -2px -2px 4px rgba(156, 161, 166, 0.2);
+    border-radius: 50%;
+}
+
+#filtr_ntp_execute + label::after {
+    display: block;
+    content: attr(data-off-label);
+    position: absolute;
+    top: 7px;
+    right: 30px;
+    color: #637B90;
+    font-size: 10px;
+}
+
+#filtr_ntp_execute:checked + label::before {
+    left: 7px;
+    background-color: #f7f7f7;
+}
+
+#filtr_ntp_execute:checked + label::after {
+    content: attr(data-on-label);
+    left: 28px;
+    right: auto;
+    color: #fff;
+}
+
+
+#filtr_ntp_execute[type=checkbox] + label {
+    text-align: center;
+    color: #F8FCFF;
+    font-size: 10px;
+    width: 69px;
+    height: 32px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    user-select: none;
+    transition: .7s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px;
+    background: #F8FCFF;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), inset -2px -2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+}
+/*нажатая кнопка*/
+#filtr_ntp_execute[type=checkbox]:checked + label {
+    color: #637B90;
+    transition: .7s;
+    background: #046FCC;
+    border: 1px solid #046FCC;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
 
 
 .title-done {
@@ -1583,8 +1582,5 @@
 }
 
 .modal-backdrop {
-     z-index: 1; 
-
+    z-index: 1;
 }
-
-

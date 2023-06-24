@@ -7,7 +7,7 @@ namespace GeoItemMap.DAL.DataContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=PC11-1215-3N\\SQLEXPRESS;  Database=GeoItemDB;  Persist Security Info =false; User='sa'; Password='sa'; MultipleActiveResultSets=True; Trusted_Connection=False;");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-0I4E7H3\\SQLEXPRESS;  Database=GeoItemDB;  Persist Security Info =false; User='sa'; Password='sa'; MultipleActiveResultSets=True; Trusted_Connection=False;");
         }
 
         // ПРИ МИГРАЦИИ БД, ЗАКОНМЕНТИТЬ НИЖЕ (А НА РЕЛИЗЕ РАСКОМЕНТИТЬ)
