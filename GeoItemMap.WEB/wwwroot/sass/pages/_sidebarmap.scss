@@ -660,15 +660,16 @@
     color: #022A4D;
 }
 
-.window-object-data td.object-field-name.header > h2 {
+
+.link-down > h2 {
     font-weight: 500;
     font-size: 14px;
     color: #022A4D;
     line-height: 17px !important;
 }
 
-.window-object-data td.object-field-name.header > h2,
-.window-object-data td.object-field-name.header > h3 {
+.link-down > h2,
+.link-down > h3 {
     display: block;
     color: #1a1a1a;
     margin: 10px 0;

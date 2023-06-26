@@ -14,7 +14,9 @@
 </div>
 
 <!-- close-window -->
-<div class="close-window" title="Закрыть">×</div>
+<div class="close-window" title="Закрыть">
+    <img src="../../icons/close-window.svg" />
+</div>
 
 <div class="window-body" id="table_scroll">
     @* <div class="window-side-button"></div>*@
@@ -37,7 +39,11 @@
             <tbody>
                 <tr id="scroll_block_1">
                     <td class="object-field-name header first_level" colspan="2">
-                        <h2 id="windh0">Общая информация</h2>
+                        <div class="link-down d-flex justify-content-between">
+                            <h2 id="windh0">Общая информация</h2>
+                            <a class="mt-2"><img src="../../icons/download.svg" /></a>
+                        </div>
+                        
                         <div style="display:block; padding-bottom:10px; padding-left:15px; cursor:default;">
                             <table class="window-object-data">
                                 <tbody>
@@ -88,7 +94,7 @@
                     </td>
                 </tr>
                 <tr id="scroll_block_2">
-                    <td class="object-field-name header first_level" colspan="2">
+                    <td class="object-field-name header first_level link-down" colspan="2">
                         <h2 id="windh1">Финансирование</h2>
                         <div style="display:block; padding-bottom:10px; padding-left:15px; cursor:default;">
                             <table class="window-object-data">
@@ -106,8 +112,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="object-field-name header first_level" colspan="2">
-                        <h2 class="  scroll_block_3" id="windh2">Показатели деятельности </h2>
+                    <td class="object-field-name header first_level link-down" colspan="2">
+                        <h2 class="scroll_block_3" id="windh2">Показатели деятельности </h2>
                         <div style="display:block; padding-bottom:10px; padding-left:15px; cursor:default;">
                             <table class="window-object-data">
                                 <tbody>
