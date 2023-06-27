@@ -40,12 +40,12 @@
                     <td class="object-field-name header first_level" colspan="2">
                         <div class="link-down d-flex justify-content-between">
                             <h2 id="windh0">Общая информация</h2>
-                            <a class="mt-2 img-down"><img src="../../icons/download.svg" /></a>
+                            <a asp-controller="ExportExcel" asp-action="ExportNTP" asp-route-id ="@item.Id" class="mt-2 img-down"><img src="../../icons/download.svg" /></a>
                         </div>
                         <div style="display:block; padding-bottom:10px; padding-left:15px; cursor:default;">
                             <table class="window-object-data">
                                 <tbody>
-                                    <tr>
+                                    <tr id="scroll_block_2">
                                         <td class="object-field-name  ">
                                             Наименование выполняемого задания
                                         </td>
@@ -53,7 +53,7 @@
                                             @item.NameTask
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_3">
                                         <td class="object-field-name  ">
                                             Государственный заказчик (ответственный заказчик)
                                         </td>
@@ -61,36 +61,36 @@
                                             @item.StateCustomer
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_4">
                                         <td class="object-field-name">Головная организация-исполнитель</td>
                                         <td class="object-field-value">@item.ParentImplemOrg</td>
                                     </tr>
 
-                                    <tr>
+                                    <tr id ="scroll_block_5">
                                         <td class="object-field-name  ">Организации-исполнители НИОК(Т)Р</td>
                                         <td class="object-field-value"> @item.ImplemOrg</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_6">
                                         <td class="object-field-name  ">Региональная принадлежность</td>
                                         <td class="object-field-value"> @item.AdressImplemOrg</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_7">
                                         <td class="object-field-name  ">Информация о стадии выполнения задания программы</td>
                                         <td class="object-field-value"> @item.StateTask</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_8">
                                         <td class="object-field-name  ">Уровень технического уклада разработки по заданию</td>
                                         <td class="object-field-value"> @item.TheLevelStructure</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_9">
                                         <td class="object-field-name  ">Наименование вновь освоенной продукции (инновации)</td>
                                         <td class="object-field-value"> @item.NameNewDevProducts</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_10">
                                         <td class="object-field-name  ">Информация о наличии экспорта по заданию (имеется или не имеется)</td>
                                         <td class="object-field-value"> @item.InformationExports</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="scroll_block_11">
                                         <td class="object-field-name  ">Информация о создании новых производств, модернизации действующих производств</td>
                                         <td class="object-field-value"> @item.InformationNewProduct</td>
                                     </tr>
@@ -117,8 +117,37 @@
                     <div id="scroll_link_1" class="active-li">Общая информация</div>
                 </li>
                 <li data-link="windh1">
-                    <div>?????</div>
+                    <div id="scroll_link_2" class="active-li">Наименование выполняемого задания</div>
                 </li>
+                <li data-link="windh2">
+                    <div id="scroll_link_3" class="active-li">Государственный заказчик (ответственный заказчик)</div>
+                </li>
+                 <li data-link="windh3">
+                    <div id="scroll_link_4" class="active-li">Головная организация-исполнитель</div>
+                </li>
+                <li data-link="windh4">
+                    <div id="scroll_link_5" class="active-li">Организации-исполнители НИОК(Т)Р</div>
+                </li>
+                <li data-link="windh5">
+                    <div id="scroll_link_6" class="active-li">Региональная принадлежность</div>
+                </li>
+                <li data-link="windh6">
+                    <div id="scroll_link_7" class="active-li">Информация о стадии выполнения задания программы</div>
+                </li>
+                <li data-link="windh7">
+                    <div id="scroll_link_8" class="active-li">Уровень технического уклада разработки по заданию</div>
+                </li>
+                <li data-link="windh8">
+                    <div id="scroll_link_9" class="active-li">Наименование вновь освоенной продукции (инновации)</div>
+                </li>
+                <li data-link="windh9">
+                    <div id="scroll_link_10" class="active-li">Информация о наличии экспорта по заданию (имеется или не имеется)</div>
+                </li>
+                <li data-link="windh10">
+                    <div id="scroll_link_11" class="active-li">Информация о создании новых производств, модернизации действующих производств</div>
+                </li>
+            
+            
             </ol>
         </div>
 
@@ -160,6 +189,16 @@
         var scroll_links =
             [
                 [$("#scroll_block_1"), $("#scroll_link_1"), "top"],
+                [$("#scroll_block_2"), $("#scroll_link_2"), "top"],
+                [$("#scroll_block_3"), $("#scroll_link_3"), "top"],
+                [$("#scroll_block_4"), $("#scroll_link_4"), "top"],
+                [$("#scroll_block_5"), $("#scroll_link_5"), "top"],
+                [$("#scroll_block_6"), $("#scroll_link_6"), "bottom"],
+                [$("#scroll_block_7"), $("#scroll_link_7"), "bottom"],
+                [$("#scroll_block_8"), $("#scroll_link_8"), "bottom"],
+                [$("#scroll_block_9"), $("#scroll_link_9"), "bottom"],
+                [$("#scroll_block_10"), $("#scroll_link_10"), "bottom"],
+                [$("#scroll_block_11"), $("#scroll_link_11"), "bottom"],
 
             ];
 
