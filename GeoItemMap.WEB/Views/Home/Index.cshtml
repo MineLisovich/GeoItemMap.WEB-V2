@@ -173,7 +173,7 @@
         });
         // получение координат для меток из бд
         $.ajax({
-            url: 'https://localhost:7215/Home/GetCoordinates',
+            url: "@Url.Action("GetCoordinates", "Home")",
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -399,7 +399,7 @@
                 $("#info_object_ntp").empty();
                 if (hasClass) {
                     $.ajax({
-                        url: 'https://localhost:7215/Home/PostData',
+                        url: "@Url.Action("PostData", "Home")",
                         type: 'POST',
                         dataType: 'json',
                         contentType: 'application/json; charset=utf-8',
@@ -488,7 +488,7 @@
                 $("#info_object_tehnoparck_ctt").empty();
                 if (hasClass) {
                     $.ajax({
-                        url: 'https://localhost:7215/Home/PostData',
+                        url: "@Url.Action("PostData", "Home")",
                         type: 'POST',
                         dataType: 'json',
                         contentType: 'application/json; charset=utf-8',
@@ -545,7 +545,7 @@
                 // если меню открыто, то выполнить ajax запрос и подставить данные
                 if (hasClass) {
                     $.ajax({
-                        url: 'https://localhost:7215/Home/PostData',
+                        url: "@Url.Action("PostData", "Home")",
                         type: 'POST',
                         dataType: 'json',
                         contentType: 'application/json; charset=utf-8',
