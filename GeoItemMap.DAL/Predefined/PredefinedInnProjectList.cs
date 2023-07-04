@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GeoItemMap.DAL.Entities;
-
+using static GeoItemMap.DAL.Predefined.RegionTypeEnum;
 
 namespace GeoItemMap.DAL.Predefined
 {
@@ -20,6 +20,8 @@ namespace GeoItemMap.DAL.Predefined
             X = 53.91722324933752f,
             Y = 27.549812110887682f,
             GeoType = GeoItemType.InnProject,
+            Region = RegionType.Minsk,
+            statusInn = 2,
             NameInnProject = "Организация биофармацевтического производства лекарственных средств на основе рекомбинантных технологий и фракционирования плазмы крови, соответствующего требованиям GMP",
             NameOrgImplementingProject = "Государственное учреждение «Республиканский научно-практический центр трансфузиологии и медицинских биотехнологий»",
             Customer = "Министерство здравоохранения Республики Беларусь",
@@ -53,6 +55,8 @@ namespace GeoItemMap.DAL.Predefined
             X = 53.902890562497745f,
             Y = 27.51201986727323f,
             GeoType = GeoItemType.InnProject,
+            Region = RegionType.Minsk,
+            statusInn = 2,
             NameInnProject = "Создание опытно-промышленного производства твердых лекарственных форм с применением инновационных технологий",
             NameOrgImplementingProject = "Республиканское производственное унитарное предприятие «АКАДЕМФАРМ»",
             Customer = "Национальная академия наук Беларуси",
@@ -85,6 +89,8 @@ namespace GeoItemMap.DAL.Predefined
             X = 54.18973418974246f,
             Y = 28.492611412744306f,
             GeoType = GeoItemType.InnProject,
+            Region = RegionType.MinskRegion,
+            statusInn = 2,
             NameInnProject = "«Создание современного гибкого автоматизированного производства узлов рулевого управления для комплектации автомобильной техники»",
             NameOrgImplementingProject = "Открытое Акционерное Общество «Борисовский завод «Автогидроусилитель»",
             Customer = "Министерство промышленности Республики Беларусь",

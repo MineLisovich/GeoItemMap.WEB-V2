@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GeoItemMap.DAL.Predefined.RegionTypeEnum;
 
 namespace GeoItemMap.DAL.Predefined
 {
@@ -17,6 +18,8 @@ namespace GeoItemMap.DAL.Predefined
             X = 53.93870244340076f,
             Y = 27.602226268558294f,
             GeoType = GeoItemType.NtpProject,
+            Region = RegionType.Minsk,
+            statusNtp = 2,
             NameProgramm = "РО3.15",
             StateCustomer = "",
             ParentImplemOrg = "ОАО «МНИПИ»",
@@ -36,6 +39,8 @@ namespace GeoItemMap.DAL.Predefined
             X = 55.16762421872135f,
             Y = 30.23936292628765f,
             GeoType = GeoItemType.NtpProject,
+            Region = RegionType.VitebskRegion,
+            statusNtp = 2,
             NameProgramm = "БПТ_14",
             StateCustomer = "",
             ParentImplemOrg = "ОАО «Витязь»",

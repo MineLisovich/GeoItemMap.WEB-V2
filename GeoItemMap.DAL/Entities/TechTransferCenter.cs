@@ -13,61 +13,61 @@ namespace GeoItemMap.DAL.Entities
         /// <summary>
         /// Наименование центра трансфера технологий
         /// </summary>
-    //    [Required]
+        [Required]
     //    [StringLength(250)]  
         public string? NameTechTransferCenter { get; set; }
 
         /// <summary>
         /// Адресс центра трансфера технологий
         /// </summary>
-      //  [Required]
+       [Required]
       //  [StringLength(100)]
         public string? AdressTechTransferCenter { get; set; }
 
         /// <summary>
         /// Телефон центра трансфера технологий
         /// </summary>
-      //  [Required]
+        [Required]
        // [StringLength(50)]
         public string? PhoneTechTransferCenter { get; set; }
 
         /// <summary>
         /// Электронная почта центра трансфера технологий
         /// </summary>
-       // [Required]
+        [Required]
       //  [StringLength(50)]
         public string? EmailTechTransferCenter { get; set; }
 
         /// <summary>
         /// Веб-сайт  центра трансфера технологий
         /// </summary>
-      //  [Required]
+        [Required]
        /// [StringLength(50)]
         public string? WebsiteTechTransferCenter { get; set; }
 
         /// <summary>
         /// Услуги, предоставляемые центром трансфера технологий
         /// </summary>
-      //  [Required]
+        [Required]
       //  [StringLength(250)]
         public string? ServicesProvidedTechTransferCenter { get; set; }
 
         /// <summary>
         /// Количество поступивших в центр и принятых к работе технологических предложений
         /// </summary>
-       // [Required]
+        [Required]
         public short? NumberAcceptedWorkProposals { get; set; }
 
         /// <summary>
         /// Количество поступивших в центр и принятых к работе технологических запросов в 2022 году
         /// </summary>
-       // [Required]
+        [Required]
         public short? NumberAcceptedWorkRequests { get; set; }
 
         /// <summary>
         /// Количество заключенных при содействии центра сделок по передаче (приобретению) прав на результаты научно-технической и (или) инновационной деятельности
         /// </summary>
-       // [Required]
+        [Required]
         public short? NumberTransactionsConcluded { get; set; }
 
         /// <summary>
@@ -80,30 +80,56 @@ namespace GeoItemMap.DAL.Entities
         /// <summary>
         /// Количество сформированных при содействии центра научно-технических, инновационных (инвестиционных) и иных проектов (работ)
         /// </summary>
-      //  [Required]
+        [Required]
         public short? NumberGeneratedProjects { get; set; }
 
 
         /// <summary>
         /// Объем сформированных при содействии центра научно-технических, инновационных (инвестиционных) и иных проектов (работ)
         /// </summary>
-      //  [Required]
+        [Required]
         [Precision(10, 2)]
         public decimal? VolumeGeneratedProjects { get; set; }
 
         /// <summary>
         /// Объем выполненных центром работ (услуг), связанных с коммерциализацией результатов научно-технической и (или) инновационной деятельности 
         /// </summary>
-      //  [Required]
+        [Required]
         [Precision(10, 2)]
         public decimal? VolumeWorkPerformed { get; set; }
 
         /// <summary>
         ///  Объем финансирования 
         /// </summary>
-      //  [Required]
+        [Required]
         [Precision(10, 2)]
-        public decimal? AmountFunding { get; set; } 
+        public decimal? AmountFunding { get; set; }
+
+
+        /// <summary>
+        /// Имя 1-ой картинки ЦТТ
+        /// </summary>
+        public string? NameImageCtt_1 { get; set; }
+
+        /// <summary>
+        /// Имя 2-ой картинки ЦТТ
+        /// </summary>
+        public string? NameImageCtt_2 { get; set; }
+
+        /// <summary>
+        /// Имя 3-ей картинки ЦТТ
+        /// </summary>
+        public string? NameImageCtt_3 { get; set; }
+
+        /// <summary>
+        /// Имя 4-ой картинки ЦТТ
+        /// </summary>
+        public string? NameImageCtt_4 { get; set; }
+
+        /// <summary>
+        /// Имя 5-ой картинки ЦТТ
+        /// </summary>
+        public string? NameImageCtt_5 { get; set; }
 
     }
 }

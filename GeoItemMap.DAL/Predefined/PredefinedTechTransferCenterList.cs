@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GeoItemMap.DAL.Entities;
+using static GeoItemMap.DAL.Predefined.RegionTypeEnum;
 
 namespace GeoItemMap.DAL.Predefined
 {
@@ -18,6 +19,7 @@ namespace GeoItemMap.DAL.Predefined
             X = 53.68495419633474f,
             Y = 23.839452639711183f,
             GeoType = GeoItemType.TechTransferCenter,
+            Region = RegionType.GrodnoRegion,
             NameTechTransferCenter = "УО «Гродненский государственный университет имени Янки Купалы» ",
             AdressTechTransferCenter = "230023, г. Гродно, ул. Ожешко,22",
             PhoneTechTransferCenter= "80(152)-39-58-96",
@@ -40,6 +42,7 @@ namespace GeoItemMap.DAL.Predefined
             X = 53.88728101795079f,
             Y = 26.967252608451368f,
             GeoType = GeoItemType.TechTransferCenter,
+            Region = RegionType.MinskRegion,
             NameTechTransferCenter = "УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»",
             AdressTechTransferCenter = "Минская область, Дзержинский район, Путчинский сельский Совет, аг. Волма, ул. Парковая, 11",
             PhoneTechTransferCenter = "+375(17)374-73-31",
@@ -63,6 +66,7 @@ namespace GeoItemMap.DAL.Predefined
             X = 53.1224516217143f,
             Y = 26.04132879743865f,
             GeoType = GeoItemType.TechTransferCenter,
+            Region = RegionType.BrestRegion,
             NameTechTransferCenter = "УО «Барановичский государственный университет»",
             AdressTechTransferCenter = "Брестская обл. г. Барановичи, ул. Войкова, д. 21",
             PhoneTechTransferCenter = "80(16)364-35-85",
@@ -85,6 +89,7 @@ namespace GeoItemMap.DAL.Predefined
             X = 55.19271117850101f,
             Y = 30.219258828132386f,
             GeoType = GeoItemType.TechTransferCenter,
+            Region = RegionType.VitebskRegion,
             NameTechTransferCenter = "УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части деятельности обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)",
             AdressTechTransferCenter = "210023, г. Витебск, пр-т Фрунзе, д. 27",
             PhoneTechTransferCenter = "",
@@ -107,6 +112,7 @@ namespace GeoItemMap.DAL.Predefined
             X = 52.42506047357055f,
             Y = 31.010139424598144f,
             GeoType = GeoItemType.TechTransferCenter,
+            Region = RegionType.GomelRegion,
             NameTechTransferCenter = "РУП «Центр научно-технической и деловой информации»",
             AdressTechTransferCenter = "246050, г. Гомель, пр-т Ленина, д. 3, комн. 306",
             PhoneTechTransferCenter = "375(232)31-58-59",
@@ -129,6 +135,7 @@ namespace GeoItemMap.DAL.Predefined
             X = 53.89850818853841f,
             Y = 25.297256316485843f,
             GeoType = GeoItemType.TechTransferCenter,
+            Region = RegionType.GrodnoRegion,
             NameTechTransferCenter = "ООО «Апсель»",
             AdressTechTransferCenter = "231300, г. Лида,  Гродненская обл, ул. Советская, д. 43",
             PhoneTechTransferCenter = "375(29)624-91-56",

@@ -13,14 +13,14 @@ namespace GeoItemMap.DAL.Entities
         /// <summary>
         /// Название программы (подпрограммы), наименование и номер документа, которым утверждена программа, пример: БПТ_14
         /// </summary>
-      //  [Required]
+        [Required]
        // [StringLength(50)]
         public string? NameProgramm { get; set; }
 
         /// <summary>
         /// Государственный заказчик (ответственный заказчик)
         /// </summary>
-       // [Required]
+        [Required]
        // [StringLength(250)]
         public string? StateCustomer { get; set; }
 
@@ -28,14 +28,14 @@ namespace GeoItemMap.DAL.Entities
         /// <summary>
         /// Головная организация-исполнитель
         /// </summary>
-      //  [Required]
+        [Required]
        // [StringLength (50)]
         public string? ParentImplemOrg { get; set;}
 
         /// <summary>
         /// Наименование выполняемого задания
         /// </summary>
-        // [Required]
+        [Required]
         // [StringLength(250)]
         public string? NameTask { get; set; }
 
@@ -43,13 +43,13 @@ namespace GeoItemMap.DAL.Entities
         /// <summary>
         /// Организации - исполнители НИОК(Т)Р 
         /// </summary>
-        // [Required]
+        [Required]
         // [StringLength(50)]
         public string? ImplemOrg { get; set; }
         /// <summary>
         /// Адрес организации-исполнителя
         /// </summary>
-       // [Required]
+        [Required]
        // [StringLength(50)]
         public string? AdressImplemOrg { get; set; }
 
@@ -57,7 +57,7 @@ namespace GeoItemMap.DAL.Entities
         /// <summary>
         /// Информация о стадии выполнения задания программы 
         /// </summary>
-       // [Required]
+        [Required]
        // [StringLength(50)]
         public string? StateTask { get; set;}
 
@@ -65,14 +65,14 @@ namespace GeoItemMap.DAL.Entities
         /// <summary>
         /// Уровень технологического уклада разработки по заданию (IV, V, VI технологический уклад).
         /// </summary>
-      //  [Required]
+        [Required]
       //  [StringLength(50)]
         public string? TheLevelStructure { get; set;}
 
         /// <summary>
         /// Наименование вновь освоенной продукции (инновации)
         /// </summary>
-       // [Required]
+        [Required]
       //  [StringLength(50)]
         public string? NameNewDevProducts { get; set;}
 
@@ -80,17 +80,42 @@ namespace GeoItemMap.DAL.Entities
         /// <summary>
         /// Информация о наличии экспорта по заданию (имеется или не имеется). 
         /// </summary>
-       // [Required]
+        [Required]
        // [StringLength(20)]
         public string? InformationExports  { get; set; }
 
         /// <summary>
         /// Информация о создании новых производств, модернизации   действующих производств (указать организацию, где проводились работы, какие новшества планируется внедрять в результате проведенных работ) 
         /// </summary>
-      //  [Required]
+        [Required]
       //  [StringLength(1000)]
         public string? InformationNewProduct { get; set;}
-      
+
+        /// <summary>
+        /// Имя 1-ой картинки НТП
+        /// </summary>
+        public string? NameImageNtp_1 { get; set; }
+
+        /// <summary>
+        /// Имя 2-ой картинки НТП
+        /// </summary>
+        public string? NameImageNtp_2 { get; set; }
+
+        /// <summary>
+        /// Имя 3-ей картинки НТП
+        /// </summary>
+        public string? NameImageNtp_3 { get; set; }
+
+        /// <summary>
+        /// Имя 4-ой картинки НТП
+        /// </summary>
+        public string? NameImageNtp_4 { get; set; }
+
+        /// <summary>
+        /// Имя 5-ой картинки НТП
+        /// </summary>
+        public string? NameImageNtp_5 { get; set; }
+
 
     }
 }
