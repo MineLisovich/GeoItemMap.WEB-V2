@@ -1,4 +1,3 @@
-
 <style>
     #YMapsID {
         width: 100%;
@@ -6,7 +5,6 @@
         padding: 0;
         margin: 0;
     }
-
     .ymaps-2-1-79-map {
         font-weight: 700 !important;
         font-size: 14px !important;
@@ -28,10 +26,8 @@
                 [58.486077093111334, 15.89679288089655],
                 [49.77185323695446, 39.58331354601873]
             ],
-
         });
-
-
+        map.options.set('scrollZoomSpeed', 2);
         //ЦВЕТ ГРАНИЦ РБ (И РЕГИОНОВ РБ)
         var _strokeColorBY = '#CED8E1';
         // ПРОЗРАЧНОСТЬ ЦВЕТА ГРАНИЦ
@@ -42,15 +38,11 @@
         var _fillOpacityBY = 0.8;
         // ТОЧНОСТЬ ГРАНИЦ РБ И РЕГИОНОВ РБ (1- очень не точно; 2- почти точно; 3- точные границы)
         var _qualityBY = 3;
-
-
         var objectManager = new ymaps.ObjectManager();
         var features;
-
         map.events.add('boundschange', function (e) {
             if (e.get('newZoom') !== e.get('oldZoom')) {
                 console.log("NEW ZOOM: " + e.get('newZoom') + " OLD ZOOM: " + e.get('oldZoom'));
-
                 switch (e.get('newZoom')) {
                     case 7: clearFeature(); _fillOpacityBY = 0.8; addFeature(); break;
                     case 8: clearFeature(); _fillOpacityBY = 0.8; addFeature(); break;
@@ -70,7 +62,6 @@
             }).then(function (geojson) {
                 features = geojson.features.map(function (feature) {
                     feature.id = feature.properties.iso3166;
-
                     feature.options = {
                         strokeColor: _strokeColorBY,
                         strokeOpacity: _strokeOpacityBY,
@@ -80,9 +71,7 @@
                         hintOpenTimeout: 0
                     };
                     return feature;
-
                 });
-
                 objectManager.add(features);
                 map.geoObjects.add(objectManager);
             });
@@ -91,14 +80,12 @@
         function clearFeature() {
             objectManager.remove(features);
         }
-
         ymaps.borders.load('BY', {
             lang: 'ru',
             quality: _qualityBY
         }).then(function (geojson) {
             features = geojson.features.map(function (feature) {
                 feature.id = feature.properties.iso3166;
-
                 feature.options = {
                     strokeColor: _strokeColorBY,
                     strokeOpacity: _strokeOpacityBY,
@@ -108,12 +95,10 @@
                     hintOpenTimeout: 0
                 };
                 return feature;
-
             });
             objectManager.add(features);
             map.geoObjects.add(objectManager);
         });
-
         // Цвет Заливки ДРУГИХ СТРАН
         var _fillColor = '#A6BBCE';
         // ПРОЗРАЧНОСТЬ ЗАЛИВКИ (от 0 до 1)
@@ -124,13 +109,11 @@
         var _strokeOpacity = 1;
         // ТОЧНОСТЬ ГРАНИЦ ДРУГИХ СТРАН (1- очень не точно; 2- почти точно; 3- точные границы)
         var _quality = 3;
-
         // Загрузим регионы.
         ymaps.borders.load('001', {
             lang: 'ru',
             quality: _quality
         }).then(function (result) {
-
             // Создадим многоугольник, который будет скрывать весь мир, кроме заданной страны.
             var background = new ymaps.Polygon([
                 [
@@ -254,21 +237,6 @@
                         checkZoomRange: true
                     });
 
-                    //myGeoObject.events
-                    //    .add('mouseenter', function (e) {
-                    //        if (element.geoType == 0) {
-                    //            const $parksProcessSmall = $(`#${element.id}`);
-                    //            $parksProcessSmall.removeClass("d-none");
-                    //        }
-                    //    })
-                    //    .add('mouseleave', function (e) {
-                    //        if (element.geoType == 0) {
-                    //            const $parksProcessSmall = $(`#${element.id}`);
-                    //            $parksProcessSmall.toggleClass("d-none");
-                    //        }
-
-                    //    });
-
                     myGeoObject.events.add('click', function () {
                         // Технопарки
                         const $ProcessSmall = $(`#${element.id}`);
@@ -325,66 +293,230 @@
                     }
                     // фильтрация меток
                     $(document).ready(function () {
-
-                        //Technoparcki
+                        const GetRegion = (region) => region == element.region;              
+                        //Technoparcki - CHECKBOX
                         $("#filtr_techparck").click(function () {
-                            if (!$('#filtr_techparck').is(':checked')) {
-                                if (element.geoType == 0) {
-                                    clusterer.remove(myGeoObject);
-                                }
-                            }
+                            if (!$('#filtr_techparck').is(':checked')) {if (element.geoType == 0) {clusterer.remove(myGeoObject);}}
                             else {
-                                if (element.geoType == 0) {
-                                    clusterer.add(myGeoObject);
-                                    map.geoObjects.add(clusterer);
-                                }
+                              var userRegionValueTeh = $("#small-select2-options-multiple-field").val();
+                              if (userRegionValueTeh != null)
+                              {
+                                  if (userRegionValueTeh.some(GetRegion)==true) {if (element.geoType == 0) {clusterer.add(myGeoObject); map.geoObjects.add(clusterer);}}
+                              }
+                              else { if (element.geoType == 0) {clusterer.add(myGeoObject); map.geoObjects.add(clusterer);} }
                             }
                         });
 
-                        //CTT
+                        //CTT  - CHECKBOX
                         $("#filtr_ctt").click(function () {
-                            if (!$('#filtr_ctt').is(':checked')) {
-                                if (element.geoType == 1) {
-                                    clusterer.remove(myGeoObject);
-                                }
-                            }
+                            if (!$('#filtr_ctt').is(':checked')) { if (element.geoType == 1) {clusterer.remove(myGeoObject);} }
                             else {
-                                if (element.geoType == 1) {
-                                    clusterer.add(myGeoObject);
-                                    map.geoObjects.add(clusterer);
-                                }
+                                var userRegionValueCTT = $("#small-select2-options-multiple-field").val();
+                                 if (userRegionValueCTT != null)
+                                 {
+                                    if (userRegionValueCTT.some(GetRegion) == true) {if (element.geoType == 1) {clusterer.add(myGeoObject);map.geoObjects.add(clusterer);}}
+                                 }
+                                 else{ if (element.geoType == 1){ clusterer.add(myGeoObject);map.geoObjects.add(clusterer);}}   
                             }
                         });
-
-                        //INN
+                        //INN - filtr_inn_end  - CHECKBOX
+                         $("#filtr_inn_end").click(function () {
+                            if (!$('#filtr_inn_end').is(':checked')) {if (element.statusInn == 1) {clusterer.remove(myGeoObject);}}
+                            else {
+                                var userRegionValueInn_end = $("#small-select2-options-multiple-field_inn").val();
+                                if (userRegionValueInn_end != null)
+                                {
+                                    if (userRegionValueInn_end.some(GetRegion) == true)
+                                    {
+                                        if (element.statusInn == 1) {
+                                            clusterer.add(myGeoObject);
+                                            map.geoObjects.add(clusterer);
+                                        }
+                                    }
+                                }
+                                else{ if (element.statusInn == 1) {clusterer.add(myGeoObject);map.geoObjects.add(clusterer);}}       
+                            }
+                        });
+                        //INN - filtr_inn_continues  - CHECKBOX
                         $("#filtr_inn_continues").click(function () {
-                            if (!$('#filtr_inn_continues').is(':checked')) {
-                                if (element.geoType == 2) {
-                                    clusterer.remove(myGeoObject);
-                                }
-                            }
+                            if (!$('#filtr_inn_continues').is(':checked')) {if (element.statusInn == 2) {clusterer.remove(myGeoObject);}}
                             else {
-                                if (element.geoType == 2) {
-                                    clusterer.add(myGeoObject);
-                                    map.geoObjects.add(clusterer);
+                                var userRegionValueInn_continues = $("#small-select2-options-multiple-field_inn").val();
+                                if (userRegionValueInn_continues !=null)
+                                {
+                                    if (userRegionValueInn_continues.some(GetRegion) == true){if (element.statusInn == 2){clusterer.add(myGeoObject); map.geoObjects.add(clusterer);}}
                                 }
+                                else{if (element.statusInn == 2) { clusterer.add(myGeoObject); map.geoObjects.add(clusterer);}}
+                           
+                            }
+                        });
+                        //INN - filtr_inn_execute  - CHECKBOX  
+                         $("#filtr_inn_execute").click(function () {
+                            if (!$('#filtr_inn_execute').is(':checked')) {if (element.statusInn == 3) {clusterer.remove(myGeoObject);}}
+                            else {
+                                var userRegionValueInn_execute = $("#small-select2-options-multiple-field_inn").val();
+                                if (userRegionValueInn_execute != null)
+                                {
+                                    if (userRegionValueInn_execute.some(GetRegion) == true){if (element.statusInn == 3) { clusterer.add(myGeoObject); map.geoObjects.add(clusterer);}}
+                                }
+                                else{ if (element.statusInn == 3) {clusterer.add(myGeoObject);map.geoObjects.add(clusterer);}}
                             }
                         });
 
-                        //NTP
-                        $("#filtr_ntp_continues").click(function () {
-                            if (!$('#filtr_ntp_continues').is(':checked')) {
-                                if (element.geoType == 3) {
-                                    clusterer.remove(myGeoObject);
-                                }
-                            }
+                         //NTP - filtr_ntp_end  - CHECKBOX
+                            $("#filtr_ntp_end").click(function () {
+                            if (!$('#filtr_ntp_end').is(':checked')) {if (element.statusNtp == 1) {clusterer.remove(myGeoObject);}}
                             else {
-                                if (element.geoType == 3) {
-                                    clusterer.add(myGeoObject);
-                                    map.geoObjects.add(clusterer);
+                                var userRegionValueNtp_end = $("#small-select2-options-multiple-field_ntp").val();
+                                if (userRegionValueNtp_end != null)
+                                {
+                                    if (userRegionValueNtp_end.some(GetRegion)==true){if (element.statusNtp == 1) {clusterer.add(myGeoObject);map.geoObjects.add(clusterer);}}
                                 }
+                                else{if (element.statusNtp == 1) {clusterer.add(myGeoObject);map.geoObjects.add(clusterer);}}
                             }
                         });
+                        //NTP - filtr_ntp_continues  - CHECKBOX
+                        $("#filtr_ntp_continues").click(function () {
+                            if (!$('#filtr_ntp_continues').is(':checked')) {if (element.statusNtp == 2) {clusterer.remove(myGeoObject);}}
+                            else {
+                                var userRegionValueNtp_continues = $("#small-select2-options-multiple-field_ntp").val();
+                                if (userRegionValueNtp_continues != null)
+                                {
+                                    if (userRegionValueNtp_continues.some(GetRegion) == true){if (element.statusNtp == 2) {clusterer.add(myGeoObject);map.geoObjects.add(clusterer);}}
+                                }
+                                else {if (element.statusNtp == 2) {clusterer.add(myGeoObject);map.geoObjects.add(clusterer);}}        
+                            }
+                        });
+                        //NTP - filtr_ntp_execute  - CHECKBOX
+                            $("#filtr_ntp_execute").click(function () {
+                            if (!$('#filtr_ntp_execute').is(':checked')) {if (element.statusNtp == 3) {clusterer.remove(myGeoObject);}}
+                            else {
+                                var userRegionValueNtp_execute = $("#small-select2-options-multiple-field_ntp").val();
+                                if (userRegionValueNtp_execute != null)
+                                {
+                                  if (userRegionValueNtp_execute.some(GetRegion) == true){if (element.statusNtp == 3) {clusterer.add(myGeoObject);map.geoObjects.add(clusterer);}}
+                                }
+                                else {if (element.statusNtp == 3) {clusterer.add(myGeoObject);map.geoObjects.add(clusterer);}}   
+                            }
+                        });
+
+                        // ФИЛЬТР ПО РЕГИОНАМ Технопарки, ЦТТ и БИФ и НЦИС   - MULTI SELECT
+                        $(".info_panel-filter").on("change", function () {
+                            var userRegionValue = $("#small-select2-options-multiple-field").val();
+                            if (userRegionValue != null) {
+                               if (userRegionValue.some(GetRegion) == false)
+                               {           
+                                  if (element.geoType == 0) {clusterer.remove(myGeoObject);}
+                                  if (element.geoType == 1) {clusterer.remove(myGeoObject);} 
+                               }
+                                if (userRegionValue.some(GetRegion) == true) {
+
+                                    if ($('#filtr_techparck').is(':checked'))
+                                    {
+                                        if (element.geoType == 0) {clusterer.add(myGeoObject); map.geoObjects.add(clusterer);}
+                                    }
+                                    if ($('#filtr_ctt').is(':checked')) 
+                                    {
+                                        if (element.geoType == 1) {clusterer.add(myGeoObject); map.geoObjects.add(clusterer);}
+                                    }
+                               }  
+                            }
+                           else {
+                                if ($('#filtr_techparck').is(':checked')) {
+                                    if (element.geoType == 0) {clusterer.add(myGeoObject); map.geoObjects.add(clusterer);}
+                                }
+                                if ($('#filtr_ctt').is(':checked')) {
+                                    if (element.geoType == 1) {clusterer.add(myGeoObject); map.geoObjects.add(clusterer);}
+                                }
+                           } 
+                        });
+                       // КОНЕЦ ФИЛЬТ ПО РЕГИОНАМ Технопарки, ЦТТ и БИФ и НЦИС
+
+                        // ФИЛЬТР ПО РЕГИОНАМ ИНН   - MULTI SELECT   
+                        $(".info_panel-filter-inn").on("change", function () {
+                            var userRegionValueINN = $("#small-select2-options-multiple-field_inn").val();
+                            if (userRegionValueINN != null)
+                            {
+                                if (userRegionValueINN.some(GetRegion)==false)
+                                {
+                                   if (element.statusInn == 1) {clusterer.remove(myGeoObject);}
+                                   if (element.statusInn == 2) {clusterer.remove(myGeoObject);}
+                                   if (element.statusInn == 3) {clusterer.remove(myGeoObject);}
+                                }
+                                if (userRegionValueINN.some(GetRegion) == true) {
+                                    if ($('#filtr_inn_end').is(':checked')) 
+                                    {
+                                       if (element.statusInn == 1) {  clusterer.add(myGeoObject);map.geoObjects.add(clusterer); }
+                                    }
+                                    if ($('#filtr_inn_continues').is(':checked')) 
+                                    {
+                                       if (element.statusInn == 2) {  clusterer.add(myGeoObject);map.geoObjects.add(clusterer); }
+                                    }
+                                    if ($('#filtr_inn_execute').is(':checked')) 
+                                    { 
+                                       if (element.statusInn == 3) { clusterer.add(myGeoObject);map.geoObjects.add(clusterer); }
+                                    }
+                                }
+                            }
+                            else 
+                            {
+                                if ($('#filtr_inn_end').is(':checked')) {
+                                    if (element.statusInn == 1) { clusterer.add(myGeoObject); map.geoObjects.add(clusterer); }
+                                }
+                                if ($('#filtr_inn_continues').is(':checked')) {
+                                    if (element.statusInn == 2) { clusterer.add(myGeoObject); map.geoObjects.add(clusterer); }
+                                }
+                                if ($('#filtr_inn_execute').is(':checked')) {
+                                    if (element.statusInn == 3) { clusterer.add(myGeoObject); map.geoObjects.add(clusterer); }
+                                }
+                            }
+                       });
+                       // КОНЕЦ ПО РЕГИОНАМ ИНН
+
+                       // ФИЛЬТР ПО РЕГИОНАМ НТП   - MULTI SELECT info_panel-filter-ntp  small-select2-options-multiple-field_ntp
+                        $(".info_panel-filter-ntp").on("change", function () {
+                          var userRegionValueNTP = $("#small-select2-options-multiple-field_ntp").val();
+                          if (userRegionValueNTP != null)
+                          {
+                              if (userRegionValueNTP.some(GetRegion)==false)
+                              {
+                                  if (element.statusNtp == 1) {clusterer.remove(myGeoObject);}
+                                  if (element.statusNtp == 2) {clusterer.remove(myGeoObject);}
+                                  if (element.statusNtp == 3) {clusterer.remove(myGeoObject);}
+                              }
+                                if (userRegionValueNTP.some(GetRegion) == true) {
+                                    if ($('#filtr_ntp_end').is(':checked')) 
+                                    {
+                                        if (element.statusNtp == 1) {  clusterer.add(myGeoObject);map.geoObjects.add(clusterer); }
+                                    }
+                                    if ($('#filtr_ntp_continues').is(':checked')) 
+                                    {
+                                        if (element.statusNtp == 2) {  clusterer.add(myGeoObject);map.geoObjects.add(clusterer); }
+                                    }
+                                    if ($('#filtr_ntp_execute').is(':checked')) 
+                                    {
+                                        if (element.statusNtp == 3) { clusterer.add(myGeoObject); map.geoObjects.add(clusterer); }
+                                    }
+                              }
+                          }
+                          else
+                          {
+                                    if ($('#filtr_ntp_end').is(':checked')) 
+                                    {
+                                        if (element.statusNtp == 1) {  clusterer.add(myGeoObject);map.geoObjects.add(clusterer); }
+                                    }
+                                    if ($('#filtr_ntp_continues').is(':checked')) 
+                                    {
+                                        if (element.statusNtp == 2) {  clusterer.add(myGeoObject);map.geoObjects.add(clusterer); }
+                                    }
+                                    if ($('#filtr_ntp_execute').is(':checked')) 
+                                    {
+                                        if (element.statusNtp == 3) { clusterer.add(myGeoObject); map.geoObjects.add(clusterer); }
+                                    }
+                          } 
+
+                        });
+                       // КОНЕЦ ПО РЕГИОНАМ НТП   
                     });
                     // конец фильтрации
                 });
@@ -394,9 +526,10 @@
         $(document).ready(function () {
             const $showDataItem_techpar_ctt = $("#Item_techparck_ctt");
             $showDataItem_techpar_ctt.click(function () {
-                let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
+               let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
                 $("#info_object_Inn").empty();
                 $("#info_object_ntp").empty();
+                var userRegionValueT_CTT = $("#small-select2-options-multiple-field").val();
                 if (hasClass) {
                     $.ajax({
                         url: "@Url.Action("PostData", "Home")",
@@ -405,46 +538,132 @@
                         contentType: 'application/json; charset=utf-8',
                         async: true,
                         success: function (result) {
-
-                            if ($('#filtr_techparck').is(':checked')) {
+                          if (userRegionValueT_CTT == null)
+                          {
                                 // Технопарки
-                                result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
-                            }
-                            if ($('#filtr_ctt').is(':checked')) {
+                                if ($('#filtr_techparck').is(':checked')) {
+                                    result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
+                                }
                                 //ЦТТ
-                                result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
-                            }
-
-                            // Фильтрация данных в выподающем спике
+                                if ($('#filtr_ctt').is(':checked')) {  
+                                    result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
+                                }
+                          }
+                          if (userRegionValueT_CTT != null) 
+                          {
+                                // Технопарки
+                                if ($('#filtr_techparck').is(':checked')) {
+                                    result.technopark.forEach(itemTechnopark => { 
+                                        const GetRegionT = (region) => region == itemTechnopark.region;
+                                        if (userRegionValueT_CTT.some(GetRegionT) == true){$("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark));}
+                                    })
+                                }
+                                //ЦТТ
+                                if ($('#filtr_ctt').is(':checked')) {
+                                    result.techTransferCenter.forEach(itemTechTransferCenter => { 
+                                        const GetRegionCTT = (region) => region == itemTechTransferCenter.region;
+                                        if (userRegionValueT_CTT.some(GetRegionCTT) == true) {$("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter));}    
+                                    })
+                                }                             
+                          }
+                            // ФИЛЬТР ПО РЕГИОНАМ Технопарки, ЦТТ и БИФ и НЦИС   - MULTI SELECT с учётом вкл и выкл чекбоксов
+                            $(".info_panel-filter").on("change", function () {
+                                var userRegionValue_modal = $("#small-select2-options-multiple-field").val();
+                                if (userRegionValue_modal != null)
+                                {
+                                    $("#info_object_tehnoparck_ctt").empty();
+                                    if ($('#filtr_techparck').is(':checked')) {
+                                        result.technopark.forEach(itemTechnopark => {
+                                            const GetRegionT = (region) => region == itemTechnopark.region;
+                                            if (userRegionValue_modal.some(GetRegionT) == true) {$("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark));}
+                                        })
+                                    }
+                                    //ЦТТ
+                                    if ($('#filtr_ctt').is(':checked')) {
+                                        result.techTransferCenter.forEach(itemTechTransferCenter => {
+                                            const GetRegionCTT = (region) => region == itemTechTransferCenter.region;
+                                            if (userRegionValue_modal.some(GetRegionCTT) == true) {$("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter));}
+                                        })
+                                    }
+                                } 
+                                if (userRegionValue_modal == null)
+                                {
+                                    $("#info_object_tehnoparck_ctt").empty();
+                                    // Технопарки
+                                    if ($('#filtr_techparck').is(':checked')) {
+                                        result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
+                                    }
+                                    //ЦТТ
+                                    if ($('#filtr_ctt').is(':checked')) {
+                                        result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
+                                    }
+                                }
+                            });
+                            // КОНЕЦ ФИЛЬТ ПО РЕГИОНАМ Технопарки, ЦТТ и БИФ и НЦИС
+                            // Фильтрация данных в выподающем спике по чекбоксам с учётом выбранных данных в мульте силекте
                             $("#filtr_teh_ctt_bif").click(function () {
+                               var userRegionValueTCTT = $("#small-select2-options-multiple-field").val();
                                 // Технопарки
                                 if ($('#filtr_techparck').is(':checked') && $('#filtr_ctt').is(':checked')) {
-                                    $("#info_object_tehnoparck_ctt").empty();
-                                    result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
-                                    result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
+                                    if (userRegionValueTCTT == null)
+                                    {
+                                      $("#info_object_tehnoparck_ctt").empty();
+                                      result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
+                                      result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
+                                    }
+                                    if (userRegionValueTCTT != null)
+                                    {
+                                        $("#info_object_tehnoparck_ctt").empty();
+                                        result.technopark.forEach(itemTechnopark => { 
+                                            const GetRegT = (region) => region == itemTechnopark.region;
+                                            if (userRegionValueTCTT.some(GetRegT) == true){$("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark));}
+                                        })
+                                        result.techTransferCenter.forEach(itemTechTransferCenter => { 
+                                            const GetRegCtt = (region) => region == itemTechTransferCenter.region;
+                                            if (userRegionValueTCTT.some(GetRegCtt) == true){$("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter));}
+                                        })
+                                    }  
                                 }
                                 //Технопарки
                                 if (!$('#filtr_techparck').is(':checked')) {
-                                    $("#info_object_tehnoparck_ctt").empty();
-                                    result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
+                                    if (userRegionValueTCTT == null)
+                                    {
+                                       $("#info_object_tehnoparck_ctt").empty();
+                                       result.techTransferCenter.forEach(itemTechTransferCenter => { $("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter)); })
+                                    }
+                                    if (userRegionValueTCTT != null) 
+                                    {
+                                        $("#info_object_tehnoparck_ctt").empty();
+                                         result.techTransferCenter.forEach(itemTechTransferCenter => { 
+                                            const GetRegCtt = (region) => region == itemTechTransferCenter.region;
+                                            if (userRegionValueTCTT.some(GetRegCtt) == true){$("#info_object_tehnoparck_ctt").append(getInfoTechTransferCenter(itemTechTransferCenter));}
+                                        })
+                                    }    
                                 }
                                 //ЦТТ
                                 if (!$('#filtr_ctt').is(':checked')) {
-                                    $("#info_object_tehnoparck_ctt").empty();
-                                    result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
+                                    if (userRegionValueTCTT == null)
+                                    {
+                                        $("#info_object_tehnoparck_ctt").empty();
+                                        result.technopark.forEach(itemTechnopark => { $("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark)); })
+                                    }
+                                    if (userRegionValueTCTT != null) 
+                                    {
+                                        $("#info_object_tehnoparck_ctt").empty();
+                                        result.technopark.forEach(itemTechnopark => {
+                                            const GetRegT = (region) => region == itemTechnopark.region;
+                                            if (userRegionValueTCTT.some(GetRegT) == true) {$("#info_object_tehnoparck_ctt").append(getInfoTechnopark(itemTechnopark));}
+                                        })
+                                    }
+                                  
                                 }
-
-                                if (!$('#filtr_techparck').is(':checked') && !$('#filtr_ctt').is(':checked')) {
-                                    $("#info_object_tehnoparck_ctt").empty();
-                                }
-
+                                if (!$('#filtr_techparck').is(':checked') && !$('#filtr_ctt').is(':checked')) {$("#info_object_tehnoparck_ctt").empty();}
                             });
                         }
                     });
-                    // Технопарк
 
+                    // Технопарк, получение блога данных
                     function getInfoTechnopark(itemTechnopark) {
-
                         return `
                                                     <a  class="info_item item-header-js" data-type="tehParckHeader" data-id="${itemTechnopark.id}" data-x="${itemTechnopark.x}" data-y="${itemTechnopark.y}" >
                                                 <div class="info_item-icon parks-actual-big"></div>
@@ -455,7 +674,7 @@
                                         </a>
                                 `;
                     }
-                    // ЦТТ
+                    // ЦТТ, получение блога данных
                     function getInfoTechTransferCenter(itemTechTransferCenter) {
                         return `
                                                         <a class="info_item item-header-js" data-type="cctHeader" data-id="${itemTechTransferCenter.id}" data-x="${itemTechTransferCenter.x}" data-y="${itemTechTransferCenter.y}">
@@ -475,14 +694,11 @@
                 }
             });
         });
-
-        // При нажатии на вкладку "Инновационные проекты"
+        // При нажатии на вкладку "Инновационные проекты"  
         $(document).ready(function () {
             const $showDataItem_inn = $("#Item_inn");
             $showDataItem_inn.click(function () {
-
-
-
+                var userRegVal_inn = $("#small-select2-options-multiple-field_inn").val();
                 let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
                 $("#info_object_ntp").empty();
                 $("#info_object_tehnoparck_ctt").empty();
@@ -494,20 +710,199 @@
                         contentType: 'application/json; charset=utf-8',
                         async: true,
                         success: function (result) {
-                            // ИНН
-                            if ($('#filtr_inn_continues').is(':checked')) {
-                                result.innProject.forEach(itemInnProject => { $("#info_object_Inn").append(getInfoInn(itemInnProject)); })
+                            if (userRegVal_inn == null)
+                            {
+                                // ИНН filtr_inn_end
+                                if ($('#filtr_inn_end').is(':checked')) {
+                                    result.innProject.forEach(itemInnProject => {
+                                        if (itemInnProject.statusInn == 1) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                    })
+                                }
+                               // ИНН filtr_inn_continues
+                               if ($('#filtr_inn_continues').is(':checked')) {
+                                  result.innProject.forEach(itemInnProject => { 
+                                      if (itemInnProject.statusInn == 2){$("#info_object_Inn").append(getInfoInn(itemInnProject)); }
+                                  })
+                               }
+                                // ИНН filtr_inn_execute
+                                if ($('#filtr_inn_execute').is(':checked')) {
+                                    result.innProject.forEach(itemInnProject => {
+                                        if (itemInnProject.statusInn == 3) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                    })
+                                }
                             }
-
-                            // Фильтрация данных в выподающем спике
-                            $("#filtr_inn").click(function () {
+                            if (userRegVal_inn != null)
+                            {
+                                // ИНН filtr_inn_end
+                                if ($('#filtr_inn_end').is(':checked')) {
+                                    result.innProject.forEach(itemInnProject => {
+                                        const GetRegionInn_end = (region) => region == itemInnProject.region;
+                                        if (userRegVal_inn.some(GetRegionInn_end) == true)
+                                        {
+                                          if (itemInnProject.statusInn == 1) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                        }
+                                    })
+                                }
+                                 // ИНН filtr_inn_continues
                                 if ($('#filtr_inn_continues').is(':checked')) {
-                                    $("#info_object_Inn").empty();
-                                    result.innProject.forEach(itemInnProject => { $("#info_object_Inn").append(getInfoInn(itemInnProject)); })
+                                    result.innProject.forEach(itemInnProject => {
+                                        const GetRegionInn_con = (region) => region == itemInnProject.region;
+                                        if (userRegVal_inn.some(GetRegionInn_con) == true)
+                                        {
+                                          if (itemInnProject.statusInn == 2) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                        }
+                                    })
                                 }
-                                else {
-                                    $("#info_object_Inn").empty();
+                                // ИНН filtr_inn_execute
+                                if ($('#filtr_inn_execute').is(':checked')) {
+                                    result.innProject.forEach(itemInnProject => {
+                                        const GetRegionInn_ex = (region) => region == itemInnProject.region;
+                                        if (userRegVal_inn.some(GetRegionInn_ex) == true) {
+                                            if (itemInnProject.statusInn == 3) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                        }
+                                    })
                                 }
+                            }
+                            // ФИЛЬТР ПО РЕГИОНАМ ИНН   - MULTI SELECT    с учётом вкл и выкл чекбоксов
+                            $(".info_panel-filter-inn").on("change", function () {
+                                var userRegionValueINN_modal = $("#small-select2-options-multiple-field_inn").val();
+                                if (userRegionValueINN_modal != null) {
+                                    $("#info_object_Inn").empty();
+                                       // ИНН filtr_inn_end
+                                if ($('#filtr_inn_end').is(':checked')) {
+                                    result.innProject.forEach(itemInnProject => {
+                                        const GetRegionInn_end = (region) => region == itemInnProject.region;
+                                        if (userRegionValueINN_modal.some(GetRegionInn_end) == true)
+                                        {
+                                          if (itemInnProject.statusInn == 1) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                        }
+                                    })
+                                }
+                                    // ИНН filtr_inn_continues
+                                    if ($('#filtr_inn_continues').is(':checked')) {
+                                        result.innProject.forEach(itemInnProject => {
+                                            const GetRegionInn_con = (region) => region == itemInnProject.region;
+                                            if (userRegionValueINN_modal.some(GetRegionInn_con) == true) {
+                                                if (itemInnProject.statusInn == 2) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                            }
+                                        })
+                                    }
+                                     // ИНН filtr_inn_execute
+                                    if ($('#filtr_inn_execute').is(':checked')) {
+                                        result.innProject.forEach(itemInnProject => {
+                                            const GetRegionInn_ex = (region) => region == itemInnProject.region;
+                                            if (userRegionValueINN_modal.some(GetRegionInn_ex) == true) {
+                                                if (itemInnProject.statusInn == 3) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                            }
+                                        })
+                                    }  
+                                }
+                                if (userRegionValueINN_modal == null)
+                                {
+                                    // ИНН filtr_inn_end
+                                    if ($('#filtr_inn_end').is(':checked')) {
+                                        result.innProject.forEach(itemInnProject => {
+                                            if (itemInnProject.statusInn == 1) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                        })
+                                    }
+                                    // ИНН filtr_inn_continues
+                                    if ($('#filtr_inn_continues').is(':checked')) {
+                                        result.innProject.forEach(itemInnProject => {
+                                            if (itemInnProject.statusInn == 2) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                        })
+                                    }
+                                    // ИНН filtr_inn_execute
+                                    if ($('#filtr_inn_execute').is(':checked')) {
+                                        result.innProject.forEach(itemInnProject => {
+                                            if (itemInnProject.statusInn == 3) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                        })
+                                    }
+                                }
+                            });
+                            // КОНЕЦ ПО РЕГИОНАМ ИНН
+
+                            // Фильтрация данных в выподающем спике по чекбоксам с учётом выбранных данных в мульте силекте
+                            $("#filtr_inn").click(function () {
+                                var userRegVal_inn = $("#small-select2-options-multiple-field_inn").val();
+                                if ($('#filtr_inn_continues').is(':checked') && $('#filtr_inn_end').is(':checked') && $('#filtr_inn_execute').is(':checked')) {
+                                    $("#info_object_Inn").empty();
+                                    if (userRegVal_inn == null)
+                                    {
+                                        result.innProject.forEach(itemInnProject => { $("#info_object_Inn").append(getInfoInn(itemInnProject)); })
+                                    }
+                                    if (userRegVal_inn != null)
+                                    {
+                                         result.innProject.forEach(itemInnProject => 
+                                         { 
+                                          const GetRegionInn = (region) => region == itemInnProject.region;
+                                             if (userRegVal_inn.some(GetRegionInn)==true){$("#info_object_Inn").append(getInfoInn(itemInnProject));}       
+                                         })
+                                    }
+                                   
+                                }
+                                // filtr_inn_end
+                                if (!$('#filtr_inn_end').is(':checked'))
+                                {
+                                     $("#info_object_Inn").empty();
+                                     if (userRegVal_inn == null)
+                                     {
+                                         result.innProject.forEach(itemInnProject => { 
+                                            if (itemInnProject.statusInn==2){$("#info_object_Inn").append(getInfoInn(itemInnProject)); }
+                                            if (itemInnProject.statusInn == 3) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                         })
+                                     }
+                                     if (userRegVal_inn !=null)
+                                     {
+                                        result.innProject.forEach(itemInnProject => { 
+                                          const GetRegionInn = (region) => region == itemInnProject.region;
+                                          if (userRegVal_inn.some(GetRegionInn)==true)
+                                          {
+                                            if (itemInnProject.statusInn==2){$("#info_object_Inn").append(getInfoInn(itemInnProject)); }
+                                            if (itemInnProject.statusInn == 3) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                          }   
+                                        })
+                                     }
+                                }
+                                // filtr_inn_continues
+                                if (!$('#filtr_inn_continues').is(':checked')) {
+                                    $("#info_object_Inn").empty();
+                                    if (userRegVal_inn == null) {
+                                        result.innProject.forEach(itemInnProject => {
+                                            if (itemInnProject.statusInn == 1) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                            if (itemInnProject.statusInn == 3) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                        })
+                                    }
+                                    if (userRegVal_inn != null) {
+
+                                        result.innProject.forEach(itemInnProject => {
+                                            const GetRegionInn = (region) => region == itemInnProject.region;
+                                            if (userRegVal_inn.some(GetRegionInn) == true) {
+                                                if (itemInnProject.statusInn == 1) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                                if (itemInnProject.statusInn == 3) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                            }
+                                        })
+                                    }
+                                }
+                                // filtr_inn_execute
+                                if (!$('#filtr_inn_execute').is(':checked')) {
+                                    $("#info_object_Inn").empty();
+                                    if (userRegVal_inn == null) {
+                                        result.innProject.forEach(itemInnProject => {
+                                            if (itemInnProject.statusInn == 1) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                            if (itemInnProject.statusInn == 2) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                        })
+                                    }
+                                    if (userRegVal_inn != null) {
+                                        result.innProject.forEach(itemInnProject => {
+                                            const GetRegionInn = (region) => region == itemInnProject.region;
+                                            if (userRegVal_inn.some(GetRegionInn) == true) {
+                                                if (itemInnProject.statusInn == 1) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                                if (itemInnProject.statusInn == 2) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
+                                            }
+                                        })
+                                    }
+                                }
+                                if (!$('#filtr_inn_continues').is(':checked') && !$('#filtr_inn_end').is(':checked') && !$('#filtr_inn_execute').is(':checked')) { $("#info_object_Inn").empty();}
                             });
 
                         }
@@ -534,11 +929,11 @@
                 }
             });
         });
-
         // При нажатии на вкладку "Научно-технологические  программы"
         $(document).ready(function () {
             const $showDataItem_ntp = $("#Item_ntp");
             $showDataItem_ntp.click(function () {
+                var userRegVal_ntp = $("#small-select2-options-multiple-field_ntp").val();
                 let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
                 $("#info_object_Inn").empty();
                 $("#info_object_tehnoparck_ctt").empty();
@@ -551,21 +946,206 @@
                         contentType: 'application/json; charset=utf-8',
                         async: true,
                         success: function (result) {
-
-                            // НТП
-                            if ($('#filtr_ntp_continues').is(':checked')) {
-                                result.ntpProject.forEach(itemNtpProject => { $("#info_object_ntp").append(getInfoNtp(itemNtpProject)); })
+                            if (userRegVal_ntp == null) {
+                                // НТП filtr_ntp_end
+                                if ($('#filtr_ntp_end').is(':checked')) {
+                                    result.ntpProject.forEach(itemNtpProject => {
+                                        if (itemNtpProject.statusNtp == 1) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                    })
+                                }
+                                // НТП filtr_ntp_continues
+                                if ($('#filtr_ntp_continues').is(':checked')) {
+                                    result.ntpProject.forEach(itemNtpProject => {
+                                        if (itemNtpProject.statusNtp == 2) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                    })
+                                }
+                                // НТП filtr_ntp_execute
+                                if ($('#filtr_ntp_execute').is(':checked')) {
+                                    result.ntpProject.forEach(itemNtpProject => {
+                                        if (itemNtpProject.statusNtp == 3) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                    })
+                                }
+                            }
+                            if (userRegVal_ntp != null) {
+                                // НТП filtr_ntp_end
+                                if ($('#filtr_ntp_end').is(':checked')) {
+                                    result.ntpProject.forEach(itemNtpProject => {
+                                        const GetRegionNtp_end = (region) => region == itemNtpProject.region;
+                                        if (userRegVal_ntp.some(GetRegionNtp_end) == true) {
+                                            if (itemNtpProject.statusNtp == 1) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                        }
+                                    })
+                                }
+                                // НТП filtr_ntp_continues
+                                   if ($('#filtr_ntp_continues').is(':checked')) {
+                                    result.ntpProject.forEach(itemNtpProject => {
+                                        const GetRegionNtp_continues = (region) => region == itemNtpProject.region;
+                                        if (userRegVal_ntp.some(GetRegionNtp_continues) == true) {
+                                            if (itemNtpProject.statusNtp == 2) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                        }
+                                    })
+                                }
+                                // НТП filtr_ntp_execute
+                                if ($('#filtr_ntp_execute').is(':checked')) {
+                                    result.ntpProject.forEach(itemNtpProject => {
+                                        const GetRegionNtp_execute = (region) => region == itemNtpProject.region;
+                                        if (userRegVal_ntp.some(GetRegionNtp_execute) == true) {
+                                            if (itemNtpProject.statusNtp == 3) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                        }
+                                    })
+                                }
                             }
 
-                            // Фильтрация данных в выподающем спике
+
+                            // ФИЛЬТР ПО РЕГИОНАМ НТП   - MULTI SELECT    с учётом вкл и выкл чекбоксов
+                            $(".info_panel-filter-ntp").on("change", function () {
+                                var userRegionValueNTP_modal = $("#small-select2-options-multiple-field_ntp").val();
+                                if (userRegionValueNTP_modal != null) {
+                               $("#info_object_ntp").empty();
+                               // НТП filtr_ntp_end
+                                if ($('#filtr_ntp_end').is(':checked')) {
+                                    result.ntpProject.forEach(itemNtpProject => {
+                                        const GetRegionNtp_end = (region) => region == itemNtpProject.region;
+                                        if (userRegionValueNTP_modal.some(GetRegionNtp_end) == true)
+                                        {
+                                          if (itemNtpProject.statusNtp == 1) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                        }
+                                    })
+                                }
+                                    // НТП filtr_ntp_continues
+                                    if ($('#filtr_ntp_continues').is(':checked')) {
+                                      result.ntpProject.forEach(itemNtpProject => {
+                                        const GetRegionNtp_con = (region) => region == itemNtpProject.region;
+                                        if (userRegionValueNTP_modal.some(GetRegionNtp_con) == true)
+                                        {
+                                          if (itemNtpProject.statusNtp == 2) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                        }
+                                      })
+                                    }
+                                     // НТП filtr_ntp_execute
+                                    if ($('#filtr_ntp_execute').is(':checked')) {
+                                      result.ntpProject.forEach(itemNtpProject => {
+                                        const GetRegionNtp_ex = (region) => region == itemNtpProject.region;
+                                        if (userRegionValueNTP_modal.some(GetRegionNtp_ex) == true)
+                                        {
+                                          if (itemNtpProject.statusNtp == 3) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                        }
+                                      })
+                                    }
+                                }
+                                if (userRegionValueNTP_modal == null) {
+                                    $("#info_object_ntp").empty();
+                                    // НТП filtr_ntp_end
+                                    if ($('#filtr_ntp_end').is(':checked')) {
+                                        result.ntpProject.forEach(itemNtpProject => {
+                                            if (itemNtpProject.statusNtp == 1) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                        })
+                                    }
+
+                                    // НТП filtr_ntp_continues
+                                    if ($('#filtr_ntp_continues').is(':checked')) {
+                                        result.ntpProject.forEach(itemNtpProject => {
+                                            if (itemNtpProject.statusNtp == 2) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                        })
+                                    }
+
+                                    // НТП filtr_ntp_execute
+                                    if ($('#filtr_ntp_execute').is(':checked')) {
+                                        result.ntpProject.forEach(itemNtpProject => {
+                                            if (itemNtpProject.statusNtp == 3) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                        })
+                                    }
+                                }
+                            });
+                            // КОНЕЦ ПО РЕГИОНАМ НТП
+
+                            // Фильтрация данных в выподающем спике по чекбоксам с учётом выбранных данных в мульте силекте
                             $("#filtr_ntp").click(function () {
-                                if ($('#filtr_ntp_continues').is(':checked')) {
+                                var userRegVal_ntp = $("#small-select2-options-multiple-field_ntp").val();
+                                if ($('#filtr_ntp_continues').is(':checked') && $('#filtr_ntp_end').is(':checked') && $('#filtr_ntp_execute').is(':checked')) {
                                     $("#info_object_ntp").empty();
-                                    result.ntpProject.forEach(itemNtpProject => { $("#info_object_ntp").append(getInfoNtp(itemNtpProject)); })
+                                    if (userRegVal_ntp == null)
+                                    {
+                                        result.ntpProject.forEach(itemNtpProject => { $("#info_object_ntp").append(getInfoNtp(itemNtpProject)); })
+                                    }
+                                    if (userRegVal_ntp != null)
+                                    {
+                                         result.ntpProject.forEach(itemNtpProject => 
+                                         { 
+                                          const GetRegionNtp = (region) => region == itemNtpProject.region;
+                                            if (userRegVal_ntp.some(GetRegionNtp) == true) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}       
+                                         })
+                                    }
                                 }
-                                else {
+                                // filtr_ntp_end
+                                if (!$('#filtr_ntp_end').is(':checked'))
+                                {
                                     $("#info_object_ntp").empty();
+                                     if (userRegVal_ntp == null)
+                                     {
+                                         result.ntpProject.forEach(itemNtpProject => { 
+                                            if (itemNtpProject.statusNtp == 2){$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                            if (itemNtpProject.statusNtp == 3) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                         })
+                                     }
+                                    if (userRegVal_ntp != null) {
+                                        result.ntpProject.forEach(itemNtpProject => { 
+                                          const GetRegionNtp = (region) => region == itemNtpProject.region;
+                                          if (userRegVal_ntp.some(GetRegionNtp)==true)
+                                          {
+                                            if (itemNtpProject.statusNtp==2){$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                            if (itemNtpProject.statusNtp == 3) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                          }   
+                                        })
+                                     }
                                 }
+                                // filtr_ntp_continues
+                                if (!$('#filtr_ntp_continues').is(':checked'))
+                                {
+                                    console.log("XYII");
+                                    $("#info_object_ntp").empty();
+                                     if (userRegVal_ntp == null)
+                                     {
+                                         result.ntpProject.forEach(itemNtpProject => { 
+                                            if (itemNtpProject.statusNtp == 1){$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                            if (itemNtpProject.statusNtp == 3) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));} 
+                                         })
+                                     }
+                                    if (userRegVal_ntp != null) {
+                                        result.ntpProject.forEach(itemNtpProject => { 
+                                          const GetRegionNtp = (region) => region == itemNtpProject.region;
+                                          if (userRegVal_ntp.some(GetRegionNtp)==true)
+                                          {
+                                            if (itemNtpProject.statusNtp == 2){$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                            if (itemNtpProject.statusNtp == 3) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                          }   
+                                        })
+                                     }
+                                }
+                                // filtr_ntp_execute
+                                if (!$('#filtr_ntp_execute').is(':checked'))
+                                {
+                                    $("#info_object_ntp").empty();
+                                     if (userRegVal_ntp == null)
+                                     {
+                                         result.ntpProject.forEach(itemNtpProject => { 
+                                            if (itemNtpProject.statusNtp == 1){$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                            if (itemNtpProject.statusNtp == 2) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                         })
+                                     }
+                                    if (userRegVal_ntp != null) {
+                                        result.ntpProject.forEach(itemNtpProject => { 
+                                          const GetRegionNtp = (region) => region == itemNtpProject.region;
+                                          if (userRegVal_ntp.some(GetRegionNtp)==true)
+                                          {
+                                            if (itemNtpProject.statusNtp == 1){$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                            if (itemNtpProject.statusNtp == 2) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
+                                          }   
+                                        })
+                                     }
+                                }
+                                if (!$('#filtr_ntp_continues').is(':checked') && !$('#filtr_ntp_end').is(':checked') && !$('#filtr_ntp_execute').is(':checked')) { $("#info_object_ntp").empty(); }
+                               
                             });
                         }
                     });
@@ -596,9 +1176,7 @@
         let timeoutID;
         // всплывающее окно
         function top_popup() {
-
             $(document).ready(function () {
-
                 const $closeWindow = $(".close-window");
                 const $windowbar = $(".window");
                 const $windowChild = $(".window-child");
@@ -607,7 +1185,6 @@
                 const $childContainer = $(".window-child-container");
                 const $closeBtn = $(".window-side-button");
                 const $parksProcessSmall = $(".parks-process-small");
-
                 $windowbar.toggleClass("active");
                 $windowChild.toggleClass("active");
                 $windowBlock.removeClass("d-none");
@@ -615,7 +1192,6 @@
                 if (!hasClass) {
                     $("#window-container").empty();
                 }
-
                 $closeWindow.click(function () {
                     $windowbar.removeClass("active");
                     $windowChild.removeClass("active");
@@ -624,7 +1200,6 @@
                     $parksProcessSmall.addClass("d-none");
                     stoptimeout();
                 });
-
                 $windowBlock.click(function () {
                     $windowbar.removeClass("active");
                     $windowChild.removeClass("active");
@@ -633,14 +1208,12 @@
                     $parksProcessSmall.addClass("d-none");
                     stoptimeout();
                 });
-
                 $closeBtn.click(function () {
                     $windowChild.animate({ width: 300 }, 250);
                     $buttonLeft.show();
                     $childContainer.show();
 
                 });
-
                 $buttonLeft.on('click', function () {
                     $windowChild.animate({ width: 0 }, 200);
                     $buttonLeft.hide();
@@ -654,7 +1227,6 @@
             $parksProcessSmall.addClass("d-none");
 
         }
-
         // получение данных по id
         $(document).ready(function () {
             $('.sidebarmap').on('click', '.item-header-js', function () {
@@ -663,7 +1235,6 @@
                 var id = $(this).attr("data-id");
                 var x = $(this).attr("data-x");
                 var y = $(this).attr("data-y");
-
                 switch ($(this).attr("data-type")) {
                     case 'cctHeader':
                         url = "@Url.Action("GetPartialCTT", "Home")";
@@ -687,7 +1258,6 @@
                 }
             });
             function AjaxAxtion(url, id, x, y, wrapperid) {
-
                 $.ajax({
                     cache: false,
                     type: "GET",
@@ -699,30 +1269,22 @@
                     },
                     dataType: "html",
                     success: function (data) {
-
                         $(wrapperid).empty();
                         $(wrapperid).append(data);
                         map.setCenter([x, y - 0.004], 17, {
                             checkZoomRange: false
                         });
-
                         timeoutID = setTimeout(function () {
                             const $parksProcessSmall = $(`#${id}`);
                             $parksProcessSmall.removeClass("d-none");
                         }, 1000);
-
-
-
                         top_popup();
-
-
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         alert('Ошибка загрузки данных!');
                     }
                 });
             }
-
         });
     });
 </script>
@@ -737,7 +1299,6 @@
             <h3 class="title_block" id="Item_techparck_ctt">
                 Инновационная инфраструктура
             </h3>
-
             <div class="info">
                 <div class="info_panel">
                     <div class="info_panel-switchers d-flex" id="filtr_teh_ctt_bif">
@@ -752,13 +1313,13 @@
                         <span for="select2-search__field" class="filter-name">Регион</span>
                         <div class="mb-3">
                             <select class="form-select" id="small-select2-options-multiple-field" multiple data-placeholder-tmp="">
-                                <option id="testopt">Минск</option>
-                                <option>Минская область</option>
-                                <option>Могилевская область</option>
-                                <option>Брестская область</option>
-                                <option>Гомельская область</option>
-                                <option>Гродненская область</option>
-                                <option>Витебская область</option>
+                                <option value="7">Минск</option>
+                                <option value="5">Минская область</option>
+                                <option value="6">Могилевская область</option>
+                                <option value="1">Брестская область</option>
+                                <option value="3">Гомельская область</option>
+                                <option value="4">Гродненская область</option>
+                                <option value="2">Витебская область</option>
                             </select>
                         </div>
                     </div>
@@ -768,8 +1329,7 @@
                     <div class="sort-bar">
                         <span class="sort-button" id="sort_tehnoparck_ctt">Название</span>
                     </div>
-                    <div id="info_object_tehnoparck_ctt">
-                    </div>
+                    <div id="info_object_tehnoparck_ctt"></div>
                 </div>
             </div>
         </section>
@@ -791,13 +1351,13 @@
                         <span class="filter-name">Регион</span>
                         <div class="mb-3">
                             <select class="form-select" id="small-select2-options-multiple-field_inn" multiple data-placeholder-tmp="">
-                                <option>Минск</option>
-                                <option>Минская область</option>
-                                <option>Могилевская область</option>
-                                <option>Брестская область</option>
-                                <option>Гомельская область</option>
-                                <option>Гродненская область</option>
-                                <option>Витебская область</option>
+                                <option value="7">Минск</option>
+                                <option value="5">Минская область</option>
+                                <option value="6">Могилевская область</option>
+                                <option value="1">Брестская область</option>
+                                <option value="3">Гомельская область</option>
+                                <option value="4">Гродненская область</option>
+                                <option value="2">Витебская область</option>
                             </select>
                         </div>
                     </div>
@@ -807,8 +1367,7 @@
                         <span class="sort-icon"></span>
                         <span class="sort-button" id="sort_inn">Название</span>
                     </div>
-                    <div id="info_object_Inn">
-                    </div>
+                    <div id="info_object_Inn"></div>
                 </div>
             </div>
         </section>
@@ -830,13 +1389,13 @@
                         <span class="filter-name">Регион</span>
                         <div class="mb-3">
                             <select class="form-select" id="small-select2-options-multiple-field_ntp" data-placeholder-tmp="" multiple>
-                                <option>Минск</option>
-                                <option>Минская область</option>
-                                <option>Могилевская область</option>
-                                <option>Брестская область</option>
-                                <option>Гомельская область</option>
-                                <option>Гродненская область</option>
-                                <option>Витебская область</option>
+                                <option value="7">Минск</option>
+                                <option value="5">Минская область</option>
+                                <option value="6">Могилевская область</option>
+                                <option value="1">Брестская область</option>
+                                <option value="3">Гомельская область</option>
+                                <option value="4">Гродненская область</option>
+                                <option value="2">Витебская область</option>
                             </select>
                         </div>
                     </div>
@@ -847,8 +1406,7 @@
                         <span class="sort-icon"></span>
                         <span class="sort-button" id="sort_ntp">Название</span>
                     </div>
-                    <div id="info_object_ntp">
-                    </div>
+                    <div id="info_object_ntp"></div>
                 </div>
             </div>
         </section>
@@ -866,5 +1424,3 @@
     </div>
     <!-- window-container -->
 </div>
-
-
