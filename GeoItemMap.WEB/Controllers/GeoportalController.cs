@@ -29,12 +29,12 @@ namespace GeoItemMap.WEB.Controllers
             techtransferCenterRepository = _techtransferCenterRepository;
         }
 
-        //[HttpGet]
-        //public async Task <IEnumerable<GeoItem>> GetGeoCoordinats()
-        //{
-        //    IEnumerable<GeoItem> geoItems = await genericRepository.GetAllCoordinates();
-        //    return geoItems;
-        //}
+        [HttpGet]
+        public async Task<IEnumerable<GeoItem>> GetGeoCoordinats()
+        {
+            IEnumerable<GeoItem> geoItems = await genericRepository.GetAllCoordinates();
+            return geoItems;
+        }
 
         [HttpPost]
         public async Task <IResult> GetAllDataGeoItems()
@@ -66,12 +66,12 @@ namespace GeoItemMap.WEB.Controllers
         }
 
 
-        //
-        [HttpGet]
-        public IActionResult TemporaryPages()
-        {
-            
-            return RedirectToAction("TemporaryPages", "Home");
-        }
+        ////
+        //[HttpGet]
+        //public IActionResult TemporaryPages()
+        //{
+        //    //return View();   
+        //    return RedirectToAction("TemporaryPages", "Home");
+        //}
     }
 }
