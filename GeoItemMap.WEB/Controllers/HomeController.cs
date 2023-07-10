@@ -11,11 +11,11 @@ namespace GeoItemMap.WEB.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private IGenericRepository<GeoItem> GeoItemGenericRepository;
-        private IGenericRepository<InnProject> InnProjectGenericRepository;
-        private IGenericRepository<NtpProject> NtpProjectGenericRepository;
-        private IGenericRepository<Technopark> TechnoparkGenericRepository;
-        private IGenericRepository<TechTransferCenter> TechTransferCenterGenericRepository;
+        private readonly IGenericRepository<GeoItem> GeoItemGenericRepository;
+        private readonly IGenericRepository<InnProject> InnProjectGenericRepository;
+        private readonly IGenericRepository<NtpProject> NtpProjectGenericRepository;
+        private readonly IGenericRepository<Technopark> TechnoparkGenericRepository;
+        private readonly IGenericRepository<TechTransferCenter> TechTransferCenterGenericRepository;
 
 
         public HomeController(ILogger<HomeController> logger,
@@ -38,8 +38,14 @@ namespace GeoItemMap.WEB.Controllers
             return View();  
           
         }
+        //
+        [HttpGet]
+        public IActionResult TemporaryPages()
+        {
+            return View();
+        }
 
-     
+
 
         [HttpPost]
         public async Task<JsonResult> GetCoordinates()

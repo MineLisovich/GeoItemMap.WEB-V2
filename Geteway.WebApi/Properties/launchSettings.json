@@ -1,19 +1,18 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:41684",
-      "sslPort": 44372
+      "applicationUrl": "http://localhost:28321",
+      "sslPort": 44397
     }
   },
   "profiles": {
-    "GeoItemMap.WEB": {
+    "Geteway.WebApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7215;http://localhost:5003",
+      "applicationUrl": "https://localhost:7205;http://localhost:5095",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

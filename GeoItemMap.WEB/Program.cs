@@ -8,19 +8,10 @@ using Microsoft.AspNetCore.Hosting;
 using GeoItemMap.WEB.Service;
 
 
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-        policy =>
-        {
-            policy.WithOrigins("https://localhost:7215", "http://localhost:5003");
-           
-        });
-});
+
 
 var configuration = builder.Configuration;
 configuration.Bind("ConnectionString", new Config());
@@ -48,7 +39,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseCors(MyAllowSpecificOrigins);
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
