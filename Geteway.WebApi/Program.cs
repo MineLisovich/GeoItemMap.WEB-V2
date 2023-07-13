@@ -16,12 +16,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOcelot(configuration);
 
 var app = builder.Build();
-
-
-
 app.UseOcelot();
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
