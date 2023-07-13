@@ -2,6 +2,6 @@
 {
     public class Config
     {
-        public static string DefaultConnection { get; set; }
+        public static string? DefaultConnection { get; set; }
     }
 }

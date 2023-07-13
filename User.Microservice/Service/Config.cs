@@ -1,4 +1,4 @@
-﻿namespace Admin.Microservice.Services
+﻿namespace User.Microservice.Service
 {
     public class Config
     {
