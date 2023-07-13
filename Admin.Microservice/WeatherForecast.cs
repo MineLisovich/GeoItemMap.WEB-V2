@@ -1,4 +1,4 @@
-namespace Authorization.Microservice
+namespace Admin.Microservice
 {
     public class WeatherForecast
     {
