@@ -76,7 +76,7 @@
                 map.geoObjects.add(objectManager);
             });
         }
-        // Очиска границ рБ и регионов
+        // Очистка границ РБ и регионов
         function clearFeature() {
             objectManager.remove(features);
         }
@@ -99,7 +99,7 @@
             objectManager.add(features);
             map.geoObjects.add(objectManager);
         });
-        // Цвет Заливки ДРУГИХ СТРАН
+        // ЦВЕТ ЗАЛИВКИ ДРУГИХ СТРАН
         var _fillColor = '#A6BBCE';
         // ПРОЗРАЧНОСТЬ ЗАЛИВКИ (от 0 до 1)
         var _fillOpacity = 0.8;
@@ -109,12 +109,13 @@
         var _strokeOpacity = 1;
         // ТОЧНОСТЬ ГРАНИЦ ДРУГИХ СТРАН (1- очень не точно; 2- почти точно; 3- точные границы)
         var _quality = 3;
-        // Загрузим регионы.
+
+        //Загрузка всех регионов
         ymaps.borders.load('001', {
             lang: 'ru',
             quality: _quality
         }).then(function (result) {
-            // Создадим многоугольник, который будет скрывать весь мир, кроме заданной страны.
+            //Многоугольник, который  скрывает весь мир, кроме заданной страны
             var background = new ymaps.Polygon([
                 [
                     [85, -179.99],
@@ -131,30 +132,30 @@
                 strokeOpacity: _strokeOpacity,
                 coordRendering: 'straightPath'
             });
-            // Найдём страну по её iso коду.
+            //Найдём страну по её iso коду
             var region = result.features.filter(function (feature) { return feature.properties.iso3166 == 'BY'; })[0];
             var masks = region.geometry.coordinates;
             masks.forEach(function (mask) {
                 background.geometry.insert(1, mask);
             });
-            // Добавим многоугольник на карту.
+            //Добавим многоугольник на карту
             map.geoObjects.add(background);
         })
 
-        // создание кластера
+        //Создание кластера
         clusterer = new ymaps.Clusterer({
-            // Макет метки кластера pieChart.
+            //Макет метки кластера pieChart.
             clusterIconLayout: 'default#pieChart',
-            // Радиус диаграммы в пикселях.
+            //Радиус диаграммы в пикселях.
             clusterIconPieChartRadius: 20,
-            // Радиус центральной части макета.
+            //Радиус центральной части макета.
             clusterIconPieChartCoreRadius: 13,
-            // Ширина линий-разделителей секторов и внешней обводки диаграммы.
+            //Ширина линий-разделителей секторов и внешней обводки диаграммы.
             clusterIconPieChartStrokeWidth: 0,
-            // Определяет наличие поля balloon.
+            //Определяет наличие поля balloon.
             hasBalloon: true
         });
-        // получение координат для меток из бд
+        //Получение координат для меток из бд
         $.ajax({
             url: "@Url.Action("GetCoordinates", "Home")",
             type: 'POST',
@@ -237,6 +238,7 @@
                         checkZoomRange: true
                     });
 
+                    //Детальная информация о объекте по клику на метку или из выпадающего списка
                     myGeoObject.events.add('click', function () {
                         // Технопарки
                         const $ProcessSmall = $(`#${element.id}`);
@@ -291,7 +293,7 @@
                             }
                         });
                     }
-                    // фильтрация меток
+                    //ФИЛЬТРАЦИЯ МЕТОК - НАЧАЛО
                     $(document).ready(function () {
                         const GetRegion = (region) => region == element.region;              
                         //Technoparcki - CHECKBOX
@@ -306,7 +308,6 @@
                               else { if (element.geoType == 0) {clusterer.add(myGeoObject); map.geoObjects.add(clusterer);} }
                             }
                         });
-
                         //CTT  - CHECKBOX
                         $("#filtr_ctt").click(function () {
                             if (!$('#filtr_ctt').is(':checked')) { if (element.geoType == 1) {clusterer.remove(myGeoObject);} }
@@ -320,7 +321,7 @@
                             }
                         });
                         //INN - filtr_inn_end  - CHECKBOX
-                         $("#filtr_inn_end").click(function () {
+                        $("#filtr_inn_end").click(function () {
                             if (!$('#filtr_inn_end').is(':checked')) {if (element.statusInn == 1) {clusterer.remove(myGeoObject);}}
                             else {
                                 var userRegionValueInn_end = $("#small-select2-options-multiple-field_inn").val();
@@ -351,7 +352,7 @@
                             }
                         });
                         //INN - filtr_inn_execute  - CHECKBOX  
-                         $("#filtr_inn_execute").click(function () {
+                        $("#filtr_inn_execute").click(function () {
                             if (!$('#filtr_inn_execute').is(':checked')) {if (element.statusInn == 3) {clusterer.remove(myGeoObject);}}
                             else {
                                 var userRegionValueInn_execute = $("#small-select2-options-multiple-field_inn").val();
@@ -362,9 +363,8 @@
                                 else{ if (element.statusInn == 3) {clusterer.add(myGeoObject);map.geoObjects.add(clusterer);}}
                             }
                         });
-
-                         //NTP - filtr_ntp_end  - CHECKBOX
-                            $("#filtr_ntp_end").click(function () {
+                        //NTP - filtr_ntp_end  - CHECKBOX
+                        $("#filtr_ntp_end").click(function () {
                             if (!$('#filtr_ntp_end').is(':checked')) {if (element.statusNtp == 1) {clusterer.remove(myGeoObject);}}
                             else {
                                 var userRegionValueNtp_end = $("#small-select2-options-multiple-field_ntp").val();
@@ -388,7 +388,7 @@
                             }
                         });
                         //NTP - filtr_ntp_execute  - CHECKBOX
-                            $("#filtr_ntp_execute").click(function () {
+                        $("#filtr_ntp_execute").click(function () {
                             if (!$('#filtr_ntp_execute').is(':checked')) {if (element.statusNtp == 3) {clusterer.remove(myGeoObject);}}
                             else {
                                 var userRegionValueNtp_execute = $("#small-select2-options-multiple-field_ntp").val();
@@ -400,7 +400,7 @@
                             }
                         });
 
-                        // ФИЛЬТР ПО РЕГИОНАМ Технопарки, ЦТТ и БИФ и НЦИС   - MULTI SELECT
+                       //ФИЛЬТРАЦИЯ ПО РЕГИОНАМ (Технопарки, ЦТТ, БИФ и НЦИС) - MULTIPLE SELECT + CHECKBOX - НАЧАЛО
                         $(".info_panel-filter").on("change", function () {
                             var userRegionValue = $("#small-select2-options-multiple-field").val();
                             if (userRegionValue != null) {
@@ -430,9 +430,9 @@
                                 }
                            } 
                         });
-                       // КОНЕЦ ФИЛЬТ ПО РЕГИОНАМ Технопарки, ЦТТ и БИФ и НЦИС
+                       //ФИЛЬТРАЦИИ ПО РЕГИОНАМ (Технопарки, ЦТТ, БИФ и НЦИС) - КОНЕЦ
 
-                        // ФИЛЬТР ПО РЕГИОНАМ ИНН   - MULTI SELECT   
+                       //ФИЛЬТРАЦИЯ ПО РЕГИОНАМ (ИНН) - MULTIPLE SELECT + CHECKBOX - НАЧАЛО
                         $(".info_panel-filter-inn").on("change", function () {
                             var userRegionValueINN = $("#small-select2-options-multiple-field_inn").val();
                             if (userRegionValueINN != null)
@@ -471,9 +471,9 @@
                                 }
                             }
                        });
-                       // КОНЕЦ ПО РЕГИОНАМ ИНН
+                       //ФИЛЬТРАЦИЯ ПО РЕГИОНАМ (ИНН) - КОНЕЦ
 
-                       // ФИЛЬТР ПО РЕГИОНАМ НТП   - MULTI SELECT info_panel-filter-ntp  small-select2-options-multiple-field_ntp
+                       //ФИЛЬТР ПО РЕГИОНАМ (НТП) - MULTIPLE SELECT + CHECKBOX - НАЧАЛО
                         $(".info_panel-filter-ntp").on("change", function () {
                           var userRegionValueNTP = $("#small-select2-options-multiple-field_ntp").val();
                           if (userRegionValueNTP != null)
@@ -516,13 +516,14 @@
                           } 
 
                         });
-                       // КОНЕЦ ПО РЕГИОНАМ НТП   
+                       //ФИЛЬТР ПО РЕГИОНАМ (НТП) - КОНЕЦ
                     });
-                    // конец фильтрации
+                    //ФИЛЬТРАЦИЯ МЕТОК - КОНЕЦ
                 });
             }
         });
-        // При нажатии на вкладку "Субъекты инновационной инфраструктуры"
+
+        //При нажатии на вкладку "Субъекты инновационной инфраструктуры"
         $(document).ready(function () {
             const $showDataItem_techpar_ctt = $("#Item_techparck_ctt");
             $showDataItem_techpar_ctt.click(function () {
@@ -566,7 +567,7 @@
                                     })
                                 }                             
                           }
-                            // ФИЛЬТР ПО РЕГИОНАМ Технопарки, ЦТТ и БИФ и НЦИС   - MULTI SELECT с учётом вкл и выкл чекбоксов
+                           //ФИЛЬТРАЦИЯ ПО РЕГИОНАМ (Технопарки, ЦТТ и БИФ и НЦИС) - НАЧАЛО
                             $(".info_panel-filter").on("change", function () {
                                 var userRegionValue_modal = $("#small-select2-options-multiple-field").val();
                                 if (userRegionValue_modal != null)
@@ -599,8 +600,7 @@
                                     }
                                 }
                             });
-                            // КОНЕЦ ФИЛЬТ ПО РЕГИОНАМ Технопарки, ЦТТ и БИФ и НЦИС
-                            // Фильтрация данных в выподающем спике по чекбоксам с учётом выбранных данных в мульте силекте
+
                             $("#filtr_teh_ctt_bif").click(function () {
                                var userRegionValueTCTT = $("#small-select2-options-multiple-field").val();
                                 // Технопарки
@@ -659,32 +659,33 @@
                                 }
                                 if (!$('#filtr_techparck').is(':checked') && !$('#filtr_ctt').is(':checked')) {$("#info_object_tehnoparck_ctt").empty();}
                             });
+                           //ФИЛЬТРАЦИЯ ПО РЕГИОНАМ (Технопарки, ЦТТ и БИФ и НЦИС) - КОНЕЦ
                         }
                     });
 
-                    // Технопарк, получение блога данных
+                    //Технопарки, получение блока данных
                     function getInfoTechnopark(itemTechnopark) {
                         return `
-                                                    <a  class="info_item item-header-js" data-type="tehParckHeader" data-id="${itemTechnopark.id}" data-x="${itemTechnopark.x}" data-y="${itemTechnopark.y}" >
-                                                <div class="info_item-icon parks-actual-big"></div>
-                                            <div class="info_item-data">
-                                                <h3>${itemTechnopark.nameTechnopark}</h3>
-                                                        <span class="info_item-region">${itemTechnopark.addressTechnopark}</span>
-                                           </div>
-                                        </a>
+                                <a  class="info_item item-header-js" data-type="tehParckHeader" data-id="${itemTechnopark.id}" data-x="${itemTechnopark.x}" data-y="${itemTechnopark.y}" >
+                                    <div class="info_item-icon parks-actual-big"></div>
+                                    <div class="info_item-data">
+                                         <h3>${itemTechnopark.nameTechnopark}</h3>
+                                         <span class="info_item-region">${itemTechnopark.addressTechnopark}</span>
+                                    </div>
+                                </a>
                                 `;
                     }
-                    // ЦТТ, получение блога данных
+                    //ЦТТ, получение блока данных
                     function getInfoTechTransferCenter(itemTechTransferCenter) {
                         return `
-                                                        <a class="info_item item-header-js" data-type="cctHeader" data-id="${itemTechTransferCenter.id}" data-x="${itemTechTransferCenter.x}" data-y="${itemTechTransferCenter.y}">
-                                                    <div class="info_item-icon ctt-small"></div>
-                                            <div class="info_item-data">
-                                                <h3>${itemTechTransferCenter.nameTechTransferCenter}</h3>
-                                                    <span class="info_item-region">${itemTechTransferCenter.adressTechTransferCenter}</span>
-                                           </div>
-                                      </a>
-                                  `;
+                                <a class="info_item item-header-js" data-type="cctHeader" data-id="${itemTechTransferCenter.id}" data-x="${itemTechTransferCenter.x}" data-y="${itemTechTransferCenter.y}">
+                                   <div class="info_item-icon ctt-small"></div>
+                                   <div class="info_item-data">
+                                        <h3>${itemTechTransferCenter.nameTechTransferCenter}</h3>
+                                        <span class="info_item-region">${itemTechTransferCenter.adressTechTransferCenter}</span>
+                                   </div>
+                                </a>
+                               `;
                     }
 
                 }
@@ -694,7 +695,7 @@
                 }
             });
         });
-        // При нажатии на вкладку "Инновационные проекты"  
+        //При нажатии на вкладку "Инновационные проекты"  
         $(document).ready(function () {
             const $showDataItem_inn = $("#Item_inn");
             $showDataItem_inn.click(function () {
@@ -712,19 +713,19 @@
                         success: function (result) {
                             if (userRegVal_inn == null)
                             {
-                                // ИНН filtr_inn_end
+                                //ИНН filtr_inn_end
                                 if ($('#filtr_inn_end').is(':checked')) {
                                     result.innProject.forEach(itemInnProject => {
                                         if (itemInnProject.statusInn == 1) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
                                     })
                                 }
-                               // ИНН filtr_inn_continues
+                               //ИНН filtr_inn_continues
                                if ($('#filtr_inn_continues').is(':checked')) {
                                   result.innProject.forEach(itemInnProject => { 
                                       if (itemInnProject.statusInn == 2){$("#info_object_Inn").append(getInfoInn(itemInnProject)); }
                                   })
                                }
-                                // ИНН filtr_inn_execute
+                                //ИНН filtr_inn_execute
                                 if ($('#filtr_inn_execute').is(':checked')) {
                                     result.innProject.forEach(itemInnProject => {
                                         if (itemInnProject.statusInn == 3) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
@@ -733,7 +734,7 @@
                             }
                             if (userRegVal_inn != null)
                             {
-                                // ИНН filtr_inn_end
+                                //ИНН filtr_inn_end
                                 if ($('#filtr_inn_end').is(':checked')) {
                                     result.innProject.forEach(itemInnProject => {
                                         const GetRegionInn_end = (region) => region == itemInnProject.region;
@@ -743,7 +744,7 @@
                                         }
                                     })
                                 }
-                                 // ИНН filtr_inn_continues
+                                 //ИНН filtr_inn_continues
                                 if ($('#filtr_inn_continues').is(':checked')) {
                                     result.innProject.forEach(itemInnProject => {
                                         const GetRegionInn_con = (region) => region == itemInnProject.region;
@@ -753,7 +754,7 @@
                                         }
                                     })
                                 }
-                                // ИНН filtr_inn_execute
+                                //ИНН filtr_inn_execute
                                 if ($('#filtr_inn_execute').is(':checked')) {
                                     result.innProject.forEach(itemInnProject => {
                                         const GetRegionInn_ex = (region) => region == itemInnProject.region;
@@ -763,12 +764,12 @@
                                     })
                                 }
                             }
-                            // ФИЛЬТР ПО РЕГИОНАМ ИНН   - MULTI SELECT    с учётом вкл и выкл чекбоксов
+                            //ФИЛЬТРАЦИЯ ПО РЕГИОНАМ ИНН - НАЧАЛО  
                             $(".info_panel-filter-inn").on("change", function () {
                                 var userRegionValueINN_modal = $("#small-select2-options-multiple-field_inn").val();
                                 if (userRegionValueINN_modal != null) {
                                     $("#info_object_Inn").empty();
-                                       // ИНН filtr_inn_end
+                                //ИНН filtr_inn_end
                                 if ($('#filtr_inn_end').is(':checked')) {
                                     result.innProject.forEach(itemInnProject => {
                                         const GetRegionInn_end = (region) => region == itemInnProject.region;
@@ -778,7 +779,7 @@
                                         }
                                     })
                                 }
-                                    // ИНН filtr_inn_continues
+                                    //ИНН filtr_inn_continues
                                     if ($('#filtr_inn_continues').is(':checked')) {
                                         result.innProject.forEach(itemInnProject => {
                                             const GetRegionInn_con = (region) => region == itemInnProject.region;
@@ -787,7 +788,7 @@
                                             }
                                         })
                                     }
-                                     // ИНН filtr_inn_execute
+                                    //ИНН filtr_inn_execute
                                     if ($('#filtr_inn_execute').is(':checked')) {
                                         result.innProject.forEach(itemInnProject => {
                                             const GetRegionInn_ex = (region) => region == itemInnProject.region;
@@ -799,19 +800,19 @@
                                 }
                                 if (userRegionValueINN_modal == null)
                                 {
-                                    // ИНН filtr_inn_end
+                                    //ИНН filtr_inn_end
                                     if ($('#filtr_inn_end').is(':checked')) {
                                         result.innProject.forEach(itemInnProject => {
                                             if (itemInnProject.statusInn == 1) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
                                         })
                                     }
-                                    // ИНН filtr_inn_continues
+                                    //ИНН filtr_inn_continues
                                     if ($('#filtr_inn_continues').is(':checked')) {
                                         result.innProject.forEach(itemInnProject => {
                                             if (itemInnProject.statusInn == 2) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
                                         })
                                     }
-                                    // ИНН filtr_inn_execute
+                                    //ИНН filtr_inn_execute
                                     if ($('#filtr_inn_execute').is(':checked')) {
                                         result.innProject.forEach(itemInnProject => {
                                             if (itemInnProject.statusInn == 3) {$("#info_object_Inn").append(getInfoInn(itemInnProject));}
@@ -819,9 +820,7 @@
                                     }
                                 }
                             });
-                            // КОНЕЦ ПО РЕГИОНАМ ИНН
 
-                            // Фильтрация данных в выподающем спике по чекбоксам с учётом выбранных данных в мульте силекте
                             $("#filtr_inn").click(function () {
                                 var userRegVal_inn = $("#small-select2-options-multiple-field_inn").val();
                                 if ($('#filtr_inn_continues').is(':checked') && $('#filtr_inn_end').is(':checked') && $('#filtr_inn_execute').is(':checked')) {
@@ -840,7 +839,7 @@
                                     }
                                    
                                 }
-                                // filtr_inn_end
+                                //filtr_inn_end
                                 if (!$('#filtr_inn_end').is(':checked'))
                                 {
                                      $("#info_object_Inn").empty();
@@ -863,7 +862,7 @@
                                         })
                                      }
                                 }
-                                // filtr_inn_continues
+                                //filtr_inn_continues
                                 if (!$('#filtr_inn_continues').is(':checked')) {
                                     $("#info_object_Inn").empty();
                                     if (userRegVal_inn == null) {
@@ -883,7 +882,7 @@
                                         })
                                     }
                                 }
-                                // filtr_inn_execute
+                                //filtr_inn_execute
                                 if (!$('#filtr_inn_execute').is(':checked')) {
                                     $("#info_object_Inn").empty();
                                     if (userRegVal_inn == null) {
@@ -904,23 +903,23 @@
                                 }
                                 if (!$('#filtr_inn_continues').is(':checked') && !$('#filtr_inn_end').is(':checked') && !$('#filtr_inn_execute').is(':checked')) { $("#info_object_Inn").empty();}
                             });
-
+                            //ФИЛЬТРАЦИЯ ПО РЕГИОНАМ ИНН - КОНЕЦ
                         }
                     });
                     //ИНН
                     function getInfoInn(itemInnProject) {
                         return `
-                                             <a  class="info_item  item-header-js" data-type="InnHeader" data-id="${itemInnProject.id}" data-x="${itemInnProject.x}" data-y="${itemInnProject.y}">
-                                             <div class="info_item-icon inn-big"></div>
-                                             <div class="info_item-data">
-                                                <h3>${itemInnProject.nameInnProject}</h3>
-                                                    <div class ="info_item-cl-nm">
-                                                    <span class="info_item-client">Заказчик:</span>
-                                                    <span class="info_item-client-name">${itemInnProject.customer}</span>
-                                                      </div>
-                                             </div>
-                                         </a>
-                                    `;
+                                <a  class="info_item  item-header-js" data-type="InnHeader" data-id="${itemInnProject.id}" data-x="${itemInnProject.x}" data-y="${itemInnProject.y}">
+                                    <div class="info_item-icon inn-big"></div>
+                                    <div class="info_item-data">
+                                         <h3>${itemInnProject.nameInnProject}</h3>
+                                         <div class ="info_item-cl-nm">
+                                              <span class="info_item-client">Заказчик:</span>
+                                              <span class="info_item-client-name">${itemInnProject.customer}</span>
+                                         </div>
+                                    </div>
+                                 </a>
+                                `;
                     }
                 }
                 else {
@@ -929,7 +928,7 @@
                 }
             });
         });
-        // При нажатии на вкладку "Научно-технологические  программы"
+        //При нажатии на вкладку "Научно-технологические программы"
         $(document).ready(function () {
             const $showDataItem_ntp = $("#Item_ntp");
             $showDataItem_ntp.click(function () {
@@ -937,7 +936,7 @@
                 let hasClass = $('.sidebarmap-accordion_item').hasClass('active_block');
                 $("#info_object_Inn").empty();
                 $("#info_object_tehnoparck_ctt").empty();
-                // если меню открыто, то выполнить ajax запрос и подставить данные
+                //если меню открыто, то выполнить ajax запрос и подставить данные
                 if (hasClass) {
                     $.ajax({
                         url: "@Url.Action("PostData", "Home")",
@@ -997,13 +996,13 @@
                             }
 
 
-                            // ФИЛЬТР ПО РЕГИОНАМ НТП   - MULTI SELECT    с учётом вкл и выкл чекбоксов
+                            //ФИЛЬТРАЦИЯ ПО РЕГИОНАМ НТП - НАЧАЛО
                             $(".info_panel-filter-ntp").on("change", function () {
                                 var userRegionValueNTP_modal = $("#small-select2-options-multiple-field_ntp").val();
                                 if (userRegionValueNTP_modal != null) {
                                $("#info_object_ntp").empty();
-                               // НТП filtr_ntp_end
-                                if ($('#filtr_ntp_end').is(':checked')) {
+                               //НТП filtr_ntp_end
+                                 if ($('#filtr_ntp_end').is(':checked')) {
                                     result.ntpProject.forEach(itemNtpProject => {
                                         const GetRegionNtp_end = (region) => region == itemNtpProject.region;
                                         if (userRegionValueNTP_modal.some(GetRegionNtp_end) == true)
@@ -1011,7 +1010,7 @@
                                           if (itemNtpProject.statusNtp == 1) {$("#info_object_ntp").append(getInfoNtp(itemNtpProject));}
                                         }
                                     })
-                                }
+                                 }
                                     // НТП filtr_ntp_continues
                                     if ($('#filtr_ntp_continues').is(':checked')) {
                                       result.ntpProject.forEach(itemNtpProject => {
@@ -1057,9 +1056,7 @@
                                     }
                                 }
                             });
-                            // КОНЕЦ ПО РЕГИОНАМ НТП
-
-                            // Фильтрация данных в выподающем спике по чекбоксам с учётом выбранных данных в мульте силекте
+                            
                             $("#filtr_ntp").click(function () {
                                 var userRegVal_ntp = $("#small-select2-options-multiple-field_ntp").val();
                                 if ($('#filtr_ntp_continues').is(':checked') && $('#filtr_ntp_end').is(':checked') && $('#filtr_ntp_execute').is(':checked')) {
@@ -1077,7 +1074,7 @@
                                          })
                                     }
                                 }
-                                // filtr_ntp_end
+                                //filtr_ntp_end
                                 if (!$('#filtr_ntp_end').is(':checked'))
                                 {
                                     $("#info_object_ntp").empty();
@@ -1099,7 +1096,7 @@
                                         })
                                      }
                                 }
-                                // filtr_ntp_continues
+                                //filtr_ntp_continues
                                 if (!$('#filtr_ntp_continues').is(':checked'))
                                 {
                                  
@@ -1122,7 +1119,7 @@
                                         })
                                      }
                                 }
-                                // filtr_ntp_execute
+                                //filtr_ntp_execute
                                 if (!$('#filtr_ntp_execute').is(':checked'))
                                 {
                                     $("#info_object_ntp").empty();
@@ -1147,25 +1144,25 @@
                                 if (!$('#filtr_ntp_continues').is(':checked') && !$('#filtr_ntp_end').is(':checked') && !$('#filtr_ntp_execute').is(':checked')) { $("#info_object_ntp").empty(); }
                                
                             });
+                           //ФИЛЬТРАЦИЯ ПО РЕГИОНАМ НТП - КОНЕЦ
                         }
                     });
                     // НТП
                     function getInfoNtp(itemNtpProject) {
                         return `
-                                                 <a  class="info_item  item-header-js" data-type="NtpHeader" data-id="${itemNtpProject.id}" data-x="${itemNtpProject.x}" data-y="${itemNtpProject.y}">
-                                            <div class="info_item-icon ntp-big"></div>
-                                        <div class="info_item-data">
-                                            <h3>${itemNtpProject.nameTask}</h3>
-                                                  <div class ="info_item-cl-nm">
-                                                        <span class="info_item-client">Заказчик:</span>
-                                                                <span class="info_item-client-name">${itemNtpProject.stateCustomer}</span>
-                                                      </div>
-                                       </div>
-                                     </a>
-                                        `;
+                                 <a  class="info_item  item-header-js" data-type="NtpHeader" data-id="${itemNtpProject.id}" data-x="${itemNtpProject.x}" data-y="${itemNtpProject.y}">
+                                     <div class="info_item-icon ntp-big"></div>
+                                     <div class="info_item-data">
+                                          <h3>${itemNtpProject.nameTask}</h3>
+                                          <div class ="info_item-cl-nm">
+                                               <span class="info_item-client">Заказчик:</span>
+                                               <span class="info_item-client-name">${itemNtpProject.stateCustomer}</span>
+                                          </div>
+                                     </div>
+                                 </a>
+                               `;
                     }
                 }
-                // При закрытии меню происходит очистка div, чтобы избежать дублирования информации
                 else {
                     $('.sidebarmap-accordion_item').removeClass('active_block');
                     $("#info_object_ntp").empty();
@@ -1174,7 +1171,7 @@
         });
 
         let timeoutID;
-        // всплывающее окно
+       //всплывающее окна
         function top_popup() {
             $(document).ready(function () {
                 const $closeWindow = $(".close-window");
@@ -1227,7 +1224,7 @@
             $parksProcessSmall.addClass("d-none");
 
         }
-        // получение данных по id
+       //получение данных по id
         $(document).ready(function () {
             $('.sidebarmap').on('click', '.item-header-js', function () {
                 var url = "";

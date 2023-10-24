@@ -31,10 +31,5 @@ namespace GeoItemMap.DAL.Repositories
         {
             return _dbSet.Find(id);
         }
-
-        public void Save()
-        {
-            _dbContext.SaveChanges();
-        }
     }
 }
