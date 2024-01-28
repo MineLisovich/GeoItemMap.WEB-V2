@@ -1,23 +1,28 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace GeoItemMap.DAL.Migrations
 {
-    public partial class mig7 : Migration
+    /// <inheritdoc />
+    public partial class mig1 : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "GeoItems",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     X = table.Column<float>(type: "real", nullable: false),
                     Y = table.Column<float>(type: "real", nullable: false),
-                    GeoType = table.Column<int>(type: "int", nullable: false),
-                    Region = table.Column<int>(type: "int", nullable: false),
+                    GeoType = table.Column<int>(type: "integer", nullable: false),
+                    Region = table.Column<int>(type: "integer", nullable: false),
                     statusInn = table.Column<short>(type: "smallint", nullable: false),
                     statusNtp = table.Column<short>(type: "smallint", nullable: false)
                 },
@@ -30,36 +35,36 @@ namespace GeoItemMap.DAL.Migrations
                 name: "InnProjects",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    NameInnProject = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NameOrgImplementingProject = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Customer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TermsImplementation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GPIR = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DocumentByWhichGPIR = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LocationProjectImplementation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProjectStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InnovatProject = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductsRelease = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TypeEconomicActivity = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Criterion1 = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    Criterion2 = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    Criterion3 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UseTechnologies = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AnnualProductionVolumeBY = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    AnnualExportVolumeBY = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    AnnualExportVolumeEUR = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true),
-                    ImportSubstituting = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ValueAddedPerEmployee = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    AddedValueProject = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false),
+                    NameInnProject = table.Column<string>(type: "text", nullable: false),
+                    NameOrgImplementingProject = table.Column<string>(type: "text", nullable: false),
+                    Customer = table.Column<string>(type: "text", nullable: false),
+                    TermsImplementation = table.Column<string>(type: "text", nullable: false),
+                    GPIR = table.Column<string>(type: "text", nullable: false),
+                    DocumentByWhichGPIR = table.Column<string>(type: "text", nullable: false),
+                    LocationProjectImplementation = table.Column<string>(type: "text", nullable: false),
+                    ProjectStatus = table.Column<string>(type: "text", nullable: false),
+                    InnovatProject = table.Column<string>(type: "text", nullable: false),
+                    ProductsRelease = table.Column<string>(type: "text", nullable: false),
+                    TypeEconomicActivity = table.Column<string>(type: "text", nullable: false),
+                    Criterion1 = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
+                    Criterion2 = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
+                    Criterion3 = table.Column<string>(type: "text", nullable: false),
+                    UseTechnologies = table.Column<string>(type: "text", nullable: false),
+                    AnnualProductionVolumeBY = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
+                    AnnualExportVolumeBY = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
+                    AnnualExportVolumeEUR = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: true),
+                    ImportSubstituting = table.Column<string>(type: "text", nullable: false),
+                    ValueAddedPerEmployee = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
+                    AddedValueProject = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
                     NumberUpgradedJobs = table.Column<short>(type: "smallint", nullable: false),
                     NumberNewJobs = table.Column<short>(type: "smallint", nullable: false),
-                    VolumeFinancing = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    NameImageInn_1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageInn_2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageInn_3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageInn_4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageInn_5 = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    VolumeFinancing = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
+                    NameImageInn_1 = table.Column<string>(type: "text", nullable: true),
+                    NameImageInn_2 = table.Column<string>(type: "text", nullable: true),
+                    NameImageInn_3 = table.Column<string>(type: "text", nullable: true),
+                    NameImageInn_4 = table.Column<string>(type: "text", nullable: true),
+                    NameImageInn_5 = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -68,30 +73,31 @@ namespace GeoItemMap.DAL.Migrations
                         name: "FK_InnProjects_GeoItems_Id",
                         column: x => x.Id,
                         principalTable: "GeoItems",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "NtpProject",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    NameProgramm = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StateCustomer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ParentImplemOrg = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NameTask = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImplemOrg = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdressImplemOrg = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StateTask = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TheLevelStructure = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NameNewDevProducts = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InformationExports = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InformationNewProduct = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NameImageNtp_1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageNtp_2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageNtp_3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageNtp_4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageNtp_5 = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false),
+                    NameProgramm = table.Column<string>(type: "text", nullable: false),
+                    StateCustomer = table.Column<string>(type: "text", nullable: false),
+                    ParentImplemOrg = table.Column<string>(type: "text", nullable: false),
+                    NameTask = table.Column<string>(type: "text", nullable: false),
+                    ImplemOrg = table.Column<string>(type: "text", nullable: false),
+                    AdressImplemOrg = table.Column<string>(type: "text", nullable: false),
+                    StateTask = table.Column<string>(type: "text", nullable: false),
+                    TheLevelStructure = table.Column<string>(type: "text", nullable: false),
+                    NameNewDevProducts = table.Column<string>(type: "text", nullable: false),
+                    InformationExports = table.Column<string>(type: "text", nullable: false),
+                    InformationNewProduct = table.Column<string>(type: "text", nullable: false),
+                    NameImageNtp_1 = table.Column<string>(type: "text", nullable: true),
+                    NameImageNtp_2 = table.Column<string>(type: "text", nullable: true),
+                    NameImageNtp_3 = table.Column<string>(type: "text", nullable: true),
+                    NameImageNtp_4 = table.Column<string>(type: "text", nullable: true),
+                    NameImageNtp_5 = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -100,34 +106,35 @@ namespace GeoItemMap.DAL.Migrations
                         name: "FK_NtpProject_GeoItems_Id",
                         column: x => x.Id,
                         principalTable: "GeoItems",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Technoparks",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    NameTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AddressTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmailTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WebsiteTechnopark = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false),
+                    NameTechnopark = table.Column<string>(type: "text", nullable: false),
+                    AddressTechnopark = table.Column<string>(type: "text", nullable: false),
+                    PhoneTechnopark = table.Column<string>(type: "text", nullable: false),
+                    EmailTechnopark = table.Column<string>(type: "text", nullable: false),
+                    WebsiteTechnopark = table.Column<string>(type: "text", nullable: false),
                     TotalAreaPremises = table.Column<float>(type: "real", nullable: false),
                     FreeAreaPremises = table.Column<float>(type: "real", nullable: false),
-                    TechSpecialization = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TypesProducts = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ServicesProvided = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TechInfrastructure = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TechSpecialization = table.Column<string>(type: "text", nullable: false),
+                    TypesProducts = table.Column<string>(type: "text", nullable: false),
+                    ServicesProvided = table.Column<string>(type: "text", nullable: false),
+                    TechInfrastructure = table.Column<string>(type: "text", nullable: false),
                     TotalNumberResident = table.Column<short>(type: "smallint", nullable: true),
                     NumberEmployees = table.Column<short>(type: "smallint", nullable: false),
                     VolComplProducts = table.Column<float>(type: "real", nullable: false),
-                    AmountFunding = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    NameImageTeh_1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageTeh_2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageTeh_3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageTeh_4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageTeh_5 = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AmountFunding = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
+                    NameImageTeh_1 = table.Column<string>(type: "text", nullable: true),
+                    NameImageTeh_2 = table.Column<string>(type: "text", nullable: true),
+                    NameImageTeh_3 = table.Column<string>(type: "text", nullable: true),
+                    NameImageTeh_4 = table.Column<string>(type: "text", nullable: true),
+                    NameImageTeh_5 = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -136,33 +143,34 @@ namespace GeoItemMap.DAL.Migrations
                         name: "FK_Technoparks_GeoItems_Id",
                         column: x => x.Id,
                         principalTable: "GeoItems",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "TechTransferCenters",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    NameTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdressTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmailTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WebsiteTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ServicesProvidedTechTransferCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false),
+                    NameTechTransferCenter = table.Column<string>(type: "text", nullable: false),
+                    AdressTechTransferCenter = table.Column<string>(type: "text", nullable: false),
+                    PhoneTechTransferCenter = table.Column<string>(type: "text", nullable: false),
+                    EmailTechTransferCenter = table.Column<string>(type: "text", nullable: false),
+                    WebsiteTechTransferCenter = table.Column<string>(type: "text", nullable: false),
+                    ServicesProvidedTechTransferCenter = table.Column<string>(type: "text", nullable: false),
                     NumberAcceptedWorkProposals = table.Column<short>(type: "smallint", nullable: false),
                     NumberAcceptedWorkRequests = table.Column<short>(type: "smallint", nullable: false),
                     NumberTransactionsConcluded = table.Column<short>(type: "smallint", nullable: false),
-                    VolumeTransactionsConcluded = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: true),
+                    VolumeTransactionsConcluded = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: true),
                     NumberGeneratedProjects = table.Column<short>(type: "smallint", nullable: false),
-                    VolumeGeneratedProjects = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    VolumeWorkPerformed = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    AmountFunding = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    NameImageCtt_1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageCtt_2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageCtt_3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageCtt_4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameImageCtt_5 = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    VolumeGeneratedProjects = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
+                    VolumeWorkPerformed = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
+                    AmountFunding = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
+                    NameImageCtt_1 = table.Column<string>(type: "text", nullable: true),
+                    NameImageCtt_2 = table.Column<string>(type: "text", nullable: true),
+                    NameImageCtt_3 = table.Column<string>(type: "text", nullable: true),
+                    NameImageCtt_4 = table.Column<string>(type: "text", nullable: true),
+                    NameImageCtt_5 = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -171,7 +179,8 @@ namespace GeoItemMap.DAL.Migrations
                         name: "FK_TechTransferCenters_GeoItems_Id",
                         column: x => x.Id,
                         principalTable: "GeoItems",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -179,11 +188,6 @@ namespace GeoItemMap.DAL.Migrations
                 columns: new[] { "Id", "GeoType", "Region", "X", "Y", "statusInn", "statusNtp" },
                 values: new object[,]
                 {
-                    { 201, 2, 7, 53.917225f, 27.549812f, (short)2, (short)0 },
-                    { 202, 2, 7, 53.90289f, 27.51202f, (short)2, (short)0 },
-                    { 203, 2, 5, 54.189735f, 28.49261f, (short)2, (short)0 },
-                    { 1001, 3, 7, 53.9387f, 27.602226f, (short)0, (short)2 },
-                    { 1002, 3, 2, 55.167625f, 30.239363f, (short)0, (short)2 },
                     { 1, 1, 4, 53.684956f, 23.839453f, (short)0, (short)0 },
                     { 2, 1, 5, 53.88728f, 26.967253f, (short)0, (short)0 },
                     { 3, 1, 1, 53.12245f, 26.041328f, (short)0, (short)0 },
@@ -210,7 +214,12 @@ namespace GeoItemMap.DAL.Migrations
                     { 118, 0, 7, 53.875854f, 27.655737f, (short)0, (short)0 },
                     { 119, 0, 7, 53.88313f, 27.592127f, (short)0, (short)0 },
                     { 120, 0, 7, 53.901115f, 27.497475f, (short)0, (short)0 },
-                    { 121, 0, 7, 53.89705f, 27.599731f, (short)0, (short)0 }
+                    { 121, 0, 7, 53.89705f, 27.599731f, (short)0, (short)0 },
+                    { 201, 2, 7, 53.917225f, 27.549812f, (short)2, (short)0 },
+                    { 202, 2, 7, 53.90289f, 27.51202f, (short)2, (short)0 },
+                    { 203, 2, 5, 54.189735f, 28.49261f, (short)2, (short)0 },
+                    { 1001, 3, 7, 53.9387f, 27.602226f, (short)0, (short)2 },
+                    { 1002, 3, 2, 55.167625f, 30.239363f, (short)0, (short)2 }
                 });
 
             migrationBuilder.InsertData(
@@ -274,6 +283,7 @@ namespace GeoItemMap.DAL.Migrations
                 });
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

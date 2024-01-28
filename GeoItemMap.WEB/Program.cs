@@ -2,15 +2,14 @@ using GeoItemMap.DAL.Interfaces;
 using GeoItemMap.DAL.Repositories;
 using GeoItemMap.DAL.Entities;
 using GeoItemMap.DAL.DataContext;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
 using GeoItemMap.WEB.Service;
 
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddCors(options =>
 {
@@ -31,7 +30,10 @@ builder.Services.AddScoped<IGenericRepository<Technopark>, EFGenericRepository<T
 builder.Services.AddScoped<IGenericRepository<InnProject>, EFGenericRepository<InnProject>>();
 builder.Services.AddScoped<IGenericRepository<NtpProject>, EFGenericRepository<NtpProject>>();
 builder.Services.AddScoped<IGenericRepository<TechTransferCenter>, EFGenericRepository<TechTransferCenter>>();
-builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.DefaultConnection));
+
+builder.Services.AddDbContext<AppDbContext>(config => config.UseNpgsql(connectionString,
+               x => x.MigrationsAssembly("GeoItemMap.DAL")));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -3,8 +3,8 @@ using System;
 using GeoItemMap.DAL.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -17,24 +17,24 @@ namespace GeoItemMap.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("GeoItemMap.DAL.Entities.GeoItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("GeoType")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("Region")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<float>("X")
                         .HasColumnType("real");
@@ -51,6 +51,8 @@ namespace GeoItemMap.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("GeoItems", (string)null);
+
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("GeoItemMap.DAL.Entities.InnProject", b =>
@@ -60,82 +62,82 @@ namespace GeoItemMap.DAL.Migrations
                     b.Property<decimal?>("AddedValueProject")
                         .IsRequired()
                         .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("numeric(10,2)");
 
                     b.Property<decimal?>("AnnualExportVolumeBY")
                         .IsRequired()
                         .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("numeric(10,2)");
 
                     b.Property<decimal?>("AnnualExportVolumeEUR")
                         .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("numeric(10,2)");
 
                     b.Property<decimal?>("AnnualProductionVolumeBY")
                         .IsRequired()
                         .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("numeric(10,2)");
 
                     b.Property<decimal?>("Criterion1")
                         .IsRequired()
                         .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("numeric(10,2)");
 
                     b.Property<decimal?>("Criterion2")
                         .IsRequired()
                         .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("numeric(10,2)");
 
                     b.Property<string>("Criterion3")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Customer")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("DocumentByWhichGPIR")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("GPIR")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ImportSubstituting")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("InnovatProject")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("LocationProjectImplementation")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageInn_1")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageInn_2")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageInn_3")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageInn_4")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageInn_5")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameInnProject")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameOrgImplementingProject")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<short?>("NumberNewJobs")
                         .IsRequired()
@@ -147,33 +149,33 @@ namespace GeoItemMap.DAL.Migrations
 
                     b.Property<string>("ProductsRelease")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProjectStatus")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("TermsImplementation")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("TypeEconomicActivity")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("UseTechnologies")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<decimal?>("ValueAddedPerEmployee")
                         .IsRequired()
                         .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("numeric(10,2)");
 
                     b.Property<decimal?>("VolumeFinancing")
                         .IsRequired()
                         .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("numeric(10,2)");
 
                     b.ToTable("InnProjects", (string)null);
 
@@ -288,62 +290,62 @@ namespace GeoItemMap.DAL.Migrations
 
                     b.Property<string>("AdressImplemOrg")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ImplemOrg")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("InformationExports")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("InformationNewProduct")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageNtp_1")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageNtp_2")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageNtp_3")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageNtp_4")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageNtp_5")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameNewDevProducts")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameProgramm")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameTask")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ParentImplemOrg")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("StateCustomer")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("StateTask")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("TheLevelStructure")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.ToTable("NtpProject", (string)null);
 
@@ -392,44 +394,271 @@ namespace GeoItemMap.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("GeoItemMap.DAL.Entities.TechTransferCenter", b =>
+                {
+                    b.HasBaseType("GeoItemMap.DAL.Entities.GeoItem");
+
+                    b.Property<string>("AdressTechTransferCenter")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal?>("AmountFunding")
+                        .IsRequired()
+                        .HasPrecision(10, 2)
+                        .HasColumnType("numeric(10,2)");
+
+                    b.Property<string>("EmailTechTransferCenter")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameImageCtt_1")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameImageCtt_2")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameImageCtt_3")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameImageCtt_4")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameImageCtt_5")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NameTechTransferCenter")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<short?>("NumberAcceptedWorkProposals")
+                        .IsRequired()
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("NumberAcceptedWorkRequests")
+                        .IsRequired()
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("NumberGeneratedProjects")
+                        .IsRequired()
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("NumberTransactionsConcluded")
+                        .IsRequired()
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("PhoneTechTransferCenter")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ServicesProvidedTechTransferCenter")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal?>("VolumeGeneratedProjects")
+                        .IsRequired()
+                        .HasPrecision(10, 2)
+                        .HasColumnType("numeric(10,2)");
+
+                    b.Property<decimal?>("VolumeTransactionsConcluded")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("numeric(10,2)");
+
+                    b.Property<decimal?>("VolumeWorkPerformed")
+                        .IsRequired()
+                        .HasPrecision(10, 2)
+                        .HasColumnType("numeric(10,2)");
+
+                    b.Property<string>("WebsiteTechTransferCenter")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.ToTable("TechTransferCenters", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            GeoType = 1,
+                            Region = 4,
+                            X = 53.684956f,
+                            Y = 23.839453f,
+                            statusInn = (short)0,
+                            statusNtp = (short)0,
+                            AdressTechTransferCenter = "230023, г. Гродно, ул. Ожешко,22",
+                            AmountFunding = 364m,
+                            EmailTechTransferCenter = "ctt@grsu.by",
+                            NameTechTransferCenter = "УО «Гродненский государственный университет имени Янки Купалы» ",
+                            NumberAcceptedWorkProposals = (short)25,
+                            NumberAcceptedWorkRequests = (short)3,
+                            NumberGeneratedProjects = (short)11,
+                            NumberTransactionsConcluded = (short)0,
+                            PhoneTechTransferCenter = "80(152)-39-58-96",
+                            ServicesProvidedTechTransferCenter = "Комплекс услуг участникам инновационного процесса по \r\nвведению в гражданский оборот результатов интеллектуальной деятельности, консалтинговые услуги по проектной деятельности, в том числе международной, проведение конференций и семинаров, оказание образовательных услуг по развитию инновационного предпринимательства",
+                            VolumeGeneratedProjects = 270m,
+                            VolumeTransactionsConcluded = 0m,
+                            VolumeWorkPerformed = 0m,
+                            WebsiteTechTransferCenter = "https://ctt.grsu.by"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            GeoType = 1,
+                            Region = 5,
+                            X = 53.88728f,
+                            Y = 26.967253f,
+                            statusInn = (short)0,
+                            statusNtp = (short)0,
+                            AdressTechTransferCenter = "Минская область, Дзержинский район, Путчинский сельский Совет, аг. Волма, ул. Парковая, 11",
+                            AmountFunding = 3868m,
+                            EmailTechTransferCenter = "volma@ripo.by, v_o_l_m_a@mail.ru",
+                            NameTechTransferCenter = "УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»",
+                            NumberAcceptedWorkProposals = (short)3,
+                            NumberAcceptedWorkRequests = (short)2,
+                            NumberGeneratedProjects = (short)2,
+                            NumberTransactionsConcluded = (short)0,
+                            PhoneTechTransferCenter = "+375(17)374-73-31",
+                            ServicesProvidedTechTransferCenter = "Услуги в проектно-консультационной, инженерно-исследо¬ватель¬ской и образовательной деятельности в целях обеспечения введения в гражданский оборот производственных и педагогических инноваций",
+                            VolumeGeneratedProjects = 20m,
+                            VolumeTransactionsConcluded = 0m,
+                            VolumeWorkPerformed = 3.2m,
+                            WebsiteTechTransferCenter = "etp-volma.by"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            GeoType = 1,
+                            Region = 1,
+                            X = 53.12245f,
+                            Y = 26.041328f,
+                            statusInn = (short)0,
+                            statusNtp = (short)0,
+                            AdressTechTransferCenter = "Брестская обл. г. Барановичи, ул. Войкова, д. 21",
+                            AmountFunding = 0m,
+                            EmailTechTransferCenter = "ctt.barsu@yandex.by",
+                            NameTechTransferCenter = "УО «Барановичский государственный университет»",
+                            NumberAcceptedWorkProposals = (short)8,
+                            NumberAcceptedWorkRequests = (short)4,
+                            NumberGeneratedProjects = (short)12,
+                            NumberTransactionsConcluded = (short)0,
+                            PhoneTechTransferCenter = "80(16)364-35-85",
+                            ServicesProvidedTechTransferCenter = "Научно-технические, технологические разработки, научно-исследовательская деятельность, Консалтинговые услуги, образовательные услуги, организации мероприятий для субъектов инновационной деятельности в проведении выставок, ярмарок, конференций и других мероприятий.оказание услуг по подготовке бизнес-планов инновационных проектов.",
+                            VolumeGeneratedProjects = 259.7m,
+                            VolumeTransactionsConcluded = 0m,
+                            VolumeWorkPerformed = 0m,
+                            WebsiteTechTransferCenter = "http://ctt.barsu.by/"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            GeoType = 1,
+                            Region = 2,
+                            X = 55.19271f,
+                            Y = 30.21926f,
+                            statusInn = (short)0,
+                            statusNtp = (short)0,
+                            AdressTechTransferCenter = "210023, г. Витебск, пр-т Фрунзе, д. 27",
+                            AmountFunding = 0m,
+                            EmailTechTransferCenter = "ctmft.vgmu@gmail.com",
+                            NameTechTransferCenter = "УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части деятельности обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)",
+                            NumberAcceptedWorkProposals = (short)3,
+                            NumberAcceptedWorkRequests = (short)1,
+                            NumberGeneratedProjects = (short)1,
+                            NumberTransactionsConcluded = (short)0,
+                            PhoneTechTransferCenter = "",
+                            ServicesProvidedTechTransferCenter = "Поиск заказчиков научных исследований, оформление проектно-смметной документации, связанной с выполнением различных видов исследований, оказание помощи в организации проведения начных исследований на базе ВГМУ, оказание помощи в оформлении и передачу отчетной документации заказчику нацчных исследований",
+                            VolumeGeneratedProjects = 0m,
+                            VolumeTransactionsConcluded = 0m,
+                            VolumeWorkPerformed = 0.4m,
+                            WebsiteTechTransferCenter = "https://www.vsmu.by/about-vsmu/departments/3603-tsentr-transfera-meditsinskikh-i-farmatsevticheskikh-tekhnologij.html "
+                        },
+                        new
+                        {
+                            Id = 5,
+                            GeoType = 1,
+                            Region = 3,
+                            X = 52.42506f,
+                            Y = 31.01014f,
+                            statusInn = (short)0,
+                            statusNtp = (short)0,
+                            AdressTechTransferCenter = "246050, г. Гомель, пр-т Ленина, д. 3, комн. 306",
+                            AmountFunding = 0m,
+                            EmailTechTransferCenter = " mail@cntdi.gomel.by",
+                            NameTechTransferCenter = "РУП «Центр научно-технической и деловой информации»",
+                            NumberAcceptedWorkProposals = (short)10,
+                            NumberAcceptedWorkRequests = (short)10,
+                            NumberGeneratedProjects = (short)0,
+                            NumberTransactionsConcluded = (short)0,
+                            PhoneTechTransferCenter = "375(232)31-58-59",
+                            ServicesProvidedTechTransferCenter = "информационные услуги",
+                            VolumeGeneratedProjects = 0m,
+                            VolumeTransactionsConcluded = 0m,
+                            VolumeWorkPerformed = 85.7m,
+                            WebsiteTechTransferCenter = "https://cntdi.gomel.by/"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            GeoType = 1,
+                            Region = 4,
+                            X = 53.89851f,
+                            Y = 25.297256f,
+                            statusInn = (short)0,
+                            statusNtp = (short)0,
+                            AdressTechTransferCenter = "231300, г. Лида,  Гродненская обл, ул. Советская, д. 43",
+                            AmountFunding = 0m,
+                            EmailTechTransferCenter = "lidabi@mail.ru",
+                            NameTechTransferCenter = "ООО «Апсель»",
+                            NumberAcceptedWorkProposals = (short)6,
+                            NumberAcceptedWorkRequests = (short)1,
+                            NumberGeneratedProjects = (short)1,
+                            NumberTransactionsConcluded = (short)0,
+                            PhoneTechTransferCenter = "375(29)624-91-56",
+                            ServicesProvidedTechTransferCenter = "Оказание офисных услуг партнёрам, предоставление в аренду оборудования, компьютерной и офисной техники, осуществление маркетингового поиска новых технологий и источников финансирования",
+                            VolumeGeneratedProjects = 0m,
+                            VolumeTransactionsConcluded = 0m,
+                            VolumeWorkPerformed = 19.99m,
+                            WebsiteTechTransferCenter = ""
+                        });
+                });
+
             modelBuilder.Entity("GeoItemMap.DAL.Entities.Technopark", b =>
                 {
                     b.HasBaseType("GeoItemMap.DAL.Entities.GeoItem");
 
                     b.Property<string>("AddressTechnopark")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<decimal?>("AmountFunding")
                         .IsRequired()
                         .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("numeric(10,2)");
 
                     b.Property<string>("EmailTechnopark")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<float>("FreeAreaPremises")
                         .HasColumnType("real");
 
                     b.Property<string>("NameImageTeh_1")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageTeh_2")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageTeh_3")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageTeh_4")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameImageTeh_5")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NameTechnopark")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<short?>("NumberEmployees")
                         .IsRequired()
@@ -437,19 +666,19 @@ namespace GeoItemMap.DAL.Migrations
 
                     b.Property<string>("PhoneTechnopark")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ServicesProvided")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("TechInfrastructure")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("TechSpecialization")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<float>("TotalAreaPremises")
                         .HasColumnType("real");
@@ -459,7 +688,7 @@ namespace GeoItemMap.DAL.Migrations
 
                     b.Property<string>("TypesProducts")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<float?>("VolComplProducts")
                         .IsRequired()
@@ -467,7 +696,7 @@ namespace GeoItemMap.DAL.Migrations
 
                     b.Property<string>("WebsiteTechnopark")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.ToTable("Technoparks", (string)null);
 
@@ -999,239 +1228,12 @@ namespace GeoItemMap.DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GeoItemMap.DAL.Entities.TechTransferCenter", b =>
-                {
-                    b.HasBaseType("GeoItemMap.DAL.Entities.GeoItem");
-
-                    b.Property<string>("AdressTechTransferCenter")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("AmountFunding")
-                        .IsRequired()
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<string>("EmailTechTransferCenter")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameImageCtt_1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameImageCtt_2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameImageCtt_3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameImageCtt_4")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameImageCtt_5")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameTechTransferCenter")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<short?>("NumberAcceptedWorkProposals")
-                        .IsRequired()
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("NumberAcceptedWorkRequests")
-                        .IsRequired()
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("NumberGeneratedProjects")
-                        .IsRequired()
-                        .HasColumnType("smallint");
-
-                    b.Property<short?>("NumberTransactionsConcluded")
-                        .IsRequired()
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("PhoneTechTransferCenter")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ServicesProvidedTechTransferCenter")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("VolumeGeneratedProjects")
-                        .IsRequired()
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<decimal?>("VolumeTransactionsConcluded")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<decimal?>("VolumeWorkPerformed")
-                        .IsRequired()
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<string>("WebsiteTechTransferCenter")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("TechTransferCenters", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            GeoType = 1,
-                            Region = 4,
-                            X = 53.684956f,
-                            Y = 23.839453f,
-                            statusInn = (short)0,
-                            statusNtp = (short)0,
-                            AdressTechTransferCenter = "230023, г. Гродно, ул. Ожешко,22",
-                            AmountFunding = 364m,
-                            EmailTechTransferCenter = "ctt@grsu.by",
-                            NameTechTransferCenter = "УО «Гродненский государственный университет имени Янки Купалы» ",
-                            NumberAcceptedWorkProposals = (short)25,
-                            NumberAcceptedWorkRequests = (short)3,
-                            NumberGeneratedProjects = (short)11,
-                            NumberTransactionsConcluded = (short)0,
-                            PhoneTechTransferCenter = "80(152)-39-58-96",
-                            ServicesProvidedTechTransferCenter = "Комплекс услуг участникам инновационного процесса по \r\nвведению в гражданский оборот результатов интеллектуальной деятельности, консалтинговые услуги по проектной деятельности, в том числе международной, проведение конференций и семинаров, оказание образовательных услуг по развитию инновационного предпринимательства",
-                            VolumeGeneratedProjects = 270m,
-                            VolumeTransactionsConcluded = 0m,
-                            VolumeWorkPerformed = 0m,
-                            WebsiteTechTransferCenter = "https://ctt.grsu.by"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            GeoType = 1,
-                            Region = 5,
-                            X = 53.88728f,
-                            Y = 26.967253f,
-                            statusInn = (short)0,
-                            statusNtp = (short)0,
-                            AdressTechTransferCenter = "Минская область, Дзержинский район, Путчинский сельский Совет, аг. Волма, ул. Парковая, 11",
-                            AmountFunding = 3868m,
-                            EmailTechTransferCenter = "volma@ripo.by, v_o_l_m_a@mail.ru",
-                            NameTechTransferCenter = "УО РИПО «Ресурсный центр ЭкоТехнопарк-Волма»",
-                            NumberAcceptedWorkProposals = (short)3,
-                            NumberAcceptedWorkRequests = (short)2,
-                            NumberGeneratedProjects = (short)2,
-                            NumberTransactionsConcluded = (short)0,
-                            PhoneTechTransferCenter = "+375(17)374-73-31",
-                            ServicesProvidedTechTransferCenter = "Услуги в проектно-консультационной, инженерно-исследо¬ватель¬ской и образовательной деятельности в целях обеспечения введения в гражданский оборот производственных и педагогических инноваций",
-                            VolumeGeneratedProjects = 20m,
-                            VolumeTransactionsConcluded = 0m,
-                            VolumeWorkPerformed = 3.2m,
-                            WebsiteTechTransferCenter = "etp-volma.by"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GeoType = 1,
-                            Region = 1,
-                            X = 53.12245f,
-                            Y = 26.041328f,
-                            statusInn = (short)0,
-                            statusNtp = (short)0,
-                            AdressTechTransferCenter = "Брестская обл. г. Барановичи, ул. Войкова, д. 21",
-                            AmountFunding = 0m,
-                            EmailTechTransferCenter = "ctt.barsu@yandex.by",
-                            NameTechTransferCenter = "УО «Барановичский государственный университет»",
-                            NumberAcceptedWorkProposals = (short)8,
-                            NumberAcceptedWorkRequests = (short)4,
-                            NumberGeneratedProjects = (short)12,
-                            NumberTransactionsConcluded = (short)0,
-                            PhoneTechTransferCenter = "80(16)364-35-85",
-                            ServicesProvidedTechTransferCenter = "Научно-технические, технологические разработки, научно-исследовательская деятельность, Консалтинговые услуги, образовательные услуги, организации мероприятий для субъектов инновационной деятельности в проведении выставок, ярмарок, конференций и других мероприятий.оказание услуг по подготовке бизнес-планов инновационных проектов.",
-                            VolumeGeneratedProjects = 259.7m,
-                            VolumeTransactionsConcluded = 0m,
-                            VolumeWorkPerformed = 0m,
-                            WebsiteTechTransferCenter = "http://ctt.barsu.by/"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            GeoType = 1,
-                            Region = 2,
-                            X = 55.19271f,
-                            Y = 30.21926f,
-                            statusInn = (short)0,
-                            statusNtp = (short)0,
-                            AdressTechTransferCenter = "210023, г. Витебск, пр-т Фрунзе, д. 27",
-                            AmountFunding = 0m,
-                            EmailTechTransferCenter = "ctmft.vgmu@gmail.com",
-                            NameTechTransferCenter = "УО «Витебский государственный ордена Дружбы народов медицинский университет» (в части деятельности обособленного подразделения «Центр трансфера медицинских и фармацевтических технологий»)",
-                            NumberAcceptedWorkProposals = (short)3,
-                            NumberAcceptedWorkRequests = (short)1,
-                            NumberGeneratedProjects = (short)1,
-                            NumberTransactionsConcluded = (short)0,
-                            PhoneTechTransferCenter = "",
-                            ServicesProvidedTechTransferCenter = "Поиск заказчиков научных исследований, оформление проектно-смметной документации, связанной с выполнением различных видов исследований, оказание помощи в организации проведения начных исследований на базе ВГМУ, оказание помощи в оформлении и передачу отчетной документации заказчику нацчных исследований",
-                            VolumeGeneratedProjects = 0m,
-                            VolumeTransactionsConcluded = 0m,
-                            VolumeWorkPerformed = 0.4m,
-                            WebsiteTechTransferCenter = "https://www.vsmu.by/about-vsmu/departments/3603-tsentr-transfera-meditsinskikh-i-farmatsevticheskikh-tekhnologij.html "
-                        },
-                        new
-                        {
-                            Id = 5,
-                            GeoType = 1,
-                            Region = 3,
-                            X = 52.42506f,
-                            Y = 31.01014f,
-                            statusInn = (short)0,
-                            statusNtp = (short)0,
-                            AdressTechTransferCenter = "246050, г. Гомель, пр-т Ленина, д. 3, комн. 306",
-                            AmountFunding = 0m,
-                            EmailTechTransferCenter = " mail@cntdi.gomel.by",
-                            NameTechTransferCenter = "РУП «Центр научно-технической и деловой информации»",
-                            NumberAcceptedWorkProposals = (short)10,
-                            NumberAcceptedWorkRequests = (short)10,
-                            NumberGeneratedProjects = (short)0,
-                            NumberTransactionsConcluded = (short)0,
-                            PhoneTechTransferCenter = "375(232)31-58-59",
-                            ServicesProvidedTechTransferCenter = "информационные услуги",
-                            VolumeGeneratedProjects = 0m,
-                            VolumeTransactionsConcluded = 0m,
-                            VolumeWorkPerformed = 85.7m,
-                            WebsiteTechTransferCenter = "https://cntdi.gomel.by/"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            GeoType = 1,
-                            Region = 4,
-                            X = 53.89851f,
-                            Y = 25.297256f,
-                            statusInn = (short)0,
-                            statusNtp = (short)0,
-                            AdressTechTransferCenter = "231300, г. Лида,  Гродненская обл, ул. Советская, д. 43",
-                            AmountFunding = 0m,
-                            EmailTechTransferCenter = "lidabi@mail.ru",
-                            NameTechTransferCenter = "ООО «Апсель»",
-                            NumberAcceptedWorkProposals = (short)6,
-                            NumberAcceptedWorkRequests = (short)1,
-                            NumberGeneratedProjects = (short)1,
-                            NumberTransactionsConcluded = (short)0,
-                            PhoneTechTransferCenter = "375(29)624-91-56",
-                            ServicesProvidedTechTransferCenter = "Оказание офисных услуг партнёрам, предоставление в аренду оборудования, компьютерной и офисной техники, осуществление маркетингового поиска новых технологий и источников финансирования",
-                            VolumeGeneratedProjects = 0m,
-                            VolumeTransactionsConcluded = 0m,
-                            VolumeWorkPerformed = 19.99m,
-                            WebsiteTechTransferCenter = ""
-                        });
-                });
-
             modelBuilder.Entity("GeoItemMap.DAL.Entities.InnProject", b =>
                 {
                     b.HasOne("GeoItemMap.DAL.Entities.GeoItem", null)
                         .WithOne()
                         .HasForeignKey("GeoItemMap.DAL.Entities.InnProject", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1240,16 +1242,7 @@ namespace GeoItemMap.DAL.Migrations
                     b.HasOne("GeoItemMap.DAL.Entities.GeoItem", null)
                         .WithOne()
                         .HasForeignKey("GeoItemMap.DAL.Entities.NtpProject", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("GeoItemMap.DAL.Entities.Technopark", b =>
-                {
-                    b.HasOne("GeoItemMap.DAL.Entities.GeoItem", null)
-                        .WithOne()
-                        .HasForeignKey("GeoItemMap.DAL.Entities.Technopark", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1258,7 +1251,16 @@ namespace GeoItemMap.DAL.Migrations
                     b.HasOne("GeoItemMap.DAL.Entities.GeoItem", null)
                         .WithOne()
                         .HasForeignKey("GeoItemMap.DAL.Entities.TechTransferCenter", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GeoItemMap.DAL.Entities.Technopark", b =>
+                {
+                    b.HasOne("GeoItemMap.DAL.Entities.GeoItem", null)
+                        .WithOne()
+                        .HasForeignKey("GeoItemMap.DAL.Entities.Technopark", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
